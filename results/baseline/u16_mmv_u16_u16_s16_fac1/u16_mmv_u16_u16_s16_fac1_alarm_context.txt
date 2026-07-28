@@ -1,0 +1,11 @@
+[eva:alarm] src_analysis/sources/avrg_Ccode.c:249: Warning: 
+  signed overflow. assert -s32mmv ≤ 2147483647;
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function u16_mmv_u16_u16_s16_fac1:
+  crlc ∈ [--..--]
+  s32mmv ∈ [--..--]
+  u16mmv ∈ {0}
+  result ∈ [--..--]
+  __retres ∈ [--..--]
+[eva:final-states] Values at end of function eva_main:
+  Frama_C_entropy_source ∈ [--..--]

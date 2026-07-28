@@ -1,0 +1,7 @@
+frama-c \
+  -load results/baseline/u16_mmv_u16_u16_s16_fac1/u16_mmv_u16_u16_s16_fac1_parse.sav \
+  -eva \
+  -eva-slevel 1000 \
+  -eva-ilevel 256 \
+  -save results/baseline/u16_mmv_u16_u16_s16_fac1/u16_mmv_u16_u16_s16_fac1_eva.sav \
+  > results/baseline/u16_mmv_u16_u16_s16_fac1/u16_mmv_u16_u16_s16_fac1_eva.log 2>&1
