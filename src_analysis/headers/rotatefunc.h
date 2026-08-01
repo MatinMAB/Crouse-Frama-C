@@ -8,8 +8,10 @@
 #ifndef ROTATEFUNC_H_
 #define ROTATEFUNC_H_
 
+#include "Platform_Types.h"
+
 /* Function declarations */
-int rotateLeft(int num, unsigned int rotation);
-int rotateRight(int num, unsigned int rotation);
+u32 rotateLeft(u32 num, u32 rotation);
+u32 rotateRight(u32 num, u32 rotation);
 
 #endif /* ROTATEFUNC_H_ */
