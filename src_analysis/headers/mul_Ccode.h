@@ -38,6 +38,7 @@ s16 root_s16_mul_s16_u16_fac_less1(s16,u16,s32);
 s16 root_s16_mul_s16_u16_fac_less1_Asm(s16,u16,s32);
 s16 root_s16_mul_s16_u16_fac_greater1(s16,u16,u16);
 s16 root_s16_mul_s16_u16_fac_greater1_Asm(s16,u16,u16);
+s16 s16_mul_s16_u16_fac025(s16, u16);
 s16 s16_mul_s16_u16_fac1( s16, u16);
 s16 s16_mul_s16_u16_fac1_Asm( s16, u16);
 s16 s16_mul_s16_u16_fac2( s16, u16);
