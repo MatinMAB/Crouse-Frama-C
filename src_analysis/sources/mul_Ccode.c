@@ -4676,7 +4676,7 @@ u16 u16_mul_u16_u8_fac64(u16 x_value, u8 y_value)
  * @note The implementation uses integer bit scaling (left shift(s): 3).
  * @ingroup ecmath_mul
  */
-u16 u16_mul_u16_u8_fac8(x_value, y_value)
+u16 u16_mul_u16_u8_fac8(u16 x_value, u8 y_value)
         {
 	 return root_u16_mul_u16_u8_fac_greater_1(x_value,(u16)((u16)(y_value) << 3));
 }
