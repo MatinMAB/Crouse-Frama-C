@@ -1,0 +1,1 @@
+/snap/bin/klee --output-dir=generated/klee/target_probe_i386 --solver-backend=stp --max-time=10s --watchdog generated/build/target_probe_i386.bc

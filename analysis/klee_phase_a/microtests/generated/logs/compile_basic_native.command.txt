@@ -1,0 +1,1 @@
+/home/matin/opt/clang13/bin/clang -O0 -g basic_symbolic.c -L /snap/klee/20/usr/local/lib -Wl\,-rpath\,/snap/klee/20/usr/local/lib -lkleeRuntest -o generated/build/basic_symbolic_native

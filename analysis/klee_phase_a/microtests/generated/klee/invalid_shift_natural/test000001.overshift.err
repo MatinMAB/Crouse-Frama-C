@@ -1,0 +1,8 @@
+Error: overshift error
+File: invalid_shift_natural.c
+Line: 12
+assembly.ll line: 24
+State: 2
+Stack:
+	#000000046 in klee_overshift_check(32, symbolic) at src/runtime/Intrinsic/klee_overshift_check.c:27
+	#100000024 in main() at invalid_shift_natural.c:12

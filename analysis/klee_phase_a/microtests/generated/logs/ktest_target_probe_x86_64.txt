@@ -1,0 +1,4 @@
+=== generated/klee/target_probe_x86_64/test000001.ktest ===
+ktest file : 'generated/klee/target_probe_x86_64/test000001.ktest'
+args       : ['generated/build/target_probe_x86_64.bc']
+num objects: 0

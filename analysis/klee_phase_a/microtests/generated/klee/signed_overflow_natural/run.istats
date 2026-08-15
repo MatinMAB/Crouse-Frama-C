@@ -1,0 +1,39 @@
+version: 1
+creator: klee
+pid: 39394
+cmd: generated/build/signed_overflow_natural.bc
+
+
+positions: instr line
+event: Icov : CoveredInstructions
+event: Forks : Forks
+event: Ireal : InstructionRealTimes
+event: Itime : InstructionTimes
+event: I : Instructions
+event: UCdist : MinDistToUncovered
+event: Rtime : ResolveTime
+event: States : States
+event: Iuncov : UncoveredInstructions
+event: Q : Queries
+event: Qiv : QueriesInvalid
+event: Qv : QueriesValid
+event: Qtime : QueryTime
+events: Icov Forks Ireal Itime I UCdist Rtime States Iuncov Q Qiv Qv Qtime
+ob=assembly.ll
+fl=signed_overflow_natural.c
+fn=main
+11 6 1 0 0 0 1 0 0 0 0 0 0 0 0
+12 6 1 0 0 0 1 0 0 0 0 0 0 0 0
+13 6 1 0 0 0 1 0 0 0 0 0 0 0 0
+14 6 1 0 0 0 1 0 0 0 0 1 0 0 0
+15 8 1 0 0 0 1 0 0 0 0 0 0 0 0
+16 9 1 0 0 0 1 0 0 0 0 0 0 0 0
+17 11 1 0 0 0 1 0 0 0 0 0 0 0 0
+18 11 1 0 0 0 1 0 0 0 0 2 0 0 0
+19 12 1 0 0 0 1 0 0 0 0 1 0 0 0
+20 12 1 0 0 0 1 0 0 0 0 0 0 0 0
+21 12 1 0 0 0 1 0 0 0 0 1 0 0 0
+22 14 1 0 0 0 1 0 0 0 0 1 0 0 0
+23 14 1 0 0 0 1 0 0 0 0 0 0 0 0
+24 14 1 0 0 0 1 0 0 0 0 0 0 0 0
+25 14 1 0 0 0 1 0 0 0 0 1 0 0 0

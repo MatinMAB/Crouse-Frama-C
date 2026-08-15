@@ -1,0 +1,15 @@
+KLEE: KLEE: WATCHDOG: watching 38874
+
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_a/microtests/generated/klee/target_probe_x86_64"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x742972e00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7426f2e00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7326f2e00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7306f2e00000 size=128 GiB)
+
+KLEE: done: total instructions = 3
+KLEE: done: completed paths = 1
+KLEE: done: partially completed paths = 0
+KLEE: done: generated tests = 1

@@ -1,0 +1,9 @@
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7c56b3800000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7c5433800000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7b5433800000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7b3433800000 size=128 GiB)
+KLEE: ERROR: signed_overflow_explicit.c:17: signed addition would overflow
+KLEE: NOTE: now ignoring this error at this location

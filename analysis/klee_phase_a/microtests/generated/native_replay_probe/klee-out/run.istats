@@ -1,0 +1,39 @@
+version: 1
+creator: klee
+pid: 39994
+cmd: generated/native_replay_probe/basic_replay.bc
+
+
+positions: instr line
+event: Icov : CoveredInstructions
+event: Forks : Forks
+event: Ireal : InstructionRealTimes
+event: Itime : InstructionTimes
+event: I : Instructions
+event: UCdist : MinDistToUncovered
+event: Rtime : ResolveTime
+event: States : States
+event: Iuncov : UncoveredInstructions
+event: Q : Queries
+event: Qiv : QueriesInvalid
+event: Qv : QueriesValid
+event: Qtime : QueryTime
+events: Icov Forks Ireal Itime I UCdist Rtime States Iuncov Q Qiv Qv Qtime
+ob=assembly.ll
+fl=basic_replay.c
+fn=main
+11 6 1 0 0 0 1 0 0 0 0 0 0 0 0
+12 6 1 0 0 0 1 0 0 0 0 0 0 0 0
+13 6 1 0 0 0 1 0 0 0 0 1 0 0 0
+14 8 1 0 0 0 1 0 0 0 0 0 0 0 0
+15 10 1 0 0 0 1 0 0 0 0 0 0 0 0
+16 10 1 0 0 0 1 0 0 0 0 2 0 0 0
+17 11 1 0 0 0 1 0 0 0 0 1 0 0 0
+18 11 1 0 0 0 1 0 0 0 0 0 0 0 0
+19 11 1 1 0 0 1 0 0 0 0 1 2 0 4072
+22 12 1 0 0 0 1 0 0 0 0 1 0 0 0
+23 12 1 0 0 0 1 0 0 0 0 0 0 0 0
+26 15 1 0 0 0 1 0 0 0 0 1 0 0 0
+27 15 1 0 0 0 1 0 0 0 0 0 0 0 0
+30 16 1 0 0 0 2 0 0 0 0 2 0 0 0
+31 16 1 0 0 0 2 0 0 0 0 2 0 0 0

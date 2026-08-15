@@ -1,0 +1,38 @@
+version: 1
+creator: klee
+pid: 40407
+cmd: generated/ubsan_and_solver_probe/optimization_O0.bc
+
+
+positions: instr line
+event: Icov : CoveredInstructions
+event: Forks : Forks
+event: Ireal : InstructionRealTimes
+event: Itime : InstructionTimes
+event: I : Instructions
+event: UCdist : MinDistToUncovered
+event: Rtime : ResolveTime
+event: States : States
+event: Iuncov : UncoveredInstructions
+event: Q : Queries
+event: Qiv : QueriesInvalid
+event: Qv : QueriesValid
+event: Qtime : QueryTime
+events: Icov Forks Ireal Itime I UCdist Rtime States Iuncov Q Qiv Qv Qtime
+ob=assembly.ll
+fl=optimization_ub_probe.c
+fn=main
+14 11 1 0 0 0 1 0 0 0 0 0 0 0 0
+15 11 1 0 0 0 1 0 0 0 0 0 0 0 0
+16 11 1 0 0 0 1 0 0 0 0 1 0 0 0
+17 13 1 0 0 0 1 0 0 0 0 0 0 0 0
+18 15 1 0 0 0 1 0 0 0 0 0 0 0 0
+19 15 1 0 0 0 1 0 0 0 0 2 0 0 0
+20 16 1 0 0 0 1 0 0 0 0 1 0 0 0
+21 16 1 0 0 0 1 0 0 0 0 0 0 0 0
+22 16 1 0 0 0 1 0 0 0 0 1 0 0 0
+23 16 1 0 0 0 1 0 0 0 0 0 0 0 0
+24 16 1 1 0 0 1 0 0 0 0 1 2 0 7981
+27 17 1 0 0 0 1 0 0 0 0 1 0 0 0
+28 17 0 0 0 0 0 0 0 0 0 0 0 0 0
+31 21 1 0 0 0 1 0 0 0 0 1 0 0 0

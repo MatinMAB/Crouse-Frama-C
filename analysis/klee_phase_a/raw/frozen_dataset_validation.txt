@@ -1,0 +1,14 @@
+$ validated frozen alarm rows
+total=149
+category=invalid shift count=33
+category=integer overflow count=100
+category=division by zero count=16
+status=REMAINING count=149
+$ comparison rows
+total=171
+status=REMAINING count=149
+status=REMOVED count=22
+$ function rows
+46
+$ source location rows
+46

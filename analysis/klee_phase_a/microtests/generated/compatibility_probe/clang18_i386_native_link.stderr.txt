@@ -1,0 +1,14 @@
+/usr/bin/ld: cannot find Scrt1.o: No such file or directory
+/usr/bin/ld: cannot find crti.o: No such file or directory
+/usr/bin/ld: cannot find crtbeginS.o: No such file or directory
+/usr/bin/ld: cannot find -lgcc: No such file or directory
+/usr/bin/ld: cannot find -lgcc_s: No such file or directory
+/usr/bin/ld: skipping incompatible /usr/lib/x86_64-linux-gnu/libc.so when searching for -lc
+/usr/bin/ld: skipping incompatible /usr/lib/x86_64-linux-gnu/libc.a when searching for -lc
+/usr/bin/ld: cannot find -lc: No such file or directory
+/usr/bin/ld: skipping incompatible /usr/lib/x86_64-linux-gnu/libc.so when searching for -lc
+/usr/bin/ld: cannot find -lgcc: No such file or directory
+/usr/bin/ld: cannot find -lgcc_s: No such file or directory
+/usr/bin/ld: cannot find crtendS.o: No such file or directory
+/usr/bin/ld: cannot find crtn.o: No such file or directory
+clang-18: error: linker command failed with exit code 1 (use -v to see invocation)

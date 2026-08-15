@@ -1,0 +1,1 @@
+/home/matin/opt/clang13/bin/llvm-dis generated/build/division_by_zero_natural.bc -o generated/build/division_by_zero_natural.ll

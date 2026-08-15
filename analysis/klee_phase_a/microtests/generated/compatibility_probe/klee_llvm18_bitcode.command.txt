@@ -1,0 +1,1 @@
+/snap/bin/klee --output-dir=generated/compatibility_probe/klee-llvm18-bitcode --solver-backend=stp --max-time=10s --watchdog generated/compatibility_probe/basic_replay_llvm18.bc

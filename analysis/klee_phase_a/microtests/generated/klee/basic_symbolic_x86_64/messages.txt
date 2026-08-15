@@ -1,0 +1,9 @@
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x730426a00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7301a6a00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7201a6a00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x71e1a6a00000 size=128 GiB)
+KLEE: ERROR: basic_symbolic.c:17: symbolic branch reached
+KLEE: NOTE: now ignoring this error at this location

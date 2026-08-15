@@ -1,0 +1,1 @@
+/snap/bin/klee --output-dir=generated/runtime_probe/uclibc-posix --libc=uclibc --posix-runtime --solver-backend=stp --max-time=10s --watchdog generated/runtime_probe/runtime_probe.bc

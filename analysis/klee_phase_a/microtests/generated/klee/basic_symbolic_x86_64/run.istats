@@ -1,0 +1,36 @@
+version: 1
+creator: klee
+pid: 39028
+cmd: generated/build/basic_symbolic_x86_64.bc
+
+
+positions: instr line
+event: Icov : CoveredInstructions
+event: Forks : Forks
+event: Ireal : InstructionRealTimes
+event: Itime : InstructionTimes
+event: I : Instructions
+event: UCdist : MinDistToUncovered
+event: Rtime : ResolveTime
+event: States : States
+event: Iuncov : UncoveredInstructions
+event: Q : Queries
+event: Qiv : QueriesInvalid
+event: Qv : QueriesValid
+event: Qtime : QueryTime
+events: Icov Forks Ireal Itime I UCdist Rtime States Iuncov Q Qiv Qv Qtime
+ob=assembly.ll
+fl=basic_symbolic.c
+fn=main
+14 11 1 0 0 0 1 0 0 0 0 0 0 0 0
+15 11 1 0 0 0 1 0 0 0 0 0 0 0 0
+16 11 1 0 0 0 1 0 0 0 0 1 0 0 0
+17 13 1 0 0 0 1 0 0 0 0 0 0 0 0
+18 15 1 0 0 0 1 0 0 0 0 0 0 0 0
+19 15 1 0 0 0 1 0 0 0 0 2 0 0 0
+20 16 1 0 0 0 1 0 0 0 0 1 0 0 0
+21 16 1 0 0 0 1 0 0 0 0 0 0 0 0
+22 16 1 1 0 0 1 0 0 0 0 1 2 0 4762
+25 17 1 0 0 0 1 0 0 0 0 1 0 0 0
+26 17 0 0 0 0 0 0 0 0 0 0 0 0 0
+29 21 1 0 0 0 1 0 0 0 0 1 0 0 0

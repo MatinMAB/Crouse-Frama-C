@@ -1,0 +1,20 @@
+$ docker --version
+Docker version 29.1.3, build f52814d
+$ docker info
+Client: Docker Engine - Community
+ Version:    29.1.3
+ Context:    default
+ Debug Mode: true
+ Plugins:
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.30.1
+    Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+  compose: Docker Compose (Docker Inc.)
+    Version:  v5.0.0
+    Path:     /usr/libexec/docker/cli-plugins/docker-compose
+
+Server:
+permission denied while trying to connect to the docker API at unix:///var/run/docker.sock
+$ docker image ls
+permission denied while trying to connect to the docker API at unix:///var/run/docker.sock
+$ repository container definitions

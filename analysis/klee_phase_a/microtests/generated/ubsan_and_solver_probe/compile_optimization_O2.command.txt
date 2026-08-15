@@ -1,0 +1,1 @@
+/home/matin/opt/clang13/bin/clang -target x86_64-pc-linux-gnu -O2 -g -fno-discard-value-names -emit-llvm -c optimization_ub_probe.c -o generated/ubsan_and_solver_probe/optimization_O2.bc

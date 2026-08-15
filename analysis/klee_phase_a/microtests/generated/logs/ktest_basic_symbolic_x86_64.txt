@@ -1,0 +1,23 @@
+=== generated/klee/basic_symbolic_x86_64/test000001.ktest ===
+ktest file : 'generated/klee/basic_symbolic_x86_64/test000001.ktest'
+args       : ['generated/build/basic_symbolic_x86_64.bc']
+num objects: 1
+object 0: name: 'value'
+object 0: size: 4
+object 0: data: b'*\x00\x00\x00'
+object 0: hex : 0x2a000000
+object 0: int : 42
+object 0: uint: 42
+object 0: text: *...
+
+=== generated/klee/basic_symbolic_x86_64/test000002.ktest ===
+ktest file : 'generated/klee/basic_symbolic_x86_64/test000002.ktest'
+args       : ['generated/build/basic_symbolic_x86_64.bc']
+num objects: 1
+object 0: name: 'value'
+object 0: size: 4
+object 0: data: b'\x00\x00\x00\x00'
+object 0: hex : 0x00000000
+object 0: int : 0
+object 0: uint: 0
+object 0: text: ....

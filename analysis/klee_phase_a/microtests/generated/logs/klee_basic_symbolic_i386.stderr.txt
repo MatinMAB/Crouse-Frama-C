@@ -1,0 +1,5 @@
+KLEE: KLEE: WATCHDOG: watching 39123
+
+KLEE: WARNING: Module and host target triples do not match: 'i386-pc-linux-gnu' != 'x86_64-pc-linux-gnu'
+This may cause unexpected crashes or assertion violations.
+KLEE: ERROR: Loading file /snap/klee/20/usr/local/lib/klee/runtime/libkleeRuntimeFreestanding32_Release+Debug.bca failed: No such file or directory

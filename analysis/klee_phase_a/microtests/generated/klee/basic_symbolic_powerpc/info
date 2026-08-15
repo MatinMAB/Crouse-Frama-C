@@ -1,0 +1,4 @@
+/snap/klee/20/usr/local/bin/klee --output-dir=generated/klee/basic_symbolic_powerpc --solver-backend=stp --max-time=10s --watchdog generated/build/basic_symbolic_powerpc.bc
+PID: 39158
+Using monotonic steady clock with 1/1000000000s resolution
+Started: 2026-08-15 14:33:56

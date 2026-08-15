@@ -1,0 +1,27 @@
+version: 1
+creator: klee
+pid: 38874
+cmd: generated/build/target_probe_x86_64.bc
+
+
+positions: instr line
+event: Icov : CoveredInstructions
+event: Forks : Forks
+event: Ireal : InstructionRealTimes
+event: Itime : InstructionTimes
+event: I : Instructions
+event: UCdist : MinDistToUncovered
+event: Rtime : ResolveTime
+event: States : States
+event: Iuncov : UncoveredInstructions
+event: Q : Queries
+event: Qiv : QueriesInvalid
+event: Qv : QueriesValid
+event: Qtime : QueryTime
+events: Icov Forks Ireal Itime I UCdist Rtime States Iuncov Q Qiv Qv Qtime
+ob=assembly.ll
+fl=target_probe.c
+fn=main
+20 20 1 0 0 0 1 0 0 0 0 0 0 0 0
+21 20 1 0 0 0 1 0 0 0 0 1 0 0 0
+22 22 1 0 0 0 1 0 0 0 0 1 0 0 0

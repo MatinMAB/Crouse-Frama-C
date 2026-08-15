@@ -1,0 +1,1 @@
+/snap/bin/klee --output-dir=generated/ubsan_and_solver_probe/klee-z3 --solver-backend=z3 --max-time=10s --watchdog generated/native_replay_probe/basic_replay.bc

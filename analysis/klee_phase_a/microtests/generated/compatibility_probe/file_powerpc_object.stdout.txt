@@ -1,0 +1,1 @@
+generated/compatibility_probe/target_probe_powerpc.o: ELF 32-bit MSB relocatable, PowerPC or cisco 4500, version 1 (SYSV), not stripped

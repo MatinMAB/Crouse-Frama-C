@@ -1,0 +1,1 @@
+/usr/bin/llvm-dis-18 generated/compatibility_probe/basic_replay_llvm18.bc -o generated/compatibility_probe/basic_replay_llvm18.ll

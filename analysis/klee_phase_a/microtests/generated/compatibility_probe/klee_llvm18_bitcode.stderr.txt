@@ -1,0 +1,3 @@
+KLEE: KLEE: WATCHDOG: watching 40955
+
+KLEE: ERROR: Loading file generated/compatibility_probe/basic_replay_llvm18.bc failed: Not an int attribute (Producer: 'LLVM18.1.3' Reader: 'LLVM 13.0.1')

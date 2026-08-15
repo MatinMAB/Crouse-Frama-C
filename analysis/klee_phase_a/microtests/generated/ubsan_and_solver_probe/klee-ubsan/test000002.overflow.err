@@ -1,0 +1,10 @@
+Error: signed-integer-overflow
+File: src/runtime/Sanitizer/ubsan/ubsan_handlers.cpp
+Line: 37
+assembly.ll line: 202
+State: 2
+Stack:
+	#000000202 in _ZN7__ubsanL12report_errorEPKcS1_(140145974050816, 140144162111488) at src/runtime/Sanitizer/ubsan/ubsan_handlers.cpp:37
+	#100000167 in _ZN7__ubsanL17report_error_typeENS_9ErrorTypeE(10) at src/runtime/Sanitizer/ubsan/ubsan_handlers.cpp:112
+	#200000331 in __ubsan_handle_add_overflow_abort(140156375924736, symbolic, 1) at src/runtime/Sanitizer/ubsan/ubsan_handlers.cpp:209
+	#300000100 in main() at signed_overflow_ubsan.c:12

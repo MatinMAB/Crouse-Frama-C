@@ -1,0 +1,33 @@
+KLEE: KLEE: WATCHDOG: watching 38988
+
+KLEE: WARNING: Module and host target triples do not match: 'powerpc-unknown-linux-gnu' != 'x86_64-pc-linux-gnu'
+This may cause unexpected crashes or assertion violations.
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_a/microtests/generated/klee/target_probe_powerpc"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x73ea7d600000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x73e7fd600000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x72e7fd600000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x72c7fd600000 size=128 GiB)
+KLEE: WARNING: Warning: unable to select target: No available targets are compatible with triple "powerpc-unknown-linux-gnu"
+klee: /build/klee/parts/klee/src/include/klee/Expr/Expr.h:1093: static klee::ref<klee::ConstantExpr> klee::ConstantExpr::create(uint64_t, klee::Expr::Width): Assertion `v == bits64::truncateToNBits(v, w) && "invalid constant"' failed.
+Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
+/snap/klee/20/usr/lib/x86_64-linux-gnu/libLLVM-13.so.1(_ZN4llvm3sys15PrintStackTraceERNS_11raw_ostreamEi+0x31)[0x73ed00d9b491]
+/snap/klee/20/usr/lib/x86_64-linux-gnu/libLLVM-13.so.1(_ZN4llvm3sys17RunSignalHandlersEv+0x22)[0x73ed00d99612]
+/snap/klee/20/usr/lib/x86_64-linux-gnu/libLLVM-13.so.1(+0xde598d)[0x73ed00d9b98d]
+/lib/x86_64-linux-gnu/libc.so.6(+0x42520)[0x73ecff94d520]
+/lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x12c)[0x73ecff9a19fc]
+/lib/x86_64-linux-gnu/libc.so.6(raise+0x16)[0x73ecff94d476]
+/lib/x86_64-linux-gnu/libc.so.6(abort+0xd3)[0x73ecff9337f3]
+/lib/x86_64-linux-gnu/libc.so.6(+0x2871b)[0x73ecff93371b]
+/lib/x86_64-linux-gnu/libc.so.6(+0x39e96)[0x73ecff944e96]
+/snap/klee/20/usr/local/bin/klee(+0xeb054)[0x5eb543906054]
+/snap/klee/20/usr/local/bin/klee(+0x948cf)[0x5eb5438af8cf]
+/snap/klee/20/usr/local/bin/klee(+0x95bb7)[0x5eb5438b0bb7]
+/snap/klee/20/usr/local/bin/klee(+0xac8f5)[0x5eb5438c78f5]
+/snap/klee/20/usr/local/bin/klee(+0x5a674)[0x5eb543875674]
+/lib/x86_64-linux-gnu/libc.so.6(+0x29d90)[0x73ecff934d90]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80)[0x73ecff934e40]
+/snap/klee/20/usr/local/bin/klee(+0x6bc35)[0x5eb543886c35]
+KLEE: WARNING: KLEE: watchdog exiting (no child)

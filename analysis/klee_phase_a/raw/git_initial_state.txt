@@ -1,0 +1,24 @@
+$ cd /home/matin/frama-work/frama-eva-analysis
+$ pwd
+/home/matin/frama-work/frama-eva-analysis
+$ git branch --show-current
+docs/eva-report-evidence-package
+$ git status --short
+$ git log -10 --oneline
+4e9ecee docs(eva): add comprehensive thesis evidence package
+6b6a565 report(eva): add final Eva precision study report
+51bc816 analysis(eva): add final removed-alarm causal analysis
+ed34fdc analysis(eva): add baseline high-precision comparison
+e7d2fb7 tooling(eva): add baseline high-precision comparator
+d341a4b analysis(eva): add high-precision results for u32_mmv_u32_u32_s32_fac1
+fd2715f analysis(eva): add high-precision results for u32_div_u32_s32
+349caee analysis(eva): add high-precision results for u32_div_s32_u32
+d1acd39 analysis(eva): add high-precision results for u32_div_s32_s32
+e8c1bae analysis(eva): add high-precision results for u16_tan_u16
+$ git rev-parse HEAD
+4e9ecee2708419276eb944bbc535f21397606b45
+$ git merge-base --is-ancestor 4e9ecee HEAD
+exit_status=0
+
+The requested legacy untracked path `reports/eva_report_source_package.zip`
+was not present in this initial status output. No action was taken on it.

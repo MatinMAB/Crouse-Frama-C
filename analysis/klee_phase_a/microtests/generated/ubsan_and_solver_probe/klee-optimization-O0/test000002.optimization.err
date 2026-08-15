@@ -1,0 +1,7 @@
+Error: overflow-dependent branch
+File: optimization_ub_probe.c
+Line: 17
+assembly.ll line: 27
+State: 1
+Stack:
+	#000000027 in main() at optimization_ub_probe.c:17

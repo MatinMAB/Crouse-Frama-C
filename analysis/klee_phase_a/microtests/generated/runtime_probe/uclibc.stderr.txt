@@ -1,0 +1,25 @@
+KLEE: KLEE: WATCHDOG: watching 41489
+
+KLEE: NOTE: Using klee-uclibc : /snap/klee/20/usr/local/lib/klee/runtime/klee-uclibc.bca
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_a/microtests/generated/runtime_probe/uclibc"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7f9b12600000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7f9892600000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7e9892600000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7e7892600000 size=128 GiB)
+KLEE: WARNING: undefined reference to function: __syscall_rt_sigaction
+KLEE: WARNING: undefined reference to function: fcntl
+KLEE: WARNING: undefined reference to function: fstat
+KLEE: WARNING: undefined reference to function: ioctl
+KLEE: WARNING: undefined reference to function: open
+KLEE: WARNING: undefined reference to function: write
+KLEE: WARNING: undefined reference to function: kill (UNSAFE)!
+KLEE: WARNING ONCE: calling external: ioctl(0, 21505, 139101414096896) at libc/termios/tcgetattr.c:43 12
+KLEE: WARNING ONCE: calling __user_main with extra arguments.
+
+KLEE: done: total instructions = 12870
+KLEE: done: completed paths = 1
+KLEE: done: partially completed paths = 0
+KLEE: done: generated tests = 1

@@ -1,0 +1,54 @@
+$ KLEE runtime bitcode archives
+klee-uclibc.bca	4033146 bytes
+libkleeRuntimeFortify64_Debug+Asserts.bca	22480 bytes
+libkleeRuntimeFortify64_Debug.bca	22456 bytes
+libkleeRuntimeFortify64_Release+Asserts.bca	14874 bytes
+libkleeRuntimeFortify64_Release+Debug+Asserts.bca	23608 bytes
+libkleeRuntimeFortify64_Release+Debug.bca	23584 bytes
+libkleeRuntimeFortify64_Release.bca	14850 bytes
+libkleeRuntimeFreestanding64_Debug+Asserts.bca	19286 bytes
+libkleeRuntimeFreestanding64_Debug.bca	19246 bytes
+libkleeRuntimeFreestanding64_Release+Asserts.bca	18072 bytes
+libkleeRuntimeFreestanding64_Release+Debug+Asserts.bca	30786 bytes
+libkleeRuntimeFreestanding64_Release+Debug.bca	30746 bytes
+libkleeRuntimeFreestanding64_Release.bca	18032 bytes
+libkleeRuntimeIntrinsic64_Debug+Asserts.bca	22586 bytes
+libkleeRuntimeIntrinsic64_Debug.bca	22530 bytes
+libkleeRuntimeIntrinsic64_Release+Asserts.bca	19084 bytes
+libkleeRuntimeIntrinsic64_Release+Debug+Asserts.bca	24370 bytes
+libkleeRuntimeIntrinsic64_Release+Debug.bca	24314 bytes
+libkleeRuntimeIntrinsic64_Release.bca	19028 bytes
+libkleeRuntimeKLEELibc64_Debug+Asserts.bca	90358 bytes
+libkleeRuntimeKLEELibc64_Debug.bca	90116 bytes
+libkleeRuntimeKLEELibc64_Release+Asserts.bca	65310 bytes
+libkleeRuntimeKLEELibc64_Release+Debug+Asserts.bca	92938 bytes
+libkleeRuntimeKLEELibc64_Release+Debug.bca	92730 bytes
+libkleeRuntimeKLEELibc64_Release.bca	65102 bytes
+libkleeRuntimePOSIX64_Debug+Asserts.bca	196444 bytes
+libkleeRuntimePOSIX64_Debug.bca	193092 bytes
+libkleeRuntimePOSIX64_Release+Asserts.bca	98650 bytes
+libkleeRuntimePOSIX64_Release+Debug+Asserts.bca	212768 bytes
+libkleeRuntimePOSIX64_Release+Debug.bca	209908 bytes
+libkleeRuntimePOSIX64_Release.bca	96022 bytes
+libkleeUBSan64_Debug+Asserts.bca	46834 bytes
+libkleeUBSan64_Debug.bca	46826 bytes
+libkleeUBSan64_Release+Asserts.bca	17348 bytes
+libkleeUBSan64_Release+Debug+Asserts.bca	44562 bytes
+libkleeUBSan64_Release+Debug.bca	44554 bytes
+libkleeUBSan64_Release.bca	17340 bytes
+
+$ KLEE executables
+env.sh
+kleaver
+klee
+klee-exec-tree
+klee-replay
+klee-stats
+klee-zesti
+ktest-gen
+ktest-randgen
+ktest-tool
+run.sh
+
+$ native replay library
+/snap/klee/20/usr/local/lib/libkleeRuntest.so.1.0: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=eedf601bbf641db3e66911f34df15cf9615dc309, with debug_info, not stripped

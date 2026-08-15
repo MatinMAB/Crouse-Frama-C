@@ -1,0 +1,1 @@
+/home/matin/opt/clang13/bin/clang -m32 -O0 target_probe.c -o generated/compatibility_probe/target_probe_i386_native

@@ -1,0 +1,59 @@
+$ Frama-C ppc_32 machine-model evidence
+1:alignof_aligned: 16
+2:alignof_double: 8
+3:alignof_float: 4
+4:alignof_fun: 4
+5:alignof_int: 4
+6:alignof_long: 4
+7:alignof_longdouble: 16
+8:alignof_longlong: 8
+9:alignof_max_align_t: 16
+10:alignof_ptr: 4
+11:alignof_short: 2
+12:alignof_void: -1
+14:char_is_unsigned: true
+15:compiler: clang
+691:little_endian: false
+692:machdep_name: machdep_ppc_32
+702:size_t: unsigned int
+703:sizeof_double: 8
+704:sizeof_float: 4
+705:sizeof_fun: 1
+706:sizeof_int: 4
+707:sizeof_long: 4
+708:sizeof_longdouble: 16
+709:sizeof_longlong: 8
+710:sizeof_ptr: 4
+711:sizeof_short: 2
+712:sizeof_void: 1
+721:uintptr_t: unsigned int
+
+$ Clang 13 host/i386/PowerPC predefined model macros
+--- x86_64-pc-linux-gnu
+#define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define __ORDER_BIG_ENDIAN__ 4321
+#define __ORDER_LITTLE_ENDIAN__ 1234
+#define __SIZEOF_INT__ 4
+#define __SIZEOF_LONG_LONG__ 8
+#define __SIZEOF_LONG__ 8
+#define __SIZEOF_POINTER__ 8
+#define __SIZEOF_SHORT__ 2
+--- i386-pc-linux-gnu
+#define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define __ORDER_BIG_ENDIAN__ 4321
+#define __ORDER_LITTLE_ENDIAN__ 1234
+#define __SIZEOF_INT__ 4
+#define __SIZEOF_LONG_LONG__ 8
+#define __SIZEOF_LONG__ 4
+#define __SIZEOF_POINTER__ 4
+#define __SIZEOF_SHORT__ 2
+--- powerpc-unknown-linux-gnu
+#define __BYTE_ORDER__ __ORDER_BIG_ENDIAN__
+#define __CHAR_UNSIGNED__ 1
+#define __ORDER_BIG_ENDIAN__ 4321
+#define __ORDER_LITTLE_ENDIAN__ 1234
+#define __SIZEOF_INT__ 4
+#define __SIZEOF_LONG_LONG__ 8
+#define __SIZEOF_LONG__ 4
+#define __SIZEOF_POINTER__ 4
+#define __SIZEOF_SHORT__ 2

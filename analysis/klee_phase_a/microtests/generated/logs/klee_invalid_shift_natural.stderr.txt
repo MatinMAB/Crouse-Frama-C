@@ -1,0 +1,17 @@
+KLEE: KLEE: WATCHDOG: watching 39298
+
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_a/microtests/generated/klee/invalid_shift_natural"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x722880800000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x722600800000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x712600800000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x710600800000 size=128 GiB)
+KLEE: ERROR: invalid_shift_natural.c:12: overshift error
+KLEE: NOTE: now ignoring this error at this location
+
+KLEE: done: total instructions = 23
+KLEE: done: completed paths = 1
+KLEE: done: partially completed paths = 1
+KLEE: done: generated tests = 2

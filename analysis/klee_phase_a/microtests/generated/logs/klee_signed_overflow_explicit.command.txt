@@ -1,0 +1,1 @@
+/snap/bin/klee --output-dir=generated/klee/signed_overflow_explicit --solver-backend=stp --max-time=10s --watchdog generated/build/signed_overflow_explicit.bc

@@ -1,0 +1,7 @@
+Error: signed addition would overflow
+File: signed_overflow_explicit.c
+Line: 17
+assembly.ll line: 25
+State: 1
+Stack:
+	#000000025 in main() at signed_overflow_explicit.c:17

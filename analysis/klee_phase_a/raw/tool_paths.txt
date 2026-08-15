@@ -1,0 +1,41 @@
+$ command -v <tool>
+klee                /snap/bin/klee
+ktest-tool          clang               /home/matin/opt/clang13/bin/clang
+clang++             /home/matin/opt/clang13/bin/clang++
+llvm-config         /home/matin/opt/clang13/bin/llvm-config
+llvm-link           /home/matin/opt/clang13/bin/llvm-link
+llvm-dis            /home/matin/opt/clang13/bin/llvm-dis
+llvm-as             /home/matin/opt/clang13/bin/llvm-as
+opt                 /home/matin/opt/clang13/bin/opt
+lli                 /home/matin/opt/clang13/bin/lli
+llc                 /home/matin/opt/clang13/bin/llc
+llvm-bcanalyzer     /home/matin/opt/clang13/bin/llvm-bcanalyzer
+docker              /usr/bin/docker
+z3                  /usr/bin/z3
+stp
+$ find version-suffixed tool candidates
+clang
+clang++
+clang++-18
+clang-18
+llc-18
+lli-18
+llvm-as-18
+llvm-bcanalyzer-18
+llvm-config-18
+llvm-dis-18
+llvm-link-18
+opt-18
+z3
+
+$ ls -l /snap/bin | grep klee
+lrwxrwxrwx 1 root root 13 Jul 25 19:53 klee -> /usr/bin/snap
+lrwxrwxrwx 1 root root 13 Jul 25 19:53 klee.env -> /usr/bin/snap
+lrwxrwxrwx 1 root root 13 Jul 25 19:53 klee.kleaver -> /usr/bin/snap
+lrwxrwxrwx 1 root root 13 Jul 25 19:53 klee.ktest-gen -> /usr/bin/snap
+lrwxrwxrwx 1 root root 13 Jul 25 19:53 klee.ktest-randgen -> /usr/bin/snap
+lrwxrwxrwx 1 root root 13 Jul 25 19:53 klee.ktest-tool -> /usr/bin/snap
+lrwxrwxrwx 1 root root 13 Jul 25 19:53 klee.replay -> /usr/bin/snap
+lrwxrwxrwx 1 root root 13 Jul 25 19:53 klee.run -> /usr/bin/snap
+lrwxrwxrwx 1 root root 13 Jul 25 19:53 klee.stats -> /usr/bin/snap
+lrwxrwxrwx 1 root root 13 Jul 25 19:53 klee.zesti -> /usr/bin/snap

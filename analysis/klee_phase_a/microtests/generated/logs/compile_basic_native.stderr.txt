@@ -1,0 +1,3 @@
+/usr/bin/ld: /tmp/basic_symbolic-b7834b.o: in function `main':
+/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_a/microtests/basic_symbolic.c:17:(.text+0x55): undefined reference to `klee_report_error'
+clang-13: error: linker command failed with exit code 1 (use -v to see invocation)

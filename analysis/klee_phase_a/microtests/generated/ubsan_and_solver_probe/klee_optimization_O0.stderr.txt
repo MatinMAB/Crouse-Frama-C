@@ -1,0 +1,17 @@
+KLEE: KLEE: WATCHDOG: watching 40407
+
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_a/microtests/generated/ubsan_and_solver_probe/klee-optimization-O0"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x75012c000000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x74feac000000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x73feac000000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x73deac000000 size=128 GiB)
+KLEE: ERROR: optimization_ub_probe.c:17: overflow-dependent branch
+KLEE: NOTE: now ignoring this error at this location
+
+KLEE: done: total instructions = 13
+KLEE: done: completed paths = 1
+KLEE: done: partially completed paths = 1
+KLEE: done: generated tests = 2

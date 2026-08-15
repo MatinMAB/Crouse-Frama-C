@@ -1,0 +1,8 @@
+Error: divide by zero
+File: division_by_zero_natural.c
+Line: 12
+assembly.ll line: 24
+State: 1
+Stack:
+	#000000045 in klee_div_zero_check(symbolic) at src/runtime/Intrinsic/klee_div_zero_check.c:14
+	#100000024 in main() at division_by_zero_natural.c:12

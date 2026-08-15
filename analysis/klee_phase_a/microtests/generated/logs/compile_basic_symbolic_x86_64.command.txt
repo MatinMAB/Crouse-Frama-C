@@ -1,0 +1,1 @@
+/home/matin/opt/clang13/bin/clang -target x86_64-pc-linux-gnu -O0 -g -fno-discard-value-names -Xclang -disable-O0-optnone -emit-llvm -c basic_symbolic.c -o generated/build/basic_symbolic_x86_64.bc

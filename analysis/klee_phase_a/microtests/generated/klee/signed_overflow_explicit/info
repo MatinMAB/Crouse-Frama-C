@@ -1,0 +1,23 @@
+/snap/klee/20/usr/local/bin/klee --output-dir=generated/klee/signed_overflow_explicit --solver-backend=stp --max-time=10s --watchdog generated/build/signed_overflow_explicit.bc
+PID: 39457
+Using monotonic steady clock with 1/1000000000s resolution
+Started: 2026-08-15 14:34:03
+BEGIN searcher description
+<InterleavedSearcher> containing 2 searchers:
+RandomPathSearcher
+WeightedRandomSearcher::CoveringNew
+</InterleavedSearcher>
+END searcher description
+Finished: 2026-08-15 14:34:03
+Elapsed: 00:00:00
+KLEE: done: explored paths = 2
+KLEE: done: avg. constructs per query = 8
+KLEE: done: total queries = 2
+KLEE: done: valid queries = 0
+KLEE: done: invalid queries = 2
+KLEE: done: query cex = 2
+
+KLEE: done: total instructions = 11
+KLEE: done: completed paths = 1
+KLEE: done: partially completed paths = 1
+KLEE: done: generated tests = 2

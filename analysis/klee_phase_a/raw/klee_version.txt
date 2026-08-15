@@ -1,0 +1,14 @@
+$ klee --version
+KLEE 3.2 (https://klee-se.org/)
+  Build mode: RelWithDebInfo (Asserts: ON)
+  Build revision: 92ee8201a050184aacaaeef645ade491f5c93c41
+
+Ubuntu LLVM version 13.0.1
+
+  Optimized build.
+  Default target: x86_64-pc-linux-gnu
+  Host CPU: skylake
+
+$ snap list klee
+Name  Version  Rev  Tracking       Publisher  Notes
+klee  v3.2     20   latest/stable  ccadar     -

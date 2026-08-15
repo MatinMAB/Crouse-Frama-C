@@ -1,0 +1,1 @@
+/snap/bin/klee --output-dir=generated/klee/basic_symbolic_i386 --solver-backend=stp --max-time=10s --watchdog generated/build/basic_symbolic_i386.bc

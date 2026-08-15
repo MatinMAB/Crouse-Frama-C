@@ -1,0 +1,14 @@
+KLEE: KLEE: WATCHDOG: watching 40372
+
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_a/microtests/generated/ubsan_and_solver_probe/klee-z3"
+KLEE: Using Z3 solver backend
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x72d998a00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x72d718a00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x71d718a00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x71b718a00000 size=128 GiB)
+
+KLEE: done: total instructions = 17
+KLEE: done: completed paths = 2
+KLEE: done: partially completed paths = 0
+KLEE: done: generated tests = 2

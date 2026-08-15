@@ -1,0 +1,7 @@
+Error: symbolic branch reached
+File: basic_symbolic.c
+Line: 17
+assembly.ll line: 25
+State: 1
+Stack:
+	#000000025 in main() at basic_symbolic.c:17

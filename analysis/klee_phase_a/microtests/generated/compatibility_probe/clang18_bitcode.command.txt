@@ -1,0 +1,1 @@
+/usr/bin/clang-18 -target x86_64-pc-linux-gnu -O0 -g -emit-llvm -c basic_replay.c -o generated/compatibility_probe/basic_replay_llvm18.bc

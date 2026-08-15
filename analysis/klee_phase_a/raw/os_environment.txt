@@ -1,0 +1,9 @@
+$ uname -a
+Linux Matin-Ubuntu-24.04 7.0.0-28-generic #28~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jul  1 15:50:57 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+$ lsb_release -a
+Distributor ID:	Ubuntu
+Description:	Ubuntu 24.04.3 LTS
+Release:	24.04
+Codename:	noble
+$ getconf GNU_LIBC_VERSION
+glibc 2.39

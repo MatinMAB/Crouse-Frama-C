@@ -1,0 +1,25 @@
+=== generated/native_replay_probe/klee-out/test000001.ktest ===
+ktest file : 'generated/native_replay_probe/klee-out/test000001.ktest'
+args       : ['generated/native_replay_probe/basic_replay.bc']
+num objects: 1
+object 0: name: 'value'
+object 0: size: 4
+object 0: data: b'*\x00\x00\x00'
+object 0: hex : 0x2a000000
+object 0: int : 42
+object 0: uint: 42
+object 0: text: *...
+native_exit_status=42
+
+=== generated/native_replay_probe/klee-out/test000002.ktest ===
+ktest file : 'generated/native_replay_probe/klee-out/test000002.ktest'
+args       : ['generated/native_replay_probe/basic_replay.bc']
+num objects: 1
+object 0: name: 'value'
+object 0: size: 4
+object 0: data: b'\x00\x00\x00\x00'
+object 0: hex : 0x00000000
+object 0: int : 0
+object 0: uint: 0
+object 0: text: ....
+native_exit_status=0

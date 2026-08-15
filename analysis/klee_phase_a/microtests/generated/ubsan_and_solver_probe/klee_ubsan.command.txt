@@ -1,0 +1,1 @@
+/snap/bin/klee --output-dir=generated/ubsan_and_solver_probe/klee-ubsan --solver-backend=stp --ubsan-runtime --max-time=10s --watchdog generated/ubsan_and_solver_probe/signed_overflow_ubsan.bc
