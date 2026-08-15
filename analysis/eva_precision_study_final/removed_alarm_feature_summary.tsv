@@ -1,0 +1,4 @@
+mechanism	alarm_count	high_confidence	medium_confidence	low_confidence
+EQUALITY_RELATION	1	1	0	0
+BRANCH_PARTITIONING	6	0	6	0
+NONLINEAR_SUBDIVISION	15	0	15	0

@@ -1,0 +1,11 @@
+function	baseline_alarms	high_precision_alarms	removed	removed_integer_overflow	removed_division_by_zero	removed_invalid_shift	primary_mechanism	confidence_summary
+s16_div_s32_s16	25	20	5	5	0	0	COMBINED_PRECISION_EFFECT	MEDIUM
+s16_fac05_div_s16_s16	11	9	2	2	0	0	NONLINEAR_SUBDIVISION	MEDIUM
+s16_mul_s16_s16_div_s16	11	8	3	2	1	0	COMBINED_PRECISION_EFFECT	MEDIUM
+s16_mul_s16_s16_div_u16	7	5	2	2	0	0	NONLINEAR_SUBDIVISION	MEDIUM
+s16_mul_s16_u16_div_s16	11	8	3	2	1	0	COMBINED_PRECISION_EFFECT	MEDIUM
+s16_mul_u16_s16_div_u16	7	6	1	1	0	0	NONLINEAR_SUBDIVISION	MEDIUM
+s32_mul_s32_u16	3	2	1	0	1	0	EQUALITY_RELATION	HIGH
+u16_div_s32_u16	7	5	2	2	0	0	NONLINEAR_SUBDIVISION	MEDIUM
+u16_mul_s16_u16_div_s16	11	9	2	1	1	0	COMBINED_PRECISION_EFFECT	MEDIUM
+u16_mul_s16_u16_div_u16	7	6	1	1	0	0	NONLINEAR_SUBDIVISION	MEDIUM
