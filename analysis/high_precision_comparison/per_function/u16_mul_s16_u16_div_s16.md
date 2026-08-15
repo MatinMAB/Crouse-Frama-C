@@ -1,0 +1,125 @@
+# u16_mul_s16_u16_div_s16
+
+## Overview
+
+Baseline alarm count: 11<br>
+High Precision alarm count: 9<br>
+Delta: -2<br>
+Removed: 2<br>
+Remaining: 9<br>
+New: 0<br>
+Count status: REDUCED
+
+## Removed alarms
+
+- `src_analysis/sources/div_Ccode.c:740` — **integer overflow** — `signed overflow. assert s32Result - (s32)((s32)(s32Result / (s32)denominator) * (s32)denominator) ≤ 2147483647;`
+  - canonical: `src_analysis/sources/div_Ccode.c|740|signed overflow. assert s32Result - (s32)((s32)(s32Result / (s32)denominator) * (s32)denominator) <= 2147483647;`
+- `src_analysis/sources/div_Ccode.c:741` — **division by zero** — `division by zero. assert (s32)denominator ≢ 0;`
+  - canonical: `src_analysis/sources/div_Ccode.c|741|division by zero. assert (s32)denominator != 0;`
+
+## Remaining alarms
+
+- `src_analysis/sources/div_Ccode.c:740` — **division by zero** — `division by zero. assert (s32)denominator ≢ 0;`
+  - canonical: `src_analysis/sources/div_Ccode.c|740|division by zero. assert (s32)denominator != 0;`
+- `src_analysis/sources/div_Ccode.c:740` — **invalid shift** — `invalid LHS operand for left shift. assert 0 ≤ (s32)(s32Result - (s32)((s32)(s32Result / (s32)denominator) * (s32)denominator));`
+  - canonical: `src_analysis/sources/div_Ccode.c|740|invalid LHS operand for left shift. assert 0 <= (s32)(s32Result - (s32)((s32)(s32Result / (s32)denominator) * (s32)denominator));`
+- `src_analysis/sources/div_Ccode.c:740` — **integer overflow** — `signed overflow. assert (s32)(s32Result - (s32)((s32)(s32Result / (s32)denominator) * (s32)denominator)) << 1 ≤ 2147483647;`
+  - canonical: `src_analysis/sources/div_Ccode.c|740|signed overflow. assert (s32)(s32Result - (s32)((s32)(s32Result / (s32)denominator) * (s32)denominator)) << 1 <= 2147483647;`
+- `src_analysis/sources/div_Ccode.c:740` — **integer overflow** — `signed overflow. assert (s32)(s32Result / (s32)denominator) * (s32)denominator ≤ 2147483647;`
+  - canonical: `src_analysis/sources/div_Ccode.c|740|signed overflow. assert (s32)(s32Result / (s32)denominator) * (s32)denominator <= 2147483647;`
+- `src_analysis/sources/div_Ccode.c:740` — **integer overflow** — `signed overflow. assert -2147483648 ≤ (s32)(s32Result / (s32)denominator) * (s32)denominator;`
+  - canonical: `src_analysis/sources/div_Ccode.c|740|signed overflow. assert -2147483648 <= (s32)(s32Result / (s32)denominator) * (s32)denominator;`
+- `src_analysis/sources/div_Ccode.c:740` — **integer overflow** — `signed overflow. assert -2147483648 ≤ s32Result - (s32)((s32)(s32Result / (s32)denominator) * (s32)denominator);`
+  - canonical: `src_analysis/sources/div_Ccode.c|740|signed overflow. assert -2147483648 <= s32Result - (s32)((s32)(s32Result / (s32)denominator) * (s32)denominator);`
+- `src_analysis/sources/div_Ccode.c:741` — **division by zero** — `division by zero. assert (s32)denominator ≢ 0;`
+  - canonical: `src_analysis/sources/div_Ccode.c|741|division by zero. assert (s32)denominator != 0;`
+- `src_analysis/sources/div_Ccode.c:741` — **integer overflow** — `signed overflow. assert (s32)(s32Temp1 / (s32)denominator) + (s32)(s32Result / (s32)denominator) ≤ 2147483647;`
+  - canonical: `src_analysis/sources/div_Ccode.c|741|signed overflow. assert (s32)(s32Temp1 / (s32)denominator) + (s32)(s32Result / (s32)denominator) <= 2147483647;`
+- `src_analysis/sources/div_Ccode.c:741` — **integer overflow** — `signed overflow. assert -2147483648 ≤ (s32)(s32Temp1 / (s32)denominator) + (s32)(s32Result / (s32)denominator);`
+  - canonical: `src_analysis/sources/div_Ccode.c|741|signed overflow. assert -2147483648 <= (s32)(s32Temp1 / (s32)denominator) + (s32)(s32Result / (s32)denominator);`
+
+## New alarms
+
+None.
+
+## Alarm categories
+
+| Category | Baseline | High Precision | Removed | Remaining | New |
+|---|---|---|---|---|---|
+| integer overflow | 7 | 6 | 1 | 6 | 0 |
+| division by zero | 3 | 2 | 1 | 2 | 0 |
+| invalid shift | 1 | 1 | 0 | 1 | 0 |
+
+## Internal property markers
+
+Baseline markers: 0; High Precision markers: 0. These internal-property markers are reported separately and excluded from the primary Eva alarm counts.
+
+## Analysis summaries
+
+| Metric | Baseline | High Precision |
+|---|---|---|
+| Functions analyzed | 2/26 (8%) | 2/26 (8%) |
+| Statements reached | 34/34 (100%) | 34/34 (100%) |
+| Official Eva alarm count | 11 | 9 |
+| Assertions | 0 valid 0 unknown 0 invalid 0 total | 0 valid 0 unknown 0 invalid 0 total |
+| Preconditions | 3 valid 0 unknown 0 invalid 3 total | 3 valid 0 unknown 0 invalid 3 total |
+
+Baseline:
+
+```text
+[eva:summary] ====== ANALYSIS SUMMARY ======
+  ----------------------------------------------------------------------------
+  2 functions analyzed (out of 26): 8% coverage.
+  In these functions, 34 statements reached (out of 34): 100% coverage.
+  ----------------------------------------------------------------------------
+  No errors or warnings raised during the analysis.
+  ----------------------------------------------------------------------------
+  11 alarms generated by the analysis:
+       7 integer overflows
+       3 divisions by zero
+       1 invalid shift
+  ----------------------------------------------------------------------------
+  Evaluation of the logical properties reached by the analysis:
+    Assertions        0 valid     0 unknown     0 invalid      0 total
+    Preconditions     3 valid     0 unknown     0 invalid      3 total
+  100% of the logical properties reached have been proven.
+  ----------------------------------------------------------------------------
+```
+
+High Precision:
+
+```text
+[eva:summary] ====== ANALYSIS SUMMARY ======
+  ----------------------------------------------------------------------------
+  2 functions analyzed (out of 26): 8% coverage.
+  In these functions, 34 statements reached (out of 34): 100% coverage.
+  ----------------------------------------------------------------------------
+  No errors or warnings raised during the analysis.
+  ----------------------------------------------------------------------------
+  9 alarms generated by the analysis:
+       6 integer overflows
+       2 divisions by zero
+       1 invalid shift
+  ----------------------------------------------------------------------------
+  Evaluation of the logical properties reached by the analysis:
+    Assertions        0 valid     0 unknown     0 invalid      0 total
+    Preconditions     3 valid     0 unknown     0 invalid      3 total
+  100% of the logical properties reached have been proven.
+  ----------------------------------------------------------------------------
+```
+
+## Final-state comparison
+
+Target-function final state: **IDENTICAL**
+
+Not applicable.
+
+Helper final states:
+
+No helper final-state block was present.
+
+## Parse diagnostics
+
+Semantic parse-diagnostic comparison: **IDENTICAL**.
+
+The labels in this report describe differences between two recorded analyses only. No judgment about the underlying program behavior is made.

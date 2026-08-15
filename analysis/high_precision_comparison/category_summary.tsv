@@ -1,0 +1,4 @@
+category	baseline_count	high_precision_count	removed	remaining	new	delta
+integer overflow	118	100	18	100	0	-18
+division by zero	20	16	4	16	0	-4
+invalid shift	33	33	0	33	0	0
