@@ -1,0 +1,4 @@
+[kernel] Parsing src_analysis/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_analysis/sources/mul_Ccode.c:3344: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing harnesses/P0/eva_main_s16_mul_s16_u16_fac025.c (with preprocessing)
