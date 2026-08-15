@@ -1,0 +1,14 @@
+KLEE Phase B mapping validation
+frozen_remaining=149
+target_rows=149
+unique_target_ids=149
+unmapped=0
+multiply_mapped=0
+integer_overflow=100
+division_by_zero=16
+invalid_shift=33
+removed_mapped=0
+new_mapped=0
+high_precision_log_markers=149
+validator_failures=0
+status=PASS

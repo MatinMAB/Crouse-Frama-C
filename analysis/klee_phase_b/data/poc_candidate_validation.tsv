@@ -1,0 +1,4 @@
+category	klee_target_id	function	source_file	source_line	decision	predicate_normal_form	mapping_confidence	reason
+integer overflow	KLEE-ALARM-0107	s32_mul_s32_s32	src_analysis/sources/MulHword.c	47	KEEP	SIGNED_MUL_UPPER_BOUND(32,(int)arg1_LW,(int)arg2_LW)	MEDIUM	Unique occurrence mapping retained from the frozen Phase-A recommendation.
+division by zero	KLEE-ALARM-0023	s16_div_s32_s16	src_analysis/sources/div_Ccode.c	274	KEEP	DIVISOR_NONZERO(32,(s32)denominator)	HIGH	Unique occurrence mapping retained from the frozen Phase-A recommendation.
+invalid shift	KLEE-ALARM-0002	root_s32_mul_s32_s16_fac_less1	src_analysis/sources/mul_Ccode.c	5089	KEEP	SHIFT_COUNT_VALID(32,count)	HIGH	Unique occurrence mapping retained from the frozen Phase-A recommendation.

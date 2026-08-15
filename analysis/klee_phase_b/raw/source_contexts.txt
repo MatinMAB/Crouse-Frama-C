@@ -1,0 +1,737 @@
+### src_analysis/sources/mul_Ccode.c:5071
+  5068
+  5069		if(value<0)
+  5070		{
+  5071			u32Temp1 = -value;
+  5072		}
+  5073		else
+  5074		{
+
+### src_analysis/sources/mul_Ccode.c:5089
+  5086
+  5087		u32Temp3 = u32Temp1 * u32Temp2; 		/* Low word multiplication */
+  5088		u32Temp4 = MulHighWord(u32Temp1, u32Temp2);	/* High word multiplication */
+  5089		u32Temp3 = u32Temp3 >> count;
+  5090		u32Temp3 |= u32Temp4 << (32-count);
+  5091		if((u32Temp4>>count)==0)
+  5092		{
+
+### src_analysis/sources/mul_Ccode.c:5090
+  5087		u32Temp3 = u32Temp1 * u32Temp2; 		/* Low word multiplication */
+  5088		u32Temp4 = MulHighWord(u32Temp1, u32Temp2);	/* High word multiplication */
+  5089		u32Temp3 = u32Temp3 >> count;
+  5090		u32Temp3 |= u32Temp4 << (32-count);
+  5091		if((u32Temp4>>count)==0)
+  5092		{
+  5093			if(u8SignBit == 0)
+
+### src_analysis/sources/mul_Ccode.c:5223
+  5220
+  5221		if(value<0)
+  5222		{
+  5223			u32Temp1 = -value;
+  5224		}
+  5225		else
+  5226		{
+
+### src_analysis/sources/mul_Ccode.c:5241
+  5238
+  5239		u32Temp3 = u32Temp1 * u32Temp2; 		/* Low word multiplication */
+  5240		u32Temp4 = MulHighWord(u32Temp1, u32Temp2);	/* High word multiplication */
+  5241		u32Temp3 = u32Temp3 >> count;
+  5242		u32Temp3 |= u32Temp4 << (32-count);
+  5243		if((u32Temp4>>count)==0)
+  5244		{
+
+### src_analysis/sources/mul_Ccode.c:5242
+  5239		u32Temp3 = u32Temp1 * u32Temp2; 		/* Low word multiplication */
+  5240		u32Temp4 = MulHighWord(u32Temp1, u32Temp2);	/* High word multiplication */
+  5241		u32Temp3 = u32Temp3 >> count;
+  5242		u32Temp3 |= u32Temp4 << (32-count);
+  5243		if((u32Temp4>>count)==0)
+  5244		{
+  5245			if(u8SignBit == 0)
+
+### src_analysis/sources/MulHword.c:47
+    44		arg1_HW = (arg1 & 0xFFFF0000)>>16;
+    45		arg2_LW = arg2 & 0xFFFF;
+    46		arg2_HW = (arg2 & 0xFFFF0000)>>16;
+    47		MulTemp1 = arg1_LW * arg2_LW;
+    48		MulTemp2 = arg1_LW * arg2_HW;
+    49		MulTemp3 = arg1_HW * arg2_LW;
+    50		MulTemp4 = arg1_HW * arg2_HW;
+
+### src_analysis/sources/mul_Ccode.c:5147
+  5144
+  5145		if(value<0)
+  5146		{
+  5147			u32Temp1 = -value;
+  5148		}
+  5149		else
+  5150		{
+
+### src_analysis/sources/mul_Ccode.c:5165
+  5162
+  5163		u32Temp3 = u32Temp1 * u32Temp2; 		/* Low word multiplication */
+  5164		u32Temp4 = MulHighWord(u32Temp1, u32Temp2);	/* High word multiplication */
+  5165		u32Temp3 = u32Temp3 >> count;
+  5166		u32Temp3 |= u32Temp4 << (32-count);
+  5167		if((u32Temp4>>count)==0)
+  5168		{
+
+### src_analysis/sources/mul_Ccode.c:5166
+  5163		u32Temp3 = u32Temp1 * u32Temp2; 		/* Low word multiplication */
+  5164		u32Temp4 = MulHighWord(u32Temp1, u32Temp2);	/* High word multiplication */
+  5165		u32Temp3 = u32Temp3 >> count;
+  5166		u32Temp3 |= u32Temp4 << (32-count);
+  5167		if((u32Temp4>>count)==0)
+  5168		{
+  5169			if(u8SignBit == 0)
+
+### src_analysis/sources/mul_Ccode.c:5534
+  5531		if(value<0)
+  5532		{
+  5533			u8SignBit = 1;
+  5534			u32Temp1 = -value;
+  5535		}
+  5536		else
+  5537		{
+
+### src_analysis/sources/mul_Ccode.c:5544
+  5541
+  5542		u32Temp2 = u32Temp1 * factor;		/* Low word multiplication */
+  5543		u32Temp3 = MulHighWord(u32Temp1,factor);	/* High word multiplication */
+  5544		u32Temp2 = u32Temp2 >> count;
+  5545		u32Temp2 |= u32Temp3 << (32-count);
+  5546		if((u32Temp3>>count)==0)
+  5547		{
+
+### src_analysis/sources/mul_Ccode.c:5545
+  5542		u32Temp2 = u32Temp1 * factor;		/* Low word multiplication */
+  5543		u32Temp3 = MulHighWord(u32Temp1,factor);	/* High word multiplication */
+  5544		u32Temp2 = u32Temp2 >> count;
+  5545		u32Temp2 |= u32Temp3 << (32-count);
+  5546		if((u32Temp3>>count)==0)
+  5547		{
+  5548			if(u8SignBit == 0)
+
+### src_analysis/sources/mul_Ccode.c:5309
+  5306
+  5307		u32Temp2 = value * u32Temp1; 		/* Low word multiplication */
+  5308		u32Temp3 = MulHighWord(value, u32Temp1);	/* High word multiplication */
+  5309		u32Temp2 = u32Temp2 >> count;
+  5310		u32Temp2 |= u32Temp3 << (32-count);
+  5311		if((u32Temp3>>count)==0)
+  5312		{
+
+### src_analysis/sources/mul_Ccode.c:5310
+  5307		u32Temp2 = value * u32Temp1; 		/* Low word multiplication */
+  5308		u32Temp3 = MulHighWord(value, u32Temp1);	/* High word multiplication */
+  5309		u32Temp2 = u32Temp2 >> count;
+  5310		u32Temp2 |= u32Temp3 << (32-count);
+  5311		if((u32Temp3>>count)==0)
+  5312		{
+  5313			if(u8SignBit == 0)
+
+### src_analysis/sources/MulHword.c:49
+    46		arg2_HW = (arg2 & 0xFFFF0000)>>16;
+    47		MulTemp1 = arg1_LW * arg2_LW;
+    48		MulTemp2 = arg1_LW * arg2_HW;
+    49		MulTemp3 = arg1_HW * arg2_LW;
+    50		MulTemp4 = arg1_HW * arg2_HW;
+    51
+    52		HIGHWORD = (MulTemp2 >> 16) + (MulTemp3 >> 16) + MulTemp4;//HIGHWORD = (MulTemp2 >> 16) + (MulTemp3 >> 16) + (MulTemp4 >> 32);
+
+### src_analysis/sources/mul_Ccode.c:5364
+  5361
+  5362		if(factor<0)
+  5363		{
+  5364			u32Temp1 = -factor;
+  5365		}
+  5366		else
+  5367		{
+
+### src_analysis/sources/mul_Ccode.c:5372
+  5369		}
+  5370
+  5371		u32Temp2 = MulHighWord(value, u32Temp1);	/* High word multiplication */
+  5372		u32Temp2 = u32Temp2 >> (count-32);
+  5373		if(u8SignBit == 0)
+  5374		{
+  5375			return u32Temp2;
+
+### src_analysis/sources/mul_Ccode.c:5451
+  5448
+  5449		u32Temp2 = value * u32Temp1; 		/* Low word multiplication */
+  5450		u32Temp3 = MulHighWord(value, u32Temp1);	/* High word multiplication */
+  5451		u32Temp2 = u32Temp2 >> count;
+  5452		u32Temp2 |= u32Temp3 << (32-count);
+  5453		if((u32Temp3>>count)==0)
+  5454		{
+
+### src_analysis/sources/mul_Ccode.c:5452
+  5449		u32Temp2 = value * u32Temp1; 		/* Low word multiplication */
+  5450		u32Temp3 = MulHighWord(value, u32Temp1);	/* High word multiplication */
+  5451		u32Temp2 = u32Temp2 >> count;
+  5452		u32Temp2 |= u32Temp3 << (32-count);
+  5453		if((u32Temp3>>count)==0)
+  5454		{
+  5455			if(u8SignBit == 0)
+
+### src_analysis/sources/rotatefunc.c:119
+   116
+   117	        // Right shift num by 1 and
+   118	        // Clear its MSB
+   119	        num = (num >> 1) & (~(1 << INT_BITS));
+   120
+   121	        // Set its dropped LSB as new MSB
+   122	        num = num | (DROPPED_LSB << INT_BITS);
+
+### src_analysis/sources/div_Ccode.c:274
+   271		{
+   272			if(numerator != 0x80000000)
+   273			{
+   274				s32Temp2 = (s32Temp1 -((s32Temp1/denominator) * denominator))<< 1;
+   275				s32Temp1 = s32Temp2/denominator;
+   276				s32Temp1 = s32Temp1 +((numerator)/denominator);
+   277				if(s32Temp1 < 0x7FFF)
+
+### src_analysis/sources/div_Ccode.c:275
+   272			if(numerator != 0x80000000)
+   273			{
+   274				s32Temp2 = (s32Temp1 -((s32Temp1/denominator) * denominator))<< 1;
+   275				s32Temp1 = s32Temp2/denominator;
+   276				s32Temp1 = s32Temp1 +((numerator)/denominator);
+   277				if(s32Temp1 < 0x7FFF)
+   278				{
+
+### src_analysis/sources/div_Ccode.c:276
+   273			{
+   274				s32Temp2 = (s32Temp1 -((s32Temp1/denominator) * denominator))<< 1;
+   275				s32Temp1 = s32Temp2/denominator;
+   276				s32Temp1 = s32Temp1 +((numerator)/denominator);
+   277				if(s32Temp1 < 0x7FFF)
+   278				{
+   279					if(s32Temp1 > -0x8000)
+
+### src_analysis/sources/div_Ccode.c:297
+   294			{
+   295				if(denominator != -1)
+   296				{
+   297					s32Temp2 = (s32Temp1 -((s32Temp1/denominator) * denominator))<< 1;
+   298					s32Temp1 = s32Temp2/denominator;
+   299					s32Temp1 = s32Temp1 +((numerator)/denominator);
+   300					if(s32Temp1 < 0x7FFF)
+
+### src_analysis/sources/div_Ccode.c:298
+   295				if(denominator != -1)
+   296				{
+   297					s32Temp2 = (s32Temp1 -((s32Temp1/denominator) * denominator))<< 1;
+   298					s32Temp1 = s32Temp2/denominator;
+   299					s32Temp1 = s32Temp1 +((numerator)/denominator);
+   300					if(s32Temp1 < 0x7FFF)
+   301					{
+
+### src_analysis/sources/div_Ccode.c:299
+   296				{
+   297					s32Temp2 = (s32Temp1 -((s32Temp1/denominator) * denominator))<< 1;
+   298					s32Temp1 = s32Temp2/denominator;
+   299					s32Temp1 = s32Temp1 +((numerator)/denominator);
+   300					if(s32Temp1 < 0x7FFF)
+   301					{
+   302						if(s32Temp1 > -0x8000)
+
+### src_analysis/sources/div_Ccode.c:1477
+  1474		{
+  1475			if(numerator < 0)
+  1476			{
+  1477				numerator_prime = -numerator;
+  1478				u32Temp1 = (numerator_prime/denominator);
+  1479				u32Temp2 = numerator_prime - (u32Temp1 * denominator);
+  1480
+
+### src_analysis/sources/div_Ccode.c:173
+   170	s16 s16_fac05_div_s16_s16(s16 numerator, s16  denominator)
+   171	{
+   172		s32 s32Temp1,s32Temp2;
+   173		s32Temp1 = numerator<<16;
+   174
+   175		if (denominator ==0)
+   176		{
+
+### src_analysis/sources/div_Ccode.c:190
+   187		{
+   188			if (s32Temp1 != 0x80000000)
+   189			{
+   190				s32Temp2 = (s32Temp1 -((s32Temp1/denominator) * denominator))<< 1;
+   191				s32Temp1 = s32Temp2/denominator;
+   192				s32Temp1 = s32Temp1 +((numerator<<16)/denominator);
+   193				if(s32Temp1 < 0x7FFF)
+
+### src_analysis/sources/div_Ccode.c:191
+   188			if (s32Temp1 != 0x80000000)
+   189			{
+   190				s32Temp2 = (s32Temp1 -((s32Temp1/denominator) * denominator))<< 1;
+   191				s32Temp1 = s32Temp2/denominator;
+   192				s32Temp1 = s32Temp1 +((numerator<<16)/denominator);
+   193				if(s32Temp1 < 0x7FFF)
+   194				{
+
+### src_analysis/sources/div_Ccode.c:192
+   189			{
+   190				s32Temp2 = (s32Temp1 -((s32Temp1/denominator) * denominator))<< 1;
+   191				s32Temp1 = s32Temp2/denominator;
+   192				s32Temp1 = s32Temp1 +((numerator<<16)/denominator);
+   193				if(s32Temp1 < 0x7FFF)
+   194				{
+   195					if(s32Temp1 > -0x8000)
+
+### src_analysis/sources/div_Ccode.c:348
+   345		u16 u16Temp1;
+   346		s32 s32Temp1,s32Temp2;
+   347		u16Temp1 = denominator & 0xFFFF;
+   348		s32Temp1 = numerator<<16;
+   349		if(u16Temp1 == 0)
+   350		{
+   351			if (numerator < 0)
+
+### src_analysis/sources/div_Ccode.c:362
+   359		}
+   360		else
+   361		{
+   362			s32Temp1 = (numerator<<16)-((numerator<<16)/u16Temp1)*u16Temp1;
+   363			s32Temp2 = s32Temp1<<1;
+   364			s32Temp1 = s32Temp2/u16Temp1;
+   365			s32Temp1 = ((numerator<<16)/u16Temp1) + s32Temp1;
+
+### src_analysis/sources/div_Ccode.c:363
+   360		else
+   361		{
+   362			s32Temp1 = (numerator<<16)-((numerator<<16)/u16Temp1)*u16Temp1;
+   363			s32Temp2 = s32Temp1<<1;
+   364			s32Temp1 = s32Temp2/u16Temp1;
+   365			s32Temp1 = ((numerator<<16)/u16Temp1) + s32Temp1;
+   366			if(s32Temp1 < 0x7FFF)
+
+### src_analysis/sources/div_Ccode.c:365
+   362			s32Temp1 = (numerator<<16)-((numerator<<16)/u16Temp1)*u16Temp1;
+   363			s32Temp2 = s32Temp1<<1;
+   364			s32Temp1 = s32Temp2/u16Temp1;
+   365			s32Temp1 = ((numerator<<16)/u16Temp1) + s32Temp1;
+   366			if(s32Temp1 < 0x7FFF)
+   367			{
+   368				if(s32Temp1 > -0x8000)
+
+### src_analysis/sources/hip_Ccode.c:163
+   160		s32 s32Temp1 = 0, s32Temp2 = 0;
+   161		s32 s16u = 0;
+   162		s16 s16uold = 0;
+   163		s16uold = (u - uold) << 7;
+   164		s32Temp1 = yold * m;
+   165		s32Temp2 = (s32Temp1/0x10000) * 0x10000;
+   166		s32Temp2 = s32Temp1 - s32Temp2;
+
+### src_analysis/sources/hip_Ccode.c:166
+   163		s16uold = (u - uold) << 7;
+   164		s32Temp1 = yold * m;
+   165		s32Temp2 = (s32Temp1/0x10000) * 0x10000;
+   166		s32Temp2 = s32Temp1 - s32Temp2;
+   167		s32Temp2 = s32Temp2 << 1;
+   168		s32Temp2 = s32Temp2 / 0x10000;
+   169		s32Temp2 = s32Temp2 + (s32Temp1/0x10000);
+
+### src_analysis/sources/hip_Ccode.c:167
+   164		s32Temp1 = yold * m;
+   165		s32Temp2 = (s32Temp1/0x10000) * 0x10000;
+   166		s32Temp2 = s32Temp1 - s32Temp2;
+   167		s32Temp2 = s32Temp2 << 1;
+   168		s32Temp2 = s32Temp2 / 0x10000;
+   169		s32Temp2 = s32Temp2 + (s32Temp1/0x10000);
+   170		s32Temp2 = yold - s32Temp2;
+
+### src_analysis/sources/hip_Ccode.c:49
+    46		s32 s32Temp1 = 0, s32Temp2 = 0;
+    47		s16 s16u = 0;
+    48		u16 u16uold = 0;
+    49		u16uold = (u - uold) << 7;
+    50		s32Temp1 = yold * m;
+    51		s32Temp2 = (s32Temp1/0x10000) * 0x10000;
+    52		s32Temp2 = s32Temp1 - s32Temp2;
+
+### src_analysis/sources/hip_Ccode.c:52
+    49		u16uold = (u - uold) << 7;
+    50		s32Temp1 = yold * m;
+    51		s32Temp2 = (s32Temp1/0x10000) * 0x10000;
+    52		s32Temp2 = s32Temp1 - s32Temp2;
+    53		s32Temp2 = s32Temp2 << 1;
+    54		s32Temp2 = s32Temp2 / 0x10000;
+    55		s32Temp2 = s32Temp2 + (s32Temp1/0x10000);
+
+### src_analysis/sources/hip_Ccode.c:53
+    50		s32Temp1 = yold * m;
+    51		s32Temp2 = (s32Temp1/0x10000) * 0x10000;
+    52		s32Temp2 = s32Temp1 - s32Temp2;
+    53		s32Temp2 = s32Temp2 << 1;
+    54		s32Temp2 = s32Temp2 / 0x10000;
+    55		s32Temp2 = s32Temp2 + (s32Temp1/0x10000);
+    56		s32Temp2 = yold - s32Temp2;
+
+### src_analysis/sources/div_Ccode.c:964
+   961		}
+   962		else
+   963		{
+   964			s32Temp2 = (s32Temp1 - ((s32Temp1 / div) * div)) << 1;
+   965			s32Temp3 = (s32Temp2/div) + (s32Temp1/div);
+   966			if(s32Temp3 < 0x7FFF)
+   967			{
+
+### src_analysis/sources/div_Ccode.c:965
+   962		else
+   963		{
+   964			s32Temp2 = (s32Temp1 - ((s32Temp1 / div) * div)) << 1;
+   965			s32Temp3 = (s32Temp2/div) + (s32Temp1/div);
+   966			if(s32Temp3 < 0x7FFF)
+   967			{
+   968				if(s32Temp3 > -0x8000)
+
+### src_analysis/sources/div_Ccode.c:1022
+  1019		}
+  1020		else
+  1021		{
+  1022			s32Temp1 = (s32Result - (s32Result/denominator)*denominator) << 1;
+  1023			s32Result = (s32Temp1/denominator) + (s32Result/denominator);
+  1024			if(s32Result < 0x7FFF)
+  1025			{
+
+### src_analysis/sources/div_Ccode.c:1023
+  1020		else
+  1021		{
+  1022			s32Temp1 = (s32Result - (s32Result/denominator)*denominator) << 1;
+  1023			s32Result = (s32Temp1/denominator) + (s32Result/denominator);
+  1024			if(s32Result < 0x7FFF)
+  1025			{
+  1026				if(s32Result > -0x8000)
+
+### src_analysis/sources/div_Ccode.c:628
+   625		}
+   626		else
+   627		{
+   628			s32Temp1 = s32Result -((s32Result/denominator)*denominator);
+   629			s32Temp1 = s32Temp1 << 1;
+   630			s32Result = (s32Temp1/denominator) + (s32Result/denominator);
+   631			if(s32Result < 0x7FFF)
+
+### src_analysis/sources/div_Ccode.c:629
+   626		else
+   627		{
+   628			s32Temp1 = s32Result -((s32Result/denominator)*denominator);
+   629			s32Temp1 = s32Temp1 << 1;
+   630			s32Result = (s32Temp1/denominator) + (s32Result/denominator);
+   631			if(s32Result < 0x7FFF)
+   632			{
+
+### src_analysis/sources/div_Ccode.c:630
+   627		{
+   628			s32Temp1 = s32Result -((s32Result/denominator)*denominator);
+   629			s32Temp1 = s32Temp1 << 1;
+   630			s32Result = (s32Temp1/denominator) + (s32Result/denominator);
+   631			if(s32Result < 0x7FFF)
+   632			{
+   633				if(s32Result > -0x8000)
+
+### src_analysis/sources/div_Ccode.c:684
+   681		}
+   682		else
+   683		{
+   684			s32Temp1 = s32Result - ((s32Result/denominator) * denominator) << 1;
+   685			s32Result = (s32Temp1/denominator) + (s32Result/denominator);
+   686			if(s32Result < 0x7FFF)
+   687			{
+
+### src_analysis/sources/div_Ccode.c:685
+   682		else
+   683		{
+   684			s32Temp1 = s32Result - ((s32Result/denominator) * denominator) << 1;
+   685			s32Result = (s32Temp1/denominator) + (s32Result/denominator);
+   686			if(s32Result < 0x7FFF)
+   687			{
+   688				if(s32Result > -0x8000)
+
+### src_analysis/sources/div_Ccode.c:1394
+  1391				}
+  1392				else
+  1393				{
+  1394					u32numerator = -numerator;
+  1395					u32denominator = -denominator;
+  1396					u32Temp1 =(u32numerator - ((u32numerator/u32denominator) * u32denominator)) << 1;
+  1397					u32Temp2 = (u32numerator/u32denominator) + (u32Temp1/u32denominator);
+
+### src_analysis/sources/div_Ccode.c:1395
+  1392				else
+  1393				{
+  1394					u32numerator = -numerator;
+  1395					u32denominator = -denominator;
+  1396					u32Temp1 =(u32numerator - ((u32numerator/u32denominator) * u32denominator)) << 1;
+  1397					u32Temp2 = (u32numerator/u32denominator) + (u32Temp1/u32denominator);
+  1398					if(u32Temp2 <= 0x7FFFFFFF)
+
+### src_analysis/sources/div_Ccode.c:1410
+  1407			}
+  1408			else
+  1409			{
+  1410				u32numerator = ~numerator+1;
+  1411				s32Temp1 = (u32numerator - ((u32numerator/denominator) * denominator)) << 1;
+  1412				s32Temp2 = (u32numerator/denominator) + (s32Temp1/denominator);
+  1413				return (~s32Temp2 + 1);
+
+### src_analysis/sources/div_Ccode.c:1413
+  1410				u32numerator = ~numerator+1;
+  1411				s32Temp1 = (u32numerator - ((u32numerator/denominator) * denominator)) << 1;
+  1412				s32Temp2 = (u32numerator/denominator) + (s32Temp1/denominator);
+  1413				return (~s32Temp2 + 1);
+  1414			}
+  1415		}
+  1416		else
+
+### src_analysis/sources/div_Ccode.c:1426
+  1423				}
+  1424				else
+  1425				{
+  1426					u32denominator = ~denominator + 1;
+  1427					s32Temp1 = (numerator - ((numerator/u32denominator) * u32denominator)) << 1;
+  1428					s32Temp2 = (numerator/u32denominator) + (s32Temp1/u32denominator);
+  1429					return (~s32Temp2 + 1);
+
+### src_analysis/sources/div_Ccode.c:1429
+  1426					u32denominator = ~denominator + 1;
+  1427					s32Temp1 = (numerator - ((numerator/u32denominator) * u32denominator)) << 1;
+  1428					s32Temp2 = (numerator/u32denominator) + (s32Temp1/u32denominator);
+  1429					return (~s32Temp2 + 1);
+  1430				}
+  1431			}
+  1432			else
+
+### src_analysis/sources/div_Ccode.c:1434
+  1431			}
+  1432			else
+  1433			{
+  1434				u32Temp1 = (numerator - ((numerator/denominator) * denominator)) << 1;
+  1435				s32Temp2 = (numerator/denominator) + (u32Temp1/denominator);
+  1436				return s32Temp2;
+  1437			}
+
+### src_analysis/sources/div_Ccode.c:1330
+  1327		{
+  1328			if(numerator <= 0)
+  1329			{
+  1330				u32Temp1 = -numerator;
+  1331				u32Temp0 = (u32Temp1/denominator);
+  1332				u32Temp2 = u32Temp1 - ((u32Temp1/denominator) * denominator);
+  1333
+
+### src_analysis/sources/div_Ccode.c:1267
+  1264			}
+  1265			else
+  1266			{
+  1267				denominator = -denominator;
+  1268				u32Temp1 = (numerator - ((numerator/denominator) * denominator)) << 1;
+  1269				u32Temp2 = (u32Temp1/denominator) + (numerator/denominator);
+  1270				if(u32Temp2 <= 0x7FFFFFFF)
+
+### src_analysis/sources/mul_Ccode.c:1993
+  1990
+  1991		if(val1<0)
+  1992		{
+  1993			u32Temp1 = -val1;
+  1994		}
+  1995		else
+  1996		{
+
+### src_analysis/sources/mul_Ccode.c:2672
+  2669
+  2670		if(val1<0)
+  2671		{
+  2672			u32Temp1 = -val1;
+  2673		}
+  2674		else
+  2675		{
+
+### src_analysis/sources/mul_Ccode.c:2681
+  2678
+  2679		if(val2<0)
+  2680		{
+  2681			u32Temp2 = -val2;
+  2682		}
+  2683		else
+  2684		{
+
+### src_analysis/sources/mul_Ccode.c:2223
+  2220
+  2221		if(value<0)
+  2222		{
+  2223			u32Temp1 = -value;
+  2224		}
+  2225		else
+  2226		{
+
+### src_analysis/sources/mul_Ccode.c:2232
+  2229
+  2230		if(factor<0)
+  2231		{
+  2232			u32Temp2 = -factor;
+  2233		}
+  2234		else
+  2235		{
+
+### src_analysis/sources/mul_Ccode.c:2454
+  2451
+  2452		if(value<0)
+  2453		{
+  2454			u32Temp1 = -value;
+  2455		}
+  2456		else
+  2457		{
+
+### src_analysis/sources/mul_Ccode.c:2463
+  2460
+  2461		if(factor<0)
+  2462		{
+  2463			u32Temp2 = -factor;
+  2464		}
+  2465		else
+  2466		{
+
+### src_analysis/sources/mul_Ccode.c:2600
+  2597
+  2598		if(value<0)
+  2599		{
+  2600			u32Temp1 = -value;
+  2601		}
+  2602		else
+  2603		{
+
+### src_analysis/sources/mul_Ccode.c:767
+   764				}
+   765				else
+   766				{
+   767					return (value*factor);
+   768				}
+   769			}
+   770			else
+
+### src_analysis/sources/mul_Ccode.c:778
+   775				}
+   776				else
+   777				{
+   778					return (value*factor);
+   779				}
+   780			}
+   781		}
+
+### src_analysis/sources/mul_Ccode.c:1762
+  1759		s32 s32Val2prime = 0;
+  1760		if(val2 < 0)
+  1761		{
+  1762			s32Val2prime = -val2;
+  1763		}
+  1764		if(val2 != 0)
+  1765		{
+
+### src_analysis/sources/div_Ccode.c:495
+   492		}
+   493		else
+   494		{
+   495			s32Temp1 = (x_value - ((x_value/y_value) * y_value)) << 1;
+   496			s32Temp1 = (s32Temp1/y_value) + (x_value/y_value);
+   497			if(s32Temp1 < 0xFFFF)
+   498			{
+
+### src_analysis/sources/div_Ccode.c:496
+   493		else
+   494		{
+   495			s32Temp1 = (x_value - ((x_value/y_value) * y_value)) << 1;
+   496			s32Temp1 = (s32Temp1/y_value) + (x_value/y_value);
+   497			if(s32Temp1 < 0xFFFF)
+   498			{
+   499				if(s32Temp1 > 0)
+
+### src_analysis/sources/avrg_Ccode.c:249
+   246			}
+   247			else
+   248			{
+   249				s32mmv = -s32mmv;
+   250				result = s32mmv >> 15;
+   251				crlc = (s32mmv & 0x4000) >> 14;
+   252				result = result + crlc;
+
+### src_analysis/sources/div_Ccode.c:740
+   737		}
+   738		else
+   739		{
+   740			s32Temp1 = (s32Result - ((s32Result/denominator) * denominator)) << 1;
+   741			s32Result = (s32Temp1/denominator) + (s32Result/denominator);
+   742			if(s32Result < 0x0000FFFF)
+   743			{
+
+### src_analysis/sources/div_Ccode.c:741
+   738		else
+   739		{
+   740			s32Temp1 = (s32Result - ((s32Result/denominator) * denominator)) << 1;
+   741			s32Result = (s32Temp1/denominator) + (s32Result/denominator);
+   742			if(s32Result < 0x0000FFFF)
+   743			{
+   744				if(s32Result > 0)
+
+### src_analysis/sources/div_Ccode.c:795
+   792		}
+   793		else
+   794		{
+   795			s32Temp1 = (s32Result - ((s32Result/denominator) * denominator)) << 1;
+   796			s32Result = (s32Temp1/denominator) + (s32Result/denominator);
+   797			if(s32Result < 0x0000FFFF)
+   798			{
+
+### src_analysis/sources/div_Ccode.c:796
+   793		else
+   794		{
+   795			s32Temp1 = (s32Result - ((s32Result/denominator) * denominator)) << 1;
+   796			s32Result = (s32Temp1/denominator) + (s32Result/denominator);
+   797			if(s32Result < 0x0000FFFF)
+   798			{
+   799				if(s32Result > 0)
+
+### src_analysis/sources/div_Ccode.c:1168
+  1165					}
+  1166					else
+  1167					{
+  1168						u32Temp1 = (numerator - ((numerator/denominator) * denominator)) << 1;
+  1169						u32Temp2 = (u32Temp1 / denominator) + (numerator / denominator);
+  1170						return u32Temp2;
+  1171					}
+
+### src_analysis/sources/div_Ccode.c:1182
+  1179				}
+  1180				else
+  1181				{
+  1182					numerator = -numerator;
+  1183					denominator = -denominator;
+  1184					u32Temp1 = (numerator - ((numerator/denominator) * denominator)) << 1;
+  1185					u32Temp2 = (u32Temp1 / denominator) + (numerator / denominator);
+
+### src_analysis/sources/div_Ccode.c:1183
+  1180				else
+  1181				{
+  1182					numerator = -numerator;
+  1183					denominator = -denominator;
+  1184					u32Temp1 = (numerator - ((numerator/denominator) * denominator)) << 1;
+  1185					u32Temp2 = (u32Temp1 / denominator) + (numerator / denominator);
+  1186					return u32Temp2;
+
+### src_analysis/sources/div_Ccode.c:1184
+  1181				{
+  1182					numerator = -numerator;
+  1183					denominator = -denominator;
+  1184					u32Temp1 = (numerator - ((numerator/denominator) * denominator)) << 1;
+  1185					u32Temp2 = (u32Temp1 / denominator) + (numerator / denominator);
+  1186					return u32Temp2;
+  1187				}

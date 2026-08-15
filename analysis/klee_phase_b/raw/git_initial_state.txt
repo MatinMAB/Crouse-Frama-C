@@ -1,0 +1,9 @@
+repository=/home/matin/frama-work/frama-eva-analysis
+starting_branch=analysis/klee-phase-a-environment
+starting_head=e16dadf888accdfe9b78ae90705ca48f028d1bb3
+starting_status_short=EMPTY
+phase_a_ancestor_check=PASS
+phase_b_branch_preexisting=NO
+created_branch=analysis/klee-phase-b-alarm-mapping
+destructive_git_operation=NONE
+push=NOT_PERFORMED

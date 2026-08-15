@@ -1,0 +1,39 @@
+dimension	value	count
+category	division by zero	16
+category	integer overflow	100
+category	invalid shift	33
+operation_kind	LEFT_SHIFT	26
+operation_kind	RIGHT_SHIFT	7
+operation_kind	SIGNED_ADD	21
+operation_kind	SIGNED_DIV	18
+operation_kind	SIGNED_LEFT_SHIFT	17
+operation_kind	SIGNED_MUL	31
+operation_kind	SIGNED_NEG	22
+operation_kind	SIGNED_SUB	7
+predicate_class	DIVISOR_NONZERO	16
+predicate_class	SHIFT_COUNT_VALID	13
+predicate_class	SIGNED_ADD_LOWER_BOUND	6
+predicate_class	SIGNED_ADD_UPPER_BOUND	15
+predicate_class	SIGNED_DIV_REPRESENTABLE	2
+predicate_class	SIGNED_LEFT_SHIFT_LHS_NONNEGATIVE	20
+predicate_class	SIGNED_LEFT_SHIFT_RESULT_UPPER_BOUND	17
+predicate_class	SIGNED_MUL_LOWER_BOUND	10
+predicate_class	SIGNED_MUL_UPPER_BOUND	21
+predicate_class	SIGNED_NEG_VALID	22
+predicate_class	SIGNED_SUB_LOWER_BOUND	5
+predicate_class	SIGNED_SUB_UPPER_BOUND	2
+result_width	32	149
+result_signedness	SIGNED	136
+result_signedness	UNSIGNED	13
+target_scope	HELPER_FUNCTION	6
+target_scope	TARGET_FUNCTION	143
+guarded	NO_DIRECT_GUARD	31
+guarded	WITH_GUARD	118
+semantic_sensitivity	SCALAR_WIDTH_SEMANTICS	149
+layout_sensitive	NO	149
+endianness_sensitive	NO	149
+abi_sensitive	NO	149
+confidence	HIGH	140
+confidence	MEDIUM	9
+status	MAPPED	140
+status	MAPPED_WITH_SEMANTIC_NOTE	9
