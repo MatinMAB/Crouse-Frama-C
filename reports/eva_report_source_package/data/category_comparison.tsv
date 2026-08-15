@@ -1,0 +1,4 @@
+category	baseline	high_precision	removed	remaining	new	delta
+division by zero	20	16	4	16	0	-4
+integer overflow	118	100	18	100	0	-18
+invalid shift	33	33	0	33	0	0
