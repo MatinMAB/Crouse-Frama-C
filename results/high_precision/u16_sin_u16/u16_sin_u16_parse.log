@@ -1,0 +1,12 @@
+[kernel] Parsing src_analysis/sources/trig_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_analysis/sources/trig_Ccode.c:98: Warning: 
+  Body of function s16_sin_u32 falls-through. Adding a return statement
+[kernel:CERT:MSC:37] src_analysis/sources/trig_Ccode.c:114: Warning: 
+  Body of function u16_cos_u16 falls-through. Adding a return statement
+[kernel:CERT:MSC:37] src_analysis/sources/trig_Ccode.c:130: Warning: 
+  Body of function s16_cos_u32 falls-through. Adding a return statement
+[kernel:CERT:MSC:37] src_analysis/sources/trig_Ccode.c:146: Warning: 
+  Body of function u16_tan_u16 falls-through. Adding a return statement
+[kernel:CERT:MSC:37] src_analysis/sources/trig_Ccode.c:175: Warning: 
+  Body of function s16_tan_u32 falls-through. Adding a return statement
+[kernel] Parsing harnesses/P1/eva_main_u16_sin_u16.c (with preprocessing)
