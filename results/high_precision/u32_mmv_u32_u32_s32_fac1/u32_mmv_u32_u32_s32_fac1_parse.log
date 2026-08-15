@@ -1,0 +1,8 @@
+[kernel] Parsing src_analysis/sources/avrg_Ccode.c (with preprocessing)
+[kernel:CERT:EXP:46] src_analysis/sources/avrg_Ccode.c:960: Warning: 
+  operand of bitwise operator is a logical relation
+[kernel:CERT:EXP:46] src_analysis/sources/avrg_Ccode.c:960: Warning: 
+  operand of bitwise operator is a logical relation
+[kernel:CERT:MSC:37] src_analysis/sources/avrg_Ccode.c:1000: Warning: 
+  Body of function u32_mmv_u32_u32_s32_fac1 falls-through. Adding a return statement
+[kernel] Parsing harnesses/P0/eva_main_u32_mmv_u32_u32_s32_fac1.c (with preprocessing)
