@@ -32,6 +32,10 @@ ANALYSIS_SOURCE_WARNING_FLAGS=(
     -Wno-error=unused-but-set-variable
 )
 
+MUL_CCODE_WARNING_FLAGS=(
+    -Wno-error=return-type
+)
+
 "$CLANG13" "${COMMON_FLAGS[@]}" -c \
     "$SCRIPT_DIR/klee_harness.c" \
     -o "$OUTPUT_DIR/klee_harness.bc"
@@ -39,6 +43,7 @@ ANALYSIS_SOURCE_WARNING_FLAGS=(
 "$CLANG13" \
     "${COMMON_FLAGS[@]}" \
     "${ANALYSIS_SOURCE_WARNING_FLAGS[@]}" \
+    "${MUL_CCODE_WARNING_FLAGS[@]}" \
     -c \
     "$SCRIPT_DIR/mul_Ccode_alarm_0005.c" \
     -o "$OUTPUT_DIR/mul_Ccode_alarm_0005.bc"

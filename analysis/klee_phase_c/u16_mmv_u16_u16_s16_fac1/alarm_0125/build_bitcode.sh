@@ -32,6 +32,12 @@ ANALYSIS_SOURCE_WARNING_FLAGS=(
     -Wno-error=unused-but-set-variable
 )
 
+AVRG_CCODE_WARNING_FLAGS=(
+    -Wno-error=self-assign
+    -Wno-error=unused-parameter
+    -Wno-error=return-type
+)
+
 "$CLANG13" "${COMMON_FLAGS[@]}" -c \
     "$SCRIPT_DIR/klee_harness.c" \
     -o "$OUTPUT_DIR/klee_harness.bc"
@@ -39,6 +45,7 @@ ANALYSIS_SOURCE_WARNING_FLAGS=(
 "$CLANG13" \
     "${COMMON_FLAGS[@]}" \
     "${ANALYSIS_SOURCE_WARNING_FLAGS[@]}" \
+    "${AVRG_CCODE_WARNING_FLAGS[@]}" \
     -c \
     "$SCRIPT_DIR/avrg_Ccode_alarm_0125.c" \
     -o "$OUTPUT_DIR/avrg_Ccode_alarm_0125.bc"
