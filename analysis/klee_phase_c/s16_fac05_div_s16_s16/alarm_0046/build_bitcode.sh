@@ -25,11 +25,21 @@ COMMON_FLAGS=(
     -I"$SCRIPT_DIR"
 )
 
+ANALYSIS_SOURCE_WARNING_FLAGS=(
+    -Wno-error=sign-compare
+    -Wno-error=shift-op-parentheses
+    -Wno-error=unused-variable
+    -Wno-error=unused-but-set-variable
+)
+
 "$CLANG13" "${COMMON_FLAGS[@]}" -c \
     "$SCRIPT_DIR/klee_harness.c" \
     -o "$OUTPUT_DIR/klee_harness.bc"
 
-"$CLANG13" "${COMMON_FLAGS[@]}" -c \
+"$CLANG13" \
+    "${COMMON_FLAGS[@]}" \
+    "${ANALYSIS_SOURCE_WARNING_FLAGS[@]}" \
+    -c \
     "$SCRIPT_DIR/div_Ccode_alarm_0046.c" \
     -o "$OUTPUT_DIR/div_Ccode_alarm_0046.bc"
 
