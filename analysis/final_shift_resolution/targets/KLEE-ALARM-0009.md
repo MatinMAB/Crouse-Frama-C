@@ -15,6 +15,7 @@ The helper accepts internal bit counts `1 <= count && count < 32`. The public ma
 - Original assertion: `eva_klee_alarm_0009: 0 <= count && count < 32` (unchanged)
 - KLEE witness: `value=61696; factor=65394; count=4294967295`
 - Production callers: C wrapper 17; normalized macro 17; both valid
-- Resolution commit: recorded in the finalized matrix after this group commit
+- Current assertion location: `src_repaired/sources/mul_Ccode.c:5293`
+- Resolution commit: `9b0ac88fd7411c6469360b76c329546c9f12a0ff`
 
 This deterministic static mapping preserves the fixed-point facade and does not introduce floating-point logarithms or runtime conversion failure modes.

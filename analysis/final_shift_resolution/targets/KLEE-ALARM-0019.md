@@ -15,6 +15,7 @@
 - Original assertion: `eva_klee_alarm_0019: 0 <= (u32)(count - 32) && (u32)(count - 32) < 32` (unchanged)
 - KLEE witness: `value=65528; factor=53761; count=0`
 - Production callers: C wrapper count 32; public macro count 32; both satisfy the contract
-- Resolution commit: recorded in the finalized matrix after this group commit
+- Current assertion location: `src_repaired/sources/mul_Ccode.c:5547`
+- Resolution commit: `12c3299c286e364dd0cb18c5f8582452381150b1`
 
 No implementation behavior or public interface was changed.

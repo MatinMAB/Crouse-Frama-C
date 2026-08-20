@@ -15,6 +15,7 @@ This is the complementary high-word shift in the same helper/interface group as 
 - Original assertion: `eva_klee_alarm_0003: 0 <= (u32)(32 - count) && (u32)(32 - count) < 32` (unchanged)
 - KLEE witness: `value=0; factor=-32768; count=0`
 - Production callers after normalization: C wrapper 16; public macro 16; both satisfy the contract
-- Resolution commit: recorded in the finalized matrix after this group commit
+- Current assertion location: `src_repaired/sources/mul_Ccode.c:5202`
+- Resolution commit: `371c2e3ca2202f31d0ed9c3be90d7bf028dab514`
 
 No implementation fallback behavior was added. The same interface evidence and thesis-policy boundary documented for 0002 applies occurrence-aware to this second shift.

@@ -15,6 +15,7 @@ The helper contract is `1 <= count && count < 32`, which makes both the low-word
 - Original assertion: `eva_klee_alarm_0015: 0 <= (u32)(32 - count) && (u32)(32 - count) < 32` (unchanged)
 - KLEE witness: `value=0; factor=0; count=0`
 - Production callers: C wrapper count 15; public macro count 16; both satisfy the contract
-- Resolution commit: recorded in the finalized matrix after this group commit
+- Current assertion location: `src_repaired/sources/mul_Ccode.c:5469`
+- Resolution commit: `220e3e2e674ac5edc39acbc59cd30311c12c6436`
 
 No implementation behavior was altered.

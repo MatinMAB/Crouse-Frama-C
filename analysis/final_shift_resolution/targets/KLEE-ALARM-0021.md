@@ -15,6 +15,7 @@ The helper contract is `1 <= count && count < 32`; consequently `(u32)(32-count)
 - Original assertion: `eva_klee_alarm_0021: 0 <= (u32)(32 - count) && (u32)(32 - count) < 32` (unchanged)
 - KLEE witness: `value=0; factor=0; count=0`
 - Production callers: C wrapper 8; public macro 8; both satisfy the contract
-- Resolution commit: recorded in the finalized matrix after this group commit
+- Current assertion location: `src_repaired/sources/mul_Ccode.c:5636`
+- Resolution commit: `41d79fffb2cc054e3ac5c86eacc611ab7a46b489`
 
 No implementation fallback behavior was introduced.

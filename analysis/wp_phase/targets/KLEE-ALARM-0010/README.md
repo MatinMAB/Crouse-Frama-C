@@ -5,22 +5,24 @@
 - WP assertion owner function: `root_s32_mul_s32_u16_fac_less1`
 - Repaired source: `src_repaired/sources/mul_Ccode.c`
 - Original occurrence: `src_analysis/sources/mul_Ccode.c:5166`
-- Current assertion: `src_repaired/sources/mul_Ccode.c:5291`
+- Current assertion: `src_repaired/sources/mul_Ccode.c:5297`
 - Original Eva alarm: `invalid shift` on `u32Temp4 << (32-count)`
 - Raw Eva safety property: `0 <= (u32)(32 - count) && (u32)(32 - count) < 32`
 - Inserted ACSL property: `0 <= (u32)(32 - count) && (u32)(32 - count) < 32`
 - ACSL label: `eva_klee_alarm_0010`
 - KLEE counterexample inputs: `value=61696 (0x0000F100); factor=65394 (0xFF72); count=0 (0x00000000)`
-- Repair status: `REPAIR_POLICY_REQUIRED`
-- Repair commit: `NOT_APPLICABLE`
-- Script status: `REPAIR_POLICY_REQUIRED`
+- Repair status: `SPEC_RESOLVED`
+- Repair commit: `9b0ac88fd7411c6469360b76c329546c9f12a0ff`
+- Script status: `WP_READY`
 
 This launcher asks WP about only `eva_klee_alarm_0010`. It does not enable RTE generation
-or select other assertions. The property text and source placement come unchanged from the repair-phase
-manifest.
-## Repair-policy gate
+or select other assertions. The original Eva predicate and label remain unchanged; the current
+placement is occurrence-aware after the final helper contract.
 
-**REPAIR_POLICY_REQUIRED.** The current implementation has not received the final thesis repair for this target. Both launchers intentionally refuse to execute. No WP conclusion should be drawn until repair policy is resolved and this metadata is regenerated.
+## Final shift-campaign eligibility
+
+**WP_READY.** The semantic policy and helper contract are frozen. This launcher belongs only to
+the final 13-target shift campaign; it has not been executed in this preparation phase.
 
 ## Terminal
 

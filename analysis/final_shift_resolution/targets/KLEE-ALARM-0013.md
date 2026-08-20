@@ -15,6 +15,7 @@ The helper domain is `1 <= count && count < 32`, and the fixed public macro maps
 - Original assertion: `eva_klee_alarm_0013: 0 <= (u32)(32 - count) && (u32)(32 - count) < 32` (unchanged)
 - KLEE witness: `value=0; factor=0; count=0`
 - Production callers: C wrapper 9; normalized macro 9; both valid
-- Resolution commit: recorded in the finalized matrix after this group commit
+- Current assertion location: `src_repaired/sources/mul_Ccode.c:5748`
+- Resolution commit: `f4b910ba1e64a01f4bd3ae9056eb5321af5296a6`
 
 No runtime conversion, masking, clamping, or fallback behavior was added.

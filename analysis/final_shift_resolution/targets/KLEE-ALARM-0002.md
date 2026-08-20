@@ -16,6 +16,7 @@ The C wrapper passed bit count 16 while the delivered `ecmath.h` macro embedded 
 - Original assertion: `eva_klee_alarm_0002: 0 <= count && count < 32` (unchanged)
 - KLEE witness: `value=-2130706432; factor=1; count=4294967295`
 - Production callers after normalization: C wrapper 16; public macro 16; both satisfy the contract
-- Resolution commit: recorded in the finalized matrix after this group commit
+- Current assertion location: `src_repaired/sources/mul_Ccode.c:5198`
+- Resolution commit: `371c2e3ca2202f31d0ed9c3be90d7bf028dab514`
 
 The repository evidence for the mathematical pairing is strong: the legacy comment specifies a 16-bit right shift, the C wrapper uses 16, the macro used exactly `2^16`, and the historical divisor remains commented beside the wrapper. What is thesis-selected is the decision that the current helper API is count-based and the public macro is the normalization boundary.

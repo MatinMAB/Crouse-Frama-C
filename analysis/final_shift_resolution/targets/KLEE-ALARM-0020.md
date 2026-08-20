@@ -15,6 +15,7 @@ The helper accepts internal bit counts `1 <= count && count < 32`; callers own t
 - Original assertion: `eva_klee_alarm_0020: 0 <= count && count < 32` (unchanged)
 - KLEE witness: `value=0; factor=0; count=4294967295`
 - Production callers: C wrapper 8; public macro 8; both satisfy the contract
-- Resolution commit: recorded in the finalized matrix after this group commit
+- Current assertion location: `src_repaired/sources/mul_Ccode.c:5632`
+- Resolution commit: `41d79fffb2cc054e3ac5c86eacc611ab7a46b489`
 
 The repository's function comment, wrapper, macro, and two-word implementation agree on count semantics.

@@ -15,6 +15,7 @@ The helper parameter is an internal bit count constrained by `1 <= count && coun
 - Original assertion: `eva_klee_alarm_0005: 0 <= count && count < 32` (unchanged)
 - KLEE witness: `value=-2130706432; factor=1; count=4294967295`
 - Production callers: C wrapper 8; normalized macro 8; both valid
-- Resolution commit: recorded in the finalized matrix after this group commit
+- Current assertion location: `src_repaired/sources/mul_Ccode.c:5388`
+- Resolution commit: `830f84d2f53e7c49f66359a75abd9a7f30a0d188`
 
 The legacy comment says shift 8/divide by 256, the C wrapper passes 8, the macro passed exactly `2^8`, and 256 remains as its commented historical alternative. The normalization boundary is an explicit thesis policy, not claimed as an original contract.
