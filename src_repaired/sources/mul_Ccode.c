@@ -5148,6 +5148,9 @@ u8 u8_mul_u8_u8_fac8(u8 value, u8 factor)
  * @warning A shift count equal to or greater than the promoted operand width is undefined in standard C unless the implementation guards or masks it.
  * @ingroup ecmath_mul
  */
+/*@
+  requires 1 <= count && count < 32;
+*/
 s32 root_s32_mul_s32_s16_fac_less1(s32 value, s16 factor, u32 count)
 {
 	u32 u32Temp1 , u32Temp2,u32Temp3,u32Temp4;
