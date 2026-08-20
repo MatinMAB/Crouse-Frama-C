@@ -9951,7 +9951,7 @@ extern s32 root_s32_mul_s32_u8_fac_less1(s32 value, u8 factor, u32 count);
 
 /*~T*/
 #define s32_mul_s32_u8_fac05(value,factor) \
-root_s32_mul_s32_u8_fac_less1(value,factor,512)
+root_s32_mul_s32_u8_fac_less1(value,factor,9)
 
 /*~E*/
 /*~T*/
