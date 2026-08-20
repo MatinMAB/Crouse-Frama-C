@@ -1,3 +1,4 @@
 KLEE Alarm ID	Function	ACSL Label	Eva Property	Repair Commit	Source File	Current Assertion Location	WP Status
 KLEE-ALARM-0061	s16_hip1_s16_s8_s8_u16_fac1	eva_klee_alarm_0061	s32Temp2 >= 0	PENDING_THIS_COMMIT	src_repaired/sources/hip_Ccode.c	src_repaired/sources/hip_Ccode.c:214	NOT_RUN
 KLEE-ALARM-0066	s16_hip1_s16_u8_u8_u16_fac1	eva_klee_alarm_0066	s32Temp2 >= 0	PENDING_THIS_COMMIT	src_repaired/sources/hip_Ccode.c	src_repaired/sources/hip_Ccode.c:71	NOT_RUN
+KLEE-ALARM-0144	u32_div_s32_s32	eva_klee_alarm_0144	numerator != INT32_MIN	PENDING_THIS_COMMIT	src_repaired/sources/div_Ccode.c	src_repaired/sources/div_Ccode.c:1467	NOT_RUN

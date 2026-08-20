@@ -31,6 +31,10 @@ APPLIED_REPAIRS: dict[str, dict[str, str]] = {
         "commit": "PENDING_THIS_COMMIT",
         "parser": "PASS: gcc -std=c11 -fsyntax-only -Isrc_repaired/headers src_repaired/sources/hip_Ccode.c",
     },
+    "KLEE-ALARM-0144": {
+        "commit": "PENDING_THIS_COMMIT",
+        "parser": "PASS: gcc -std=c11 -fsyntax-only -Isrc_repaired/headers src_repaired/sources/div_Ccode.c",
+    },
 }
 
 SHIFT_CALLERS = {

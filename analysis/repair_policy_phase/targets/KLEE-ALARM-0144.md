@@ -3,7 +3,7 @@
 - KLEE Alarm ID: `KLEE-ALARM-0144`
 - Function / physical function: `u32_div_s32_s32`
 - Original occurrence: `src_analysis/sources/div_Ccode.c:1182` occurrence `1`
-- Current repaired-tree assertion: `src_repaired/sources/div_Ccode.c:1448`
+- Current repaired-tree assertion: `src_repaired/sources/div_Ccode.c:1467`
 - Exact current statement after the assertion: `numerator = -numerator;`
 - Affected callers: Public `u32_div_s32_s32` interface; no in-repository C caller narrows its operand range
 
@@ -66,7 +66,7 @@ KLEE-ALARM-0145..0149 are bypassed only when numerator is INT32_MIN because the 
 
 - Classification: `SEMANTICS_INFERRED_HIGH_CONFIDENCE`
 - Confidence: High confidence from independent formula and sibling implementation evidence
-- Application status: `DECISION_READY`
-- Repair commit: `NOT_APPLICABLE`
-- Parser check: `NOT_RUN`
-- Future WP status: `NOT_ELIGIBLE`
+- Application status: `REPAIRED`
+- Repair commit: `PENDING_THIS_COMMIT`
+- Parser check: `PASS: gcc -std=c11 -fsyntax-only -Isrc_repaired/headers src_repaired/sources/div_Ccode.c`
+- Future WP status: `NOT_RUN`
