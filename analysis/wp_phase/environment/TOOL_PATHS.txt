@@ -1,0 +1,10 @@
+frama-c	/home/matin/.opam/4.14.1/bin/frama-c
+frama-c-gui	/home/matin/.opam/4.14.1/bin/frama-c-gui
+why3	/home/matin/.opam/4.14.1/bin/why3
+alt-ergo	/home/matin/.opam/4.14.1/bin/alt-ergo
+z3	/usr/bin/z3
+cvc5	/usr/bin/cvc5
+cpp	/usr/bin/cpp
+node	NOT_FOUND
+yarn	NOT_FOUND
+shellcheck	NOT_FOUND
