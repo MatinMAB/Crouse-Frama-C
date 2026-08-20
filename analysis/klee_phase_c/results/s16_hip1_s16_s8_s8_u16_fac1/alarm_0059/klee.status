@@ -1,0 +1,10 @@
+alarm_id=0059
+started_at=2026-08-17T04:31:10Z
+finished_at=2026-08-17T04:31:11Z
+timeout_seconds=1800
+elapsed_seconds=1
+exit_code=0
+final_status=NO_COUNTEREXAMPLE_FOUND
+target_error=
+generated_tests=2
+total_error_files=0

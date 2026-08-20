@@ -1,0 +1,8 @@
+Error: KLEE-ALARM-0043: signed overflow. assert -numerator <= 2147483647;
+File: src_analysis/sources/div_Ccode.c
+Line: 1479
+assembly.ll line: 2549
+State: 5
+Stack: 
+	#000002549 in s16_div_s32_u32(numerator=symbolic, denominator=symbolic) at src_analysis/sources/div_Ccode.c:1479
+	#100000033 in main() at klee_harness.c:16

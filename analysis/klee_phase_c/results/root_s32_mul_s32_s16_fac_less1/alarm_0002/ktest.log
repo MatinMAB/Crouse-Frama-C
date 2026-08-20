@@ -1,0 +1,34 @@
+Error file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_s32_mul_s32_s16_fac_less1/alarm_0002/build/klee-out-alarm-0002/test000003.klee-alarm-0002.err
+Error: KLEE-ALARM-0002: invalid RHS operand for shift. assert 0 <= count < 32;
+File: src_analysis/sources/mul_Ccode.c
+Line: 5095
+assembly.ll line: 5418
+State: 11
+Stack: 
+	#000005418 in root_s32_mul_s32_s16_fac_less1(value=symbolic, factor=symbolic, count=symbolic) at src_analysis/sources/mul_Ccode.c:5095
+	#100000042 in main() at klee_harness.c:18
+KTest file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_s32_mul_s32_s16_fac_less1/alarm_0002/build/klee-out-alarm-0002/test000003.ktest
+ktest file : '/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_s32_mul_s32_s16_fac_less1/alarm_0002/build/klee-out-alarm-0002/test000003.ktest'
+args       : ['/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_s32_mul_s32_s16_fac_less1/alarm_0002/build/root_s32_mul_s32_s16_fac_less1_alarm_0002.bc']
+num objects: 3
+object 0: name: 'value'
+object 0: size: 4
+object 0: data: b'\x00\x00\x00\x81'
+object 0: hex : 0x00000081
+object 0: int : -2130706432
+object 0: uint: 2164260864
+object 0: text: ....
+object 1: name: 'factor'
+object 1: size: 2
+object 1: data: b'\x01\x00'
+object 1: hex : 0x0100
+object 1: int : 1
+object 1: uint: 1
+object 1: text: ..
+object 2: name: 'count'
+object 2: size: 4
+object 2: data: b'\xff\xff\xff\xff'
+object 2: hex : 0xffffffff
+object 2: int : -1
+object 2: uint: 4294967295
+object 2: text: ....

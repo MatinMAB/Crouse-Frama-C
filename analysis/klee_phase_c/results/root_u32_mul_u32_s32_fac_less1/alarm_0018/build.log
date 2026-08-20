@@ -1,0 +1,33 @@
+src_analysis/sources/mul_Ccode.c:772:28: warning: comparison of integers of different signs: 'unsigned int' and 's32' (aka 'int') [-Wsign-compare]
+                        if((0x7FFFFFFFU/factor) <= value)
+                            ~~~~~~~~~~~~~~~~~~  ^  ~~~~~
+src_analysis/sources/mul_Ccode.c:1334:15: warning: comparison of integers of different signs: 's32' (aka 'int') and 'u32' (aka 'unsigned int') [-Wsign-compare]
+                if(s32Temp1 < val1)
+                   ~~~~~~~~ ^ ~~~~
+src_analysis/sources/mul_Ccode.c:1779:27: warning: comparison of integers of different signs: 'int' and 'u32' (aka 'unsigned int') [-Wsign-compare]
+                        if((0x7FFFFFFF / val2) < val1)
+                            ~~~~~~~~~~~~~~~~~  ^ ~~~~
+src_analysis/sources/mul_Ccode.c:3344:1: warning: non-void function does not return a value [-Wreturn-type]
+}
+^
+src_analysis/sources/mul_Ccode.c:5410:17: warning: unused variable 'u32Temp2' [-Wunused-variable]
+        u32 u32Temp1 , u32Temp2,u32Temp3,u32Temp4;
+                       ^
+src_analysis/sources/mul_Ccode.c:5410:26: warning: unused variable 'u32Temp3' [-Wunused-variable]
+        u32 u32Temp1 , u32Temp2,u32Temp3,u32Temp4;
+                                ^
+src_analysis/sources/mul_Ccode.c:5410:35: warning: unused variable 'u32Temp4' [-Wunused-variable]
+        u32 u32Temp1 , u32Temp2,u32Temp3,u32Temp4;
+                                         ^
+src_analysis/sources/mul_Ccode.c:5411:5: warning: unused variable 'u8SignBit' [-Wunused-variable]
+        u8 u8SignBit;
+           ^
+8 warnings generated.
+src_analysis/sources/MulHword.c:89:36: warning: variable 'MulTemp4' set but not used [-Wunused-but-set-variable]
+        u32 MulTemp1, MulTemp2, MulTemp3, MulTemp4 , HIGHWORD, OverFlow;
+                                          ^
+src_analysis/sources/MulHword.c:89:47: warning: unused variable 'HIGHWORD' [-Wunused-variable]
+        u32 MulTemp1, MulTemp2, MulTemp3, MulTemp4 , HIGHWORD, OverFlow;
+                                                     ^
+2 warnings generated.
+/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_u32_mul_u32_s32_fac_less1/alarm_0018/build/root_u32_mul_u32_s32_fac_less1_alarm_0018.bc

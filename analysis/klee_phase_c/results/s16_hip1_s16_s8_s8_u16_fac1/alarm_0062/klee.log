@@ -1,0 +1,17 @@
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_hip1_s16_s8_s8_u16_fac1/alarm_0062/build/klee-out-alarm-0062"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x76f2d9600000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x76f059600000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x75f059600000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x75d059600000 size=128 GiB)
+KLEE: WARNING: undefined reference to function: MulHighWord
+KLEE: WARNING: undefined reference to function: rotateRight
+
+KLEE: done: total instructions = 193
+KLEE: done: completed paths = 3
+KLEE: done: partially completed paths = 0
+KLEE: done: generated tests = 3
+KLEE Phase C status: NO_COUNTEREXAMPLE_FOUND
+Status file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_hip1_s16_s8_s8_u16_fac1/alarm_0062/build/klee.status

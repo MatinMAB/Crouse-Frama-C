@@ -1,0 +1,10 @@
+alarm_id=0123
+started_at=2026-08-17T22:51:17Z
+finished_at=2026-08-17T23:21:47Z
+timeout_seconds=1800
+elapsed_seconds=1830
+exit_code=137
+final_status=INCONCLUSIVE_TIMEOUT
+target_error=
+generated_tests=2
+total_error_files=0

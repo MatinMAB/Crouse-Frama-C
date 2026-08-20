@@ -1,0 +1,8 @@
+Error: KLEE-ALARM-0061: invalid LHS operand for left shift. assert 0 <= s32Temp2;
+File: src_analysis/sources/hip_Ccode.c
+Line: 185
+assembly.ll line: 369
+State: 3
+Stack: 
+	#000000369 in s16_hip1_s16_s8_s8_u16_fac1(yold=symbolic, u=symbolic, uold=symbolic, m=symbolic) at src_analysis/sources/hip_Ccode.c:185
+	#100000043 in main() at klee_harness.c:20

@@ -1,0 +1,9 @@
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7ab0b2a00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7aae32a00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x79ae32a00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x798e32a00000 size=128 GiB)
+KLEE: ERROR: src_analysis/sources/mul_Ccode.c:2469: KLEE-ALARM-0115: signed overflow. assert -factor <= 2147483647;
+KLEE: NOTE: now ignoring this error at this location

@@ -1,0 +1,13 @@
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_div_s32_s16/alarm_0033/build/klee-out-alarm-0033"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x79db95e00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x79d915e00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x78d915e00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x78b915e00000 size=128 GiB)
+KLEE: ctrl-c detected, requesting interpreter to halt.
+KLEE: ctrl-c detected, requesting interpreter to halt.
+/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_div_s32_s16/alarm_0033/../../klee_run_common.sh: line 100: 13401 Killed                  "$timeout_command" --signal=TERM --kill-after="${kill_after_seconds}s" "${timeout_seconds}s" klee --output-dir="$output_dir" "$bitcode"
+KLEE Phase C status: INCONCLUSIVE_TIMEOUT
+Status file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_div_s32_s16/alarm_0033/build/klee.status

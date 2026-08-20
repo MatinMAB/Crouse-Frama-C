@@ -1,0 +1,10 @@
+alarm_id=0054
+started_at=2026-08-17T02:55:35Z
+finished_at=2026-08-17T02:59:38Z
+timeout_seconds=1800
+elapsed_seconds=243
+exit_code=0
+final_status=NO_COUNTEREXAMPLE_FOUND
+target_error=
+generated_tests=3
+total_error_files=0

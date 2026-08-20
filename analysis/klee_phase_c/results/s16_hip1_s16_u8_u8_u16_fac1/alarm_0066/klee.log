@@ -1,0 +1,19 @@
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_hip1_s16_u8_u8_u16_fac1/alarm_0066/build/klee-out-alarm-0066"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x72ed2ce00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x72eaace00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x71eaace00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x71caace00000 size=128 GiB)
+KLEE: WARNING: undefined reference to function: MulHighWord
+KLEE: WARNING: undefined reference to function: rotateRight
+KLEE: ERROR: src_analysis/sources/hip_Ccode.c:71: KLEE-ALARM-0066: invalid LHS operand for left shift. assert 0 <= s32Temp2;
+KLEE: NOTE: now ignoring this error at this location
+
+KLEE: done: total instructions = 187
+KLEE: done: completed paths = 2
+KLEE: done: partially completed paths = 1
+KLEE: done: generated tests = 3
+KLEE Phase C status: CONFIRMED_COUNTEREXAMPLE
+Status file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_hip1_s16_u8_u8_u16_fac1/alarm_0066/build/klee.status

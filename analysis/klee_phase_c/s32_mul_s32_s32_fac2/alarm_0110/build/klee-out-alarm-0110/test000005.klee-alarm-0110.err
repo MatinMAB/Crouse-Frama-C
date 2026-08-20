@@ -1,0 +1,9 @@
+Error: KLEE-ALARM-0110: signed overflow. assert (int)arg1_LW * (int)arg2_LW <= 2147483647;
+File: src_analysis/sources/MulHword.c
+Line: 49
+assembly.ll line: 7202
+State: 12
+Stack: 
+	#000007202 in MulHighWord(arg1=symbolic, arg2=symbolic) at src_analysis/sources/MulHword.c:49
+	#100003428 in s32_mul_s32_s32_fac2(value=symbolic, factor=symbolic) at src_analysis/sources/mul_Ccode.c:2248
+	#200000036 in main() at klee_harness.c:16

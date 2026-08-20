@@ -1,0 +1,27 @@
+Error file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_div_s32_u32/alarm_0104/build/klee-out-alarm-0104/test000003.klee-alarm-0104.err
+Error: KLEE-ALARM-0104: signed overflow. assert -numerator <= 2147483647;
+File: src_analysis/sources/div_Ccode.c
+Line: 1332
+assembly.ll line: 2197
+State: 5
+Stack: 
+	#000002197 in s32_div_s32_u32(numerator=symbolic, denominator=symbolic) at src_analysis/sources/div_Ccode.c:1332
+	#100000033 in main() at klee_harness.c:16
+KTest file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_div_s32_u32/alarm_0104/build/klee-out-alarm-0104/test000003.ktest
+ktest file : '/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_div_s32_u32/alarm_0104/build/klee-out-alarm-0104/test000003.ktest'
+args       : ['/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_div_s32_u32/alarm_0104/build/s32_div_s32_u32_alarm_0104.bc']
+num objects: 2
+object 0: name: 'numerator'
+object 0: size: 4
+object 0: data: b'\x00\x00\x00\x80'
+object 0: hex : 0x00000080
+object 0: int : -2147483648
+object 0: uint: 2147483648
+object 0: text: ....
+object 1: name: 'denominator'
+object 1: size: 4
+object 1: data: b'\x01\x01\x01\x01'
+object 1: hex : 0x01010101
+object 1: int : 16843009
+object 1: uint: 16843009
+object 1: text: ....

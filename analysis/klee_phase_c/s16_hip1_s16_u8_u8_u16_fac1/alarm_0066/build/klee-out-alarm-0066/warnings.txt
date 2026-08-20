@@ -1,0 +1,2 @@
+KLEE: WARNING: undefined reference to function: MulHighWord
+KLEE: WARNING: undefined reference to function: rotateRight

@@ -1,0 +1,41 @@
+src_analysis/sources/avrg_Ccode.c:313:10: warning: explicitly assigning value of variable of type 's32' (aka 'int') to itself [-Wself-assign]
+                s32mmv = s32mmv;
+                ~~~~~~ ^ ~~~~~~
+src_analysis/sources/avrg_Ccode.c:215:6: warning: variable 'u16mmv' set but not used [-Wunused-but-set-variable]
+        u32 u16mmv, result;
+            ^
+src_analysis/sources/avrg_Ccode.c:450:15: warning: comparison of integers of different signs: 's32' (aka 'int') and 'unsigned int' [-Wsign-compare]
+                                if(result < 0xFFFFFFFF)
+                                   ~~~~~~ ^ ~~~~~~~~~~
+src_analysis/sources/avrg_Ccode.c:862:47: warning: unused variable 'u32Result2' [-Wunused-variable]
+        u32 u32Temp1, u32Temp2, u32Temp3, u32Result1,u32Result2;
+                                                     ^
+src_analysis/sources/avrg_Ccode.c:1007:6: warning: unused variable 'u32Temp1' [-Wunused-variable]
+        u32 u32Temp1, u32Temp2, u32Temp3, u32crlc;
+            ^
+src_analysis/sources/avrg_Ccode.c:1007:16: warning: unused variable 'u32Temp2' [-Wunused-variable]
+        u32 u32Temp1, u32Temp2, u32Temp3, u32crlc;
+                      ^
+src_analysis/sources/avrg_Ccode.c:1007:26: warning: unused variable 'u32Temp3' [-Wunused-variable]
+        u32 u32Temp1, u32Temp2, u32Temp3, u32crlc;
+                                ^
+src_analysis/sources/avrg_Ccode.c:1007:36: warning: unused variable 'u32crlc' [-Wunused-variable]
+        u32 u32Temp1, u32Temp2, u32Temp3, u32crlc;
+                                          ^
+src_analysis/sources/avrg_Ccode.c:1008:6: warning: unused variable 'u32Result1' [-Wunused-variable]
+        u32 u32Result1;
+            ^
+src_analysis/sources/avrg_Ccode.c:1005:34: warning: unused parameter 'mmv' [-Wunused-parameter]
+u32 u32_mmv_u32_u32_s32_fac1(u32 mmv, u32 measure, s32 crlc)
+                                 ^
+src_analysis/sources/avrg_Ccode.c:1005:43: warning: unused parameter 'measure' [-Wunused-parameter]
+u32 u32_mmv_u32_u32_s32_fac1(u32 mmv, u32 measure, s32 crlc)
+                                          ^
+src_analysis/sources/avrg_Ccode.c:1005:56: warning: unused parameter 'crlc' [-Wunused-parameter]
+u32 u32_mmv_u32_u32_s32_fac1(u32 mmv, u32 measure, s32 crlc)
+                                                       ^
+src_analysis/sources/avrg_Ccode.c:1010:1: warning: non-void function does not return a value [-Wreturn-type]
+}
+^
+13 warnings generated.
+/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/u16_mmv_u16_u16_s16_fac1/alarm_0125/build/u16_mmv_u16_u16_s16_fac1_alarm_0125.bc

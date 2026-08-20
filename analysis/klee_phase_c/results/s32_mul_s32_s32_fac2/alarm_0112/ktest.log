@@ -1,0 +1,27 @@
+Error file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_mul_s32_s32_fac2/alarm_0112/build/klee-out-alarm-0112/test000002.klee-alarm-0112.err
+Error: KLEE-ALARM-0112: signed overflow. assert -factor <= 2147483647;
+File: src_analysis/sources/mul_Ccode.c
+Line: 2238
+assembly.ll line: 3407
+State: 9
+Stack: 
+	#000003407 in s32_mul_s32_s32_fac2(value=symbolic, factor=symbolic) at src_analysis/sources/mul_Ccode.c:2238
+	#100000036 in main() at klee_harness.c:16
+KTest file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_mul_s32_s32_fac2/alarm_0112/build/klee-out-alarm-0112/test000002.ktest
+ktest file : '/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_mul_s32_s32_fac2/alarm_0112/build/klee-out-alarm-0112/test000002.ktest'
+args       : ['/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_mul_s32_s32_fac2/alarm_0112/build/s32_mul_s32_s32_fac2_alarm_0112.bc']
+num objects: 2
+object 0: name: 'value'
+object 0: size: 4
+object 0: data: b'\xff\xff\xff\x7f'
+object 0: hex : 0xffffff7f
+object 0: int : 2147483647
+object 0: uint: 2147483647
+object 0: text: ....
+object 1: name: 'factor'
+object 1: size: 4
+object 1: data: b'\x00\x00\x00\x80'
+object 1: hex : 0x00000080
+object 1: int : -2147483648
+object 1: uint: 2147483648
+object 1: text: ....

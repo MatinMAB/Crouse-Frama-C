@@ -1,0 +1,10 @@
+alarm_id=0053
+started_at=2026-08-17T02:55:35Z
+finished_at=2026-08-17T02:55:35Z
+timeout_seconds=1800
+elapsed_seconds=0
+exit_code=0
+final_status=CONFIRMED_COUNTEREXAMPLE
+target_error=/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_fac05_div_s16_u16/alarm_0053/build/klee-out-alarm-0053/test000001.klee-alarm-0053.err
+generated_tests=2
+total_error_files=1

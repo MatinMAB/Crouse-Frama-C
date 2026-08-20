@@ -1,0 +1,18 @@
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_mul_u32_s32/alarm_0119/build/klee-out-alarm-0119"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7663fa400000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x76617a400000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x75617a400000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x75417a400000 size=128 GiB)
+KLEE: WARNING: undefined reference to function: MulHighWord
+KLEE: ERROR: src_analysis/sources/mul_Ccode.c:1764: KLEE-ALARM-0119: signed overflow. assert -val2 <= 2147483647;
+KLEE: NOTE: now ignoring this error at this location
+
+KLEE: done: total instructions = 93
+KLEE: done: completed paths = 4
+KLEE: done: partially completed paths = 1
+KLEE: done: generated tests = 5
+KLEE Phase C status: CONFIRMED_COUNTEREXAMPLE
+Status file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_mul_u32_s32/alarm_0119/build/klee.status

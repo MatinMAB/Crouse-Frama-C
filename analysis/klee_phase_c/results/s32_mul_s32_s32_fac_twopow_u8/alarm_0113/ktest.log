@@ -1,0 +1,35 @@
+Error file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_mul_s32_s32_fac_twopow_u8/alarm_0113/build/klee-out-alarm-0113/test000009.klee-alarm-0113.err
+Error: KLEE-ALARM-0113: signed overflow. assert (int)arg1_LW * (int)arg2_LW <= 2147483647;
+File: src_analysis/sources/MulHword.c
+Line: 49
+assembly.ll line: 7192
+State: 31
+Stack: 
+	#000007192 in MulHighWord(arg1=symbolic, arg2=symbolic) at src_analysis/sources/MulHword.c:49
+	#100003853 in s32_mul_s32_s32_fac_twopow_u8(value=symbolic, factor=symbolic, power=symbolic) at src_analysis/sources/mul_Ccode.c:2479
+	#200000041 in main() at klee_harness.c:18
+KTest file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_mul_s32_s32_fac_twopow_u8/alarm_0113/build/klee-out-alarm-0113/test000009.ktest
+ktest file : '/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_mul_s32_s32_fac_twopow_u8/alarm_0113/build/klee-out-alarm-0113/test000009.ktest'
+args       : ['/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_mul_s32_s32_fac_twopow_u8/alarm_0113/build/s32_mul_s32_s32_fac_twopow_u8_alarm_0113.bc']
+num objects: 3
+object 0: name: 'value'
+object 0: size: 4
+object 0: data: b'\x15\x08\x12\x80'
+object 0: hex : 0x15081280
+object 0: int : -2146301931
+object 0: uint: 2148665365
+object 0: text: ....
+object 1: name: 'factor'
+object 1: size: 4
+object 1: data: b'\xfd\x85\x00\x00'
+object 1: hex : 0xfd850000
+object 1: int : 34301
+object 1: uint: 34301
+object 1: text: ....
+object 2: name: 'power'
+object 2: size: 1
+object 2: data: b'\xff'
+object 2: hex : 0xff
+object 2: int : -1
+object 2: uint: 255
+object 2: text: .

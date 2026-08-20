@@ -1,0 +1,19 @@
+Archived previous KLEE output: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/results/root_s32_mul_s32_u8_fac_less1/alarm_0013/preexisting-klee-out-alarm-0013.1
+Archived previous KLEE status: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/results/root_s32_mul_s32_u8_fac_less1/alarm_0013/preexisting-klee.status
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_s32_mul_s32_u8_fac_less1/alarm_0013/build/klee-out-alarm-0013"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7c0d9fc00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7c0b1fc00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7b0b1fc00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7aeb1fc00000 size=128 GiB)
+KLEE: ERROR: src_analysis/sources/mul_Ccode.c:5555: KLEE-ALARM-0013: invalid RHS operand for shift. assert 0 <= (u32)(32 - count) < 32;
+KLEE: NOTE: now ignoring this error at this location
+
+KLEE: done: total instructions = 606
+KLEE: done: completed paths = 9
+KLEE: done: partially completed paths = 4
+KLEE: done: generated tests = 10
+KLEE Phase C status: CONFIRMED_COUNTEREXAMPLE
+Status file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_s32_mul_s32_u8_fac_less1/alarm_0013/build/klee.status

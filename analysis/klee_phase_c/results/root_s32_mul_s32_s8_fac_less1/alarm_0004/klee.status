@@ -1,0 +1,10 @@
+alarm_id=0004
+started_at=2026-08-16T13:42:37Z
+finished_at=2026-08-16T13:42:38Z
+timeout_seconds=1800
+elapsed_seconds=1
+exit_code=0
+final_status=CONFIRMED_COUNTEREXAMPLE
+target_error=/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_s32_mul_s32_s8_fac_less1/alarm_0004/build/klee-out-alarm-0004/test000001.klee-alarm-0004.err
+generated_tests=19
+total_error_files=3

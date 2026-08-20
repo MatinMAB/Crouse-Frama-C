@@ -1,0 +1,43 @@
+src_analysis/sources/div_Ccode.c:188:16: warning: comparison of integers of different signs: 's32' (aka 'int') and 'unsigned int' [-Wsign-compare]
+                if (s32Temp1 != 0x80000000)
+                    ~~~~~~~~ ^  ~~~~~~~~~~
+src_analysis/sources/div_Ccode.c:272:16: warning: comparison of integers of different signs: 's32' (aka 'int') and 'unsigned int' [-Wsign-compare]
+                if(numerator != 0x80000000)
+                   ~~~~~~~~~ ^  ~~~~~~~~~~
+src_analysis/sources/div_Ccode.c:580:22: warning: operator '<<' has lower precedence than '-'; '-' will be evaluated first [-Wshift-op-parentheses]
+                u32Temp1 = x_value - (u32Temp1 * y_value) << 1;
+                           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~ ~~
+src_analysis/sources/div_Ccode.c:580:22: note: place parentheses around the '-' expression to silence this warning
+                u32Temp1 = x_value - (u32Temp1 * y_value) << 1;
+                                   ^
+                           (                             )
+src_analysis/sources/div_Ccode.c:684:24: warning: operator '<<' has lower precedence than '-'; '-' will be evaluated first [-Wshift-op-parentheses]
+                s32Temp1 = s32Result - ((s32Result/denominator) * denominator) << 1;
+                           ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~
+src_analysis/sources/div_Ccode.c:684:24: note: place parentheses around the '-' expression to silence this warning
+                s32Temp1 = s32Result - ((s32Result/denominator) * denominator) << 1;
+                                     ^
+                           (                                                  )
+src_analysis/sources/div_Ccode.c:723:6: warning: unused variable 'u32Result' [-Wunused-variable]
+        u32 u32Result = 0, u32Temp1 = 0;
+            ^
+src_analysis/sources/div_Ccode.c:723:21: warning: unused variable 'u32Temp1' [-Wunused-variable]
+        u32 u32Result = 0, u32Temp1 = 0;
+                           ^
+src_analysis/sources/div_Ccode.c:1225:34: warning: unused variable 'u32Temp3' [-Wunused-variable]
+        u32 u32Temp1 = 0, u32Temp2 = 0, u32Temp3 = 0, numerator_old = 0;
+                                        ^
+src_analysis/sources/div_Ccode.c:1225:48: warning: unused variable 'numerator_old' [-Wunused-variable]
+        u32 u32Temp1 = 0, u32Temp2 = 0, u32Temp3 = 0, numerator_old = 0;
+                                                      ^
+src_analysis/sources/div_Ccode.c:1396:6: warning: unused variable 'denominator_prime' [-Wunused-variable]
+        u32 denominator_prime = 0, u32Temp1 = 0, u32Temp2 = 0;
+            ^
+src_analysis/sources/div_Ccode.c:1474:55: warning: unused variable 'u32Temp3' [-Wunused-variable]
+        u32 numerator_prime = 0, u32Temp1 = 0, u32Temp2 = 0, u32Temp3 = 0;
+                                                             ^
+src_analysis/sources/div_Ccode.c:1475:6: warning: variable 's32Temp1' set but not used [-Wunused-but-set-variable]
+        s32 s32Temp1 = 0, s32Temp2 = 0, s32Temp3 = 0;
+            ^
+11 warnings generated.
+/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/u16_mul_s16_u16_div_u16/alarm_0137/build/u16_mul_s16_u16_div_u16_alarm_0137.bc

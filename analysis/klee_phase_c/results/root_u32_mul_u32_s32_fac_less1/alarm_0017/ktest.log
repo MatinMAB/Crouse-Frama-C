@@ -1,0 +1,35 @@
+Error file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_u32_mul_u32_s32_fac_less1/alarm_0017/build/klee-out-alarm-0017/test000001.klee-alarm-0017.err
+Error: KLEE-ALARM-0017: signed product must not exceed INT32_MAX
+File: src_analysis/sources/MulHword.c
+Line: 51
+assembly.ll line: 7211
+State: 3
+Stack: 
+	#000007211 in MulHighWord(arg1=symbolic, arg2=symbolic) at src_analysis/sources/MulHword.c:51
+	#100006713 in root_u32_mul_u32_s32_fac_less1(value=symbolic, factor=symbolic, count=symbolic) at src_analysis/sources/mul_Ccode.c:5371
+	#200000042 in main() at klee_harness.c:18
+KTest file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_u32_mul_u32_s32_fac_less1/alarm_0017/build/klee-out-alarm-0017/test000001.ktest
+ktest file : '/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_u32_mul_u32_s32_fac_less1/alarm_0017/build/klee-out-alarm-0017/test000001.ktest'
+args       : ['/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_u32_mul_u32_s32_fac_less1/alarm_0017/build/root_u32_mul_u32_s32_fac_less1_alarm_0017.bc']
+num objects: 3
+object 0: name: 'value'
+object 0: size: 4
+object 0: data: b'\x00\x00\xf8\xff'
+object 0: hex : 0x0000f8ff
+object 0: int : -524288
+object 0: uint: 4294443008
+object 0: text: ....
+object 1: name: 'factor'
+object 1: size: 4
+object 1: data: b'\x01\xd2\x00\x00'
+object 1: hex : 0x01d20000
+object 1: int : 53761
+object 1: uint: 53761
+object 1: text: ....
+object 2: name: 'count'
+object 2: size: 4
+object 2: data: b'\x00\x00\x00\x00'
+object 2: hex : 0x00000000
+object 2: int : 0
+object 2: uint: 0
+object 2: text: ....

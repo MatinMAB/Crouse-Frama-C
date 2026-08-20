@@ -1,0 +1,19 @@
+Archived previous KLEE output: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/results/root_u32_mul_u32_s32_fac_less1/alarm_0017/preexisting-klee-out-alarm-0017.1
+Archived previous KLEE status: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/results/root_u32_mul_u32_s32_fac_less1/alarm_0017/preexisting-klee.status
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_u32_mul_u32_s32_fac_less1/alarm_0017/build/klee-out-alarm-0017"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x73141c800000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x73119c800000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x72119c800000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x71f19c800000 size=128 GiB)
+KLEE: ERROR: src_analysis/sources/MulHword.c:51: KLEE-ALARM-0017: signed product must not exceed INT32_MAX
+KLEE: NOTE: now ignoring this error at this location
+
+KLEE: done: total instructions = 243
+KLEE: done: completed paths = 2
+KLEE: done: partially completed paths = 2
+KLEE: done: generated tests = 3
+KLEE Phase C status: CONFIRMED_COUNTEREXAMPLE
+Status file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_u32_mul_u32_s32_fac_less1/alarm_0017/build/klee.status

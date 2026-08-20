@@ -1,0 +1,41 @@
+Error file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_hip1_s16_u8_u8_u16_fac1/alarm_0063/build/klee-out-alarm-0063/test000001.klee-alarm-0063.err
+Error: KLEE-ALARM-0063: invalid LHS operand for left shift. assert 0 <= (int)((int)u - (int)uold);
+File: src_analysis/sources/hip_Ccode.c
+Line: 51
+assembly.ll line: 89
+State: 2
+Stack: 
+	#000000089 in s16_hip1_s16_u8_u8_u16_fac1(yold=symbolic, u=symbolic, uold=symbolic, m=symbolic) at src_analysis/sources/hip_Ccode.c:51
+	#100000040 in main() at klee_harness.c:20
+KTest file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_hip1_s16_u8_u8_u16_fac1/alarm_0063/build/klee-out-alarm-0063/test000001.ktest
+ktest file : '/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_hip1_s16_u8_u8_u16_fac1/alarm_0063/build/klee-out-alarm-0063/test000001.ktest'
+args       : ['/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_hip1_s16_u8_u8_u16_fac1/alarm_0063/build/s16_hip1_s16_u8_u8_u16_fac1_alarm_0063.bc']
+num objects: 4
+object 0: name: 'yold'
+object 0: size: 2
+object 0: data: b'\x00\x00'
+object 0: hex : 0x0000
+object 0: int : 0
+object 0: uint: 0
+object 0: text: ..
+object 1: name: 'u'
+object 1: size: 1
+object 1: data: b'\x00'
+object 1: hex : 0x00
+object 1: int : 0
+object 1: uint: 0
+object 1: text: .
+object 2: name: 'uold'
+object 2: size: 1
+object 2: data: b'\x01'
+object 2: hex : 0x01
+object 2: int : 1
+object 2: uint: 1
+object 2: text: .
+object 3: name: 'm'
+object 3: size: 2
+object 3: data: b'\x00\x00'
+object 3: hex : 0x0000
+object 3: int : 0
+object 3: uint: 0
+object 3: text: ..

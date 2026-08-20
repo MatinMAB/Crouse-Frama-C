@@ -1,0 +1,8 @@
+Error: KLEE-ALARM-0063: invalid LHS operand for left shift. assert 0 <= (int)((int)u - (int)uold);
+File: src_analysis/sources/hip_Ccode.c
+Line: 51
+assembly.ll line: 89
+State: 2
+Stack: 
+	#000000089 in s16_hip1_s16_u8_u8_u16_fac1(yold=symbolic, u=symbolic, uold=symbolic, m=symbolic) at src_analysis/sources/hip_Ccode.c:51
+	#100000040 in main() at klee_harness.c:20

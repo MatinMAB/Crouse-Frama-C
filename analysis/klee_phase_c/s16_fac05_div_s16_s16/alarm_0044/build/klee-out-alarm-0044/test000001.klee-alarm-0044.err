@@ -1,0 +1,8 @@
+Error: KLEE-ALARM-0044: invalid LHS operand for left shift. assert 0 <= (int)numerator;
+File: src_analysis/sources/div_Ccode.c
+Line: 175
+assembly.ll line: 65
+State: 2
+Stack: 
+	#000000065 in s16_fac05_div_s16_s16(numerator=symbolic, denominator=symbolic) at src_analysis/sources/div_Ccode.c:175
+	#100000033 in main() at klee_harness.c:16

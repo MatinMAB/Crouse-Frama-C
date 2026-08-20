@@ -1,0 +1,17 @@
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_mul_s32_s8_fac2/alarm_0116/build/klee-out-alarm-0116"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7a82b5400000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7a8035400000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x798035400000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x796035400000 size=128 GiB)
+KLEE: ERROR: src_analysis/sources/mul_Ccode.c:2602: KLEE-ALARM-0116: signed overflow. assert -value <= 2147483647;
+KLEE: NOTE: now ignoring this error at this location
+
+KLEE: done: total instructions = 775
+KLEE: done: completed paths = 12
+KLEE: done: partially completed paths = 2
+KLEE: done: generated tests = 13
+KLEE Phase C status: CONFIRMED_COUNTEREXAMPLE
+Status file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s32_mul_s32_s8_fac2/alarm_0116/build/klee.status

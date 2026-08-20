@@ -2,15 +2,17 @@
 
 set -uo pipefail
 
-# Local-only KLEE Phase C runner.
+# Local-only KLEE Phase C batch runner.
 #
-# This script invokes only the already prepared per-alarm drivers. It does not
-# access the network, install software, or modify original/Eva source artifacts.
+# With no arguments, alarms are processed in the canonical function/alarm order.
+# Optional four-digit alarm arguments restrict a run for local validation while
+# preserving that canonical order.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPOSITORY_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-RESULTS_ROOT="$SCRIPT_DIR/results"
+RESULTS_ROOT="${KLEE_PHASE_C_RESULTS_DIR:-$SCRIPT_DIR/results}"
 SUMMARY_FILE="$RESULTS_ROOT/summary.tsv"
+COMMON_RUNNER="$SCRIPT_DIR/klee_run_common.sh"
 
 FUNCTION_SPECS=(
     "root_s32_mul_s32_s16_fac_less1:0001:0003"
@@ -48,37 +50,74 @@ FUNCTION_SPECS=(
     "u32_div_s32_s32:0141:0149"
 )
 
+if [[ ! -r "$COMMON_RUNNER" ]]; then
+    printf 'Shared KLEE runner not found: %s\n' "$COMMON_RUNNER" >&2
+    exit 1
+fi
+
+# shellcheck source=klee_run_common.sh
+source "$COMMON_RUNNER"
+
+declare -A SELECTED_ALARMS=()
+if (( $# > 0 )); then
+    for requested_alarm in "$@"; do
+        if [[ ! "$requested_alarm" =~ ^[0-9]{4}$ ]]; then
+            printf 'Invalid alarm ID: %s (expected four digits)\n' "$requested_alarm" >&2
+            exit 2
+        fi
+        SELECTED_ALARMS["$requested_alarm"]=1
+    done
+fi
+
 mkdir -p "$RESULTS_ROOT"
-printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
-    "Function" \
-    "Alarm" \
-    "BuildStatus" \
-    "KleeStatus" \
-    "CompletedPaths" \
-    "PartialPaths" \
-    "GeneratedTests" \
-    "TargetError" \
-    "KTest" \
-    "Classification" \
-    "FailureReason" \
+if [[ -f "$SUMMARY_FILE" ]]; then
+    summary_archive="$(phase_c_next_archive_path "$RESULTS_ROOT/archive" "summary.tsv")"
+    mkdir -p "$(dirname "$summary_archive")"
+    mv "$SUMMARY_FILE" "$summary_archive"
+    printf 'Archived previous summary: %s\n' "$summary_archive"
+fi
+
+printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
+    "alarm_id" \
+    "function" \
+    "elapsed_seconds" \
+    "final_status" \
+    "exit_code" \
+    "target_error" \
+    "build_status" \
+    "klee_status" \
+    "completed_paths" \
+    "partial_paths" \
+    "generated_tests" \
+    "ktest" \
+    "failure_reason" \
     > "$SUMMARY_FILE"
 
-declare -A CLASSIFICATION_COUNTS=(
-    [CONFIRMED]=0
-    [NOT_REPRODUCED_COMPLETE]=0
-    [INCONCLUSIVE]=0
-    [BUILD_FAILED]=0
-    [INFRASTRUCTURE_FAILED]=0
+declare -A STATUS_COUNTS=(
+    [CONFIRMED_COUNTEREXAMPLE]=0
+    [NO_COUNTEREXAMPLE_FOUND]=0
+    [INCONCLUSIVE_TIMEOUT]=0
+    [INCONCLUSIVE_TOOL_ERROR]=0
+    [PREPARATION_ERROR]=0
 )
+TOTAL_ALARMS=0
 
 repository_relative_path() {
     local path="$1"
-    printf '%s' "${path#"$REPOSITORY_ROOT/"}"
+    if [[ "$path" == "$REPOSITORY_ROOT/"* ]]; then
+        printf '%s' "${path#"$REPOSITORY_ROOT/"}"
+    else
+        printf '%s' "$path"
+    fi
 }
 
-join_with_semicolon() {
-    local IFS=';'
-    printf '%s' "$*"
+status_value() {
+    local key="$1"
+    local status_file="$2"
+    local value
+
+    value="$(sed -n "s/^${key}=//p" "$status_file" | tail -n 1)"
+    printf '%s' "$value"
 }
 
 last_klee_stat() {
@@ -100,57 +139,102 @@ first_failure_line() {
     local line
 
     line="$(grep -m 1 -E '(^|[[:space:]])(fatal:|error:|ERROR:)|not found|No such file|Permission denied|snap-confine|failed' "$log_file" || true)"
-    if [[ -n "$line" ]]; then
-        line="${line//$'\t'/ }"
-        line="${line//$'\r'/ }"
-        line="${line//$'\n'/ }"
-        printf '%s' "$line"
-    else
-        printf '%s' "$fallback"
+    if [[ -z "$line" ]]; then
+        line="$fallback"
+    fi
+    line="${line//$'\t'/ }"
+    line="${line//$'\r'/ }"
+    line="${line//$'\n'/ }"
+    printf '%s' "$line"
+}
+
+archive_previous_logs() {
+    local result_dir="$1"
+    local history_root="$result_dir/history"
+    local history_dir=""
+    local candidate
+    local -a candidates=(
+        "$result_dir/build.log"
+        "$result_dir/klee.log"
+        "$result_dir/ktest.log"
+        "$result_dir/klee.status"
+    )
+
+    for candidate in "${candidates[@]}"; do
+        if [[ -e "$candidate" ]]; then
+            mkdir -p "$history_root"
+            history_dir="$(phase_c_next_archive_path "$history_root" "execution")"
+            mkdir -p "$history_dir"
+            break
+        fi
+    done
+
+    if [[ -n "$history_dir" ]]; then
+        for candidate in "${candidates[@]}"; do
+            if [[ -e "$candidate" ]]; then
+                mv "$candidate" "$history_dir/"
+            fi
+        done
+        printf 'Archived previous logs: %s\n' "$history_dir"
     fi
 }
 
-next_archive_path() {
-    local result_dir="$1"
-    local output_basename="$2"
-    local candidate="$result_dir/preexisting-$output_basename"
-    local number=1
+archive_status_only() {
+    local status_file="$1"
+    local result_dir="$2"
+    local status_archive
 
-    while [[ -e "$candidate" ]]; do
-        candidate="$result_dir/preexisting-$output_basename.$number"
-        number=$((number + 1))
-    done
-    printf '%s' "$candidate"
+    if [[ -f "$status_file" ]]; then
+        status_archive="$(phase_c_next_archive_path "$result_dir" "klee.status")"
+        mv "$status_file" "$status_archive"
+        printf 'Archived previous KLEE status: %s\n' "$status_archive"
+    fi
 }
 
 append_summary() {
-    local function_name="$1"
-    local alarm="$2"
-    local build_status="$3"
-    local klee_status="$4"
-    local completed_paths="$5"
-    local partial_paths="$6"
-    local generated_tests="$7"
-    local target_error="$8"
-    local ktest="$9"
-    local classification="${10}"
-    local failure_reason="${11}"
+    local alarm="$1"
+    local function_name="$2"
+    local elapsed_seconds="$3"
+    local final_status="$4"
+    local exit_code="$5"
+    local target_error="$6"
+    local build_status="$7"
+    local klee_status="$8"
+    local completed_paths="$9"
+    local partial_paths="${10}"
+    local generated_tests="${11}"
+    local ktest="${12}"
+    local failure_reason="${13}"
 
-    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
-        "$function_name" \
+    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
         "KLEE-ALARM-$alarm" \
+        "$function_name" \
+        "$elapsed_seconds" \
+        "$final_status" \
+        "$exit_code" \
+        "$target_error" \
         "$build_status" \
         "$klee_status" \
         "$completed_paths" \
         "$partial_paths" \
         "$generated_tests" \
-        "$target_error" \
         "$ktest" \
-        "$classification" \
         "$failure_reason" \
         >> "$SUMMARY_FILE"
 
-    CLASSIFICATION_COUNTS["$classification"]=$((CLASSIFICATION_COUNTS["$classification"] + 1))
+    STATUS_COUNTS["$final_status"]=$((STATUS_COUNTS["$final_status"] + 1))
+    TOTAL_ALARMS=$((TOTAL_ALARMS + 1))
+}
+
+write_preparation_error() {
+    local alarm="$1"
+    local status_file="$2"
+    local exit_code="$3"
+    local timestamp
+
+    timestamp="$(phase_c_utc_now)"
+    phase_c_write_status "$status_file" "$alarm" "$timestamp" "$timestamp" \
+        "${KLEE_TIMEOUT_SECONDS:-1800}" 0 "$exit_code" "PREPARATION_ERROR" "" "" ""
 }
 
 process_alarm() {
@@ -161,55 +245,60 @@ process_alarm() {
     local build_log="$result_dir/build.log"
     local klee_log="$result_dir/klee.log"
     local ktest_log="$result_dir/ktest.log"
-    local klee_output_dir="$alarm_dir/build/klee-out-alarm-$alarm"
+    local status_file="$alarm_dir/build/klee.status"
+    local result_status="$result_dir/klee.status"
     local build_status="NOT_RUN"
     local klee_status="NOT_RUN"
+    local elapsed_seconds=0
+    local final_status="PREPARATION_ERROR"
+    local status_exit_code=1
+    local target_error=""
     local completed_paths="-"
     local partial_paths="-"
     local generated_tests="-"
-    local target_error_field="-"
     local ktest_field="-"
-    local classification="INFRASTRUCTURE_FAILED"
     local failure_reason=""
     local build_exit=0
     local klee_exit=0
     local show_exit=0
-    local archive_path
-    local other_error_count=0
-    local blocker_found=0
-    local target_err
+    local timestamp=""
+    local target_path
     local matching_ktest
-    local path
-    local -a target_errors=()
-    local -a target_errors_relative=()
+    local -a target_paths=()
     local -a matching_ktests=()
-    local -a matching_ktests_relative=()
-    local -a other_errors=()
 
     mkdir -p "$result_dir"
+    archive_previous_logs "$result_dir"
     : > "$build_log"
     : > "$klee_log"
     : > "$ktest_log"
 
-    printf '[%s] %s alarm_%s\n' "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" "$function_name" "$alarm"
+    printf '[%s] %s alarm_%s\n' "$(phase_c_utc_now)" "$function_name" "$alarm"
 
     if [[ ! -d "$alarm_dir" ]]; then
+        build_status="BUILD_ERROR"
         failure_reason="alarm directory not found: $(repository_relative_path "$alarm_dir")"
         printf '%s\n' "$failure_reason" > "$build_log"
-        append_summary "$function_name" "$alarm" "$build_status" "$klee_status" \
-            "$completed_paths" "$partial_paths" "$generated_tests" \
-            "$target_error_field" "$ktest_field" "$classification" "$failure_reason"
-        printf '  classification: %s\n' "$classification"
+        timestamp="$(phase_c_utc_now)"
+        phase_c_write_status "$result_status" "$alarm" "$timestamp" "$timestamp" \
+            "${KLEE_TIMEOUT_SECONDS:-1800}" 0 1 "PREPARATION_ERROR" "" "" ""
+        append_summary "$alarm" "$function_name" 0 "PREPARATION_ERROR" 1 "" \
+            "$build_status" "$klee_status" "-" "-" "-" "-" "$failure_reason"
+        printf '  final_status: PREPARATION_ERROR\n'
         return
     fi
 
     if [[ ! -x "$alarm_dir/build_bitcode.sh" ]]; then
+        build_status="BUILD_ERROR"
         failure_reason="build_bitcode.sh is missing or not executable"
         printf '%s\n' "$failure_reason" > "$build_log"
-        append_summary "$function_name" "$alarm" "$build_status" "$klee_status" \
-            "$completed_paths" "$partial_paths" "$generated_tests" \
-            "$target_error_field" "$ktest_field" "$classification" "$failure_reason"
-        printf '  classification: %s\n' "$classification"
+        mkdir -p "$(dirname "$status_file")"
+        archive_status_only "$status_file" "$result_dir"
+        write_preparation_error "$alarm" "$status_file" 126
+        cp "$status_file" "$result_status"
+        append_summary "$alarm" "$function_name" 0 "PREPARATION_ERROR" 126 "" \
+            "$build_status" "$klee_status" "-" "-" "-" "-" "$failure_reason"
+        printf '  final_status: PREPARATION_ERROR\n'
         return
     fi
 
@@ -220,15 +309,17 @@ process_alarm() {
     build_exit=$?
 
     if (( build_exit != 0 )); then
-        build_status="FAILED($build_exit)"
-        classification="BUILD_FAILED"
+        build_status="BUILD_ERROR"
         failure_reason="$(first_failure_line "$build_log" "build_bitcode.sh exited with status $build_exit")"
         printf 'Not run because build failed.\n' > "$klee_log"
-        printf 'Not run because KLEE was not run.\n' > "$ktest_log"
-        append_summary "$function_name" "$alarm" "$build_status" "$klee_status" \
-            "$completed_paths" "$partial_paths" "$generated_tests" \
-            "$target_error_field" "$ktest_field" "$classification" "$failure_reason"
-        printf '  classification: %s\n' "$classification"
+        printf 'Not run because no target KTest was produced.\n' > "$ktest_log"
+        mkdir -p "$(dirname "$status_file")"
+        archive_status_only "$status_file" "$result_dir"
+        write_preparation_error "$alarm" "$status_file" "$build_exit"
+        cp "$status_file" "$result_status"
+        append_summary "$alarm" "$function_name" 0 "PREPARATION_ERROR" "$build_exit" "" \
+            "$build_status" "$klee_status" "-" "-" "-" "-" "$failure_reason"
+        printf '  final_status: PREPARATION_ERROR\n'
         return
     fi
     build_status="SUCCESS"
@@ -237,110 +328,80 @@ process_alarm() {
         failure_reason="run_klee.sh is missing or not executable"
         printf '%s\n' "$failure_reason" > "$klee_log"
         printf 'Not run because the KLEE driver was unavailable.\n' > "$ktest_log"
-        append_summary "$function_name" "$alarm" "$build_status" "$klee_status" \
-            "$completed_paths" "$partial_paths" "$generated_tests" \
-            "$target_error_field" "$ktest_field" "$classification" "$failure_reason"
-        printf '  classification: %s\n' "$classification"
+        mkdir -p "$(dirname "$status_file")"
+        archive_status_only "$status_file" "$result_dir"
+        write_preparation_error "$alarm" "$status_file" 126
+        cp "$status_file" "$result_status"
+        append_summary "$alarm" "$function_name" 0 "PREPARATION_ERROR" 126 "" \
+            "$build_status" "$klee_status" "-" "-" "-" "-" "$failure_reason"
+        printf '  final_status: PREPARATION_ERROR\n'
         return
-    fi
-
-    if [[ -d "$klee_output_dir" ]]; then
-        archive_path="$(next_archive_path "$result_dir" "klee-out-alarm-$alarm")"
-        if ! mv "$klee_output_dir" "$archive_path" >> "$klee_log" 2>&1; then
-            klee_status="NOT_RUN"
-            failure_reason="could not archive the pre-existing KLEE output directory"
-            printf 'Not run because the previous KLEE output could not be archived.\n' > "$ktest_log"
-            append_summary "$function_name" "$alarm" "$build_status" "$klee_status" \
-                "$completed_paths" "$partial_paths" "$generated_tests" \
-                "$target_error_field" "$ktest_field" "$classification" "$failure_reason"
-            printf '  classification: %s\n' "$classification"
-            return
-        fi
-        printf 'Archived pre-existing output as: %s\n' \
-            "$(repository_relative_path "$archive_path")" >> "$klee_log"
     fi
 
     (
         cd "$alarm_dir" || exit 125
-        ./run_klee.sh
-    ) >> "$klee_log" 2>&1
+        KLEE_ARCHIVE_DIR="$result_dir" ./run_klee.sh
+    ) > "$klee_log" 2>&1
     klee_exit=$?
+
+    if [[ ! -f "$status_file" ]]; then
+        failure_reason="run_klee.sh did not produce klee.status"
+        timestamp="$(phase_c_utc_now)"
+        phase_c_write_status "$status_file" "$alarm" "$timestamp" "$timestamp" \
+            "${KLEE_TIMEOUT_SECONDS:-1800}" 0 "$klee_exit" "INCONCLUSIVE_TOOL_ERROR" "" "" ""
+    fi
+    cp "$status_file" "$result_status"
+
+    elapsed_seconds="$(status_value elapsed_seconds "$status_file")"
+    final_status="$(status_value final_status "$status_file")"
+    status_exit_code="$(status_value exit_code "$status_file")"
+    target_error="$(status_value target_error "$status_file")"
+    generated_tests="$(status_value generated_tests "$status_file")"
+    [[ -n "$elapsed_seconds" ]] || elapsed_seconds=0
+    [[ -n "$status_exit_code" ]] || status_exit_code="$klee_exit"
+    [[ -n "$generated_tests" ]] || generated_tests="-"
 
     completed_paths="$(last_klee_stat 'completed paths' "$klee_log")"
     partial_paths="$(last_klee_stat 'partially completed paths' "$klee_log")"
-    generated_tests="$(last_klee_stat 'generated tests' "$klee_log")"
 
-    shopt -s nullglob
-    target_errors=("$klee_output_dir"/*.klee-alarm-"$alarm".err)
-    other_errors=("$klee_output_dir"/*.err)
-    shopt -u nullglob
+    case "$final_status" in
+        CONFIRMED_COUNTEREXAMPLE)
+            klee_status="TARGET_ERROR_GENERATED"
+            ;;
+        NO_COUNTEREXAMPLE_FOUND)
+            klee_status="COMPLETED"
+            ;;
+        INCONCLUSIVE_TIMEOUT)
+            klee_status="TIMED_OUT"
+            failure_reason="GNU timeout ended KLEE after ${KLEE_TIMEOUT_SECONDS:-1800} seconds"
+            ;;
+        INCONCLUSIVE_TOOL_ERROR)
+            klee_status="FAILED"
+            failure_reason="$(first_failure_line "$klee_log" "run_klee.sh exited with status $status_exit_code")"
+            ;;
+        PREPARATION_ERROR)
+            klee_status="NOT_RUN"
+            failure_reason="$(first_failure_line "$klee_log" "required bitcode was unavailable")"
+            ;;
+        *)
+            final_status="INCONCLUSIVE_TOOL_ERROR"
+            klee_status="FAILED"
+            failure_reason="unrecognized final_status in klee.status"
+            ;;
+    esac
 
-    for target_err in "${target_errors[@]}"; do
-        target_errors_relative+=("$(repository_relative_path "$target_err")")
-        matching_ktest="${target_err%.klee-alarm-$alarm.err}.ktest"
-        if [[ -f "$matching_ktest" ]]; then
-            matching_ktests+=("$matching_ktest")
-            matching_ktests_relative+=("$(repository_relative_path "$matching_ktest")")
-        fi
-    done
-
-    for path in "${other_errors[@]}"; do
-        if [[ "$path" != *.klee-alarm-"$alarm".err ]]; then
-            other_error_count=$((other_error_count + 1))
-        fi
-    done
-
-    if (( ${#target_errors_relative[@]} > 0 )); then
-        target_error_field="$(join_with_semicolon "${target_errors_relative[@]}")"
-    fi
-    if (( ${#matching_ktests_relative[@]} > 0 )); then
-        ktest_field="$(join_with_semicolon "${matching_ktests_relative[@]}")"
-    fi
-
-    if (( klee_exit == 0 )); then
-        klee_status="SUCCESS"
-    else
-        klee_status="FAILED($klee_exit)"
-    fi
-
-    if (( ${#target_errors[@]} > 0 && ${#matching_ktests[@]} > 0 )); then
-        classification="CONFIRMED"
-        if (( klee_exit != 0 )); then
-            failure_reason="$(first_failure_line "$klee_log" "run_klee.sh exited with status $klee_exit after producing target evidence")"
-        fi
-    elif (( klee_exit != 0 )); then
-        failure_reason="$(first_failure_line "$klee_log" "run_klee.sh exited with status $klee_exit")"
-        if grep -q '^KLEE:' "$klee_log" || [[ -f "$klee_output_dir/info" ]]; then
-            classification="INCONCLUSIVE"
-        else
-            classification="INFRASTRUCTURE_FAILED"
-        fi
-    elif (( ${#target_errors[@]} > 0 )); then
-        classification="INCONCLUSIVE"
-        failure_reason="target error exists, but no matching KTest was found"
-    else
-        if grep -Eqi 'undefined reference|unsupported|solver[^[:alnum:]]*(failure|failed|error)|timed out|timeout|memory limit|halting execution|unable to load|external call' "$klee_log"; then
-            blocker_found=1
-        fi
-
-        if [[ "$completed_paths" != "-" && "$partial_paths" == "0" ]] \
-            && (( other_error_count == 0 && blocker_found == 0 )); then
-            classification="NOT_REPRODUCED_COMPLETE"
-        else
-            classification="INCONCLUSIVE"
-            if (( other_error_count > 0 )); then
-                failure_reason="$other_error_count non-target KLEE error artifact(s) were generated"
-            elif (( blocker_found != 0 )); then
-                failure_reason="KLEE log contains an unsupported/solver/resource/external-call limitation"
-            elif [[ "$partial_paths" != "0" ]]; then
-                failure_reason="KLEE did not report zero partially completed paths"
-            else
-                failure_reason="KLEE completion statistics were unavailable"
+    if [[ -n "$target_error" ]]; then
+        IFS=';' read -r -a target_paths <<< "$target_error"
+        for target_path in "${target_paths[@]}"; do
+            matching_ktest="${target_path%.klee-alarm-$alarm.err}.ktest"
+            if [[ -f "$matching_ktest" ]]; then
+                matching_ktests+=("$matching_ktest")
             fi
-        fi
+        done
     fi
 
     if (( ${#matching_ktests[@]} > 0 )); then
+        ktest_field="$(phase_c_join_semicolon "${matching_ktests[@]}")"
         if [[ -x "$alarm_dir/show_ktest.sh" ]]; then
             (
                 cd "$alarm_dir" || exit 125
@@ -363,33 +424,40 @@ process_alarm() {
             fi
         fi
     else
-        printf 'No target-specific KTest was available; show_ktest.sh was not run.\n' > "$ktest_log"
+        printf 'No matching target-specific KTest was available; show_ktest.sh was not run.\n' > "$ktest_log"
     fi
 
-    append_summary "$function_name" "$alarm" "$build_status" "$klee_status" \
-        "$completed_paths" "$partial_paths" "$generated_tests" \
-        "$target_error_field" "$ktest_field" "$classification" "$failure_reason"
-    printf '  classification: %s\n' "$classification"
+    append_summary "$alarm" "$function_name" "$elapsed_seconds" "$final_status" \
+        "$status_exit_code" "$target_error" "$build_status" "$klee_status" \
+        "$completed_paths" "$partial_paths" "$generated_tests" "$ktest_field" "$failure_reason"
+    printf '  final_status: %s\n' "$final_status"
 }
 
 for specification in "${FUNCTION_SPECS[@]}"; do
     IFS=':' read -r function_name first_alarm last_alarm <<< "$specification"
     first_number=$((10#$first_alarm))
     last_number=$((10#$last_alarm))
-
-    printf '\n=== Function: %s (alarms %s-%s) ===\n' \
-        "$function_name" "$first_alarm" "$last_alarm"
+    function_header_printed=0
 
     for ((alarm_number = first_number; alarm_number <= last_number; alarm_number++)); do
         printf -v alarm '%04d' "$alarm_number"
+        if (( ${#SELECTED_ALARMS[@]} > 0 )) && [[ ! -v "SELECTED_ALARMS[$alarm]" ]]; then
+            continue
+        fi
+        if (( function_header_printed == 0 )); then
+            printf '\n=== Function: %s (alarms %s-%s) ===\n' \
+                "$function_name" "$first_alarm" "$last_alarm"
+            function_header_printed=1
+        fi
         process_alarm "$function_name" "$alarm"
     done
 done
 
 printf '\n=== Phase C summary ===\n'
-printf 'CONFIRMED: %d\n' "${CLASSIFICATION_COUNTS[CONFIRMED]}"
-printf 'NOT_REPRODUCED_COMPLETE: %d\n' "${CLASSIFICATION_COUNTS[NOT_REPRODUCED_COMPLETE]}"
-printf 'INCONCLUSIVE: %d\n' "${CLASSIFICATION_COUNTS[INCONCLUSIVE]}"
-printf 'BUILD_FAILED: %d\n' "${CLASSIFICATION_COUNTS[BUILD_FAILED]}"
-printf 'INFRASTRUCTURE_FAILED: %d\n' "${CLASSIFICATION_COUNTS[INFRASTRUCTURE_FAILED]}"
+printf 'Total alarms: %d\n' "$TOTAL_ALARMS"
+printf 'Confirmed counterexamples: %d\n' "${STATUS_COUNTS[CONFIRMED_COUNTEREXAMPLE]}"
+printf 'No counterexample found: %d\n' "${STATUS_COUNTS[NO_COUNTEREXAMPLE_FOUND]}"
+printf 'Timeouts: %d\n' "${STATUS_COUNTS[INCONCLUSIVE_TIMEOUT]}"
+printf 'Tool errors: %d\n' "${STATUS_COUNTS[INCONCLUSIVE_TOOL_ERROR]}"
+printf 'Preparation errors: %d\n' "${STATUS_COUNTS[PREPARATION_ERROR]}"
 printf 'Summary: %s\n' "$SUMMARY_FILE"

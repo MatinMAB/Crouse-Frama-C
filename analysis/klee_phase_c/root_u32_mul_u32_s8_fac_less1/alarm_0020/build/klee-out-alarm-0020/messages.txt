@@ -1,0 +1,9 @@
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7ace05200000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7acb85200000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x79cb85200000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x79ab85200000 size=128 GiB)
+KLEE: ERROR: src_analysis/sources/mul_Ccode.c:5453: KLEE-ALARM-0020: invalid RHS operand for shift. assert 0 <= count < 32;
+KLEE: NOTE: now ignoring this error at this location
