@@ -22,7 +22,16 @@ TARGET_IDS = [
 
 # This map is changed only after the corresponding source repair exists. The
 # final traceability commit replaces PENDING_THIS_COMMIT with the real hash.
-APPLIED_REPAIRS: dict[str, dict[str, str]] = {}
+APPLIED_REPAIRS: dict[str, dict[str, str]] = {
+    "KLEE-ALARM-0061": {
+        "commit": "PENDING_THIS_COMMIT",
+        "parser": "PASS: gcc -std=c11 -fsyntax-only -Isrc_repaired/headers src_repaired/sources/hip_Ccode.c",
+    },
+    "KLEE-ALARM-0066": {
+        "commit": "PENDING_THIS_COMMIT",
+        "parser": "PASS: gcc -std=c11 -fsyntax-only -Isrc_repaired/headers src_repaired/sources/hip_Ccode.c",
+    },
+}
 
 SHIFT_CALLERS = {
     "KLEE-ALARM-0002": ("s32_mul_s32_s16_fac05", "16", "1..31"),

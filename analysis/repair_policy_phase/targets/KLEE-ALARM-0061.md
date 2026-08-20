@@ -3,7 +3,7 @@
 - KLEE Alarm ID: `KLEE-ALARM-0061`
 - Function / physical function: `s16_hip1_s16_s8_s8_u16_fac1`
 - Original occurrence: `src_analysis/sources/hip_Ccode.c:167` occurrence `1`
-- Current repaired-tree assertion: `src_repaired/sources/hip_Ccode.c:205`
+- Current repaired-tree assertion: `src_repaired/sources/hip_Ccode.c:214`
 - Exact current statement after the assertion: `s32Temp2 = s32Temp2 << 1;`
 - Affected callers: s16_hip1_s16_s8_s8_u16_fac1; no distinct repository caller changes the local formula
 
@@ -66,7 +66,7 @@ KLEE-ALARM-0062: move its unchanged upper-bound assertion into the nonnegative s
 
 - Classification: `SEMANTICS_CONFIRMED_REPAIRABLE`
 - Confidence: Confirmed by formula, range, sibling, and Git history
-- Application status: `DECISION_READY`
-- Repair commit: `NOT_APPLICABLE`
-- Parser check: `NOT_RUN`
-- Future WP status: `NOT_ELIGIBLE`
+- Application status: `REPAIRED`
+- Repair commit: `PENDING_THIS_COMMIT`
+- Parser check: `PASS: gcc -std=c11 -fsyntax-only -Isrc_repaired/headers src_repaired/sources/hip_Ccode.c`
+- Future WP status: `NOT_RUN`

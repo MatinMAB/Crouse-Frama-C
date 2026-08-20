@@ -66,13 +66,20 @@ s16 s16_hip1_s16_u8_u8_u16_fac1(s16 yold, u8 u, u8 uold, u16 m)
 	      (s32Temp1) - (s32Temp2) <= 2147483647;
 	*/
 	s32Temp2 = s32Temp1 - s32Temp2;
-	/*@ assert eva_klee_alarm_0066:
-	      s32Temp2 >= 0;
-	*/
-	/*@ assert eva_klee_alarm_0067:
-	      (2 * (s32Temp2)) <= 2147483647;
-	*/
-	s32Temp2 = s32Temp2 << 1;
+	if (s32Temp2 >= 0)
+	{
+		/*@ assert eva_klee_alarm_0066:
+		      s32Temp2 >= 0;
+		*/
+		/*@ assert eva_klee_alarm_0067:
+		      (2 * (s32Temp2)) <= 2147483647;
+		*/
+		s32Temp2 = s32Temp2 << 1;
+	}
+	else
+	{
+		s32Temp2 = s32Temp2 * 2;
+	}
 	s32Temp2 = s32Temp2 / 0x10000;
 	s32Temp2 = s32Temp2 + (s32Temp1/0x10000);
 	s32Temp2 = yold - s32Temp2;
@@ -202,13 +209,20 @@ s16 s16_hip1_s16_s8_s8_u16_fac1(s16 yold, s8 u, s8 uold, u16 m)
 	      (s32Temp1) - (s32Temp2) <= 2147483647;
 	*/
 	s32Temp2 = s32Temp1 - s32Temp2;
-	/*@ assert eva_klee_alarm_0061:
-	      s32Temp2 >= 0;
-	*/
-	/*@ assert eva_klee_alarm_0062:
-	      (2 * (s32Temp2)) <= 2147483647;
-	*/
-	s32Temp2 = s32Temp2 << 1;
+	if (s32Temp2 >= 0)
+	{
+		/*@ assert eva_klee_alarm_0061:
+		      s32Temp2 >= 0;
+		*/
+		/*@ assert eva_klee_alarm_0062:
+		      (2 * (s32Temp2)) <= 2147483647;
+		*/
+		s32Temp2 = s32Temp2 << 1;
+	}
+	else
+	{
+		s32Temp2 = s32Temp2 * 2;
+	}
 	s32Temp2 = s32Temp2 / 0x10000;
 	s32Temp2 = s32Temp2 + (s32Temp1/0x10000);
 	s32Temp2 = yold - s32Temp2;

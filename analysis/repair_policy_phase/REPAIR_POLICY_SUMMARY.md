@@ -11,11 +11,11 @@ decision is occurrence-aware and preserves the original ACSL label and predicate
 - Confirmed KLEE targets: 48
 - Previously repaired and WP-verified: 32
 - Initial policy-required targets: 16
-- Newly repaired in this phase: 0
+- Newly repaired in this phase: 2
 - Semantics ambiguous: 13
-- Repairable decisions awaiting application: 3
-- Total repaired: 32/48
-- Total WP-ready: 32/48
+- Repairable decisions awaiting application: 1
+- Total repaired: 34/48
+- Total WP-ready: 34/48
 
 ## Semantic decisions and groups
 
@@ -41,5 +41,5 @@ row remains `NOT_RUN`.
 ## Limitations
 
 Ambiguous target IDs: KLEE-ALARM-0002, KLEE-ALARM-0003, KLEE-ALARM-0005, KLEE-ALARM-0006, KLEE-ALARM-0009, KLEE-ALARM-0010, KLEE-ALARM-0012, KLEE-ALARM-0013, KLEE-ALARM-0014, KLEE-ALARM-0015, KLEE-ALARM-0019, KLEE-ALARM-0020, KLEE-ALARM-0021.
-Repairable but not yet applied: KLEE-ALARM-0061, KLEE-ALARM-0066, KLEE-ALARM-0144.
+Repairable but not yet applied: KLEE-ALARM-0144.
 No proof conclusion is made for the second campaign in this phase.
