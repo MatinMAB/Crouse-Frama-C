@@ -1,3 +1,5 @@
 Target Group	Helper	Caller	Original Argument	Normalized Argument	Contract	Satisfied?	Evidence	Policy Origin
 S32_S16_TWO_WORD_SHIFT	root_s32_mul_s32_s16_fac_less1	s32_mul_s32_s16_fac05 C wrapper	16	16	1 <= count && count < 32	YES	src_repaired/sources/mul_Ccode.c:3957	REPOSITORY_INFERRED
 S32_S16_TWO_WORD_SHIFT	root_s32_mul_s32_s16_fac_less1	s32_mul_s32_s16_fac05 public macro	65536	16	1 <= count && count < 32	YES	src_repaired/headers/ecmath.h:9328-9329	THESIS_POLICY_SELECTED
+S32_S8_TWO_WORD_SHIFT	root_s32_mul_s32_s8_fac_less1	s32_mul_s32_s8_fac05 C wrapper	8	8	1 <= count && count < 32	YES	src_repaired/sources/mul_Ccode.c:3981	REPOSITORY_INFERRED
+S32_S8_TWO_WORD_SHIFT	root_s32_mul_s32_s8_fac_less1	s32_mul_s32_s8_fac05 public macro	256	8	1 <= count && count < 32	YES	src_repaired/headers/ecmath.h:10077-10078	THESIS_POLICY_SELECTED
