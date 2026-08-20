@@ -5,22 +5,20 @@
 - WP assertion owner function: `s16_hip1_s16_s8_s8_u16_fac1`
 - Repaired source: `src_repaired/sources/hip_Ccode.c`
 - Original occurrence: `src_analysis/sources/hip_Ccode.c:167`
-- Current assertion: `src_repaired/sources/hip_Ccode.c:205`
+- Current assertion: `src_repaired/sources/hip_Ccode.c:214`
 - Original Eva alarm: `invalid shift` on `s32Temp2 << 1`
 - Raw Eva safety property: `s32Temp2 >= 0`
 - Inserted ACSL property: `s32Temp2 >= 0`
 - ACSL label: `eva_klee_alarm_0061`
 - KLEE counterexample inputs: `yold=-137 (0xFF77); u=0 (0x00); uold=0 (0x00); m=32768 (0x8000)`
-- Repair status: `REPAIR_POLICY_REQUIRED`
-- Repair commit: `NOT_APPLICABLE`
-- Script status: `REPAIR_POLICY_REQUIRED`
+- Repair status: `REPAIRED_SHARED`
+- Repair commit: `f5daa364e14957ae7410fd2d347917ab6555f046`
+- Script status: `WP_READY`
 
 This launcher asks WP about only `eva_klee_alarm_0061`. It does not enable RTE generation
-or select other assertions. The property text and source placement come unchanged from the repair-phase
-manifest.
-## Repair-policy gate
-
-**REPAIR_POLICY_REQUIRED.** The current implementation has not received the final thesis repair for this target. Both launchers intentionally refuse to execute. No WP conclusion should be drawn until repair policy is resolved and this metadata is regenerated.
+or select other assertions. The property text and label remain unchanged; the current placement is
+recorded occurrence-aware after repair. This target is eligible only for the
+separate second WP campaign; no WP result exists yet.
 
 ## Terminal
 

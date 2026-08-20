@@ -67,6 +67,6 @@ KLEE-ALARM-0067: move its unchanged upper-bound assertion into the nonnegative s
 - Classification: `SEMANTICS_CONFIRMED_REPAIRABLE`
 - Confidence: Confirmed by formula, range, sibling, and Git history
 - Application status: `REPAIRED`
-- Repair commit: `PENDING_THIS_COMMIT`
+- Repair commit: `f5daa364e14957ae7410fd2d347917ab6555f046`
 - Parser check: `PASS: gcc -std=c11 -fsyntax-only -Isrc_repaired/headers src_repaired/sources/hip_Ccode.c`
 - Future WP status: `NOT_RUN`

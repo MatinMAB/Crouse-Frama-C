@@ -67,6 +67,6 @@ KLEE-ALARM-0145..0149 are bypassed only when numerator is INT32_MIN because the 
 - Classification: `SEMANTICS_INFERRED_HIGH_CONFIDENCE`
 - Confidence: High confidence from independent formula and sibling implementation evidence
 - Application status: `REPAIRED`
-- Repair commit: `PENDING_THIS_COMMIT`
+- Repair commit: `b8b767816bdbe2e38196b9e81b57b48384daeca5`
 - Parser check: `PASS: gcc -std=c11 -fsyntax-only -Isrc_repaired/headers src_repaired/sources/div_Ccode.c`
 - Future WP status: `NOT_RUN`

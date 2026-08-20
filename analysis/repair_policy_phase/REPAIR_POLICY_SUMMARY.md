@@ -25,6 +25,19 @@ decision is occurrence-aware and preserves the original ACSL label and predicate
 - `KLEE-ALARM-0144` uses an unsigned-magnitude exceptional path consistent with the division formula
   and sibling implementation.
 
+## Applied repair commits
+
+- `KLEE-ALARM-0061`, `KLEE-ALARM-0066` ->
+  `f5daa364e14957ae7410fd2d347917ab6555f046` (one shared physical/semantic repair).
+- `KLEE-ALARM-0144` -> `b8b767816bdbe2e38196b9e81b57b48384daeca5`.
+
+The high-pass repair retains the original shift on the nonnegative path and uses range-safe signed
+multiplication by two for the negative remainder, preserving the documented filter equation. The
+division repair represents `INT32_MIN` as unsigned magnitude `0x80000000U` and retains the existing
+quotient-plus-doubled-remainder rule. Arbitrary return values, clamping, saturation, masking, modulo,
+and new assumptions/preconditions were rejected. Detailed evidence and alternatives are recorded in
+the corresponding `targets/KLEE-ALARM-XXXX.md` files.
+
 ## Runtime-only interactions
 
 - `0061`/`0066` share physical operations with runtime-only `0062`/`0067`; their assertions remain
@@ -37,6 +50,14 @@ decision is occurrence-aware and preserves the original ACSL label and predicate
 All original predicates remain unchanged. Parser/syntax results and repair commit hashes are recorded
 in `REPAIR_POLICY_MATRIX.tsv`. `WP_SECOND_CAMPAIGN_MANIFEST.tsv` contains only applied repairs and every
 row remains `NOT_RUN`.
+
+The non-proof sanity commands were:
+
+- `gcc -std=c11 -fsyntax-only -Isrc_repaired/headers src_repaired/sources/hip_Ccode.c`
+- `gcc -std=c11 -fsyntax-only -Isrc_repaired/headers src_repaired/sources/div_Ccode.c`
+- `bash -n analysis/wp_phase/run_second_campaign.sh`
+
+All passed. No Eva, KLEE, WP, GUI, or target execution was performed.
 
 ## Limitations
 

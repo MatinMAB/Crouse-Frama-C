@@ -5,22 +5,20 @@
 - WP assertion owner function: `u32_div_s32_s32`
 - Repaired source: `src_repaired/sources/div_Ccode.c`
 - Original occurrence: `src_analysis/sources/div_Ccode.c:1182`
-- Current assertion: `src_repaired/sources/div_Ccode.c:1448`
+- Current assertion: `src_repaired/sources/div_Ccode.c:1467`
 - Original Eva alarm: `integer overflow` on `-numerator`
 - Raw Eva safety property: `numerator != INT32_MIN`
 - Inserted ACSL property: `numerator != (-2147483647 - 1)`
 - ACSL label: `eva_klee_alarm_0144`
 - KLEE counterexample inputs: `numerator=-2147483648 (0x80000000); denominator=-2147483648 (0x80000000)`
-- Repair status: `REPAIR_POLICY_REQUIRED`
-- Repair commit: `NOT_APPLICABLE`
-- Script status: `REPAIR_POLICY_REQUIRED`
+- Repair status: `REPAIRED`
+- Repair commit: `b8b767816bdbe2e38196b9e81b57b48384daeca5`
+- Script status: `WP_READY`
 
 This launcher asks WP about only `eva_klee_alarm_0144`. It does not enable RTE generation
-or select other assertions. The property text and source placement come unchanged from the repair-phase
-manifest.
-## Repair-policy gate
-
-**REPAIR_POLICY_REQUIRED.** The current implementation has not received the final thesis repair for this target. Both launchers intentionally refuse to execute. No WP conclusion should be drawn until repair policy is resolved and this metadata is regenerated.
+or select other assertions. The property text and label remain unchanged; the current placement is
+recorded occurrence-aware after repair. This target is eligible only for the
+separate second WP campaign; no WP result exists yet.
 
 ## Terminal
 
