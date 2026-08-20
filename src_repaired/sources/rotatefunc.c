@@ -116,10 +116,17 @@ u32 rotateRight(u32 num, u32 rotation)
 
         // Right shift num by 1 and 
         // Clear its MSB
-        /*@ assert eva_klee_alarm_0022:
-              INT_BITS <= 30;
-        */
-        num = (num >> 1) & (~(1 << INT_BITS));
+        if (INT_BITS <= 30)
+        {
+            /*@ assert eva_klee_alarm_0022:
+                  INT_BITS <= 30;
+            */
+            num = (num >> 1) & (~(1 << INT_BITS));
+        }
+        else
+        {
+            num = (num >> 1) & (~((u32)1U << INT_BITS));
+        }
 
         // Set its dropped LSB as new MSB
         num = num | (DROPPED_LSB << INT_BITS);
