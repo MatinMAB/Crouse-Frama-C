@@ -1,0 +1,7 @@
+[ { "goal": "typed_s32_mul_s32_s8_fac2_assert_eva_klee_alarm_0116",
+    "property": "s32_mul_s32_s8_fac2_assert_eva_klee_alarm_0116",
+    "file": "/home/matin/frama-work/frama-eva-analysis/src_repaired/sources/mul_Ccode.c",
+    "line": 2673, "function": "s32_mul_s32_s8_fac2", "smoke": false,
+    "passed": true, "verdict": "valid",
+    "provers": [ { "prover": "qed", "time": 0, "success": 1 } ],
+    "proved": 1 } ]

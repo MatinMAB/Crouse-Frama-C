@@ -1,0 +1,11 @@
+[kernel] Parsing src_repaired/sources/hip_Ccode.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] updated:3
+[wp] Proved goals:    1 / 1
+  Qed:               0 (4ms)
+  Alt-Ergo 2.6.2:    1 (38ms)
+[wp:pedantic-assigns] src_repaired/sources/hip_Ccode.c:180: Warning: 
+  No 'assigns' specification for function 's16_hip1_s16_s8_s8_u16_fac1'.
+  Callers assumptions might be imprecise.

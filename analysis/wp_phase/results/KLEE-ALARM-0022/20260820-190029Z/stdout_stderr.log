@@ -1,0 +1,12 @@
+[kernel] Parsing src_repaired/sources/rotatefunc.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] src_repaired/sources/rotatefunc.c:112: Warning: 
+  Missing assigns clause (assigns 'everything' instead)
+[wp] 1 goal scheduled
+[wp] [Cache] not used
+[wp] Proved goals:    1 / 1
+  Qed:             1
+[wp:pedantic-assigns] src_repaired/sources/rotatefunc.c:101: Warning: 
+  No 'assigns' specification for function 'rotateRight'.
+  Callers assumptions might be imprecise.

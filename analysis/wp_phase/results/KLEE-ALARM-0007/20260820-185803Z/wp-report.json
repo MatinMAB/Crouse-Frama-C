@@ -1,0 +1,8 @@
+[ { "goal": "typed_MulHighWord_assert_eva_klee_alarm_0007",
+    "property": "MulHighWord_assert_eva_klee_alarm_0007",
+    "file": "/home/matin/frama-work/frama-eva-analysis/src_repaired/sources/MulHword.c",
+    "line": 50, "function": "MulHighWord", "smoke": false, "passed": true,
+    "verdict": "valid",
+    "provers": [ { "prover": "qed", "time": 0.00511, "success": 0 },
+                 { "prover": "Alt-Ergo:2.6.2", "time": 6.25, "success": 1 } ],
+    "proved": 1 } ]

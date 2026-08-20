@@ -1,0 +1,7 @@
+[ { "goal": "typed_rotateRight_assert_eva_klee_alarm_0022",
+    "property": "rotateRight_assert_eva_klee_alarm_0022",
+    "file": "/home/matin/frama-work/frama-eva-analysis/src_repaired/sources/rotatefunc.c",
+    "line": 122, "function": "rotateRight", "smoke": false, "passed": true,
+    "verdict": "valid",
+    "provers": [ { "prover": "qed", "time": 0, "success": 1 } ],
+    "proved": 1 } ]
