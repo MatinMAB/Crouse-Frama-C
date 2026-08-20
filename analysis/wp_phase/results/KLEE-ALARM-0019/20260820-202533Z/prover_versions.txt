@@ -1,0 +1,5 @@
+33.0 (Arsenic)
+Why3 platform, version 1.8.2
+v2.6.2
+Z3 version 4.8.12 - 64 bit
+This is cvc5 version 1.1.2

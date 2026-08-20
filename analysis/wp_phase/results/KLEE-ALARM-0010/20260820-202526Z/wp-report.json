@@ -1,0 +1,8 @@
+[ { "goal": "typed_root_s32_mul_s32_u16_fac_less1_assert_eva_klee_alarm_0010",
+    "property": "root_s32_mul_s32_u16_fac_less1_assert_eva_klee_alarm_0010",
+    "file": "/home/matin/frama-work/frama-eva-analysis/src_repaired/sources/mul_Ccode.c",
+    "line": 5298, "function": "root_s32_mul_s32_u16_fac_less1",
+    "smoke": false, "passed": true, "verdict": "valid",
+    "provers": [ { "prover": "qed", "time": 0.00826, "success": 0 },
+                 { "prover": "Alt-Ergo:2.6.2", "time": 0.0263, "success": 1 } ],
+    "proved": 1 } ]

@@ -1,0 +1,255 @@
+Running 13 final shift targets.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] not used
+[wp] Proved goals:    1 / 1
+  Qed:             1
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5154: Warning: 
+  No 'assigns' specification for function 'root_s32_mul_s32_s16_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0002/20260820-202519Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] updated:3
+[wp] Proved goals:    1 / 1
+  Qed:               0 (10ms)
+  Alt-Ergo 2.6.2:    1 (35ms)
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5154: Warning: 
+  No 'assigns' specification for function 'root_s32_mul_s32_s16_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0003/20260820-202520Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] not used
+[wp] Proved goals:    1 / 1
+  Qed:             1
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5344: Warning: 
+  No 'assigns' specification for function 'root_s32_mul_s32_s8_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0005/20260820-202522Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] updated:3
+[wp] Proved goals:    1 / 1
+  Qed:               0 (11ms)
+  Alt-Ergo 2.6.2:    1 (32ms)
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5344: Warning: 
+  No 'assigns' specification for function 'root_s32_mul_s32_s8_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0006/20260820-202523Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] not used
+[wp] Proved goals:    1 / 1
+  Qed:             1
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5249: Warning: 
+  No 'assigns' specification for function 'root_s32_mul_s32_u16_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0009/20260820-202525Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] updated:3
+[wp] Proved goals:    1 / 1
+  Qed:               0 (8ms)
+  Alt-Ergo 2.6.2:    1 (26ms)
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5249: Warning: 
+  No 'assigns' specification for function 'root_s32_mul_s32_u16_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0010/20260820-202526Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] not used
+[wp] Proved goals:    1 / 1
+  Qed:             1
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5716: Warning: 
+  No 'assigns' specification for function 'root_s32_mul_s32_u8_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0012/20260820-202527Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] updated:3
+[wp] Proved goals:    1 / 1
+  Qed:               0 (8ms)
+  Alt-Ergo 2.6.2:    1 (24ms)
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5716: Warning: 
+  No 'assigns' specification for function 'root_s32_mul_s32_u8_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0013/20260820-202528Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] not used
+[wp] Proved goals:    1 / 1
+  Qed:             1
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5439: Warning: 
+  No 'assigns' specification for function 'root_u32_mul_u32_s16_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0014/20260820-202530Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] updated:3
+[wp] Proved goals:    1 / 1
+  Qed:               0 (4ms)
+  Alt-Ergo 2.6.2:    1 (30ms)
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5439: Warning: 
+  No 'assigns' specification for function 'root_u32_mul_u32_s16_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0015/20260820-202531Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] updated:3
+[wp] Proved goals:    1 / 1
+  Qed:               0 (6ms)
+  Alt-Ergo 2.6.2:    1 (33ms)
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5512: Warning: 
+  No 'assigns' specification for function 'root_u32_mul_u32_s32_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0019/20260820-202533Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] not used
+[wp] Proved goals:    1 / 1
+  Qed:             1
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5606: Warning: 
+  No 'assigns' specification for function 'root_u32_mul_u32_s8_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0020/20260820-202534Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] updated:3
+[wp] Proved goals:    1 / 1
+  Qed:               0 (3ms)
+  Alt-Ergo 2.6.2:    1 (27ms)
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5606: Warning: 
+  No 'assigns' specification for function 'root_u32_mul_u32_s8_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0021/20260820-202535Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.

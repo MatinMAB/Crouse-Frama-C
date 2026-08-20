@@ -1,0 +1,16 @@
+[kernel] Parsing src_repaired/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] src_repaired/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing src_repaired/sources/MulHword.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] not used
+[wp] Proved goals:    1 / 1
+  Qed:             1
+[wp:pedantic-assigns] src_repaired/sources/mul_Ccode.c:5716: Warning: 
+  No 'assigns' specification for function 'root_s32_mul_s32_u8_fac_less1'.
+  Callers assumptions might be imprecise.
+[wp:pedantic-assigns] src_repaired/sources/MulHword.c:39: Warning: 
+  No 'assigns' specification for function 'MulHighWord'.
+  Callers assumptions might be imprecise.
