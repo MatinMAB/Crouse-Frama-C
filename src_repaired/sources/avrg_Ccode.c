@@ -246,6 +246,9 @@ u16 u16_mmv_u16_u16_s16_fac1(register u16 mmv, register u16 measure, register s1
 		}
 		else
 		{
+			/*@ assert eva_klee_alarm_0125:
+			      s32mmv != (-2147483647 - 1);
+			*/
 			s32mmv = -s32mmv;
 			result = s32mmv >> 15;
 			crlc = (s32mmv & 0x4000) >> 14;

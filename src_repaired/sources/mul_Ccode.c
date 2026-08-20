@@ -764,6 +764,9 @@ s32 s32_mul_s32_u16(s32 value, u16 factor)
 			}
 			else
 			{
+				/*@ assert eva_klee_alarm_0117:
+				      (-2147483647 - 1) <= (value) * ((s32)factor);
+				*/
 				return (value*factor);
 			}
 		}
@@ -775,6 +778,9 @@ s32 s32_mul_s32_u16(s32 value, u16 factor)
 			}
 			else
 			{
+				/*@ assert eva_klee_alarm_0118:
+				      (value) * ((s32)factor) <= 2147483647;
+				*/
 				return (value*factor);
 			}
 		}
@@ -1759,6 +1765,9 @@ s32 s32_mul_u32_s32(u32 val1, s32 val2)
 	s32 s32Val2prime = 0;
 	if(val2 < 0)
 	{
+		/*@ assert eva_klee_alarm_0119:
+		      val2 != (-2147483647 - 1);
+		*/
 		s32Val2prime = -val2;
 	}
 	if(val2 != 0)
@@ -1990,6 +1999,9 @@ s32 s32_mul_s32_s16_fac2(s32 val1,s16 val2)
 
 	if(val1<0)
 	{
+		/*@ assert eva_klee_alarm_0106:
+		      val1 != (-2147483647 - 1);
+		*/
 		u32Temp1 = -val1;
 	}
 	else
@@ -2220,6 +2232,9 @@ s32 s32_mul_s32_s32_fac2(s32 value, s32 factor)
 
 	if(value<0)
 	{
+		/*@ assert eva_klee_alarm_0111:
+		      value != (-2147483647 - 1);
+		*/
 		u32Temp1 = -value;
 	}
 	else
@@ -2229,6 +2244,9 @@ s32 s32_mul_s32_s32_fac2(s32 value, s32 factor)
 
 	if(factor<0)
 	{
+		/*@ assert eva_klee_alarm_0112:
+		      factor != (-2147483647 - 1);
+		*/
 		u32Temp2 = -factor;
 	}
 	else
@@ -2451,6 +2469,9 @@ s32 s32_mul_s32_s32_fac_twopow_u8(s32 value, s32 factor, u8 power)
 
 	if(value<0)
 	{
+		/*@ assert eva_klee_alarm_0114:
+		      value != (-2147483647 - 1);
+		*/
 		u32Temp1 = -value;
 	}
 	else
@@ -2460,6 +2481,9 @@ s32 s32_mul_s32_s32_fac_twopow_u8(s32 value, s32 factor, u8 power)
 
 	if(factor<0)
 	{
+		/*@ assert eva_klee_alarm_0115:
+		      factor != (-2147483647 - 1);
+		*/
 		u32Temp2 = -factor;
 	}
 	else
@@ -2597,6 +2621,9 @@ s32 s32_mul_s32_s8_fac2(s32 value, s8 factor)
 
 	if(value<0)
 	{
+		/*@ assert eva_klee_alarm_0116:
+		      value != (-2147483647 - 1);
+		*/
 		u32Temp1 = -value;
 	}
 	else
@@ -2669,6 +2696,9 @@ s32 s32_mul_s32_s32(s32 val1, s32 val2)
 
 	if(val1<0)
 	{
+		/*@ assert eva_klee_alarm_0108:
+		      val1 != (-2147483647 - 1);
+		*/
 		u32Temp1 = -val1;
 	}
 	else
@@ -2678,6 +2708,9 @@ s32 s32_mul_s32_s32(s32 val1, s32 val2)
 
 	if(val2<0)
 	{
+		/*@ assert eva_klee_alarm_0109:
+		      val2 != (-2147483647 - 1);
+		*/
 		u32Temp2 = -val2;
 	}
 	else
@@ -5068,6 +5101,9 @@ s32 root_s32_mul_s32_s16_fac_less1(s32 value, s16 factor, u32 count)
 
 	if(value<0)
 	{
+		/*@ assert eva_klee_alarm_0001:
+		      value != (-2147483647 - 1);
+		*/
 		u32Temp1 = -value;
 	}
 	else
@@ -5086,7 +5122,13 @@ s32 root_s32_mul_s32_s16_fac_less1(s32 value, s16 factor, u32 count)
 
 	u32Temp3 = u32Temp1 * u32Temp2; 		/* Low word multiplication */
 	u32Temp4 = MulHighWord(u32Temp1, u32Temp2);	/* High word multiplication */
+	/*@ assert eva_klee_alarm_0002:
+	      0 <= count && count < 32;
+	*/
 	u32Temp3 = u32Temp3 >> count;
+	/*@ assert eva_klee_alarm_0003:
+	      0 <= (u32)(32 - count) && (u32)(32 - count) < 32;
+	*/
 	u32Temp3 |= u32Temp4 << (32-count);
 	if((u32Temp4>>count)==0)
 	{
@@ -5144,6 +5186,9 @@ s32 root_s32_mul_s32_u16_fac_less1(s32 value,u16 factor, u32 count)
 
 	if(value<0)
 	{
+		/*@ assert eva_klee_alarm_0008:
+		      value != (-2147483647 - 1);
+		*/
 		u32Temp1 = -value;
 	}
 	else
@@ -5162,7 +5207,13 @@ s32 root_s32_mul_s32_u16_fac_less1(s32 value,u16 factor, u32 count)
 
 	u32Temp3 = u32Temp1 * u32Temp2; 		/* Low word multiplication */
 	u32Temp4 = MulHighWord(u32Temp1, u32Temp2);	/* High word multiplication */
+	/*@ assert eva_klee_alarm_0009:
+	      0 <= count && count < 32;
+	*/
 	u32Temp3 = u32Temp3 >> count;
+	/*@ assert eva_klee_alarm_0010:
+	      0 <= (u32)(32 - count) && (u32)(32 - count) < 32;
+	*/
 	u32Temp3 |= u32Temp4 << (32-count);
 	if((u32Temp4>>count)==0)
 	{
@@ -5220,6 +5271,9 @@ s32 root_s32_mul_s32_s8_fac_less1(s32 value, s8 factor, u32 count)
 
 	if(value<0)
 	{
+		/*@ assert eva_klee_alarm_0004:
+		      value != (-2147483647 - 1);
+		*/
 		u32Temp1 = -value;
 	}
 	else
@@ -5238,7 +5292,13 @@ s32 root_s32_mul_s32_s8_fac_less1(s32 value, s8 factor, u32 count)
 
 	u32Temp3 = u32Temp1 * u32Temp2; 		/* Low word multiplication */
 	u32Temp4 = MulHighWord(u32Temp1, u32Temp2);	/* High word multiplication */
+	/*@ assert eva_klee_alarm_0005:
+	      0 <= count && count < 32;
+	*/
 	u32Temp3 = u32Temp3 >> count;
+	/*@ assert eva_klee_alarm_0006:
+	      0 <= (u32)(32 - count) && (u32)(32 - count) < 32;
+	*/
 	u32Temp3 |= u32Temp4 << (32-count);
 	if((u32Temp4>>count)==0)
 	{
@@ -5306,7 +5366,13 @@ u32 root_u32_mul_u32_s16_fac_less1(u32 value,s16 factor, u32 count)
 
 	u32Temp2 = value * u32Temp1; 		/* Low word multiplication */
 	u32Temp3 = MulHighWord(value, u32Temp1);	/* High word multiplication */
+	/*@ assert eva_klee_alarm_0014:
+	      0 <= count && count < 32;
+	*/
 	u32Temp2 = u32Temp2 >> count;
+	/*@ assert eva_klee_alarm_0015:
+	      0 <= (u32)(32 - count) && (u32)(32 - count) < 32;
+	*/
 	u32Temp2 |= u32Temp3 << (32-count);
 	if((u32Temp3>>count)==0)
 	{
@@ -5361,6 +5427,9 @@ u32 root_u32_mul_u32_s32_fac_less1(u32 value, s32 factor, u32 count)
 
 	if(factor<0)
 	{
+		/*@ assert eva_klee_alarm_0018:
+		      factor != (-2147483647 - 1);
+		*/
 		u32Temp1 = -factor;
 	}
 	else
@@ -5369,6 +5438,9 @@ u32 root_u32_mul_u32_s32_fac_less1(u32 value, s32 factor, u32 count)
 	}
 
 	u32Temp2 = MulHighWord(value, u32Temp1);	/* High word multiplication */
+	/*@ assert eva_klee_alarm_0019:
+	      0 <= (u32)(count - 32) && (u32)(count - 32) < 32;
+	*/
 	u32Temp2 = u32Temp2 >> (count-32);
 	if(u8SignBit == 0)
 	{
@@ -5448,7 +5520,13 @@ u32 root_u32_mul_u32_s8_fac_less1(u32 value, s8 factor, u32 count)
 
 	u32Temp2 = value * u32Temp1; 		/* Low word multiplication */
 	u32Temp3 = MulHighWord(value, u32Temp1);	/* High word multiplication */
+	/*@ assert eva_klee_alarm_0020:
+	      0 <= count && count < 32;
+	*/
 	u32Temp2 = u32Temp2 >> count;
+	/*@ assert eva_klee_alarm_0021:
+	      0 <= (u32)(32 - count) && (u32)(32 - count) < 32;
+	*/
 	u32Temp2 |= u32Temp3 << (32-count);
 	if((u32Temp3>>count)==0)
 	{
@@ -5531,6 +5609,9 @@ s32 root_s32_mul_s32_u8_fac_less1(s32 value, u8 factor, u32 count)
 	if(value<0)
 	{
 		u8SignBit = 1;
+		/*@ assert eva_klee_alarm_0011:
+		      value != (-2147483647 - 1);
+		*/
 		u32Temp1 = -value;
 	}	
 	else
@@ -5541,7 +5622,13 @@ s32 root_s32_mul_s32_u8_fac_less1(s32 value, u8 factor, u32 count)
 
 	u32Temp2 = u32Temp1 * factor;		/* Low word multiplication */
 	u32Temp3 = MulHighWord(u32Temp1,factor);	/* High word multiplication */
+	/*@ assert eva_klee_alarm_0012:
+	      0 <= count && count < 32;
+	*/
 	u32Temp2 = u32Temp2 >> count;
+	/*@ assert eva_klee_alarm_0013:
+	      0 <= (u32)(32 - count) && (u32)(32 - count) < 32;
+	*/
 	u32Temp2 |= u32Temp3 << (32-count);
 	if((u32Temp3>>count)==0)
 	{

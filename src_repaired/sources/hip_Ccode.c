@@ -46,10 +46,25 @@ s16 s16_hip1_s16_u8_u8_u16_fac1(s16 yold, u8 u, u8 uold, u16 m)
 	s32 s32Temp1 = 0, s32Temp2 = 0;
 	s16 s16u = 0; 
 	u16 u16uold = 0;
+	/*@ assert eva_klee_alarm_0063:
+	      (int)((int)u - (int)uold) >= 0;
+	*/
 	u16uold = (u - uold) << 7;
 	s32Temp1 = yold * m;
 	s32Temp2 = (s32Temp1/0x10000) * 0x10000;
+	/*@ assert eva_klee_alarm_0064:
+	      (-2147483647 - 1) <= (s32Temp1) - (s32Temp2);
+	*/
+	/*@ assert eva_klee_alarm_0065:
+	      (s32Temp1) - (s32Temp2) <= 2147483647;
+	*/
 	s32Temp2 = s32Temp1 - s32Temp2;
+	/*@ assert eva_klee_alarm_0066:
+	      s32Temp2 >= 0;
+	*/
+	/*@ assert eva_klee_alarm_0067:
+	      (2 * (s32Temp2)) <= 2147483647;
+	*/
 	s32Temp2 = s32Temp2 << 1;
 	s32Temp2 = s32Temp2 / 0x10000;
 	s32Temp2 = s32Temp2 + (s32Temp1/0x10000);
@@ -160,10 +175,25 @@ s16 s16_hip1_s16_s8_s8_u16_fac1(s16 yold, s8 u, s8 uold, u16 m)
 	s32 s32Temp1 = 0, s32Temp2 = 0;
 	s32 s16u = 0; 
 	s16 s16uold = 0;
+	/*@ assert eva_klee_alarm_0058:
+	      (int)((int)u - (int)uold) >= 0;
+	*/
 	s16uold = (u - uold) << 7;
 	s32Temp1 = yold * m;
 	s32Temp2 = (s32Temp1/0x10000) * 0x10000;
+	/*@ assert eva_klee_alarm_0059:
+	      (-2147483647 - 1) <= (s32Temp1) - (s32Temp2);
+	*/
+	/*@ assert eva_klee_alarm_0060:
+	      (s32Temp1) - (s32Temp2) <= 2147483647;
+	*/
 	s32Temp2 = s32Temp1 - s32Temp2;
+	/*@ assert eva_klee_alarm_0061:
+	      s32Temp2 >= 0;
+	*/
+	/*@ assert eva_klee_alarm_0062:
+	      (2 * (s32Temp2)) <= 2147483647;
+	*/
 	s32Temp2 = s32Temp2 << 1;
 	s32Temp2 = s32Temp2 / 0x10000;
 	s32Temp2 = s32Temp2 + (s32Temp1/0x10000);

@@ -44,8 +44,26 @@ u32 MulHighWord(register u32 arg1,register u32 arg2)
 	arg1_HW = (arg1 & 0xFFFF0000)>>16;
 	arg2_LW = arg2 & 0xFFFF;
 	arg2_HW = (arg2 & 0xFFFF0000)>>16;
+	/*@ assert eva_klee_alarm_0007:
+	      ((int)arg1_LW) * ((int)arg2_LW) <= 2147483647;
+	*/
+	/*@ assert eva_klee_alarm_0016:
+	      ((int)arg1_LW) * ((int)arg2_LW) <= 2147483647;
+	*/
+	/*@ assert eva_klee_alarm_0107:
+	      ((int)arg1_LW) * ((int)arg2_LW) <= 2147483647;
+	*/
+	/*@ assert eva_klee_alarm_0110:
+	      ((int)arg1_LW) * ((int)arg2_LW) <= 2147483647;
+	*/
+	/*@ assert eva_klee_alarm_0113:
+	      ((int)arg1_LW) * ((int)arg2_LW) <= 2147483647;
+	*/
 	MulTemp1 = arg1_LW * arg2_LW;
 	MulTemp2 = arg1_LW * arg2_HW;
+	/*@ assert eva_klee_alarm_0017:
+	      ((int)arg1_HW) * ((int)arg2_LW) <= 2147483647;
+	*/
 	MulTemp3 = arg1_HW * arg2_LW;
 	MulTemp4 = arg1_HW * arg2_HW;
 
