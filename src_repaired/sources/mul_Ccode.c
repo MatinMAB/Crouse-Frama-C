@@ -5506,6 +5506,9 @@ u32 root_u32_mul_u32_s16_fac_less1(u32 value,s16 factor, u32 count)
  * @warning A shift count equal to or greater than the promoted operand width is undefined in standard C unless the implementation guards or masks it.
  * @ingroup ecmath_mul
  */
+/*@
+  requires 32 <= count && count < 64;
+*/
 u32 root_u32_mul_u32_s32_fac_less1(u32 value, s32 factor, u32 count)
 {
 	u32 u32Temp1 , u32Temp2;
