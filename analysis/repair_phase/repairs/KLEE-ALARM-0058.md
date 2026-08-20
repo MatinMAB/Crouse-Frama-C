@@ -9,7 +9,7 @@
 - Eva safety property: `(int)((int)u - (int)uold) >= 0`
 - Inserted ACSL property: `(int)((int)u - (int)uold) >= 0`
 - ACSL label: `eva_klee_alarm_0058`
-- Current assertion: `src_repaired/sources/hip_Ccode.c:194`
+- Current assertion: `src_repaired/sources/hip_Ccode.c:187`
 
 ## Concrete KLEE witness
 
@@ -27,4 +27,4 @@ Retain the original shift and assertion for nonnegative operands; use equivalent
 
 - Status: `REPAIRED_SHARED`
 - Repair commit: `57864b43199db1c7046c201d40fb52dabafdb3a6`
-- Additionally affected alarms: `KLEE-ALARM-0044,0053,0058,0061,0063,0066`
+- Additionally affected alarms: `KLEE-ALARM-0044,0053,0058,0063`

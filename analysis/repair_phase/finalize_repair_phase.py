@@ -17,6 +17,12 @@ PROPERTY_MAP = PHASE / "149_ACSL_PROPERTY_MAP.tsv"
 CONFIRMED = PHASE / "48_CONFIRMED_REPAIR_TARGETS.tsv"
 RUNTIME = PHASE / "101_RUNTIME_ONLY_PROPERTIES.tsv"
 RECORDS = PHASE / "repairs"
+CUSTOM_RECORDS = {
+    "KLEE-ALARM-0001",
+    "KLEE-ALARM-0007",
+    "KLEE-ALARM-0022",
+    "KLEE-ALARM-0044",
+}
 
 
 def read_tsv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
@@ -181,7 +187,7 @@ write_tsv(PHASE / "WP_NEXT_PHASE_MANIFEST.tsv", wp_headers, wp_rows)
 RECORDS.mkdir(exist_ok=True)
 for repair in confirmed_rows:
     record = RECORDS / f"{repair['KLEE Alarm ID']}.md"
-    if record.exists():
+    if repair["KLEE Alarm ID"] in CUSTOM_RECORDS and record.exists():
         continue
     target = master_by_id[repair["KLEE Alarm ID"]]
     status = repair["Repair Status"]
@@ -284,7 +290,8 @@ summary.extend(
         "",
         f"Validation status: **{'NOT VALIDATED' if errors else 'VALIDATED PARTIAL STATE'}**",
         "",
-        f"- 34 repaired + 14 policy-required = {len(confirmed_rows)} confirmed targets",
+        f"- {len(repaired_rows)} repaired + {len(policy_rows)} policy-required = "
+        f"{len(confirmed_rows)} confirmed targets",
         f"- 15 completed/no-counterexample + 86 timeout = {len(runtime_rows)} runtime-only targets",
         f"- {len(confirmed_rows)} confirmed + {len(runtime_rows)} runtime-only = {len(master_rows)} total targets",
         "- All assertions were parsed separately with Frama-C's kernel only; Eva and WP were not invoked.",

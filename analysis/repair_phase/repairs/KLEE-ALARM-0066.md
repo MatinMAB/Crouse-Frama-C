@@ -9,7 +9,7 @@
 - Eva safety property: `s32Temp2 >= 0`
 - Inserted ACSL property: `s32Temp2 >= 0`
 - ACSL label: `eva_klee_alarm_0066`
-- Current assertion: `src_repaired/sources/hip_Ccode.c:74`
+- Current assertion: `src_repaired/sources/hip_Ccode.c:69`
 
 ## Concrete KLEE witness
 
@@ -23,10 +23,7 @@ The frozen target-specific error proves that these concrete inputs reach the sel
 
 ## Policy decision required
 
-The same shift statement also carries runtime-only alarm `KLEE-ALARM-0067`.
-Changing the operation for the confirmed negative-operand path would change a
-runtime-only target occurrence, so this operation remains unchanged pending a
-phase-separation policy.
+The same shift statement carries runtime-only alarm KLEE-ALARM-0067; changing the operation would modify a runtime-only target occurrence, so a phase-separation policy is required.
 
 - Status: `REPAIR_POLICY_REQUIRED`
 - Repair commit: `NOT_APPLICABLE`

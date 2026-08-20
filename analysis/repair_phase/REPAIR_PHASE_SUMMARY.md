@@ -9,13 +9,13 @@ All 149 Eva-derived properties were materialized before implementation repair.
 - High-Precision targets: 149
 - ACSL properties present with unique labels: 149
 - Confirmed-counterexample targets: 48
-- Successfully repaired targets: 34
-- Repair-policy-required targets: 14
+- Successfully repaired targets: 32
+- Repair-policy-required targets: 16
 - Distinct implementation repair commits: 4
 - Runtime-only properties: 101
 - Runtime-only completed/no-counterexample: 15
 - Runtime-only timeout/inconclusive: 86
-- WP-ready targets: 34
+- WP-ready targets: 32
 - WP execution in this phase: NOT RUN
 
 The state is intentionally partial: policy-required targets were not given an invented fallback. The 101 runtime-only target operations retain their original statements and are not included in the WP-next manifest.
@@ -37,9 +37,7 @@ The state is intentionally partial: policy-required targets were not given an in
 | KLEE-ALARM-0044 | REPAIRED_SHARED | `57864b43199db1c7046c201d40fb52dabafdb3a6` | `eva_klee_alarm_0044` |
 | KLEE-ALARM-0053 | REPAIRED_SHARED | `57864b43199db1c7046c201d40fb52dabafdb3a6` | `eva_klee_alarm_0053` |
 | KLEE-ALARM-0058 | REPAIRED_SHARED | `57864b43199db1c7046c201d40fb52dabafdb3a6` | `eva_klee_alarm_0058` |
-| KLEE-ALARM-0061 | REPAIRED_SHARED | `57864b43199db1c7046c201d40fb52dabafdb3a6` | `eva_klee_alarm_0061` |
 | KLEE-ALARM-0063 | REPAIRED_SHARED | `57864b43199db1c7046c201d40fb52dabafdb3a6` | `eva_klee_alarm_0063` |
-| KLEE-ALARM-0066 | REPAIRED_SHARED | `57864b43199db1c7046c201d40fb52dabafdb3a6` | `eva_klee_alarm_0066` |
 | KLEE-ALARM-0095 | REPAIRED_SHARED | `7aa2299eac6e789a51e1288ecc4959f558bd728b` | `eva_klee_alarm_0095` |
 | KLEE-ALARM-0096 | REPAIRED_SHARED | `7aa2299eac6e789a51e1288ecc4959f558bd728b` | `eva_klee_alarm_0096` |
 | KLEE-ALARM-0097 | REPAIRED_SHARED | `7aa2299eac6e789a51e1288ecc4959f558bd728b` | `eva_klee_alarm_0097` |
@@ -76,6 +74,8 @@ The state is intentionally partial: policy-required targets were not given an in
 | KLEE-ALARM-0019 | `root_u32_mul_u32_s32_fac_less1` | The public count domain admits invalid C shift counts, but frozen repository evidence does not define whether out-of-range counts should be rejected, reduced, clamped, or handled otherwise; no policy was invented. |
 | KLEE-ALARM-0020 | `root_u32_mul_u32_s8_fac_less1` | The public count domain admits invalid C shift counts, but frozen repository evidence does not define whether out-of-range counts should be rejected, reduced, clamped, or handled otherwise; no policy was invented. |
 | KLEE-ALARM-0021 | `root_u32_mul_u32_s8_fac_less1` | The public count domain admits invalid C shift counts, but frozen repository evidence does not define whether out-of-range counts should be rejected, reduced, clamped, or handled otherwise; no policy was invented. |
+| KLEE-ALARM-0061 | `s16_hip1_s16_s8_s8_u16_fac1` | The same shift statement carries runtime-only alarm KLEE-ALARM-0062; changing the operation would modify a runtime-only target occurrence, so a phase-separation policy is required. |
+| KLEE-ALARM-0066 | `s16_hip1_s16_u8_u8_u16_fac1` | The same shift statement carries runtime-only alarm KLEE-ALARM-0067; changing the operation would modify a runtime-only target occurrence, so a phase-separation policy is required. |
 | KLEE-ALARM-0144 | `u32_div_s32_s32` | The witness also violates runtime-only denominator and downstream properties in the same path; defining an unsigned-magnitude quotient path would change implementation behavior associated with those inconclusive targets, so a phase-separation and quotient-policy decision is required. |
 
 ## Complete target-to-ACSL mapping
@@ -139,16 +139,16 @@ The state is intentionally partial: policy-required targets were not given an in
 | KLEE-ALARM-0055 | `eva_klee_alarm_0055` | `src_repaired/sources/div_Ccode.c:470` | RUNTIME_ONLY |
 | KLEE-ALARM-0056 | `eva_klee_alarm_0056` | `src_repaired/sources/div_Ccode.c:473` | RUNTIME_ONLY |
 | KLEE-ALARM-0057 | `eva_klee_alarm_0057` | `src_repaired/sources/div_Ccode.c:478` | RUNTIME_ONLY |
-| KLEE-ALARM-0058 | `eva_klee_alarm_0058` | `src_repaired/sources/hip_Ccode.c:194` | WP |
-| KLEE-ALARM-0059 | `eva_klee_alarm_0059` | `src_repaired/sources/hip_Ccode.c:205` | RUNTIME_ONLY |
-| KLEE-ALARM-0060 | `eva_klee_alarm_0060` | `src_repaired/sources/hip_Ccode.c:208` | RUNTIME_ONLY |
-| KLEE-ALARM-0061 | `eva_klee_alarm_0061` | `src_repaired/sources/hip_Ccode.c:217` | WP |
-| KLEE-ALARM-0062 | `eva_klee_alarm_0062` | `src_repaired/sources/hip_Ccode.c:212` | RUNTIME_ONLY |
+| KLEE-ALARM-0058 | `eva_klee_alarm_0058` | `src_repaired/sources/hip_Ccode.c:187` | WP |
+| KLEE-ALARM-0059 | `eva_klee_alarm_0059` | `src_repaired/sources/hip_Ccode.c:198` | RUNTIME_ONLY |
+| KLEE-ALARM-0060 | `eva_klee_alarm_0060` | `src_repaired/sources/hip_Ccode.c:201` | RUNTIME_ONLY |
+| KLEE-ALARM-0061 | `eva_klee_alarm_0061` | `src_repaired/sources/hip_Ccode.c:205` | WP |
+| KLEE-ALARM-0062 | `eva_klee_alarm_0062` | `src_repaired/sources/hip_Ccode.c:208` | RUNTIME_ONLY |
 | KLEE-ALARM-0063 | `eva_klee_alarm_0063` | `src_repaired/sources/hip_Ccode.c:51` | WP |
 | KLEE-ALARM-0064 | `eva_klee_alarm_0064` | `src_repaired/sources/hip_Ccode.c:62` | RUNTIME_ONLY |
 | KLEE-ALARM-0065 | `eva_klee_alarm_0065` | `src_repaired/sources/hip_Ccode.c:65` | RUNTIME_ONLY |
-| KLEE-ALARM-0066 | `eva_klee_alarm_0066` | `src_repaired/sources/hip_Ccode.c:74` | WP |
-| KLEE-ALARM-0067 | `eva_klee_alarm_0067` | `src_repaired/sources/hip_Ccode.c:69` | RUNTIME_ONLY |
+| KLEE-ALARM-0066 | `eva_klee_alarm_0066` | `src_repaired/sources/hip_Ccode.c:69` | WP |
+| KLEE-ALARM-0067 | `eva_klee_alarm_0067` | `src_repaired/sources/hip_Ccode.c:72` | RUNTIME_ONLY |
 | KLEE-ALARM-0068 | `eva_klee_alarm_0068` | `src_repaired/sources/div_Ccode.c:1182` | RUNTIME_ONLY |
 | KLEE-ALARM-0069 | `eva_klee_alarm_0069` | `src_repaired/sources/div_Ccode.c:1185` | RUNTIME_ONLY |
 | KLEE-ALARM-0070 | `eva_klee_alarm_0070` | `src_repaired/sources/div_Ccode.c:1188` | RUNTIME_ONLY |
@@ -236,7 +236,7 @@ The state is intentionally partial: policy-required targets were not given an in
 
 Validation status: **VALIDATED PARTIAL STATE**
 
-- 34 repaired + 14 policy-required = 48 confirmed targets
+- 32 repaired + 16 policy-required = 48 confirmed targets
 - 15 completed/no-counterexample + 86 timeout = 101 runtime-only targets
 - 48 confirmed + 101 runtime-only = 149 total targets
 - All assertions were parsed separately with Frama-C's kernel only; Eva and WP were not invoked.

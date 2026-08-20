@@ -27,4 +27,4 @@ Retain the original shift and assertion for nonnegative operands; use equivalent
 
 - Status: `REPAIRED_SHARED`
 - Repair commit: `57864b43199db1c7046c201d40fb52dabafdb3a6`
-- Additionally affected alarms: `KLEE-ALARM-0044,0053,0058,0061,0063,0066`
+- Additionally affected alarms: `KLEE-ALARM-0044,0053,0058,0063`
