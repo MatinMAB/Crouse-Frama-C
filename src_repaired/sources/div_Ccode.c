@@ -1525,7 +1525,7 @@ u32 u32_div_u32_u32(u32 numerator, u32 denominator)
  */
 s32 s32_div_u32_s32(u32 numerator, s32 denominator)
 {
-	u32 u32Temp1 = 0, u32Temp2 = 0 ;
+	u32 denominator_magnitude = 0, u32Temp1 = 0, u32Temp2 = 0 ;
 	if(denominator <= 0)
 	{
 		if(denominator >= 0)
@@ -1534,12 +1534,19 @@ s32 s32_div_u32_s32(u32 numerator, s32 denominator)
 		}
 		else
 		{
-			/*@ assert eva_klee_alarm_0105:
-			      denominator != (-2147483647 - 1);
-			*/
-			denominator = -denominator;
-			u32Temp1 = (numerator - ((numerator/denominator) * denominator)) << 1;
-			u32Temp2 = (u32Temp1/denominator) + (numerator/denominator);
+			if (denominator == (-2147483647 - 1))
+			{
+				denominator_magnitude = 0x80000000U;
+			}
+			else
+			{
+				/*@ assert eva_klee_alarm_0105:
+				      denominator != (-2147483647 - 1);
+				*/
+				denominator_magnitude = (u32)(-denominator);
+			}
+			u32Temp1 = (numerator - ((numerator/denominator_magnitude) * denominator_magnitude)) << 1;
+			u32Temp2 = (u32Temp1/denominator_magnitude) + (numerator/denominator_magnitude);
 			if(u32Temp2 <= 0x7FFFFFFF)
 			{
 				return -u32Temp2;
@@ -1600,10 +1607,17 @@ s32 s32_div_s32_u32(s32 numerator, u32 denominator)
 	{
 		if(numerator <= 0)
 		{
-			/*@ assert eva_klee_alarm_0104:
-			      numerator != (-2147483647 - 1);
-			*/
-			u32Temp1 = -numerator;
+			if (numerator == (-2147483647 - 1))
+			{
+				u32Temp1 = 0x80000000U;
+			}
+			else
+			{
+				/*@ assert eva_klee_alarm_0104:
+				      numerator != (-2147483647 - 1);
+				*/
+				u32Temp1 = (u32)(-numerator);
+			}
 			u32Temp0 = (u32Temp1/denominator);
 			u32Temp2 = u32Temp1 - ((u32Temp1/denominator) * denominator);
 
@@ -1667,14 +1681,28 @@ s32 s32_div_s32_s32(s32 numerator, s32 denominator)
 			}
 			else
 			{
-				/*@ assert eva_klee_alarm_0095:
-				      numerator != (-2147483647 - 1);
-				*/
-				u32numerator = -numerator;
-				/*@ assert eva_klee_alarm_0096:
-				      denominator != (-2147483647 - 1);
-				*/
-				u32denominator = -denominator;
+				if (numerator == (-2147483647 - 1))
+				{
+					u32numerator = 0x80000000U;
+				}
+				else
+				{
+					/*@ assert eva_klee_alarm_0095:
+					      numerator != (-2147483647 - 1);
+					*/
+					u32numerator = (u32)(-numerator);
+				}
+				if (denominator == (-2147483647 - 1))
+				{
+					u32denominator = 0x80000000U;
+				}
+				else
+				{
+					/*@ assert eva_klee_alarm_0096:
+					      denominator != (-2147483647 - 1);
+					*/
+					u32denominator = (u32)(-denominator);
+				}
 				u32Temp1 =(u32numerator - ((u32numerator/u32denominator) * u32denominator)) << 1;
 				u32Temp2 = (u32numerator/u32denominator) + (u32Temp1/u32denominator);
 				if(u32Temp2 <= 0x7FFFFFFF)
@@ -1689,10 +1717,17 @@ s32 s32_div_s32_s32(s32 numerator, s32 denominator)
 		}
 		else
 		{
-			/*@ assert eva_klee_alarm_0097:
-			      ((s32)(~numerator)) + (1) <= 2147483647;
-			*/
-			u32numerator = ~numerator+1;
+			if (numerator == (-2147483647 - 1))
+			{
+				u32numerator = 0x80000000U;
+			}
+			else
+			{
+				/*@ assert eva_klee_alarm_0097:
+				      ((s32)(~numerator)) + (1) <= 2147483647;
+				*/
+				u32numerator = (u32)(~numerator + 1);
+			}
 			s32Temp1 = (u32numerator - ((u32numerator/denominator) * denominator)) << 1;
 			s32Temp2 = (u32numerator/denominator) + (s32Temp1/denominator);
 			/*@ assert eva_klee_alarm_0098:
@@ -1711,10 +1746,17 @@ s32 s32_div_s32_s32(s32 numerator, s32 denominator)
 			}
 			else
 			{
-				/*@ assert eva_klee_alarm_0099:
-				      ((s32)(~denominator)) + (1) <= 2147483647;
-				*/
-				u32denominator = ~denominator + 1;
+				if (denominator == (-2147483647 - 1))
+				{
+					u32denominator = 0x80000000U;
+				}
+				else
+				{
+					/*@ assert eva_klee_alarm_0099:
+					      ((s32)(~denominator)) + (1) <= 2147483647;
+					*/
+					u32denominator = (u32)(~denominator + 1);
+				}
 				s32Temp1 = (numerator - ((numerator/u32denominator) * u32denominator)) << 1;
 				s32Temp2 = (numerator/u32denominator) + (s32Temp1/u32denominator);
 				/*@ assert eva_klee_alarm_0100:
@@ -1777,10 +1819,17 @@ s16 s16_div_s32_u32(s32 numerator, u32 denominator)
 	{
 		if(numerator < 0)
 		{
-			/*@ assert eva_klee_alarm_0043:
-			      numerator != (-2147483647 - 1);
-			*/
-			numerator_prime = -numerator;
+			if (numerator == (-2147483647 - 1))
+			{
+				numerator_prime = 0x80000000U;
+			}
+			else
+			{
+				/*@ assert eva_klee_alarm_0043:
+				      numerator != (-2147483647 - 1);
+				*/
+				numerator_prime = (u32)(-numerator);
+			}
 			u32Temp1 = (numerator_prime/denominator);	
 			u32Temp2 = numerator_prime - (u32Temp1 * denominator);
 
