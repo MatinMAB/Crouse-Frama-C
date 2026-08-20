@@ -21,10 +21,13 @@
 
 The frozen target-specific error proves that these concrete inputs reach the selected operation and falsify its Eva-derived safety predicate under the configured KLEE model.
 
-## Implemented repair
+## Policy decision required
 
-Retain the original shift and assertion for nonnegative operands; use equivalent, range-safe multiplication by the documented fixed-point scale for negative operands.
+The same shift statement also carries runtime-only alarm `KLEE-ALARM-0067`.
+Changing the operation for the confirmed negative-operand path would change a
+runtime-only target occurrence, so this operation remains unchanged pending a
+phase-separation policy.
 
-- Status: `REPAIRED_SHARED`
-- Repair commit: `57864b43199db1c7046c201d40fb52dabafdb3a6`
-- Additionally affected alarms: `KLEE-ALARM-0044,0053,0058,0061,0063,0066`
+- Status: `REPAIR_POLICY_REQUIRED`
+- Repair commit: `NOT_APPLICABLE`
+- Additionally affected alarms: `KLEE-ALARM-0067`
