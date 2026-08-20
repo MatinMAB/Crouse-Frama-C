@@ -170,10 +170,17 @@
 s16 s16_fac05_div_s16_s16(s16 numerator, s16  denominator)
 {
 	s32 s32Temp1,s32Temp2;
-	/*@ assert eva_klee_alarm_0044:
-	      (int)numerator >= 0;
-	*/
-	s32Temp1 = numerator<<16;
+	if (numerator >= 0)
+	{
+		/*@ assert eva_klee_alarm_0044:
+		      (int)numerator >= 0;
+		*/
+		s32Temp1 = numerator<<16;
+	}
+	else
+	{
+		s32Temp1 = (s32)numerator * 65536;
+	}
 
 	if (denominator ==0)
 	{
@@ -432,10 +439,17 @@ s16 s16_fac05_div_s16_u16(s16 numerator, u16  denominator)
 	u16 u16Temp1;
 	s32 s32Temp1,s32Temp2;
 	u16Temp1 = denominator & 0xFFFF;
-	/*@ assert eva_klee_alarm_0053:
-	      (int)numerator >= 0;
-	*/
-	s32Temp1 = numerator<<16;
+	if (numerator >= 0)
+	{
+		/*@ assert eva_klee_alarm_0053:
+		      (int)numerator >= 0;
+		*/
+		s32Temp1 = numerator<<16;
+	}
+	else
+	{
+		s32Temp1 = (s32)numerator * 65536;
+	}
 	if(u16Temp1 == 0)
 	{
 		if (numerator < 0)
