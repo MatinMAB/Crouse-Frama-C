@@ -11,3 +11,5 @@ U32_S16_TWO_WORD_SHIFT	root_u32_mul_u32_s16_fac_less1	u32_mul_u32_s16_fac05 C wr
 U32_S16_TWO_WORD_SHIFT	root_u32_mul_u32_s16_fac_less1	u32_mul_u32_s16_fac05 public macro	16	16	1 <= count && count < 32	YES	src_repaired/headers/ecmath.h:8824-8825	REPOSITORY_INFERRED
 U32_S32_HIGH_WORD_SHIFT	root_u32_mul_u32_s32_fac_less1	u32_mul_u32_s32_fac05 C wrapper	32	32	32 <= count && count < 64	YES	src_repaired/sources/mul_Ccode.c:4825	REPOSITORY_INFERRED
 U32_S32_HIGH_WORD_SHIFT	root_u32_mul_u32_s32_fac_less1	u32_mul_u32_s32_fac05 public macro	32	32	32 <= count && count < 64	YES	src_repaired/headers/ecmath.h:9074-9075	REPOSITORY_INFERRED
+U32_S8_TWO_WORD_SHIFT	root_u32_mul_u32_s8_fac_less1	u32_mul_u32_s8_fac05 C wrapper	8	8	1 <= count && count < 32	YES	src_repaired/sources/mul_Ccode.c:4849	REPOSITORY_INFERRED
+U32_S8_TWO_WORD_SHIFT	root_u32_mul_u32_s8_fac_less1	u32_mul_u32_s8_fac05 public macro	8	8	1 <= count && count < 32	YES	src_repaired/headers/ecmath.h:9829-9830	REPOSITORY_INFERRED
