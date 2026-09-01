@@ -1,0 +1,4 @@
+run_id	parse_elapsed_s	parse_user_s	parse_system_s	parse_max_rss_kib	parse_exit_status	eva_elapsed_s	eva_user_s	eva_system_s	eva_max_rss_kib	eva_exit_status	total_elapsed_s	validation_status
+1	1.02	0.87	0.13	140976	0	0.85	0.77	0.08	134584	0	1.87	VALID
+2	1.03	0.88	0.13	141180	0	0.79	0.70	0.08	134516	0	1.82	VALID
+3	1.01	0.83	0.14	141212	0	0.91	0.79	0.11	134656	0	1.92	VALID
