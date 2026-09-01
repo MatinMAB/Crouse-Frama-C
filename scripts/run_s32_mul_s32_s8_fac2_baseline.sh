@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /home/matin/frama-work/frama-eva-analysis
+cd "$(dirname "$0")/.."
 
-mkdir -p "results/baseline/s32_mul_s32_s8_fac2"
+FUNC="s32_mul_s32_s8_fac2"
+DIR="results/baseline/$FUNC"
+
+if [[ "${TIMING_ONLY:-0}" == "1" ]]; then
+  TIMING_MODE="baseline"
+  TIMING_CANONICAL_DIR="$DIR"
+  source scripts/eva_timing_common.sh
+  eva_timing_setup
+fi
+
+mkdir -p "$DIR"
 
 echo "parse s32_mul_s32_s8_fac2"
 
@@ -14,19 +24,19 @@ frama-c \
   src_analysis/sources/MulHword.c \
   harnesses/P1/eva_main_s32_mul_s32_s8_fac2.c \
   -main eva_main \
-  -save "results/baseline/s32_mul_s32_s8_fac2/s32_mul_s32_s8_fac2_parse.sav" \
-  > "results/baseline/s32_mul_s32_s8_fac2/s32_mul_s32_s8_fac2_parse.log" 2>&1
+  -save "$DIR/${FUNC}_parse.sav" \
+  > "$DIR/${FUNC}_parse.log" 2>&1
 
 echo "eva s32_mul_s32_s8_fac2"
 
 frama-c \
-  -load "results/baseline/s32_mul_s32_s8_fac2/s32_mul_s32_s8_fac2_parse.sav" \
+  -load "$DIR/${FUNC}_parse.sav" \
   -eva \
   -eva-slevel 1000 \
   -eva-ilevel 256 \
-  -save "results/baseline/s32_mul_s32_s8_fac2/s32_mul_s32_s8_fac2_eva.sav" \
-  > "results/baseline/s32_mul_s32_s8_fac2/s32_mul_s32_s8_fac2_eva.log" 2>&1
+  -save "$DIR/${FUNC}_eva.sav" \
+  > "$DIR/${FUNC}_eva.log" 2>&1
 
 echo "done"
-echo "results/baseline/s32_mul_s32_s8_fac2/s32_mul_s32_s8_fac2_parse.sav"
-echo "results/baseline/s32_mul_s32_s8_fac2/s32_mul_s32_s8_fac2_eva.sav"
+echo "$DIR/${FUNC}_parse.sav"
+echo "$DIR/${FUNC}_eva.sav"

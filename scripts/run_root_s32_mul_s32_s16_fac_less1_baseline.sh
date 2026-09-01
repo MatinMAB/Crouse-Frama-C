@@ -6,6 +6,13 @@ cd "$(dirname "$0")/.."
 FUNC="root_s32_mul_s32_s16_fac_less1"
 DIR="results/baseline/$FUNC"
 
+if [[ "${TIMING_ONLY:-0}" == "1" ]]; then
+  TIMING_MODE="baseline"
+  TIMING_CANONICAL_DIR="$DIR"
+  source scripts/eva_timing_common.sh
+  eva_timing_setup
+fi
+
 mkdir -p "$DIR"
 
 echo "parse $FUNC"
