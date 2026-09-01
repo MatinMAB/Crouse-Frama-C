@@ -6,6 +6,13 @@ cd "$(dirname "$0")/../.."
 FUNC="rotateLeft"
 DIR="results/high_precision/$FUNC"
 
+if [[ "${TIMING_ONLY:-0}" == "1" ]]; then
+  TIMING_MODE="high_precision"
+  TIMING_CANONICAL_DIR="$DIR"
+  source scripts/eva_timing_common.sh
+  eva_timing_setup
+fi
+
 mkdir -p "$DIR"
 
 echo "parse $FUNC"
