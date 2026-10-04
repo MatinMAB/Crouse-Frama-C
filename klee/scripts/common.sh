@@ -81,5 +81,5 @@ resolve_klee_include()
 tool_major_version()
 {
     "$1" --version 2>&1 | sed -nE \
-        's/.*(version |LLVM version )([0-9]+)(\.[0-9]+)*/\2/p' | head -n 1
+        's/.*(version |LLVM version )([0-9]+)(\.[0-9]+)*.*/\2/p' | head -n 1
 }
