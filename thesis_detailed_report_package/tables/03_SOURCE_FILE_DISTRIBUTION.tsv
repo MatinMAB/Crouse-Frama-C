@@ -1,0 +1,7 @@
+Source File	High Precision Properties	KLEE CE	KLEE No CE	KLEE Timeout
+src_analysis/sources/MulHword.c	6	6	0	0
+src_analysis/sources/avrg_Ccode.c	1	0	1	0
+src_analysis/sources/div_Ccode.c	102	10	6	86
+src_analysis/sources/hip_Ccode.c	10	4	6	0
+src_analysis/sources/mul_Ccode.c	29	27	2	0
+src_analysis/sources/rotatefunc.c	1	1	0	0

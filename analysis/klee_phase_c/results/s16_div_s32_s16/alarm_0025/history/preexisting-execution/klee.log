@@ -1,0 +1,8 @@
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_div_s32_s16/alarm_0025/build/klee-out-alarm-0025"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7c7b3bc00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7c78bbc00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7b78bbc00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7b58bbc00000 size=128 GiB)

@@ -1,0 +1,10 @@
+array factor[4] : w32 -> w8 = symbolic
+array power[1] : w32 -> w8 = symbolic
+array value[4] : w32 -> w8 = symbolic
+(query [(Sle 32
+              (ZExt w32 (Read w8 0 power)))
+         (Slt 0
+              (ReadLSB w32 0 value))
+         (Eq 2147483648
+             (ReadLSB w32 0 factor))]
+        false)

@@ -6,10 +6,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/common.sh"
 
 failures=0
-for tool_value in "$CLANG" "$LLVM_LINK" "$LLVM_DIS" "$KLEE" "$KTEST_TOOL"; do
+for tool_value in "$CLANG" "$LLVM_LINK" "$LLVM_DIS" "$KLEE" "$KTEST_TOOL" "$GNU_TIMEOUT"; do
     require_command "$tool_value" || failures=$((failures + 1))
 done
 (( failures == 0 )) || die "$failures required tool(s) unavailable; use environment overrides if needed"
+
+timeout_version="$($GNU_TIMEOUT --version 2>&1)" || die "timeout --version failed"
+grep -q 'GNU coreutils' <<< "$timeout_version" || \
+    die "GNU timeout is required for process-group hard deadlines"
 
 klee_include="$(resolve_klee_include)" || die "klee/klee.h not found; set KLEE_INCLUDE"
 clang_major="$(tool_major_version "$CLANG")"
@@ -21,6 +25,9 @@ dis_major="$(tool_major_version "$LLVM_DIS")"
     die "LLVM tool mismatch: clang=$clang_major llvm-link=$link_major llvm-dis=$dis_major"
 
 klee_version="$($KLEE --version 2>&1)" || die "klee --version failed"
+klee_help="$($KLEE --help 2>&1)" || die "klee --help failed"
+grep -q -- '--watchdog' <<< "$klee_help" || \
+    die "this KLEE build does not support --watchdog hard-time enforcement"
 klee_llvm_major="$(printf '%s\n' "$klee_version" | sed -nE \
     's/.*LLVM( version)?[[:space:]]+([0-9]+).*/\2/p' | head -n 1)"
 if [[ -n "$klee_llvm_major" && "$klee_llvm_major" != "$clang_major" ]]; then
@@ -34,7 +41,10 @@ printf '\nllvm-link:\n'
 printf '\nllvm-dis:\n'
 "$LLVM_DIS" --version | sed -n '1,3p'
 printf '\nklee:\n%s\n' "$klee_version"
+printf 'KLEE watchdog: supported\n'
 printf '\nktest-tool: %s\n' "$(command -v "$KTEST_TOOL")"
+printf '\ntimeout:\n'
+printf '%s\n' "$timeout_version" | sed -n '1,2p'
 if [[ -n "$klee_include" ]]; then
     printf 'KLEE include: %s\n' "$klee_include"
 else

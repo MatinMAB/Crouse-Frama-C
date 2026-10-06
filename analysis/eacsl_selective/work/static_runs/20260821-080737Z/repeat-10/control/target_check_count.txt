@@ -1,0 +1,2 @@
+logical_target_properties=0
+generated_target_check_sites=0

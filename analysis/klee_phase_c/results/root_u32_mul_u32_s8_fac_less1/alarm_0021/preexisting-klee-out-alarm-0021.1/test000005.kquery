@@ -1,0 +1,26 @@
+array count[4] : w32 -> w8 = symbolic
+array factor[1] : w32 -> w8 = symbolic
+array value[4] : w32 -> w8 = symbolic
+(query [(Eq false
+             (Slt N0:(SExt w32 (Read w8 0 factor))
+                  0))
+         (Eq false
+             (Ult 65535
+                  (Add w32 (Add w32 (LShr w32 (Mul w32 N1:(ZExt w32 (Extract w16 0 (And w32 N2:(ReadLSB w32 0 value)
+                                                                                            65535)))
+                                                       N3:(ZExt w32 (Extract w16 0 (And w32 N0 65535))))
+                                              16)
+                                    (And w32 (Mul w32 N1
+                                                      (ZExt w32 (Extract w16 0 (LShr w32 (And w32 N0 4294901760) 16))))
+                                             65535))
+                           (And w32 (Mul w32 (ZExt w32 (Extract w16 0 (LShr w32 (And w32 N2 4294901760) 16)))
+                                             N3)
+                                    65535))))
+         (Sle 0
+              N4:(ZExt w64 N5:(ReadLSB w32 0 count)))
+         (Slt N4 32)
+         (Eq false
+             (And (Sle 0
+                       N6:(ZExt w64 (Sub w32 32 N5)))
+                  (Slt N6 32)))]
+        false)

@@ -1,0 +1,22 @@
+{
+  "scenario": "control",
+  "start_commit": "09e759283a6f1f9483cb560873e0b97d544fa714",
+  "selected_count": 0,
+  "selected_alarm_ids": [],
+  "source_files": [
+    "analysis/eacsl_selective/generated/control/sources/MulHword.c",
+    "analysis/eacsl_selective/generated/control/sources/avrg_Ccode.c",
+    "analysis/eacsl_selective/generated/control/sources/div_Ccode.c",
+    "analysis/eacsl_selective/generated/control/sources/hip_Ccode.c",
+    "analysis/eacsl_selective/generated/control/sources/mul_Ccode.c",
+    "analysis/eacsl_selective/generated/control/sources/rotatefunc.c"
+  ],
+  "canonical_source_files": [
+    "src_repaired/sources/MulHword.c",
+    "src_repaired/sources/avrg_Ccode.c",
+    "src_repaired/sources/div_Ccode.c",
+    "src_repaired/sources/hip_Ccode.c",
+    "src_repaired/sources/mul_Ccode.c",
+    "src_repaired/sources/rotatefunc.c"
+  ]
+}

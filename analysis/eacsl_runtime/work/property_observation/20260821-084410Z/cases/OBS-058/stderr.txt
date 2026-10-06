@@ -1,0 +1,7 @@
+analysis/eacsl_selective/generated/wp_pruned_101/sources/div_Ccode.c: In function 's16_mul_s16_u16_div_s16'
+analysis/eacsl_selective/generated/wp_pruned_101/sources/div_Ccode.c:770: Error: Assertion failed:
+	The failing predicate is:
+	eva_klee_alarm_0084:
+		s32Temp1 ≥ 0.
+	With values at failure point:
+	- s32Temp1: -1

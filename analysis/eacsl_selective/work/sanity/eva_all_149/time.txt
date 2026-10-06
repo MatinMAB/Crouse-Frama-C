@@ -1,0 +1,24 @@
+Command exited with non-zero status 1
+	Command being timed: "frama-c -machdep ppc_32 -cpp-extra-args=-Ianalysis/eacsl_selective/generated/eva_all_149/headers analysis/eacsl_selective/generated/eva_all_149/sources/MulHword.c analysis/eacsl_selective/generated/eva_all_149/sources/avrg_Ccode.c analysis/eacsl_selective/generated/eva_all_149/sources/div_Ccode.c analysis/eacsl_selective/generated/eva_all_149/sources/hip_Ccode.c analysis/eacsl_selective/generated/eva_all_149/sources/mul_Ccode.c analysis/eacsl_selective/generated/eva_all_149/sources/rotatefunc.c -e-acsl -e-acsl-valid -then-last -print -ocode analysis/eacsl_selective/work/sanity/eva_all_149/instrumented.c"
+	User time (seconds): 2.31
+	System time (seconds): 0.60
+	Percent of CPU this job got: 76%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.82
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 185628
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 57472
+	Voluntary context switches: 254
+	Involuntary context switches: 921
+	Swaps: 0
+	File system inputs: 35008
+	File system outputs: 18792
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

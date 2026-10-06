@@ -1,0 +1,67 @@
+
+=== Function: root_s32_mul_s32_s16_fac_less1 (alarms 0001-0003) ===
+[2026-08-16T10:29:13Z] root_s32_mul_s32_s16_fac_less1 alarm_0001
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:15Z] root_s32_mul_s32_s16_fac_less1 alarm_0002
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:16Z] root_s32_mul_s32_s16_fac_less1 alarm_0003
+  final_status: CONFIRMED_COUNTEREXAMPLE
+
+=== Function: root_s32_mul_s32_s8_fac_less1 (alarms 0004-0006) ===
+[2026-08-16T10:29:16Z] root_s32_mul_s32_s8_fac_less1 alarm_0004
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:18Z] root_s32_mul_s32_s8_fac_less1 alarm_0005
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:19Z] root_s32_mul_s32_s8_fac_less1 alarm_0006
+  final_status: CONFIRMED_COUNTEREXAMPLE
+
+=== Function: root_s32_mul_s32_u16_fac_less1 (alarms 0007-0010) ===
+[2026-08-16T10:29:20Z] root_s32_mul_s32_u16_fac_less1 alarm_0007
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:21Z] root_s32_mul_s32_u16_fac_less1 alarm_0008
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:22Z] root_s32_mul_s32_u16_fac_less1 alarm_0009
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:22Z] root_s32_mul_s32_u16_fac_less1 alarm_0010
+  final_status: CONFIRMED_COUNTEREXAMPLE
+
+=== Function: root_s32_mul_s32_u8_fac_less1 (alarms 0011-0013) ===
+[2026-08-16T10:29:23Z] root_s32_mul_s32_u8_fac_less1 alarm_0011
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:24Z] root_s32_mul_s32_u8_fac_less1 alarm_0012
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:25Z] root_s32_mul_s32_u8_fac_less1 alarm_0013
+  final_status: CONFIRMED_COUNTEREXAMPLE
+
+=== Function: root_u32_mul_u32_s16_fac_less1 (alarms 0014-0015) ===
+[2026-08-16T10:29:25Z] root_u32_mul_u32_s16_fac_less1 alarm_0014
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:26Z] root_u32_mul_u32_s16_fac_less1 alarm_0015
+  final_status: CONFIRMED_COUNTEREXAMPLE
+
+=== Function: root_u32_mul_u32_s32_fac_less1 (alarms 0016-0019) ===
+[2026-08-16T10:29:26Z] root_u32_mul_u32_s32_fac_less1 alarm_0016
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:27Z] root_u32_mul_u32_s32_fac_less1 alarm_0017
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:28Z] root_u32_mul_u32_s32_fac_less1 alarm_0018
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:28Z] root_u32_mul_u32_s32_fac_less1 alarm_0019
+  final_status: CONFIRMED_COUNTEREXAMPLE
+
+=== Function: root_u32_mul_u32_s8_fac_less1 (alarms 0020-0021) ===
+[2026-08-16T10:29:29Z] root_u32_mul_u32_s8_fac_less1 alarm_0020
+  final_status: CONFIRMED_COUNTEREXAMPLE
+[2026-08-16T10:29:30Z] root_u32_mul_u32_s8_fac_less1 alarm_0021
+  final_status: CONFIRMED_COUNTEREXAMPLE
+
+=== Function: rotateRight (alarms 0022-0022) ===
+[2026-08-16T10:29:31Z] rotateRight alarm_0022
+  final_status: CONFIRMED_COUNTEREXAMPLE
+
+=== Function: s16_div_s32_s16 (alarms 0023-0042) ===
+[2026-08-16T10:29:32Z] s16_div_s32_s16 alarm_0023
+  final_status: NO_COUNTEREXAMPLE_FOUND
+[2026-08-16T10:29:44Z] s16_div_s32_s16 alarm_0024
+  final_status: INCONCLUSIVE_TIMEOUT
+[2026-08-16T11:00:14Z] s16_div_s32_s16 alarm_0025

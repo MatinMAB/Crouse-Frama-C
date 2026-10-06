@@ -1,0 +1,10 @@
+analysis/eacsl_selective/generated/wp_pruned_101/sources/div_Ccode.c: In function 'u16_mul_s16_u16_div_u16'
+analysis/eacsl_selective/generated/wp_pruned_101/sources/div_Ccode.c:996: Error: Assertion failed:
+	The failing predicate is:
+	eva_klee_alarm_0135:
+		(s32)(s32Result -
+      (s32)((s32)(s32Result / (s32)denominator) * (s32)denominator))
+≥ 0.
+	With values at failure point:
+	- denominator: 7
+	- s32Result: -2147450880

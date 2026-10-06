@@ -1,0 +1,14 @@
+RUN_TIMESTAMP_UTC=20260821-080737Z
+STATIC_REPEATS=10
+GIT_COMMIT=09e759283a6f1f9483cb560873e0b97d544fa714
+GIT_BRANCH=analysis/eacsl-selective-instrumentation
+GIT_DESCRIBE=thesis/48-klee-confirmed-properties-wp-valid
+FRAMAC_VERSION=33.0 (Arsenic)
+GCC_VERSION=13.3.0
+FRAMAC_MACHDEP=ppc_32
+HOST_COMPILATION_MODEL=x86_64
+HOST_CFLAGS=-std=c99 -O2 -g -fno-builtin -fno-merge-constants -Wno-attributes
+TIMING_TOOL=/usr/bin/time -v
+d2bf997d07b205003abc88945cf577efc9fef37d341ae3fa472f38504d8fd857  /home/matin/frama-work/frama-eva-analysis/analysis/eacsl_selective/manifests/ALL_149_TARGETS.tsv
+9663a0ef4aef96c4bdb61a2126e0dfc17a7e371a62ad4b8fef66e9bf2f38a799  /home/matin/frama-work/frama-eva-analysis/analysis/eacsl_selective/manifests/WP_VERIFIED_48.tsv
+3201ac21a1ac886c4b8e2ad96a7d9db54b40397b892f0ef0eec8670d01e961ed  /home/matin/frama-work/frama-eva-analysis/analysis/eacsl_selective/manifests/RUNTIME_101_TARGETS.tsv

@@ -1,0 +1,16 @@
+Archived previous KLEE output: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/results/validation_batch_timeout/s16_div_s32_s16/alarm_0023/preexisting-klee-out-alarm-0023
+KLEE: output directory is "/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_div_s32_s16/alarm_0023/build/klee-out-alarm-0023"
+KLEE: Using STP solver backend
+KLEE: SAT solver: MiniSat
+KLEE: Deterministic allocator: Using quarantine queue size 8
+KLEE: Deterministic allocator: globals (start-address=0x7bbc71c00000 size=10 GiB)
+KLEE: Deterministic allocator: constants (start-address=0x7bb9f1c00000 size=10 GiB)
+KLEE: Deterministic allocator: heap (start-address=0x7ab9f1c00000 size=1024 GiB)
+KLEE: Deterministic allocator: stack (start-address=0x7a99f1c00000 size=128 GiB)
+
+KLEE: done: total instructions = 157
+KLEE: done: completed paths = 6
+KLEE: done: partially completed paths = 0
+KLEE: done: generated tests = 6
+KLEE Phase C status: INCONCLUSIVE_TIMEOUT
+Status file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/s16_div_s32_s16/alarm_0023/build/klee.status

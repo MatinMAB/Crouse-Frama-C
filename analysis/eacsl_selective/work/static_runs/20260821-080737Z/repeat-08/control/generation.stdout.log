@@ -1,0 +1,14 @@
+[kernel] Parsing analysis/eacsl_selective/generated/control/sources/MulHword.c (with preprocessing)
+[kernel] Parsing analysis/eacsl_selective/generated/control/sources/avrg_Ccode.c (with preprocessing)
+[kernel:CERT:EXP:46] analysis/eacsl_selective/generated/control/sources/avrg_Ccode.c:963: Warning: 
+  operand of bitwise operator is a logical relation
+[kernel:CERT:EXP:46] analysis/eacsl_selective/generated/control/sources/avrg_Ccode.c:963: Warning: 
+  operand of bitwise operator is a logical relation
+[kernel:CERT:MSC:37] analysis/eacsl_selective/generated/control/sources/avrg_Ccode.c:1003: Warning: 
+  Body of function u32_mmv_u32_u32_s32_fac1 falls-through. Adding a return statement
+[kernel] Parsing analysis/eacsl_selective/generated/control/sources/div_Ccode.c (with preprocessing)
+[kernel] Parsing analysis/eacsl_selective/generated/control/sources/hip_Ccode.c (with preprocessing)
+[kernel] Parsing analysis/eacsl_selective/generated/control/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] analysis/eacsl_selective/generated/control/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing analysis/eacsl_selective/generated/control/sources/rotatefunc.c (with preprocessing)

@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+  65286	     24	      0	  65310	   ff1e	/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_selective/work/static_runs/20260821-080737Z/repeat-01/wp_pruned_101/generated.o

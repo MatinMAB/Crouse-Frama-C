@@ -4,7 +4,7 @@ This branch packages the 149 non-`missing_return` alarms remaining in the frozen
 
 ## Prerequisites
 
-KLEE 3.2 with LLVM/Clang 13 is the recommended toolchain. The following commands must be available: `clang`, `llvm-link`, `llvm-dis`, `klee`, and `ktest-tool`; `klee/klee.h` must also be visible. The Snap command name `klee.ktest-tool` is detected as a fallback. Override discovery when needed with `CLANG`, `LLVM_LINK`, `LLVM_DIS`, `KLEE`, `KTEST_TOOL`, or `KLEE_INCLUDE` (the include prefix containing `klee/klee.h`). No personal absolute tool paths are embedded.
+KLEE 3.2 with LLVM/Clang 13 is the recommended toolchain. The following commands must be available: `clang`, `llvm-link`, `llvm-dis`, `klee`, `ktest-tool`, and GNU `timeout`; `klee/klee.h` must also be visible. The Snap command name `klee.ktest-tool` is detected as a fallback. Override discovery when needed with `CLANG`, `LLVM_LINK`, `LLVM_DIS`, `KLEE`, `KTEST_TOOL`, `GNU_TIMEOUT`, or `KLEE_INCLUDE` (the include prefix containing `klee/klee.h`). No personal absolute tool paths are embedded.
 
 Check the environment before a campaign:
 
@@ -13,6 +13,12 @@ Check the environment before a campaign:
 ```
 
 The check rejects mismatched Clang/LLVM major versions and also rejects a KLEE-reported LLVM major mismatch. If KLEE does not expose its LLVM version, the script reports that limitation rather than guessing.
+
+Run the disposable shell-level watchdog checks without executing campaign targets:
+
+```bash
+./klee/tests/test_hard_timeout.sh
+```
 
 ## Run targets
 
@@ -34,7 +40,7 @@ Run one alarm:
 ./klee/scripts/run_one.sh KLEE-ALARM-0023 --max-time 60
 ```
 
-Plain integer budgets are seconds; KLEE duration forms such as `5m` are also accepted. Precedence is CLI `--max-time`, then `KLEE_MAX_TIME`, then the 60-second default. The budget is applied independently to every target. The default KLEE search strategy is retained; no POSIX runtime or uClibc model is enabled because these scalar targets do not require them.
+Plain integer budgets are seconds; `60s`, `5m`, `5min`, and `1h` are also accepted and normalized once to seconds. Precedence is CLI `--max-time`, then `KLEE_MAX_TIME`, then the 60-second default. Durations must be positive. The budget is applied independently to every target. KLEE receives the same internal `--max-time` value together with its process-based `--watchdog`, which can terminate an executor blocked inside a solver query. GNU `timeout` provides a second, external process-group deadline at the requested budget plus `KLEE_TIMEOUT_GRACE` (default: `5s`); it sends `SIGTERM`, then `SIGKILL` one second later. After an external timeout, the wrapper rechecks the process group for at most five seconds and repeats KILL if necessary. This layering is important for Snap-confined KLEE installations, where only the KLEE watchdog is guaranteed to share the executor's signal confinement. The default KLEE search strategy and solver behavior are retained; no solver-query timeout, POSIX runtime, or uClibc model is enabled.
 
 An existing `klee/results/KLEE-ALARM-NNNN` directory is never overwritten. With `--resume`, targets carrying a valid terminal status (`WITNESS_FOUND`, `COMPLETED_NO_WITNESS`, `TIMEOUT`, or `UNSUPPORTED`) are skipped. Failed or incomplete directories are reported but are still not overwritten. To rerun one target, deliberately remove only that target's generated result directory first.
 
@@ -48,6 +54,9 @@ klee/results/KLEE-ALARM-NNNN/
 ├── klee-out/
 ├── run.log
 ├── status.txt
+├── build_seconds.txt   # bitcode build/link/disassembly wall time
+├── klee_seconds.txt    # KLEE invocation wall time, including watchdog cleanup
+├── elapsed_seconds.txt # total target wall time (backward-compatible field)
 └── testcase.txt        # only when a target witness is found and extraction succeeds
 ```
 
@@ -60,4 +69,4 @@ klee/results/KLEE-ALARM-NNNN/
 - `KLEE_FAILED`: KLEE exited unsuccessfully for a reason other than the detected time limit.
 - `UNSUPPORTED`: reserved for an explicitly unsupported target model.
 
-`testcase.txt` contains actual `ktest-tool` output for target-associated `.ktest` files. Absence of a testcase, including `COMPLETED_NO_WITNESS` or `TIMEOUT`, is **not** proof that the property is safe.
+`elapsed_seconds.txt` preserves its original meaning: total time from immediately before the build through status classification. `build_seconds.txt` and `klee_seconds.txt` separate preparation from KLEE execution. `testcase.txt` contains actual `ktest-tool` output for target-associated `.ktest` files. Absence of a testcase, including `COMPLETED_NO_WITNESS` or `TIMEOUT`, is **not** proof that the property is safe.

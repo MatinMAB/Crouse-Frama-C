@@ -1,0 +1,23 @@
+/snap/klee/20/usr/local/bin/klee --output-dir=/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_u32_mul_u32_s16_fac_less1/alarm_0015/build/klee-out-alarm-0015 /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/root_u32_mul_u32_s16_fac_less1/alarm_0015/build/root_u32_mul_u32_s16_fac_less1_alarm_0015.bc
+PID: 32881
+Using monotonic steady clock with 1/1000000000s resolution
+Started: 2026-08-16 13:59:26
+BEGIN searcher description
+<InterleavedSearcher> containing 2 searchers:
+RandomPathSearcher
+WeightedRandomSearcher::CoveringNew
+</InterleavedSearcher>
+END searcher description
+Finished: 2026-08-16 13:59:26
+Elapsed: 00:00:00
+KLEE: done: explored paths = 12
+KLEE: done: avg. constructs per query = 41
+KLEE: done: total queries = 9
+KLEE: done: valid queries = 2
+KLEE: done: invalid queries = 7
+KLEE: done: query cex = 9
+
+KLEE: done: total instructions = 597
+KLEE: done: completed paths = 8
+KLEE: done: partially completed paths = 4
+KLEE: done: generated tests = 9

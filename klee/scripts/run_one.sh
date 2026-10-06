@@ -32,6 +32,8 @@ while (( $# > 0 )); do
     esac
 done
 max_time="$(normalize_max_time "$max_time")"
+timeout_grace="$(normalize_max_time "${KLEE_TIMEOUT_GRACE:-5s}")"
+hard_timeout="$(add_duration_seconds "$max_time" "$timeout_grace")"
 row="$(manifest_row "$alarm_id")" || die "$alarm_id is absent from $MANIFEST"
 IFS=$'\t' read -r _ function _ <<< "$row"
 
@@ -49,24 +51,37 @@ started_ns="$(date +%s%N)"
     printf 'alarm_id: %s\n' "$alarm_id"
     printf 'function: %s\n' "$function"
     printf 'max_time: %s\n' "$max_time"
+    printf 'hard_timeout: %s\n' "$hard_timeout"
+    printf 'termination_grace: %s\n' "$timeout_grace"
     printf 'started_utc: %s\n\n' "$(date -u --iso-8601=seconds)"
     printf '== build ==\n'
 } > "$run_log"
 
+build_started_ns="$(date +%s%N)"
 target_bc="$($SCRIPT_DIR/build_one.sh "$alarm_id" 2>> "$run_log")"
 build_exit=$?
+build_ended_ns="$(date +%s%N)"
+write_duration_seconds "$build_started_ns" "$build_ended_ns" \
+    "$result_dir/build_seconds.txt"
 if (( build_exit != 0 )); then
     printf 'BUILD_FAILED\n' > "$status_file"
     ended_ns="$(date +%s%N)"
-    awk -v start="$started_ns" -v end="$ended_ns" \
-        'BEGIN { printf "%.3f\n", (end-start)/1000000000 }' > "$result_dir/elapsed_seconds.txt"
+    write_duration_seconds "$started_ns" "$ended_ns" \
+        "$result_dir/elapsed_seconds.txt"
     exit 1
 fi
 
 printf '\n== KLEE ==\n' >> "$run_log"
-"$KLEE" "--max-time=$max_time" "--output-dir=$result_dir/klee-out" \
+klee_started_ns="$(date +%s%N)"
+run_with_hard_timeout "$hard_timeout" 1s \
+    "$KLEE" --watchdog "--max-time=$max_time" \
+    "--output-dir=$result_dir/klee-out" \
     "$target_bc" >> "$run_log" 2>&1
 klee_exit=$?
+klee_ended_ns="$(date +%s%N)"
+write_duration_seconds "$klee_started_ns" "$klee_ended_ns" \
+    "$result_dir/klee_seconds.txt"
+printf '\nklee_exit_status: %s\n' "$klee_exit" >> "$run_log"
 
 target_suffix="${alarm_id,,}.err"
 mapfile -t target_errors < <(
@@ -76,7 +91,7 @@ if (( ${#target_errors[@]} > 0 )); then
     status="WITNESS_FOUND"
     "$SCRIPT_DIR/extract_testcase.sh" "$alarm_id" >> "$run_log" 2>&1 || \
         printf 'warning: witness exists, but testcase extraction failed\n' >> "$run_log"
-elif grep -Eqi 'HaltTimer invoked|time limit|max-time|timed out' "$run_log"; then
+elif klee_timed_out "$klee_exit" "$run_log"; then
     status="TIMEOUT"
 elif (( klee_exit != 0 )); then
     status="KLEE_FAILED"
@@ -86,7 +101,7 @@ fi
 
 printf '%s\n' "$status" > "$status_file"
 ended_ns="$(date +%s%N)"
-awk -v start="$started_ns" -v end="$ended_ns" \
-    'BEGIN { printf "%.3f\n", (end-start)/1000000000 }' > "$result_dir/elapsed_seconds.txt"
+write_duration_seconds "$started_ns" "$ended_ns" \
+    "$result_dir/elapsed_seconds.txt"
 printf '%s: %s (%ss)\n' "$alarm_id" "$status" "$(cat "$result_dir/elapsed_seconds.txt")"
 [[ "$status" != "BUILD_FAILED" && "$status" != "KLEE_FAILED" ]]

@@ -1,0 +1,7 @@
+analysis/eacsl_selective/generated/wp_pruned_101/sources/div_Ccode.c: In function 's16_fac05_div_s16_u16'
+analysis/eacsl_selective/generated/wp_pruned_101/sources/div_Ccode.c:467: Error: RTE failed:
+	The failing predicate is:
+	shift:
+		0 ≤ (int)numerator.
+	With values at failure point:
+	- numerator: -32768

@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+  23852	      0	      0	  23852	   5d2c	/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_selective/work/static_runs/20260821-080737Z/repeat-05/control/generated.o

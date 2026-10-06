@@ -1,0 +1,2 @@
+logical_target_properties=101
+generated_target_check_sites=101

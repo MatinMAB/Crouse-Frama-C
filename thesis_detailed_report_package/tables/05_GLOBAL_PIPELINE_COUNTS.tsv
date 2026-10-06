@@ -1,0 +1,15 @@
+Stage	Outcome	Count	Denominator	Percentage
+Eva baseline	alarms	171	171	100.000000%
+Eva high precision	alarms retained	149	171 baseline	87.134503%
+Eva precision	alarms removed	22	171 baseline	12.865497%
+KLEE	confirmed counterexample	48	149 targets	32.214765%
+KLEE	completed/no-counterexample	15	149 targets	10.067114%
+KLEE	timeout/inconclusive	86	149 targets	57.718121%
+Resolution	confirmed targets resolved	48	48 confirmed	100.000000%
+WP	selected target properties valid	48	48 eligible	100.000000%
+E-ACSL S1	full instrumentation	149	149 properties	100.000000%
+E-ACSL S2	runtime-retained	101	149 properties	67.785235%
+Runtime observation	violation observed	7	101 retained	6.930693%
+Runtime observation	no violation observed	48	101 retained	47.524752%
+Runtime observation	not reached	42	101 retained	41.584158%
+Runtime observation	ambiguous	4	101 retained	3.960396%

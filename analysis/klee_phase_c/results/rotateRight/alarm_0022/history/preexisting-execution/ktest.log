@@ -1,0 +1,27 @@
+Error file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/rotateRight/alarm_0022/build/klee-out-alarm-0022/test000002.klee-alarm-0022.err
+Error: KLEE-ALARM-0022: signed overflow. assert 1 << INT_BITS <= 2147483647;
+File: src_analysis/sources/rotatefunc.c
+Line: 116
+assembly.ll line: 145
+State: 1
+Stack: 
+	#000000145 in rotateRight(num=symbolic, rotation=symbolic) at src_analysis/sources/rotatefunc.c:116
+	#100000036 in main() at klee_harness.c:16
+KTest file: /home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/rotateRight/alarm_0022/build/klee-out-alarm-0022/test000002.ktest
+ktest file : '/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/rotateRight/alarm_0022/build/klee-out-alarm-0022/test000002.ktest'
+args       : ['/home/matin/frama-work/frama-eva-analysis/analysis/klee_phase_c/rotateRight/alarm_0022/build/rotateRight_alarm_0022.bc']
+num objects: 2
+object 0: name: 'num'
+object 0: size: 4
+object 0: data: b'\x00\x00\x00\x00'
+object 0: hex : 0x00000000
+object 0: int : 0
+object 0: uint: 0
+object 0: text: ....
+object 1: name: 'rotation'
+object 1: size: 4
+object 1: data: b'\x01\x00\x00\x00'
+object 1: hex : 0x01000000
+object 1: int : 1
+object 1: uint: 1
+object 1: text: ....

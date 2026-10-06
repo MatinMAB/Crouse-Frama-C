@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+  75911	     40	      0	  75951	  128af	/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_selective/work/static_runs/20260821-080737Z/repeat-07/eva_all_149/generated.o

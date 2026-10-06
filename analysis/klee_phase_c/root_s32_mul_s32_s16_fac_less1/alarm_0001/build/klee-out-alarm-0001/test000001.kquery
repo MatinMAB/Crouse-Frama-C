@@ -1,0 +1,7 @@
+array factor[2] : w32 -> w8 = symbolic
+array value[4] : w32 -> w8 = symbolic
+(query [(Slt 0
+              (SExt w32 (ReadLSB w16 0 factor)))
+         (Eq 2147483648
+             (ReadLSB w32 0 value))]
+        false)

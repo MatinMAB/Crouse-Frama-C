@@ -1,0 +1,40 @@
+Running 3 newly repaired targets in the second WP campaign.
+[kernel] Parsing src_repaired/sources/hip_Ccode.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] not used
+[wp] Proved goals:    1 / 1
+  Qed:             1
+[wp:pedantic-assigns] src_repaired/sources/hip_Ccode.c:187: Warning: 
+  No 'assigns' specification for function 's16_hip1_s16_s8_s8_u16_fac1'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0061/20260820-194527Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/hip_Ccode.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] not used
+[wp] Proved goals:    1 / 1
+  Qed:             1
+[wp:pedantic-assigns] src_repaired/sources/hip_Ccode.c:44: Warning: 
+  No 'assigns' specification for function 's16_hip1_s16_u8_u8_u16_fac1'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0066/20260820-194527Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.
+[kernel] Parsing src_repaired/sources/div_Ccode.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp] [Cache] not used
+[wp] Proved goals:    1 / 1
+  Qed:             1
+[wp:pedantic-assigns] src_repaired/sources/div_Ccode.c:1395: Warning: 
+  No 'assigns' specification for function 'u32_div_s32_s32'.
+  Callers assumptions might be imprecise.
+Frama-C process exit code: 0
+Evidence directory: /home/matin/frama-work/frama-eva-analysis/analysis/wp_phase/results/KLEE-ALARM-0144/20260820-194528Z
+Proof classification is NOT inferred from the process exit code. Inspect wp-report.json.

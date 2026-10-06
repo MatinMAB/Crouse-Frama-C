@@ -1,0 +1,8 @@
+Error: KLEE-ALARM-0004: signed overflow. assert -value <= 2147483647;
+File: src_analysis/sources/mul_Ccode.c
+Line: 5225
+assembly.ll line: 5546
+State: 7
+Stack: 
+	#000005546 in root_s32_mul_s32_s8_fac_less1(value=symbolic, factor=symbolic, count=symbolic) at src_analysis/sources/mul_Ccode.c:5225
+	#100000041 in main() at klee_harness.c:18

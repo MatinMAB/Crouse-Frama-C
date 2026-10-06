@@ -1,0 +1,30 @@
+File '/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_selective/generated/control/sources/MulHword.c'
+Lines executed:51.72% of 29
+
+Creating 'MulHword.gcov.json.gz'
+Lines executed:51.72% of 29
+File '/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_selective/generated/control/sources/avrg_Ccode.c'
+Lines executed:5.76% of 278
+
+Creating 'avrg_Ccode.gcov.json.gz'
+Lines executed:5.76% of 278
+File '/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_selective/generated/control/sources/div_Ccode.c'
+Lines executed:34.57% of 405
+
+Creating 'div_Ccode.gcov.json.gz'
+Lines executed:34.57% of 405
+File '/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_selective/generated/control/sources/hip_Ccode.c'
+Lines executed:38.30% of 94
+
+Creating 'hip_Ccode.gcov.json.gz'
+Lines executed:38.30% of 94
+File '/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_selective/generated/control/sources/mul_Ccode.c'
+Lines executed:16.42% of 1096
+
+Creating 'mul_Ccode.gcov.json.gz'
+Lines executed:16.42% of 1096
+File '/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_selective/generated/control/sources/rotatefunc.c'
+Lines executed:52.63% of 19
+
+Creating 'rotatefunc.gcov.json.gz'
+Lines executed:52.63% of 19

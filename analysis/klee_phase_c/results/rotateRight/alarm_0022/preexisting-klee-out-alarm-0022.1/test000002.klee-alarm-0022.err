@@ -1,0 +1,8 @@
+Error: KLEE-ALARM-0022: signed overflow. assert 1 << INT_BITS <= 2147483647;
+File: src_analysis/sources/rotatefunc.c
+Line: 116
+assembly.ll line: 145
+State: 1
+Stack: 
+	#000000145 in rotateRight(num=symbolic, rotation=symbolic) at src_analysis/sources/rotatefunc.c:116
+	#100000036 in main() at klee_harness.c:16

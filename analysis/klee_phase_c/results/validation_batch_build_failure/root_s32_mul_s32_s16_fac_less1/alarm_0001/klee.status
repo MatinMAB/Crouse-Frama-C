@@ -1,0 +1,8 @@
+alarm_id=0001
+started_at=2026-08-16T10:19:34Z
+finished_at=2026-08-16T10:19:34Z
+timeout_seconds=1800
+elapsed_seconds=0
+exit_code=1
+final_status=PREPARATION_ERROR
+target_error=

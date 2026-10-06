@@ -1,0 +1,8 @@
+Error: KLEE-ALARM-0015: invalid RHS operand for shift. assert 0 <= (u32)(32 - count) < 32;
+File: src_analysis/sources/mul_Ccode.c
+Line: 5316
+assembly.ll line: 6618
+State: 10
+Stack: 
+	#000006618 in root_u32_mul_u32_s16_fac_less1(value=symbolic, factor=symbolic, count=symbolic) at src_analysis/sources/mul_Ccode.c:5316
+	#100000042 in main() at klee_harness.c:18

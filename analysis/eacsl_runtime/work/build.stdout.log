@@ -1,0 +1,45 @@
+PREPARED
+S1=149; WP_VALID=48; S2=101
+S1 functions=33; S2 functions=16
+removed functions=17; mixed functions=6
+[kernel] Parsing analysis/eacsl_selective/generated/eva_all_149/sources/MulHword.c (with preprocessing)
+[kernel] Parsing analysis/eacsl_selective/generated/eva_all_149/sources/avrg_Ccode.c (with preprocessing)
+[kernel:CERT:EXP:46] analysis/eacsl_selective/generated/eva_all_149/sources/avrg_Ccode.c:963: Warning: 
+  operand of bitwise operator is a logical relation
+[kernel:CERT:EXP:46] analysis/eacsl_selective/generated/eva_all_149/sources/avrg_Ccode.c:963: Warning: 
+  operand of bitwise operator is a logical relation
+[kernel:CERT:MSC:37] analysis/eacsl_selective/generated/eva_all_149/sources/avrg_Ccode.c:1003: Warning: 
+  Body of function u32_mmv_u32_u32_s32_fac1 falls-through. Adding a return statement
+[kernel] Parsing analysis/eacsl_selective/generated/eva_all_149/sources/div_Ccode.c (with preprocessing)
+[kernel] Parsing analysis/eacsl_selective/generated/eva_all_149/sources/hip_Ccode.c (with preprocessing)
+[kernel] Parsing analysis/eacsl_selective/generated/eva_all_149/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] analysis/eacsl_selective/generated/eva_all_149/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing analysis/eacsl_selective/generated/eva_all_149/sources/rotatefunc.c (with preprocessing)
+[kernel] Parsing analysis/eacsl_runtime/harness/thesis_runtime_harness.c (with preprocessing)
+[e-acsl] beginning translation.
+[kernel] Parsing FRAMAC_SHARE/e-acsl/e_acsl.h (with preprocessing)
+[e-acsl] translation done in project "e-acsl".
+selection validated: 149 unique generated target-check sites
+[kernel] Parsing analysis/eacsl_selective/generated/wp_pruned_101/sources/MulHword.c (with preprocessing)
+[kernel] Parsing analysis/eacsl_selective/generated/wp_pruned_101/sources/avrg_Ccode.c (with preprocessing)
+[kernel:CERT:EXP:46] analysis/eacsl_selective/generated/wp_pruned_101/sources/avrg_Ccode.c:963: Warning: 
+  operand of bitwise operator is a logical relation
+[kernel:CERT:EXP:46] analysis/eacsl_selective/generated/wp_pruned_101/sources/avrg_Ccode.c:963: Warning: 
+  operand of bitwise operator is a logical relation
+[kernel:CERT:MSC:37] analysis/eacsl_selective/generated/wp_pruned_101/sources/avrg_Ccode.c:1003: Warning: 
+  Body of function u32_mmv_u32_u32_s32_fac1 falls-through. Adding a return statement
+[kernel] Parsing analysis/eacsl_selective/generated/wp_pruned_101/sources/div_Ccode.c (with preprocessing)
+[kernel] Parsing analysis/eacsl_selective/generated/wp_pruned_101/sources/hip_Ccode.c (with preprocessing)
+[kernel] Parsing analysis/eacsl_selective/generated/wp_pruned_101/sources/mul_Ccode.c (with preprocessing)
+[kernel:CERT:MSC:37] analysis/eacsl_selective/generated/wp_pruned_101/sources/mul_Ccode.c:3440: Warning: 
+  Body of function s16_mul_s16_u16_fac025 falls-through. Adding a return statement
+[kernel] Parsing analysis/eacsl_selective/generated/wp_pruned_101/sources/rotatefunc.c (with preprocessing)
+[kernel] Parsing analysis/eacsl_runtime/harness/thesis_runtime_harness.c (with preprocessing)
+[e-acsl] beginning translation.
+[kernel] Parsing FRAMAC_SHARE/e-acsl/e_acsl.h (with preprocessing)
+[e-acsl] translation done in project "e-acsl".
+selection validated: 101 unique generated target-check sites
+/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_runtime/build/S0: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=4edd7cead88f01fb2a277369fd4a27eb77a4e6fe, for GNU/Linux 3.2.0, with debug_info, not stripped
+/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_runtime/build/S1: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=76c3b41c7af12addd1a6df22510b9549fd348b33, for GNU/Linux 3.2.0, with debug_info, not stripped
+/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_runtime/build/S2: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=752a8c3c3b8d52bbe09d528cf6e878fd492557f9, for GNU/Linux 3.2.0, with debug_info, not stripped

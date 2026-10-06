@@ -1,0 +1,36 @@
+/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_runtime/build/eva_all_149.c: In function ‘s32_mul_u32_s32’:
+/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_runtime/build/eva_all_149.c:9958:6: warning: suggest explicit braces to avoid ambiguous ‘else’ [-Wdangling-else]
+ 9958 |   if (val2 < (s32)0)
+      |      ^
+In file included from /home/matin/.opam/4.14.1/bin/../share/frama-c/share/e-acsl/e_acsl_rtl.c:31:
+/home/matin/.opam/4.14.1/bin/../share/frama-c/share/e-acsl/internals/e_acsl_trace.c: In function ‘native_backtrace’:
+/home/matin/.opam/4.14.1/bin/../share/frama-c/share/e-acsl/internals/e_acsl_trace.c:43:13: warning: using a dangling pointer to ‘__csf’ [-Wdangling-pointer=]
+   43 |   top_stack = ({
+      |   ~~~~~~~~~~^~~~
+   44 |     char __csf;
+      |     ~~~~~~~~~~~
+   45 |     &__csf;
+      |     ~~~~~~~  
+   46 |   });
+      |   ~~         
+/home/matin/.opam/4.14.1/bin/../share/frama-c/share/e-acsl/internals/e_acsl_trace.c:44:10: note: ‘__csf’ declared here
+   44 |     char __csf;
+      |          ^~~~~
+/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_runtime/build/wp_pruned_101.c: In function ‘s32_mul_u32_s32’:
+/home/matin/frama-work/frama-eva-analysis/analysis/eacsl_runtime/build/wp_pruned_101.c:9478:6: warning: suggest explicit braces to avoid ambiguous ‘else’ [-Wdangling-else]
+ 9478 |   if (val2 < (s32)0)
+      |      ^
+In file included from /home/matin/.opam/4.14.1/bin/../share/frama-c/share/e-acsl/e_acsl_rtl.c:31:
+/home/matin/.opam/4.14.1/bin/../share/frama-c/share/e-acsl/internals/e_acsl_trace.c: In function ‘native_backtrace’:
+/home/matin/.opam/4.14.1/bin/../share/frama-c/share/e-acsl/internals/e_acsl_trace.c:43:13: warning: using a dangling pointer to ‘__csf’ [-Wdangling-pointer=]
+   43 |   top_stack = ({
+      |   ~~~~~~~~~~^~~~
+   44 |     char __csf;
+      |     ~~~~~~~~~~~
+   45 |     &__csf;
+      |     ~~~~~~~  
+   46 |   });
+      |   ~~         
+/home/matin/.opam/4.14.1/bin/../share/frama-c/share/e-acsl/internals/e_acsl_trace.c:44:10: note: ‘__csf’ declared here
+   44 |     char __csf;
+      |          ^~~~~

@@ -1,0 +1,9 @@
+array denominator[4] : w32 -> w8 = symbolic
+array numerator[4] : w32 -> w8 = symbolic
+(query [(Eq false
+             (Eq 0
+                 N0:(ReadLSB w32 0 denominator)))
+         (Eq false (Slt 0 N0))
+         (Eq 2147483648
+             (ReadLSB w32 0 numerator))]
+        false)

@@ -1,0 +1,4647 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>THESIS_DETAILED_EXPERIMENTAL_REFERENCE_FA</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="report.css" />
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a
+href="#گزارش-جامع-فنی-تحلیلی-و-مفهومی-فرایند-eva-klee-repairspecification-wp-selective-e-acsl"
+id="toc-گزارش-جامع-فنی-تحلیلی-و-مفهومی-فرایند-eva-klee-repairspecification-wp-selective-e-acsl">گزارش
+جامع فنی، تحلیلی و مفهومی فرایند Eva → KLEE → Repair/Specification → WP
+→ Selective E-ACSL</a>
+<ul>
+<li><a href="#خلاصهی-بسیار-فشردهی-کل-پژوهش"
+id="toc-خلاصهی-بسیار-فشردهی-کل-پژوهش">0. خلاصه‌ی بسیار فشرده‌ی کل
+پژوهش</a></li>
+</ul></li>
+<li><a href="#منطق-علمی-و-معماری-کلی-workflow"
+id="toc-منطق-علمی-و-معماری-کلی-workflow">1. منطق علمی و معماری کلی
+workflow</a>
+<ul>
+<li><a href="#مسئلهی-اصلی" id="toc-مسئلهی-اصلی">1.1 مسئله‌ی اصلی</a></li>
+<li><a href="#تصمیمگیری-مرحلهای" id="toc-تصمیمگیری-مرحلهای">1.2
+تصمیم‌گیری مرحله‌ای</a></li>
+<li><a href="#نکتهی-مهم-برای-ادعای-پایاننامه"
+id="toc-نکتهی-مهم-برای-ادعای-پایاننامه">1.3 نکته‌ی مهم برای ادعای
+پایان‌نامه</a></li>
+</ul></li>
+<li><a href="#محیط-مدل-ماشین-و-دامنهی-مطالعه"
+id="toc-محیط-مدل-ماشین-و-دامنهی-مطالعه">2. محیط، مدل ماشین و دامنه‌ی
+مطالعه</a>
+<ul>
+<li><a href="#دامنهی-کد" id="toc-دامنهی-کد">2.1 دامنه‌ی کد</a></li>
+<li><a href="#جداسازی-source-treeها" id="toc-جداسازی-source-treeها">2.2
+جداسازی source treeها</a></li>
+<li><a href="#ابزارها-و-نسخهها" id="toc-ابزارها-و-نسخهها">2.3 ابزارها و
+نسخه‌ها</a></li>
+<li><a href="#مدل-ماشین-و-semantic-gap"
+id="toc-مدل-ماشین-و-semantic-gap">2.4 مدل ماشین و semantic gap</a></li>
+</ul></li>
+<li><a href="#مرحلهی-eva-baseline" id="toc-مرحلهی-eva-baseline">3.
+مرحله‌ی Eva Baseline</a>
+<ul>
+<li><a href="#هدف-baseline" id="toc-هدف-baseline">3.1 هدف
+Baseline</a></li>
+<li><a href="#تنظیمات-اصلی-baseline" id="toc-تنظیمات-اصلی-baseline">3.2
+تنظیمات اصلی Baseline</a>
+<ul>
+<li><a href="#معنای-مفهومی-slevel" id="toc-معنای-مفهومی-slevel">معنای
+مفهومی <code>slevel</code></a></li>
+<li><a href="#معنای-مفهومی-ilevel" id="toc-معنای-مفهومی-ilevel">معنای
+مفهومی <code>ilevel</code></a></li>
+</ul></li>
+<li><a href="#نتیجهی-baseline" id="toc-نتیجهی-baseline">3.3 نتیجه‌ی
+Baseline</a></li>
+<li><a href="#تفسیر-baseline" id="toc-تفسیر-baseline">3.4 تفسیر
+Baseline</a></li>
+<li><a href="#چرا-مرحلهی-بعد-لازم-بود"
+id="toc-چرا-مرحلهی-بعد-لازم-بود">3.5 چرا مرحله‌ی بعد لازم بود؟</a></li>
+<li><a href="#جدولنمودار-مناسب-پایاننامه"
+id="toc-جدولنمودار-مناسب-پایاننامه">3.6 جدول/نمودار مناسب
+پایان‌نامه</a></li>
+</ul></li>
+<li><a href="#مرحلهی-eva-high-precision-و-پالایش-alarmها"
+id="toc-مرحلهی-eva-high-precision-و-پالایش-alarmها">4. مرحله‌ی Eva High
+Precision و پالایش alarmها</a>
+<ul>
+<li><a href="#هدف" id="toc-هدف">4.1 هدف</a></li>
+<li><a href="#profile-نهایی-high-precision"
+id="toc-profile-نهایی-high-precision">4.2 profile نهایی High
+Precision</a></li>
+<li><a href="#منطق-مفهومی-تنظیمات-precision"
+id="toc-منطق-مفهومی-تنظیمات-precision">4.3 منطق مفهومی تنظیمات
+precision</a>
+<ul>
+<li><a href="#slevel-1000-5000"
+id="toc-slevel-1000-5000"><code>slevel: 1000 → 5000</code></a></li>
+<li><a href="#relational-domains-equality-و-octagon"
+id="toc-relational-domains-equality-و-octagon">relational domains:
+equality و octagon</a></li>
+<li><a href="#equality-through-calls-all-و-octagon-through-calls"
+id="toc-equality-through-calls-all-و-octagon-through-calls"><code>equality-through-calls all</code>
+و <code>octagon-through-calls</code></a></li>
+<li><a href="#interprocedural-splitshistory-و-split-return-full"
+id="toc-interprocedural-splitshistory-و-split-return-full">interprocedural
+splits/history و <code>split-return full</code></a></li>
+<li><a href="#subdivide-non-linear-500"
+id="toc-subdivide-non-linear-500"><code>subdivide-non-linear 500</code></a></li>
+<li><a href="#ilevel-1024"
+id="toc-ilevel-1024"><code>ilevel 1024</code></a></li>
+<li><a href="#domain-bitwise" id="toc-domain-bitwise">domain
+<code>bitwise</code></a></li>
+</ul></li>
+<li><a href="#نتیجهی-high-precision" id="toc-نتیجهی-high-precision">4.4
+نتیجه‌ی High Precision</a></li>
+<li><a href="#کدام-توابع-بیشترین-کاهش-را-داشتند"
+id="toc-کدام-توابع-بیشترین-کاهش-را-داشتند">4.5 کدام توابع بیشترین کاهش
+را داشتند؟</a></li>
+<li><a href="#چرا-149-بهعنوان-مجموعهی-authoritative-انتخاب-شد"
+id="toc-چرا-149-بهعنوان-مجموعهی-authoritative-انتخاب-شد">4.6 چرا 149
+به‌عنوان مجموعه‌ی authoritative انتخاب شد؟</a></li>
+<li><a href="#آنچه-در-پایاننامه-باید-برجسته-شود"
+id="toc-آنچه-در-پایاننامه-باید-برجسته-شود">4.7 آنچه در پایان‌نامه باید
+برجسته شود</a></li>
+</ul></li>
+<li><a href="#آمادهسازی-klee-و-طراحی-harnessها"
+id="toc-آمادهسازی-klee-و-طراحی-harnessها">6. آماده‌سازی KLEE و طراحی
+harnessها</a>
+<ul>
+<li><a href="#هدف-klee-در-این-workflow"
+id="toc-هدف-klee-در-این-workflow">6.1 هدف KLEE در این workflow</a></li>
+<li><a href="#چرا-یک-alarm-در-هر-run"
+id="toc-چرا-یک-alarm-در-هر-run">6.2 چرا یک alarm در هر run؟</a></li>
+<li><a href="#symbolic-inputها" id="toc-symbolic-inputها">6.3 symbolic
+inputها</a></li>
+<li><a href="#target-assertion-و-pre-ub-checking"
+id="toc-target-assertion-و-pre-ub-checking">6.4 target assertion و
+pre-UB checking</a></li>
+<li><a href="#defined-prefix-guards-چیست"
+id="toc-defined-prefix-guards-چیست">6.5 Defined-prefix guards
+چیست؟</a></li>
+<li><a href="#semantic-gap-ppc_32-در-برابر-klee-x86-64"
+id="toc-semantic-gap-ppc_32-در-برابر-klee-x86-64">6.6 semantic gap:
+ppc_32 در برابر KLEE x86-64</a></li>
+</ul></li>
+<li><a href="#اجرای-klee-و-نتایج-149-target"
+id="toc-اجرای-klee-و-نتایج-149-target">7. اجرای KLEE و نتایج 149
+target</a>
+<ul>
+<li><a href="#سیاست-اجرا" id="toc-سیاست-اجرا">7.1 سیاست اجرا</a></li>
+<li><a href="#نتیجهی-کلان" id="toc-نتیجهی-کلان">7.2 نتیجه‌ی کلان</a></li>
+<li><a href="#معنای-دقیق-سه-outcome" id="toc-معنای-دقیق-سه-outcome">7.3
+معنای دقیق سه outcome</a>
+<ul>
+<li><a href="#confirmed-counterexample"
+id="toc-confirmed-counterexample">Confirmed counterexample</a></li>
+<li><a href="#completed-no-counterexample"
+id="toc-completed-no-counterexample">Completed / no
+counterexample</a></li>
+<li><a href="#timeout-inconclusive"
+id="toc-timeout-inconclusive">Timeout / inconclusive</a></li>
+</ul></li>
+<li><a href="#نکتهی-timeout-after-witness"
+id="toc-نکتهی-timeout-after-witness">7.4 نکته‌ی timeout after
+witness</a></li>
+<li><a href="#klee-به-تفکیک-نوع-alarm"
+id="toc-klee-به-تفکیک-نوع-alarm">7.5 KLEE به تفکیک نوع alarm</a>
+<ul>
+<li><a href="#تفسیر" id="toc-تفسیر">تفسیر</a></li>
+</ul></li>
+<li><a href="#تمرکز-timeoutها-در-div_ccode.c"
+id="toc-تمرکز-timeoutها-در-div_ccode.c">7.6 تمرکز timeoutها در
+<code>div_Ccode.c</code></a>
+<ul>
+<li><a href="#تفسیر-مفهومی" id="toc-تفسیر-مفهومی">تفسیر مفهومی</a></li>
+</ul></li>
+<li><a href="#هزینهی-زمانی-klee" id="toc-هزینهی-زمانی-klee">7.7 هزینه‌ی
+زمانی KLEE</a></li>
+<li><a href="#نمودارجدول-پیشنهادی-پایاننامه"
+id="toc-نمودارجدول-پیشنهادی-پایاننامه">7.8 نمودار/جدول پیشنهادی
+پایان‌نامه</a></li>
+</ul></li>
+<li><a href="#traceability-counterexampleهای-klee"
+id="toc-traceability-counterexampleهای-klee">8. Traceability
+Counterexampleهای KLEE</a>
+<ul>
+<li><a href="#معیار-پذیرش-witness" id="toc-معیار-پذیرش-witness">8.1
+معیار پذیرش witness</a></li>
+<li><a href="#نمونهی-alarm-0001" id="toc-نمونهی-alarm-0001">8.2 نمونه‌ی
+Alarm 0001</a></li>
+<li><a href="#نمونهی-alarm-0002" id="toc-نمونهی-alarm-0002">8.3 نمونه‌ی
+Alarm 0002</a></li>
+<li><a href="#ارزش-این-مرحله-برای-methodology"
+id="toc-ارزش-این-مرحله-برای-methodology">8.4 ارزش این مرحله برای
+methodology</a></li>
+</ul></li>
+<li><a href="#مرحلهی-repair-اولیه-برای-klee-confirmed-targetها"
+id="toc-مرحلهی-repair-اولیه-برای-klee-confirmed-targetها">9. مرحله‌ی
+Repair اولیه برای KLEE-confirmed targetها</a>
+<ul>
+<li><a href="#ورودی-مرحله" id="toc-ورودی-مرحله">9.1 ورودی مرحله</a></li>
+<li><a href="#چرا-فقط-48-مورد-repair-candidate-شدند"
+id="toc-چرا-فقط-48-مورد-repair-candidate-شدند">9.2 چرا فقط 48 مورد
+repair candidate شدند؟</a></li>
+<li><a href="#اصل-minimal-repair" id="toc-اصل-minimal-repair">9.3 اصل
+Minimal Repair</a></li>
+<li><a href="#نتیجهی-فاز-اول-repair" id="toc-نتیجهی-فاز-اول-repair">9.4
+نتیجه‌ی فاز اول repair</a></li>
+<li><a href="#نمونهی-repair-int32_min-negation"
+id="toc-نمونهی-repair-int32_min-negation">9.5 نمونه‌ی repair:
+<code>INT32_MIN</code> negation</a></li>
+<li><a href="#چرا-16-مورد-فورا-repair-نشدند"
+id="toc-چرا-16-مورد-فورا-repair-نشدند">9.6 چرا 16 مورد فوراً repair
+نشدند؟</a></li>
+</ul></li>
+<li><a
+href="#shift-specification-study-آیا-مشکل-implementation-است-یا-contract"
+id="toc-shift-specification-study-آیا-مشکل-implementation-است-یا-contract">11.
+Shift Specification Study: آیا مشکل implementation است یا contract؟</a>
+<ul>
+<li><a href="#مسئله" id="toc-مسئله">11.1 مسئله</a></li>
+<li><a href="#تحلیل-callerها" id="toc-تحلیل-callerها">11.2 تحلیل
+callerها</a></li>
+<li><a href="#پنج-target-با-repository-contract"
+id="toc-پنج-target-با-repository-contract">11.3 پنج target با Repository
+Contract</a>
+<ul>
+<li><a href="#و-0015" id="toc-و-0015">0014 و 0015</a></li>
+<li><a href="#section" id="toc-section">0019</a></li>
+<li><a href="#و-0021" id="toc-و-0021">0020 و 0021</a></li>
+</ul></li>
+<li><a href="#هشت-target-unresolved-در-این-مرحله"
+id="toc-هشت-target-unresolved-در-این-مرحله">11.4 هشت target unresolved
+در این مرحله</a>
+<ul>
+<li><a href="#اهمیت-علمی" id="toc-اهمیت-علمی">اهمیت علمی</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#final-shift-semantic-resolution"
+id="toc-final-shift-semantic-resolution">12. Final Shift Semantic
+Resolution</a>
+<ul>
+<li><a href="#هدف-1" id="toc-هدف-1">12.1 هدف</a></li>
+<li><a href="#سه-نوع-resolution-نهایی-در-48-target"
+id="toc-سه-نوع-resolution-نهایی-در-48-target">12.2 سه نوع resolution
+نهایی در 48 target</a></li>
+<li><a href="#هشت-thesis-interface-policy"
+id="toc-هشت-thesis-interface-policy">12.3 هشت Thesis Interface
+Policy</a></li>
+<li><a href="#تغییرات-sourcespecification"
+id="toc-تغییرات-sourcespecification">12.4 تغییرات
+source/specification</a></li>
+<li><a href="#wording-صحیح-برای-پایاننامه"
+id="toc-wording-صحیح-برای-پایاننامه">12.5 wording صحیح برای
+پایان‌نامه</a></li>
+</ul></li>
+<li><a href="#روش-wp-اثبات-property-اصلی-بعد-از-resolution"
+id="toc-روش-wp-اثبات-property-اصلی-بعد-از-resolution">13. روش WP: اثبات
+property اصلی بعد از resolution</a>
+<ul>
+<li><a href="#سؤال-wp" id="toc-سؤال-wp">13.1 سؤال WP</a></li>
+<li><a href="#تنظیمات-اصلی" id="toc-تنظیمات-اصلی">13.2 تنظیمات
+اصلی</a></li>
+<li><a href="#چرا--wp-rte-استفاده-نشد"
+id="toc-چرا--wp-rte-استفاده-نشد">13.3 چرا <code>-wp-rte</code> استفاده
+نشد؟</a></li>
+<li><a href="#classification-صحیح" id="toc-classification-صحیح">13.4
+Classification صحیح</a></li>
+<li><a href="#preconditions-در-13-shift-target"
+id="toc-preconditions-در-13-shift-target">13.5 Preconditions در 13 shift
+target</a></li>
+</ul></li>
+<li><a href="#wp-campaign-اول-32-target"
+id="toc-wp-campaign-اول-32-target">14. WP Campaign اول: 32 target</a>
+<ul>
+<li><a href="#scope" id="toc-scope">14.1 Scope</a></li>
+<li><a href="#نتیجه" id="toc-نتیجه">14.2 نتیجه</a></li>
+<li><a href="#prover-contribution" id="toc-prover-contribution">14.3
+prover contribution</a></li>
+<li><a href="#زمان" id="toc-زمان">14.4 زمان</a></li>
+</ul></li>
+<li><a href="#wp-campaign-دوم-0061-0066-و-0144"
+id="toc-wp-campaign-دوم-0061-0066-و-0144">15. WP Campaign دوم: 0061،
+0066 و 0144</a></li>
+<li><a href="#wp-campaign-نهایی-13-shift-target"
+id="toc-wp-campaign-نهایی-13-shift-target">16. WP Campaign نهایی 13
+shift target</a>
+<ul>
+<li><a href="#دو-origin-متفاوت" id="toc-دو-origin-متفاوت">16.1 دو origin
+متفاوت</a></li>
+<li><a href="#نتیجهی-prover" id="toc-نتیجهی-prover">16.2 نتیجه‌ی
+prover</a></li>
+</ul></li>
+<li><a href="#نتیجهی-نهایی-wp-برای-48-target"
+id="toc-نتیجهی-نهایی-wp-برای-48-target">17. نتیجه‌ی نهایی WP برای 48
+target</a>
+<ul>
+<li><a href="#جمعبندی-campaignها" id="toc-جمعبندی-campaignها">17.1
+جمع‌بندی campaignها</a></li>
+<li><a href="#prover-accounting-کل" id="toc-prover-accounting-کل">17.2
+Prover accounting کل</a></li>
+<li><a href="#ادعای-دقیق" id="toc-ادعای-دقیق">17.3 ادعای دقیق</a></li>
+<li><a href="#نتیجهی-methodological" id="toc-نتیجهی-methodological">17.4
+نتیجه‌ی methodological</a></li>
+</ul></li>
+<li><a href="#ارزیابی-static-e-acsl" id="toc-ارزیابی-static-e-acsl">19.
+ارزیابی Static E-ACSL</a>
+<ul>
+<li><a href="#هدف-2" id="toc-هدف-2">19.1 هدف</a></li>
+<li><a href="#روش-اندازهگیری" id="toc-روش-اندازهگیری">19.2 روش
+اندازه‌گیری</a></li>
+<li><a href="#کاهش-logical-properties-و-functions"
+id="toc-کاهش-logical-properties-و-functions">19.3 کاهش logical
+properties و functions</a></li>
+<li><a href="#generated-c" id="toc-generated-c">19.4 Generated
+C</a></li>
+<li><a href="#instrumentation-time" id="toc-instrumentation-time">19.5
+Instrumentation time</a>
+<ul>
+<li><a href="#تفسیر-1" id="toc-تفسیر-1">تفسیر</a></li>
+</ul></li>
+<li><a href="#compilation-time" id="toc-compilation-time">19.6
+Compilation time</a></li>
+<li><a href="#objecttext-size" id="toc-objecttext-size">19.7 Object/Text
+size</a></li>
+<li><a href="#نمودار-static-reductions"
+id="toc-نمودار-static-reductions">19.8 نمودار static reductions</a></li>
+<li><a href="#نتیجهی-علمی" id="toc-نتیجهی-علمی">19.9 نتیجه‌ی
+علمی</a></li>
+</ul></li>
+<li><a href="#طراحی-dynamic-e-acsl-workload"
+id="toc-طراحی-dynamic-e-acsl-workload">20. طراحی Dynamic E-ACSL
+Workload</a>
+<ul>
+<li><a href="#چرا-workload-جدید-ساخته-شد"
+id="toc-چرا-workload-جدید-ساخته-شد">20.1 چرا workload جدید ساخته
+شد؟</a></li>
+<li><a href="#ویژگیهای-workload" id="toc-ویژگیهای-workload">20.2
+ویژگی‌های workload</a></li>
+<li><a href="#چرا-اجرای-تمام-33-function-مهم-است"
+id="toc-چرا-اجرای-تمام-33-function-مهم-است">20.3 چرا اجرای تمام 33
+function مهم است؟</a></li>
+<li><a href="#functional-equivalence"
+id="toc-functional-equivalence">20.4 Functional equivalence</a></li>
+<li><a href="#چرا-x86-64-runtime" id="toc-چرا-x86-64-runtime">20.5 چرا
+x86-64 runtime؟</a></li>
+</ul></li>
+<li><a href="#نتایج-dynamic-performance"
+id="toc-نتایج-dynamic-performance">21. نتایج Dynamic Performance</a>
+<ul>
+<li><a href="#wall-clock-statistics" id="toc-wall-clock-statistics">21.1
+Wall-clock statistics</a></li>
+<li><a href="#overhead-نسبت-به-control"
+id="toc-overhead-نسبت-به-control">21.2 Overhead نسبت به Control</a></li>
+<li><a href="#runtime-saving-اصلی" id="toc-runtime-saving-اصلی">21.3
+Runtime saving اصلی</a></li>
+<li><a href="#چه-مقدار-از-overhead-e-acsl-حذف-شد"
+id="toc-چه-مقدار-از-overhead-e-acsl-حذف-شد">21.4 چه مقدار از overhead
+E-ACSL حذف شد؟</a></li>
+<li><a href="#memory" id="toc-memory">21.5 Memory</a></li>
+<li><a href="#چرا-32-check-reduction-فقط-18-runtime-saving-داد"
+id="toc-چرا-32-check-reduction-فقط-18-runtime-saving-داد">21.6 چرا 32%
+check reduction فقط 18% runtime saving داد؟</a></li>
+</ul></li>
+<li><a href="#runtime-property-observation-روی-101-property-retained"
+id="toc-runtime-property-observation-روی-101-property-retained">22.
+Runtime Property Observation روی 101 property retained</a>
+<ul>
+<li><a href="#هدف-3" id="toc-هدف-3">22.1 هدف</a></li>
+<li><a href="#نتیجه-1" id="toc-نتیجه-1">22.2 نتیجه</a></li>
+<li><a href="#معنای-no_violation_observed"
+id="toc-معنای-no_violation_observed">22.3 معنای
+NO_VIOLATION_OBSERVED</a></li>
+<li><a href="#معنای-not_reached" id="toc-معنای-not_reached">22.4 معنای
+NOT_REACHED</a></li>
+<li><a href="#ambiguous_output" id="toc-ambiguous_output">22.5
+AMBIGUOUS_OUTPUT</a></li>
+</ul></li>
+<li><a href="#هفت-e-acsl-runtime-violation-و-مکمل-بودن-با-klee"
+id="toc-هفت-e-acsl-runtime-violation-و-مکمل-بودن-با-klee">23. هفت E-ACSL
+Runtime Violation و مکمل بودن با KLEE</a>
+<ul>
+<li><a href="#هفت-مورد" id="toc-هفت-مورد">23.1 هفت مورد</a></li>
+<li><a href="#الگوی-predicates" id="toc-الگوی-predicates">23.2 الگوی
+predicates</a></li>
+<li><a href="#نتیجهی-complementarity"
+id="toc-نتیجهی-complementarity">23.3 نتیجه‌ی complementarity</a></li>
+<li><a href="#runtime-observation-به-تفکیک-klee-cohort"
+id="toc-runtime-observation-به-تفکیک-klee-cohort">23.4 Runtime
+observation به تفکیک KLEE cohort</a></li>
+</ul></li>
+<li><a href="#جدول-مرکزی-پیشنهادی-برای-پایاننامه"
+id="toc-جدول-مرکزی-پیشنهادی-برای-پایاننامه">25. جدول مرکزی پیشنهادی برای
+پایان‌نامه</a></li>
+<li><a href="#نمودارهایی-که-برای-پایاننامه-مناسباند"
+id="toc-نمودارهایی-که-برای-پایاننامه-مناسباند">26. نمودارهایی که برای
+پایان‌نامه مناسب‌اند</a>
+<ul>
+<li><a href="#figure-a-نوع-alarm-قبل-و-بعد-از-precision"
+id="toc-figure-a-نوع-alarm-قبل-و-بعد-از-precision">Figure A — نوع alarm
+قبل و بعد از precision</a></li>
+<li><a href="#figure-b-اعداد-اصلی-pipeline"
+id="toc-figure-b-اعداد-اصلی-pipeline">Figure B — اعداد اصلی
+pipeline</a></li>
+<li><a href="#figure-c-klee-outcome-distribution"
+id="toc-figure-c-klee-outcome-distribution">Figure C — KLEE outcome
+distribution</a></li>
+<li><a href="#figure-d-klee-outcome-by-alarm-type"
+id="toc-figure-d-klee-outcome-by-alarm-type">Figure D — KLEE outcome by
+alarm type</a></li>
+<li><a href="#figure-e-resolution-cohorts"
+id="toc-figure-e-resolution-cohorts">Figure E — Resolution
+cohorts</a></li>
+<li><a href="#figure-f-s1s2-property-و-function-count"
+id="toc-figure-f-s1s2-property-و-function-count">Figure F — S1/S2
+property و function count</a></li>
+<li><a href="#figure-g-static-reductions"
+id="toc-figure-g-static-reductions">Figure G — Static
+reductions</a></li>
+<li><a href="#figure-h-runtime-s0s1s2"
+id="toc-figure-h-runtime-s0s1s2">Figure H — Runtime S0/S1/S2</a></li>
+<li><a href="#figure-i-runtime-observation-outcomes"
+id="toc-figure-i-runtime-observation-outcomes">Figure I — Runtime
+observation outcomes</a></li>
+<li><a href="#figure-j-top-eva-functions"
+id="toc-figure-j-top-eva-functions">Figure J — Top Eva
+functions</a></li>
+<li><a href="#figure-k-kleee-acsl-complementarity"
+id="toc-figure-k-kleee-acsl-complementarity">Figure K — KLEE/E-ACSL
+complementarity</a></li>
+</ul></li>
+<li><a href="#threats-to-validity-و-محدودیتها"
+id="toc-threats-to-validity-و-محدودیتها">27. Threats to Validity و
+محدودیت‌ها</a>
+<ul>
+<li><a href="#eva-precision-sensitivity"
+id="toc-eva-precision-sensitivity">27.1 Eva precision
+sensitivity</a></li>
+<li><a href="#klee-bounded-search" id="toc-klee-bounded-search">27.2
+KLEE bounded search</a></li>
+<li><a href="#ppc_32-vs-klee-model" id="toc-ppc_32-vs-klee-model">27.3
+ppc_32 vs KLEE model</a></li>
+<li><a href="#wp-proof-scope" id="toc-wp-proof-scope">27.4 WP proof
+scope</a></li>
+<li><a href="#e-acsl-property-filtering"
+id="toc-e-acsl-property-filtering">27.5 E-ACSL property
+filtering</a></li>
+<li><a href="#static-object-metrics" id="toc-static-object-metrics">27.6
+Static object metrics</a></li>
+<li><a href="#runtime-architecture" id="toc-runtime-architecture">27.7
+Runtime architecture</a></li>
+<li><a href="#controlled-workload" id="toc-controlled-workload">27.8
+Controlled workload</a></li>
+<li><a href="#noise-و-statistics" id="toc-noise-و-statistics">27.9 Noise
+و statistics</a></li>
+<li><a href="#finite-runtime-corpus"
+id="toc-finite-runtime-corpus">27.10 Finite runtime corpus</a></li>
+</ul></li>
+<li><a href="#supported-claims-و-non-claims"
+id="toc-supported-claims-و-non-claims">28. Supported Claims و
+Non-Claims</a>
+<ul>
+<li><a href="#claimهایی-که-دادهها-پشتیبانی-میکنند"
+id="toc-claimهایی-که-دادهها-پشتیبانی-میکنند">28.1 Claimهایی که داده‌ها
+پشتیبانی می‌کنند</a></li>
+<li><a href="#claimهایی-که-نباید-بیان-شوند"
+id="toc-claimهایی-که-نباید-بیان-شوند">28.2 Claimهایی که نباید بیان
+شوند</a></li>
+</ul></li>
+<li><a href="#contributionهایی-که-از-پروژه-قابل-استخراجاند"
+id="toc-contributionهایی-که-از-پروژه-قابل-استخراجاند">29.
+Contributionهایی که از پروژه قابل استخراج‌اند</a>
+<ul>
+<li><a href="#c1-workflow-ترکیبی-property-centred"
+id="toc-c1-workflow-ترکیبی-property-centred">C1 — Workflow ترکیبی
+property-centred</a></li>
+<li><a href="#c2-end-to-end-traceability"
+id="toc-c2-end-to-end-traceability">C2 — End-to-End
+Traceability</a></li>
+<li><a href="#c3-counterexample-guided-semantic-resolution"
+id="toc-c3-counterexample-guided-semantic-resolution">C3 —
+Counterexample-guided semantic resolution</a></li>
+<li><a href="#c4-preservation-of-original-eva-property"
+id="toc-c4-preservation-of-original-eva-property">C4 — Preservation of
+Original Eva Property</a></li>
+<li><a href="#c5-taxonomy-of-resolution"
+id="toc-c5-taxonomy-of-resolution">C5 — Taxonomy of Resolution</a></li>
+<li><a href="#c6-wp-guided-selective-instrumentation"
+id="toc-c6-wp-guided-selective-instrumentation">C6 — WP-guided Selective
+Instrumentation</a></li>
+<li><a href="#c7-empirical-static-cost-evaluation"
+id="toc-c7-empirical-static-cost-evaluation">C7 — Empirical Static Cost
+Evaluation</a></li>
+<li><a href="#c8-empirical-dynamic-cost-evaluation"
+id="toc-c8-empirical-dynamic-cost-evaluation">C8 — Empirical Dynamic
+Cost Evaluation</a></li>
+<li><a href="#c9-complementarity-evidence"
+id="toc-c9-complementarity-evidence">C9 — Complementarity
+Evidence</a></li>
+</ul></li>
+<li><a href="#پیشنهاد-ساختار-ارائهی-نتایج-در-هر-فصل-دلخواه"
+id="toc-پیشنهاد-ساختار-ارائهی-نتایج-در-هر-فصل-دلخواه">30. پیشنهاد ساختار
+ارائه‌ی نتایج در هر فصل دلخواه</a>
+<ul>
+<li><a href="#بلوک-a-methodology" id="toc-بلوک-a-methodology">بلوک A —
+Methodology</a></li>
+<li><a href="#بلوک-b-implementation-experimental-setup"
+id="toc-بلوک-b-implementation-experimental-setup">بلوک B —
+Implementation / Experimental Setup</a></li>
+<li><a href="#بلوک-c-results" id="toc-بلوک-c-results">بلوک C —
+Results</a></li>
+<li><a href="#بلوک-d-discussion" id="toc-بلوک-d-discussion">بلوک D —
+Discussion</a></li>
+</ul></li>
+<li><a
+href="#منابع-artifact-داخل-repository-برای-استناد-فنی-هنگام-نوشتن"
+id="toc-منابع-artifact-داخل-repository-برای-استناد-فنی-هنگام-نوشتن">31.
+منابع artifact داخل repository برای استناد فنی هنگام نوشتن</a>
+<ul>
+<li><a href="#eva" id="toc-eva">Eva</a></li>
+<li><a href="#klee" id="toc-klee">KLEE</a></li>
+<li><a href="#acsl-repair" id="toc-acsl-repair">ACSL / Repair</a></li>
+<li><a href="#wp" id="toc-wp">WP</a></li>
+<li><a href="#e-acsl" id="toc-e-acsl">E-ACSL</a></li>
+<li><a href="#master-traceability" id="toc-master-traceability">Master
+traceability</a></li>
+</ul></li>
+<li><a href="#جمعبندی-نهایی-مفهومی" id="toc-جمعبندی-نهایی-مفهومی">32.
+جمع‌بندی نهایی مفهومی</a></li>
+<li><a href="#appendix-a-دادههای-عددی-سریع-برای-استفاده-در-متناسلاید"
+id="toc-appendix-a-دادههای-عددی-سریع-برای-استفاده-در-متناسلاید">Appendix
+A — داده‌های عددی سریع برای استفاده در متن/اسلاید</a></li>
+<li><a href="#appendix-b-جدول-کامل-46-تابع-eva-و-klee"
+id="toc-appendix-b-جدول-کامل-46-تابع-eva-و-klee">Appendix B — جدول کامل
+46 تابع: Eva و KLEE</a></li>
+<li><a href="#appendix-c-klee-به-تفکیک-نوع-alarm"
+id="toc-appendix-c-klee-به-تفکیک-نوع-alarm">Appendix C — KLEE به تفکیک
+نوع alarm</a></li>
+<li><a href="#appendix-d-توزیع-targetها-بر-اساس-source-file"
+id="toc-appendix-d-توزیع-targetها-بر-اساس-source-file">Appendix D —
+توزیع targetها بر اساس source file</a></li>
+<li><a href="#appendix-e-هفت-runtime-violation-مشاهدهشده"
+id="toc-appendix-e-هفت-runtime-violation-مشاهدهشده">Appendix E — هفت
+runtime violation مشاهده‌شده</a></li>
+</ul>
+</nav>
+<h1
+id="گزارش-جامع-فنی-تحلیلی-و-مفهومی-فرایند-eva-klee-repairspecification-wp-selective-e-acsl">گزارش
+جامع فنی، تحلیلی و مفهومی فرایند Eva → KLEE → Repair/Specification → WP
+→ Selective E-ACSL</h1>
+<blockquote>
+<p><strong>کاربرد این سند:</strong> این متن یک «مرجع استنتاج برای نگارش
+پایان‌نامه» است، نه نسخه‌ی نهایی فصل‌بندی‌شده‌ی پایان‌نامه. هدف آن این است که
+تمام منطق، تنظیمات، داده‌ها، تصمیم‌ها، نتایج، محدودیت‌ها، جدول‌ها و
+نمودارهای لازم را در یک جا جمع کند تا بتوان از هر قسمت، متناسب با ساختار
+فصل‌های پایان‌نامه، متن نهایی استخراج کرد.</p>
+</blockquote>
+<hr />
+<h2 id="خلاصهی-بسیار-فشردهی-کل-پژوهش">0. خلاصه‌ی بسیار فشرده‌ی کل
+پژوهش</h2>
+<p>در این پروژه، 46 تابع C عمدتاً مرتبط با محاسبات fixed-point، ضرب،
+تقسیم، high-pass، average و rotate با یک workflow چندمرحله‌ای بررسی
+شده‌اند. منطق اصلی workflow این بوده است که <strong>هیچ ابزار به‌تنهایی
+به‌عنوان داور نهایی همه‌ی alarmها در نظر گرفته نشود</strong> و نوع شواهد
+هر ابزار حفظ شود:</p>
+<ol type="1">
+<li><strong>Eva</strong> مجموعه‌ای از رخدادهای بالقوه‌ی ناامن را با
+abstract interpretation تولید می‌کند.</li>
+<li>با <strong>افزایش precision Eva</strong> بخشی از هشدارهای ناشی از
+از‌دست‌رفتن دقت حذف می‌شوند.</li>
+<li>هر alarm باقی‌مانده به یک property دقیق و occurrence-aware تبدیل
+می‌شود.</li>
+<li><strong>KLEE</strong> برای هر property تلاش می‌کند یک witness
+concrete بسازد.</li>
+<li>اگر KLEE counterexample بسازد، آن property وارد مرحله‌ی
+<strong>semantic resolution</strong> می‌شود؛ یعنی ابتدا باید مشخص شود
+رفتار صحیح چیست، سپس repair یا specification انجام شود.</li>
+<li>property اصلی Eva حفظ می‌شود و <strong>WP</strong> دقیقاً همان
+property را بعد از resolution اثبات می‌کند.</li>
+<li>propertyهایی که WP ثابت کرده، از <strong>runtime instrumentation با
+E-ACSL</strong> حذف می‌شوند؛ propertyهای حل‌نشده برای runtime monitoring
+باقی می‌مانند.</li>
+<li>تأثیر این pruning هم به‌صورت <strong>static</strong> و هم
+<strong>dynamic</strong> اندازه‌گیری می‌شود.</li>
+<li>E-ACSL برای بخشی از propertyهایی که KLEE روی آن‌ها timeout شده بود،
+violation concrete مشاهده می‌کند و مکمل بودن دو روش نشان داده می‌شود.</li>
+</ol>
+<p>خلاصه‌ی کمی:</p>
+<table>
+<thead>
+<tr class="header">
+<th>مرحله</th>
+<th style="text-align: right;">نتیجه</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>توابع in-scope</td>
+<td style="text-align: right;">46</td>
+</tr>
+<tr class="even">
+<td>Eva baseline alarms</td>
+<td style="text-align: right;">171</td>
+</tr>
+<tr class="odd">
+<td>Eva high-precision alarms</td>
+<td style="text-align: right;">149</td>
+</tr>
+<tr class="even">
+<td>حذف‌شده با precision بیشتر</td>
+<td style="text-align: right;">22 (12.865497%)</td>
+</tr>
+<tr class="odd">
+<td>KLEE counterexample</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr class="even">
+<td>KLEE completed / no counterexample</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td>KLEE timeout / inconclusive</td>
+<td style="text-align: right;">86</td>
+</tr>
+<tr class="even">
+<td>propertyهای materialized به ACSL</td>
+<td style="text-align: right;">149/149</td>
+</tr>
+<tr class="odd">
+<td>resolution برای KLEE-confirmed</td>
+<td style="text-align: right;">48/48</td>
+</tr>
+<tr class="even">
+<td>WP-valid target properties</td>
+<td style="text-align: right;">48/48</td>
+</tr>
+<tr class="odd">
+<td>E-ACSL S1</td>
+<td style="text-align: right;">149 property</td>
+</tr>
+<tr class="even">
+<td>E-ACSL S2 پس از WP pruning</td>
+<td style="text-align: right;">101 property</td>
+</tr>
+<tr class="odd">
+<td>کاهش logical runtime checks</td>
+<td style="text-align: right;">32.214765%</td>
+</tr>
+<tr class="even">
+<td>کاهش median instrumentation time</td>
+<td style="text-align: right;">10.432191%</td>
+</tr>
+<tr class="odd">
+<td>کاهش median runtime S2 نسبت به S1</td>
+<td style="text-align: right;">18.055728%</td>
+</tr>
+<tr class="even">
+<td>runtime violations مشاهده‌شده در 101 مورد</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td>آن 7 مورد از KLEE timeout cohort</td>
+<td style="text-align: right;">7/7</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="figures/02_pipeline_counts.png"
+alt="نمای کلی شمارش‌های اصلی" />
+<figcaption aria-hidden="true">نمای کلی شمارش‌های اصلی</figcaption>
+</figure>
+<hr />
+<h1 id="منطق-علمی-و-معماری-کلی-workflow">1. منطق علمی و معماری کلی
+workflow</h1>
+<h2 id="مسئلهی-اصلی">1.1 مسئله‌ی اصلی</h2>
+<p>هشدار یک static analyzer الزاماً «bug قطعی» نیست. برای مثال Eva ممکن
+است به‌علت over-approximation نتواند ثابت کند که یک overflow یا shift
+نامعتبر رخ نمی‌دهد. از طرف دیگر، نبود counterexample در symbolic
+execution نیز الزاماً proof نیست، چون search محدود به زمان، مسیر،
+constraint و harness است. همچنین runtime monitoring فقط رفتار ورودی‌های
+اجراشده را می‌بیند و نمی‌تواند absence of violation را اثبات کند.</p>
+<p>بنابراین طراحی workflow بر پایه‌ی <strong>تفکیک نوع evidence</strong>
+انجام شده است:</p>
+<ul>
+<li><strong>Eva alarm:</strong> امکان violation در abstraction.</li>
+<li><strong>KLEE counterexample:</strong> witness concrete در مدل و
+harness KLEE.</li>
+<li><strong>KLEE no-counterexample:</strong> فقط عدم یافتن witness در
+search انجام‌شده.</li>
+<li><strong>KLEE timeout:</strong> نامشخص/inconclusive.</li>
+<li><strong>WP valid:</strong> proof deductive برای property انتخاب‌شده و
+assumptions ثبت‌شده.</li>
+<li><strong>E-ACSL violation:</strong> witness concrete در execution
+مشخص.</li>
+<li><strong>E-ACSL no violation:</strong> صرفاً عدم مشاهده در test
+corpus.</li>
+</ul>
+<p>این تمایز باید در متن پایان‌نامه حفظ شود؛ زیرا یکی از نقاط قوت روش این
+است که uncertainty در مرز مراحل از بین برده نشده است.</p>
+<h2 id="تصمیمگیری-مرحلهای">1.2 تصمیم‌گیری مرحله‌ای</h2>
+<p>قواعد مفهومی workflow را می‌توان به‌صورت زیر بیان کرد:</p>
+<pre class="text"><code>Eva alarm
+   ↓
+Occurrence-specific property
+   ↓
+KLEE
+   ├── Counterexample
+   │      ↓
+   │   Semantic resolution
+   │      ↓
+   │   Repair / Contract / Interface policy
+   │      ↓
+   │   Preserve original Eva property
+   │      ↓
+   │      WP
+   │      ├── Valid → eligible for runtime pruning
+   │      └── Unresolved → retain for runtime
+   │
+   ├── Completed / no counterexample → retain for runtime
+   │
+   └── Timeout / inconclusive → retain for runtime
+
+Runtime-retained properties
+   ↓
+E-ACSL</code></pre>
+<p>این معماری یک workflow <strong>property-centred</strong> است، نه فقط
+tool-centred. هویت هر مورد از alarm اولیه تا WP و E-ACSL حفظ شده
+است.</p>
+<h2 id="نکتهی-مهم-برای-ادعای-پایاننامه">1.3 نکته‌ی مهم برای ادعای
+پایان‌نامه</h2>
+<p>ادعای درست:</p>
+<blockquote>
+<p>«یک workflow ترکیبی طراحی و ارزیابی شد که از Eva برای استخراج
+candidate safety properties، از KLEE برای تولید witness، از resolution و
+WP برای اثبات propertyهای حل‌شده، و از E-ACSL برای پایش runtime
+propertyهای باقی‌مانده استفاده می‌کند؛ سپس نتایج WP برای selective
+instrumentation به کار می‌روند.»</p>
+</blockquote>
+<p>ادعای نادرست:</p>
+<blockquote>
+<p>«کل برنامه formally verified شده است.»</p>
+</blockquote>
+<p>در این پروژه WP فقط propertyهای هدف را بررسی کرده و
+<code>-wp-rte</code> نیز عمداً استفاده نشده است.</p>
+<hr />
+<h1 id="محیط-مدل-ماشین-و-دامنهی-مطالعه">2. محیط، مدل ماشین و دامنه‌ی
+مطالعه</h1>
+<h2 id="دامنهی-کد">2.1 دامنه‌ی کد</h2>
+<p>جمعیت ثابت مطالعه شامل <strong>46 تابع</strong> است. این توابع در شش
+translation unit اصلی قرار دارند:</p>
+<ul>
+<li><code>MulHword.c</code></li>
+<li><code>avrg_Ccode.c</code></li>
+<li><code>div_Ccode.c</code></li>
+<li><code>hip_Ccode.c</code></li>
+<li><code>mul_Ccode.c</code></li>
+<li><code>rotatefunc.c</code></li>
+</ul>
+<p>فایل مرجع جمعیت توابع:</p>
+<p><code>analysis/high_precision/functions.txt</code></p>
+<p>و manifest اصلی:</p>
+<p><code>analysis/high_precision/manifest.tsv</code></p>
+<p>از 46 تابع، 13 تابع در High-Precision Eva هیچ alarm نداشته‌اند؛
+بنابراین 33 تابع حداقل یک property هدف داشته‌اند.</p>
+<h2 id="جداسازی-source-treeها">2.2 جداسازی source treeها</h2>
+<p>سه نقش منبع باید در پایان‌نامه توضیح داده شود:</p>
+<ul>
+<li><code>src_original</code>: کد اصلی/مرجع.</li>
+<li><code>src_analysis</code>: کد freeze‌شده برای تحلیل Eva و استخراج
+evidence.</li>
+<li><code>src_repaired</code>: tree جداگانه برای materialization
+propertyها، repair و specification resolution.</li>
+</ul>
+<p>این جداسازی از نظر روش تحقیق مهم است، زیرا از مخلوط‌شدن evidence قبل و
+بعد از repair جلوگیری می‌کند.</p>
+<h2 id="ابزارها-و-نسخهها">2.3 ابزارها و نسخه‌ها</h2>
+<table>
+<thead>
+<tr class="header">
+<th>ابزار</th>
+<th>نسخه/مدل</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Frama-C</td>
+<td>33.0 (Arsenic)</td>
+</tr>
+<tr class="even">
+<td>Eva</td>
+<td>Frama-C 33.0</td>
+</tr>
+<tr class="odd">
+<td>WP</td>
+<td>Frama-C 33.0</td>
+</tr>
+<tr class="even">
+<td>E-ACSL</td>
+<td>bundled with Frama-C 33.0</td>
+</tr>
+<tr class="odd">
+<td>KLEE</td>
+<td>3.2</td>
+</tr>
+<tr class="even">
+<td>LLVM/Clang برای KLEE</td>
+<td>13.0.x</td>
+</tr>
+<tr class="odd">
+<td>GCC برای runtime E-ACSL</td>
+<td>13.3.0</td>
+</tr>
+<tr class="even">
+<td>Why3</td>
+<td>1.8.2</td>
+</tr>
+<tr class="odd">
+<td>Alt-Ergo</td>
+<td>2.6.2</td>
+</tr>
+<tr class="even">
+<td>Z3</td>
+<td>4.8.12</td>
+</tr>
+<tr class="odd">
+<td>CVC5</td>
+<td>1.1.2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="مدل-ماشین-و-semantic-gap">2.4 مدل ماشین و semantic gap</h2>
+<p>Eva و WP بر پایه‌ی:</p>
+<pre class="text"><code>-machdep ppc_32</code></pre>
+<p>اجرا شده‌اند. در این مدل:</p>
+<ul>
+<li><code>short</code> = 16 bit</li>
+<li><code>int</code> = 32 bit</li>
+<li><code>long</code> = 32 bit</li>
+<li>pointer = 32 bit</li>
+<li>PowerPC big-endian</li>
+</ul>
+<p>این موضوع مهم است چون typedefهای پروژه <code>s32/u32</code> را بر
+مبنای <code>signed long/unsigned long</code> تعریف می‌کنند. روی host
+x86-64، <code>long</code> برابر 64 بیت است؛ بنابراین اجرای مستقیم source
+بدون semantic control برای KLEE معادل ppc_32 نیست.</p>
+<p>برای KLEE، یک explicit-width semantic adapter استفاده شده تا scalar
+widths موردنیاز کنترل شوند. KLEE در محیط x86-64/LLVM اجرا شده است. این
+یک <strong>semantic gap ثبت‌شده</strong> است، نه چیزی که پنهان شده
+باشد.</p>
+<p>در E-ACSL dynamic نیز اجرای PPC32 ممکن نبود، زیرا runtime
+instrumentation ساخته‌شده برای pointer چهار بایتی با host pointer
+هشت‌بایتی سازگار نبود. بنابراین dynamic evaluation با برچسب زیر گزارش شده
+است:</p>
+<p><code>HOST_NATIVE_RUNTIME_WITH_PPC32_ANALYSIS_MODEL</code></p>
+<p>این محدودیت باید در Threats to Validity پایان‌نامه به‌صورت روشن ذکر
+شود.</p>
+<hr />
+<h1 id="مرحلهی-eva-baseline">3. مرحله‌ی Eva Baseline</h1>
+<h2 id="هدف-baseline">3.1 هدف Baseline</h2>
+<p>Baseline باید یک نقطه‌ی مرجع ثابت ایجاد کند تا اثر افزایش precision
+قابل اندازه‌گیری باشد. هدف این مرحله این نیست که همه‌ی هشدارها را bug
+اعلام کنیم؛ بلکه می‌خواهیم بدانیم با تنظیمات نسبتاً پایه‌ی Eva چه تعداد
+safety alarm ایجاد می‌شود.</p>
+<p>Baseline برای همان 46 تابع، با source و harness یکسان، اجرا شده
+است.</p>
+<h2 id="تنظیمات-اصلی-baseline">3.2 تنظیمات اصلی Baseline</h2>
+<p>تنظیم کلیدی ثبت‌شده:</p>
+<pre class="text"><code>-eva
+-eva-slevel 1000
+-eva-ilevel 256</code></pre>
+<h3 id="معنای-مفهومی-slevel">معنای مفهومی <code>slevel</code></h3>
+<p><code>slevel</code> بودجه‌ی جداسازی stateها را تحت تأثیر قرار می‌دهد.
+وقتی شاخه‌ها و iterationهای مختلف زود به هم join شوند، اطلاعات
+relational/path-sensitive از دست می‌رود و intervalها بزرگ‌تر می‌شوند. این
+مسئله می‌تواند alarmهای بیشتری بسازد.</p>
+<h3 id="معنای-مفهومی-ilevel">معنای مفهومی <code>ilevel</code></h3>
+<p><code>ilevel</code> میزان حفظ مجموعه‌های دقیق integer values را قبل از
+تبدیل به approximationهای گسترده‌تر کنترل می‌کند. در fixed-point
+arithmetic، حفظ مقادیر discrete و مرزی می‌تواند مستقیماً روی precision
+تأثیر بگذارد.</p>
+<h2 id="نتیجهی-baseline">3.3 نتیجه‌ی Baseline</h2>
+<p>Eva در مجموع <strong>171 alarm</strong> تولید کرد:</p>
+<table>
+<thead>
+<tr class="header">
+<th>نوع alarm</th>
+<th style="text-align: right;">تعداد</th>
+<th style="text-align: right;">سهم از 171</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Integer overflow</td>
+<td style="text-align: right;">118</td>
+<td style="text-align: right;">69.01%</td>
+</tr>
+<tr class="even">
+<td>Invalid shift</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">19.30%</td>
+</tr>
+<tr class="odd">
+<td>Division by zero</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">11.70%</td>
+</tr>
+<tr class="even">
+<td><strong>مجموع</strong></td>
+<td style="text-align: right;"><strong>171</strong></td>
+<td style="text-align: right;"><strong>100%</strong></td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="figures/01_eva_alarm_categories.png"
+alt="مقایسه نوع هشدار در Baseline و High Precision" />
+<figcaption aria-hidden="true">مقایسه نوع هشدار در Baseline و High
+Precision</figcaption>
+</figure>
+<h2 id="تفسیر-baseline">3.4 تفسیر Baseline</h2>
+<p>بزرگ‌ترین سهم مربوط به overflow است. این با ماهیت کد سازگار است: کد
+شامل fixed-point multiplication، division، تبدیل signed/unsigned،
+negation و arithmetic intermediate values است.</p>
+<p>تعداد زیاد alarm در این مرحله نباید به معنی تعداد bug واقعی نوشته
+شود. جمله‌ی مناسب برای پایان‌نامه:</p>
+<blockquote>
+<p>«Baseline Eva تعداد 171 رخداد بالقوه‌ی نقض ایمنی را گزارش کرد که 118
+مورد overflow، 33 مورد invalid shift و 20 مورد division-by-zero بودند.
+این مجموعه به‌عنوان candidate alarm set و مبنای مقایسه‌ی precision استفاده
+شد.»</p>
+</blockquote>
+<h2 id="چرا-مرحلهی-بعد-لازم-بود">3.5 چرا مرحله‌ی بعد لازم بود؟</h2>
+<p>Abstract interpretation به‌طور عمدی over-approximate است. اگر تحلیل
+نتواند رابطه‌ی دقیق بین متغیرها، branch history، loop state یا non-linear
+expression را نگه دارد، ممکن است هشدار باقی بماند حتی وقتی path واقعی
+محدودتر است. بنابراین پیش از فرستادن 171 alarm به symbolic execution،
+منطقی بود که precision Eva افزایش یابد.</p>
+<h2 id="جدولنمودار-مناسب-پایاننامه">3.6 جدول/نمودار مناسب پایان‌نامه</h2>
+<p><strong>جدول ضروری:</strong> تعداد Baseline alarm به تفکیک نوع.</p>
+<p><strong>نمودار مناسب:</strong>
+<code>figures/01_eva_alarm_categories.png</code></p>
+<p><strong>نمودار تکمیلی:</strong>
+<code>figures/10_top_functions_eva.png</code> برای نمایش concentration
+هشدارها در توابع تقسیم.</p>
+<hr />
+<h1 id="مرحلهی-eva-high-precision-و-پالایش-alarmها">4. مرحله‌ی Eva High
+Precision و پالایش alarmها</h1>
+<h2 id="هدف">4.1 هدف</h2>
+<p>هدف این مرحله کاهش alarmهای ناشی از ضعف precision، بدون تغییر source،
+harness، دامنه‌ی ورودی یا suppress کردن alarm بود. برای حفظ validity
+آزمایش، یک profile یکنواخت روی تمام 46 تابع اعمال شده است؛ یعنی tuning
+اختصاصی per-function انجام نشده است.</p>
+<h2 id="profile-نهایی-high-precision">4.2 profile نهایی High
+Precision</h2>
+<p>پروفایل از <code>-eva-precision 11</code> شروع شده و چند override
+آگاهانه دارد. block اصلی:</p>
+<pre class="text"><code>-eva
+-eva-precision 11
+-eva-domains cvalue,equality,symbolic-locations,gauges,octagon,bitwise
+-eva-equality-through-calls all
+-eva-octagon-through-calls
+-eva-interprocedural-splits
+-eva-interprocedural-history
+-eva-split-return full
+-eva-subdivide-non-linear 500
+-eva-ilevel 1024</code></pre>
+<p>precision level 11 همچنین مقادیر مهم زیر را فراهم می‌کند:</p>
+<table>
+<thead>
+<tr class="header">
+<th>تنظیم</th>
+<th style="text-align: right;">مقدار</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-eva-slevel</code></td>
+<td style="text-align: right;">5000</td>
+</tr>
+<tr class="even">
+<td><code>-eva-plevel</code></td>
+<td style="text-align: right;">2000</td>
+</tr>
+<tr class="odd">
+<td><code>-eva-partition-history</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td><code>-eva-auto-loop-unroll</code></td>
+<td style="text-align: right;">1024</td>
+</tr>
+<tr class="odd">
+<td><code>-eva-min-loop-unroll</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td><code>-eva-widening-delay</code></td>
+<td style="text-align: right;">6</td>
+</tr>
+</tbody>
+</table>
+<h2 id="منطق-مفهومی-تنظیمات-precision">4.3 منطق مفهومی تنظیمات
+precision</h2>
+<h3 id="slevel-1000-5000"><code>slevel: 1000 → 5000</code></h3>
+<p>state separation بیشتر باعث می‌شود branchها دیرتر merge شوند. برای کدی
+که safety property به شرایط شاخه‌ها وابسته است، این افزایش می‌تواند bounds
+دقیق‌تری نگه دارد.</p>
+<h3 id="relational-domains-equality-و-octagon">relational domains:
+equality و octagon</h3>
+<p>Interval مستقل برای هر متغیر همیشه کافی نیست. مثلاً اگر تحلیل بداند
+<code>x-y</code> یا <code>x+y</code> محدود است، octagon می‌تواند
+رابطه‌هایی از فرم <code>±x ± y ≤ c</code> را حفظ کند. equality نیز روابط
+برابری بین temporaries و پارامترها را نگه می‌دارد.</p>
+<h3
+id="equality-through-calls-all-و-octagon-through-calls"><code>equality-through-calls all</code>
+و <code>octagon-through-calls</code></h3>
+<p>بدون propagation بین caller/callee، بخشی از روابط هنگام عبور از
+helper function از بین می‌رود. این تنظیم به‌ویژه در کدی با helperهای
+arithmetic اهمیت دارد.</p>
+<h3
+id="interprocedural-splitshistory-و-split-return-full">interprocedural
+splits/history و <code>split-return full</code></h3>
+<p>اگر چند path با شرایط متفاوت در یک helper وجود داشته باشد، join
+زودهنگام در return می‌تواند اطلاعات شرطی را از بین ببرد. حفظ split و
+history کمک می‌کند caller حالت‌های متفاوت را جدا ببیند.</p>
+<h3
+id="subdivide-non-linear-500"><code>subdivide-non-linear 500</code></h3>
+<p>ضرب و division از مهم‌ترین منابع imprecision هستند. subdivision budget
+بیشتر اجازه می‌دهد expressionهای non-linear روی زیرمحدوده‌های بیشتری تحلیل
+شوند و bound تنگ‌تری تولید شود.</p>
+<h3 id="ilevel-1024"><code>ilevel 1024</code></h3>
+<p>مجموعه‌ی بزرگ‌تری از integer values به‌صورت explicit حفظ می‌شود. برای
+fixed-point constants، shift countها و branch values مفید است.</p>
+<h3 id="domain-bitwise">domain <code>bitwise</code></h3>
+<p>اطلاعات bit-level برای shift، mask و عملیات fixed-width می‌تواند
+precision را بالا ببرد.</p>
+<h2 id="نتیجهی-high-precision">4.4 نتیجه‌ی High Precision</h2>
+<p>تعداد alarm از <strong>171 به 149</strong> کاهش یافت:</p>
+<pre class="text"><code>171 - 149 = 22</code></pre>
+<p>درصد کاهش:</p>
+<pre class="text"><code>22 / 171 × 100 = 12.865497%</code></pre>
+<p>توزیع High Precision:</p>
+<table>
+<thead>
+<tr class="header">
+<th>نوع</th>
+<th style="text-align: right;">Baseline</th>
+<th style="text-align: right;">High Precision</th>
+<th style="text-align: right;">حذف‌شده</th>
+<th style="text-align: right;">کاهش در همان نوع</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Integer overflow</td>
+<td style="text-align: right;">118</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">15.25%</td>
+</tr>
+<tr class="even">
+<td>Invalid shift</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr class="odd">
+<td>Division by zero</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">20.00%</td>
+</tr>
+<tr class="even">
+<td><strong>مجموع</strong></td>
+<td style="text-align: right;"><strong>171</strong></td>
+<td style="text-align: right;"><strong>149</strong></td>
+<td style="text-align: right;"><strong>22</strong></td>
+<td style="text-align: right;"><strong>12.87% کل</strong></td>
+</tr>
+</tbody>
+</table>
+<p>یک نتیجه‌ی مهم این است که <strong>هیچ invalid-shift alarmی صرفاً با
+افزایش precision حذف نشد</strong>. در مقابل، 18 overflow و 4
+division-by-zero حذف شدند. این نشان می‌دهد invalid shiftهای باقی‌مانده
+عمدتاً به domain/semantics واقعی count مربوط بوده‌اند و صرفاً محصول join
+ضعیف نبوده‌اند.</p>
+<h2 id="کدام-توابع-بیشترین-کاهش-را-داشتند">4.5 کدام توابع بیشترین کاهش
+را داشتند؟</h2>
+<p>بیشترین حذف‌ها در خانواده‌های division رخ داده است. نمونه‌های شاخص:</p>
+<table>
+<thead>
+<tr class="header">
+<th>تابع</th>
+<th style="text-align: right;">Baseline</th>
+<th style="text-align: right;">High Precision</th>
+<th style="text-align: right;">حذف</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>s16_div_s32_s16</code></td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td><code>s16_mul_s16_u16_div_s16</code></td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td><code>s16_mul_s16_s16_div_s16</code></td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td><code>u16_mul_s16_u16_div_s16</code></td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td><code>s16_fac05_div_s16_s16</code></td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td><code>u16_div_s32_u16</code></td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td><code>s16_mul_s16_s16_div_u16</code></td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+<p>این الگو با این فرض سازگار است که relational/path/non-linear
+precision در expressionهای quotient/remainder و branchهای division سود
+بیشتری ایجاد کرده است.</p>
+<p><strong>اما:</strong> از این داده نمی‌توان گفت «مثلاً فقط octagon باعث
+حذف alarm X شد». profile به‌صورت ترکیبی تغییر کرده و گزارش رسمی نیز
+causal labels را evidence-backed inference می‌داند، نه آزمایش ablation
+برای هر option.</p>
+<h2 id="چرا-149-بهعنوان-مجموعهی-authoritative-انتخاب-شد">4.6 چرا 149
+به‌عنوان مجموعه‌ی authoritative انتخاب شد؟</h2>
+<p>چون:</p>
+<ul>
+<li>source و harnessها تغییر نکرده بودند؛</li>
+<li>یک profile uniform روی همه‌ی توابع اعمال شد؛</li>
+<li>suppress یا input restriction انجام نشد؛</li>
+<li>171−149=22 با inventory occurrence-aware reconcile شد؛</li>
+<li>semantic matching بر پایه‌ی
+function/file/line/occurrence/category/predicate انجام شد، نه صرفاً
+ID.</li>
+</ul>
+<h2 id="آنچه-در-پایاننامه-باید-برجسته-شود">4.7 آنچه در پایان‌نامه باید
+برجسته شود</h2>
+<ol type="1">
+<li>precision tuning یک preprocessing اختیاری و arbitrary نبوده؛ هدفش
+کاهش imprecision قبل از ابزارهای گران‌تر بوده است.</li>
+<li>12.87% کاهش alarm یعنی 22 property کمتر برای symbolic execution و
+مراحل بعدی.</li>
+<li>reduction روی انواع alarm یکسان نیست: shift تقریباً مقاوم به این
+precision بوده است.</li>
+<li>high precision خودش proof ایجاد نمی‌کند؛ فقط candidate set را refine
+می‌کند.</li>
+</ol>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td># 5. Materialization: تبدیل 149 alarm به ACSL propertyهای
+occurrence-aware</td>
+</tr>
+<tr class="even">
+<td>## 5.1 چرا این مرحله ضروری بود؟</td>
+</tr>
+<tr class="odd">
+<td>بین «alarm ابزار Eva» و «property قابل‌ردیابی در مراحل دیگر» تفاوت
+وجود دارد. اگر فقط متن log یا line number نگه داشته شود، بعد از repair
+یا جابه‌جایی خطوط، traceability از بین می‌رود. علاوه بر این ممکن است چند
+alarm در یک statement یا چند occurrence مشابه وجود داشته باشد.</td>
+</tr>
+<tr class="even">
+<td>بنابراین هر یک از 149 alarm High-Precision به یک ACSL assertion یکتا
+تبدیل شد:</td>
+</tr>
+<tr class="odd">
+<td><code>text eva_klee_alarm_0001 ... eva_klee_alarm_0149</code></td>
+</tr>
+<tr class="even">
+<td>این تبدیل در <code>src_repaired</code> انجام شد و قبل از repair
+freeze شد.</td>
+</tr>
+<tr class="odd">
+<td>## 5.2 اصل occurrence identity</td>
+</tr>
+<tr class="even">
+<td>هویت property صرفاً «شماره خط» نیست. در manifest موارد زیر نگهداری
+شده‌اند:</td>
+</tr>
+<tr class="odd">
+<td>- Alarm ID - Function - Source file - Original source line -
+Occurrence index - Alarm kind - Source expression - Raw Eva predicate -
+Inserted ACSL predicate - ACSL label - KLEE outcome - Current
+repaired-tree location - Future mode (WP یا runtime)</td>
+</tr>
+<tr class="even">
+<td>این کار برای پایان‌نامه مهم است، چون chain زیر را ممکن می‌کند:</td>
+</tr>
+<tr class="odd">
+<td><code>text Eva alarm occurrence ↔︎ ACSL label ↔︎ KLEE target ↔︎ witness / status ↔︎ repair/specification ↔︎ WP goal ↔︎ E-ACSL instrumentation decision</code></td>
+</tr>
+<tr class="even">
+<td>## 5.3 نتیجه‌ی integrity</td>
+</tr>
+<tr class="odd">
+<td>- Targetهای High-Precision: 149 - ACSL labels: 149 - Unique labels:
+149 - Missing: 0 - Duplicate: 0</td>
+</tr>
+<tr class="even">
+<td>Pre-repair freeze:</td>
+</tr>
+<tr class="odd">
+<td>- Commit: <code>93667d5...</code> - Tag:
+<code>thesis/eva-149-acsl-properties-before-repair</code></td>
+</tr>
+<tr class="even">
+<td>## 5.4 اصل مهم علمی: property اصلی تغییر نکرد</td>
+</tr>
+<tr class="odd">
+<td>در repairهای بعدی هدف این نبود که assertion را طوری تغییر دهیم که
+اثبات آسان شود. property باید نماینده‌ی همان safety condition استخراج‌شده
+از Eva باقی بماند.</td>
+</tr>
+<tr class="even">
+<td>مثلاً اگر Eva گفته بود:</td>
+</tr>
+<tr class="odd">
+<td><code>c value != INT32_MIN</code></td>
+</tr>
+<tr class="even">
+<td>راه نادرست این بود که property را به یک precondition یا شرط ضعیف‌تر
+تبدیل کنیم و سپس ادعا کنیم مشکل حل شده است. راه استفاده‌شده این بود که
+implementation path طوری اصلاح شود که operation خطرناک فقط وقتی اجرا شود
+که property برقرار است، و assertion اصلی حفظ شود.</td>
+</tr>
+<tr class="odd">
+<td>## 5.5 پیشنهاد برای پایان‌نامه</td>
+</tr>
+<tr class="even">
+<td>یک شکل کوچک از mapping زیر بسیار مفید است:</td>
+</tr>
+<tr class="odd">
+<td><code>text Eva log ↓ parse/normalize Alarm occurrence record ↓ ACSL label eva_klee_alarm_NNNN ↓ Same stable ID used by KLEE / WP / E-ACSL</code></td>
+</tr>
+<tr class="even">
+<td>این بخش نشان‌دهنده‌ی contribution مربوط به
+<strong>traceability</strong> است و بهتر است صرفاً به‌عنوان «اضافه کردن
+assert» توصیف نشود.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="آمادهسازی-klee-و-طراحی-harnessها">6. آماده‌سازی KLEE و طراحی
+harnessها</h1>
+<h2 id="هدف-klee-در-این-workflow">6.1 هدف KLEE در این workflow</h2>
+<p>KLEE در این پروژه نقش proof engine نداشته است. سؤال KLEE این
+بوده:</p>
+<blockquote>
+<p>«آیا می‌توان برای property مشخصی که Eva گزارش کرده، یک ورودی concrete
+پیدا کرد که آن safety condition را نقض کند؟»</p>
+</blockquote>
+<p>این framing مهم است؛ چون outcomeهای KLEE سه‌حالته‌اند:</p>
+<ol type="1">
+<li>Counterexample found</li>
+<li>Search completed / no counterexample</li>
+<li>Timeout / inconclusive</li>
+</ol>
+<p>فقط حالت اول evidence مثبت برای violability است.</p>
+<h2 id="چرا-یک-alarm-در-هر-run">6.2 چرا یک alarm در هر run؟</h2>
+<p>برای هر یک از 149 alarm یک directory مستقل ساخته شد. این تصمیم چند
+دلیل دارد:</p>
+<ul>
+<li>اگر چند target همزمان active باشند، violation زودتر ممکن است run را
+متوقف کند و target اصلی دیده نشود.</li>
+<li>target-specific <code>.err</code> به‌صورت قابل‌اعتماد به یک property
+وصل می‌شود.</li>
+<li>KTest دقیقاً برای همان target استخراج می‌شود.</li>
+<li>timeout و status هر property مستقل است.</li>
+<li>reproducibility و traceability ساده‌تر می‌شود.</li>
+</ul>
+<p>ساختار مفهومی هر target:</p>
+<pre class="text"><code>alarm_NNNN/
+  ├── target source copy
+  ├── klee_harness.c
+  ├── build_bitcode.sh
+  ├── runner
+  ├── build/*.bc
+  └── klee-out-alarm-NNNN/
+        ├── testXXXXXX.ktest
+        └── testXXXXXX.klee-alarm-NNNN.err</code></pre>
+<h2 id="symbolic-inputها">6.3 symbolic inputها</h2>
+<p>پارامترهای تابع با typeهای fixed-width معادل symbolic شده‌اند.
+مثال:</p>
+<pre class="text"><code>value  : s32
+factor : s16
+count  : u32</code></pre>
+<p>برای جلوگیری از semantic mismatch ناشی از <code>long</code> در
+x86-64، Phase A یک explicit-width semantic architecture را توصیه و
+پیاده‌سازی کرده است.</p>
+<h2 id="target-assertion-و-pre-ub-checking">6.4 target assertion و
+pre-UB checking</h2>
+<p>برای operationهایی مثل signed overflow، shift نامعتبر یا
+division-by-zero، اتکا به اینکه KLEE خود UB را همیشه به همان صورت گزارش
+کند کافی نیست. بنابراین safety predicate قبل از operation هدف به‌صورت
+صریح بررسی شده است.</p>
+<p>مزیت:</p>
+<ul>
+<li>property KLEE دقیقاً با Eva predicate متناظر می‌ماند؛</li>
+<li>occurrence identity حفظ می‌شود؛</li>
+<li>وابستگی به رفتار optimizer یا sanitizer کمتر می‌شود.</li>
+</ul>
+<h2 id="defined-prefix-guards-چیست">6.5 Defined-prefix guards چیست؟</h2>
+<p>اگر پیش از target موردنظر یک UB دیگر رخ دهد، ممکن است KLEE اصلاً به
+target نرسد. برای isolate کردن target، در analysis copy guardهایی برای
+defined prefix گذاشته شده‌اند تا UBهای قبلی بی‌ربط target را نپوشانند.</p>
+<p>اما این guardها نباید با <code>klee_assume</code>های arbitrary اشتباه
+گرفته شوند. هدف آن‌ها narrow کردن domain به نفع property نبوده است، بلکه
+فراهم‌کردن یک prefix تعریف‌شده برای رسیدن به occurrence هدف بوده است.</p>
+<p>این نکته برای دفاع مهم است؛ چون ممکن است سؤال شود آیا harness با
+assumptionها counterexample را مصنوعی ساخته یا حذف کرده است.</p>
+<h2 id="semantic-gap-ppc_32-در-برابر-klee-x86-64">6.6 semantic gap:
+ppc_32 در برابر KLEE x86-64</h2>
+<p>در پروژه:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">signed</span> <span class="dt">long</span> s32<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="dt">unsigned</span> <span class="dt">long</span> u32<span class="op">;</span></span></code></pre></div>
+<p>روی PPC32، <code>long=32 bit</code>; روی x86-64،
+<code>long=64 bit</code>.</p>
+<p>بنابراین source بدون adapter نباید مستقیماً معادل Eva تلقی شود. گزارش
+Phase A سه گزینه را بررسی کرده و ترکیب environment reproducible +
+explicit-width adapter را پیشنهاد داده است.</p>
+<p>این محدودیت باید با wording دقیق بیان شود:</p>
+<blockquote>
+<p>«KLEE witnessها در یک مدل fixed-width کنترل‌شده تولید شدند که برای
+arithmetic scalar targetها widthهای اصلی را بازنمایی می‌کند، اما معادل
+کامل ABI/endianness PowerPC ادعا نمی‌شود.»</p>
+</blockquote>
+<hr />
+<h1 id="اجرای-klee-و-نتایج-149-target">7. اجرای KLEE و نتایج 149
+target</h1>
+<h2 id="سیاست-اجرا">7.1 سیاست اجرا</h2>
+<p>هر 149 target build و execute شد. timeout اصلی KLEE برای موارد طولانی
+1800 ثانیه بوده و elapsedهای timeout معمولاً حدود 1830 ثانیه ثبت شده‌اند
+(با overhead wrapper/timeout).</p>
+<p>در مجموعه‌ی frozen:</p>
+<ul>
+<li>Build error: 0</li>
+<li>KLEE error: 0</li>
+<li>Unsupported: 0</li>
+<li>Not run: 0</li>
+</ul>
+<p>این یعنی تمام 149 مورد حداقل از نظر experimental execution account
+شده‌اند.</p>
+<h2 id="نتیجهی-کلان">7.2 نتیجه‌ی کلان</h2>
+<table>
+<thead>
+<tr class="header">
+<th>KLEE outcome</th>
+<th style="text-align: right;">تعداد</th>
+<th style="text-align: right;">درصد از 149</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Confirmed counterexample</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">32.214765%</td>
+</tr>
+<tr class="even">
+<td>Completed / no counterexample</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">10.067114%</td>
+</tr>
+<tr class="odd">
+<td>Timeout / inconclusive</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">57.718121%</td>
+</tr>
+<tr class="even">
+<td><strong>مجموع</strong></td>
+<td style="text-align: right;"><strong>149</strong></td>
+<td style="text-align: right;"><strong>100%</strong></td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="figures/03_klee_outcomes.png" alt="نتایج KLEE" />
+<figcaption aria-hidden="true">نتایج KLEE</figcaption>
+</figure>
+<h2 id="معنای-دقیق-سه-outcome">7.3 معنای دقیق سه outcome</h2>
+<h3 id="confirmed-counterexample">Confirmed counterexample</h3>
+<p>برای target-specific <code>.err</code> و KTest matching evidence وجود
+دارد. یعنی KLEE یک concrete assignment پیدا کرده که predicate مشخص را در
+مدل prepared نقض می‌کند.</p>
+<h3 id="completed-no-counterexample">Completed / no counterexample</h3>
+<p>فقط به معنی:</p>
+<blockquote>
+<p>«در harness، constraints، search strategy و resource configuration
+فعلی، search تکمیل شد و target witness مشاهده نشد.»</p>
+</blockquote>
+<p>این حالت proof نیست.</p>
+<h3 id="timeout-inconclusive">Timeout / inconclusive</h3>
+<p>search در زمان تعیین‌شده به نتیجه‌ی قطعی نرسیده است. این مورد باید
+unresolved بماند، نه safe و نه unsafe.</p>
+<h2 id="نکتهی-timeout-after-witness">7.4 نکته‌ی timeout after
+witness</h2>
+<p>در سه مورد witness قبل از timeout بعدی ایجاد شده بود. Primary outcome
+همچنان counterexample باقی مانده است، چون evidence لازم پیش از timeout
+موجود بوده. timeout در این حالت secondary metadata است و نباید target
+دوبار شمرده شود.</p>
+<h2 id="klee-به-تفکیک-نوع-alarm">7.5 KLEE به تفکیک نوع alarm</h2>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Alarm kind</th>
+<th style="text-align: right;">کل</th>
+<th style="text-align: right;">Counterexample</th>
+<th style="text-align: right;">No CE</th>
+<th style="text-align: right;">Timeout</th>
+<th style="text-align: right;">CE rate</th>
+<th style="text-align: right;">Timeout rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Integer overflow</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">29.00%</td>
+<td style="text-align: right;">61.00%</td>
+</tr>
+<tr class="even">
+<td>Invalid shift</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">57.58%</td>
+<td style="text-align: right;">42.42%</td>
+</tr>
+<tr class="odd">
+<td>Division by zero</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.00%</td>
+<td style="text-align: right;">68.75%</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="figures/04_klee_outcome_by_alarm_kind.png"
+alt="KLEE outcome به تفکیک نوع alarm" />
+<figcaption aria-hidden="true">KLEE outcome به تفکیک نوع
+alarm</figcaption>
+</figure>
+<h3 id="تفسیر">تفسیر</h3>
+<p>Invalid shiftها بیشترین نرخ witness را داشته‌اند. این منطقی است، چون
+shift-count boundaryهایی مانند <code>0</code>, <code>31</code>,
+<code>32</code>, <code>UINT_MAX</code> معمولاً constraint structure
+ساده‌تری نسبت به pathهای quotient/remainder پیچیده دارند.</p>
+<p>Division-by-zeroها در این campaign counterexample مستقیم ندادند؛ اما
+این <strong>نباید</strong> به معنی safe بودن همه‌ی آن‌ها تعبیر شود، چون
+11/16 timeout بوده‌اند.</p>
+<h2 id="تمرکز-timeoutها-در-div_ccode.c">7.6 تمرکز timeoutها در
+<code>div_Ccode.c</code></h2>
+<p>توزیع 149 property بر اساس source file:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Source file</th>
+<th style="text-align: right;">HP properties</th>
+<th style="text-align: right;">KLEE CE</th>
+<th style="text-align: right;">No CE</th>
+<th style="text-align: right;">Timeout</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>div_Ccode.c</code></td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">86</td>
+</tr>
+<tr class="even">
+<td><code>mul_Ccode.c</code></td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td><code>hip_Ccode.c</code></td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td><code>MulHword.c</code></td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td><code>avrg_Ccode.c</code></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td><code>rotatefunc.c</code></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>تمام 86 timeout در <code>div_Ccode.c</code> قرار
+دارند.</strong> این یکی از مهم‌ترین الگوهای تجربی پروژه است.</p>
+<h3 id="تفسیر-مفهومی">تفسیر مفهومی</h3>
+<p>Division familyها دارای ترکیبی از:</p>
+<ul>
+<li>quotient</li>
+<li>remainder</li>
+<li>signed/unsigned conversion</li>
+<li>exceptional cases</li>
+<li>multiplication quotient×denominator</li>
+<li>doubled remainder</li>
+<li>nested branches</li>
+</ul>
+<p>هستند. این ساختار برای symbolic path exploration و SMT constraints
+سخت‌تر از بسیاری از multiplication/shift helpers بوده است. بنابراین
+داده‌ها نشان می‌دهند bottleneck KLEE به‌صورت یکنواخت در کل پروژه پخش نشده
+است.</p>
+<p>این نتیجه را بهتر است به‌صورت «observed concentration» بنویسیم، نه
+اینکه بدون ablation بگوییم division ذاتاً علت timeout بوده است.</p>
+<h2 id="هزینهی-زمانی-klee">7.7 هزینه‌ی زمانی KLEE</h2>
+<p>از <code>analysis/klee_phase_c/results/summary.tsv</code>، جمع
+elapsed ثبت‌شده برای 149 target حدود:</p>
+<pre class="text"><code>165,047 seconds ≈ 45.85 hours</code></pre>
+<p>است. تفکیک تقریبی:</p>
+<ul>
+<li>48 counterexample targets: 5,512 s</li>
+<li>15 completed/no-CE: 2,184 s</li>
+<li>86 timeout: 157,351 s</li>
+</ul>
+<p>یعنی تقریباً تمام هزینه‌ی زمانی symbolic execution توسط timeout cohort
+مصرف شده است. این داده برای توجیه استفاده از runtime monitoring در ادامه
+بسیار مهم است: ادامه‌ی افزایش budget برای همه‌ی unresolvedها هزینه‌ی زیادی
+دارد و guarantee نتیجه نیز ندارد.</p>
+<blockquote>
+<p>این عدد «جمع elapsed per-target ثبت‌شده» است؛ اگر اجراها parallel یا
+با شرایط دیگر انجام شده باشند، نباید آن را calendar wall-clock واقعی کل
+پروژه نامید.</p>
+</blockquote>
+<h2 id="نمودارجدول-پیشنهادی-پایاننامه">7.8 نمودار/جدول پیشنهادی
+پایان‌نامه</h2>
+<ul>
+<li>Figure: <code>figures/03_klee_outcomes.png</code></li>
+<li>Figure: <code>figures/04_klee_outcome_by_alarm_kind.png</code></li>
+<li>Table: outcome distribution 48/15/86</li>
+<li>Table: source-file distribution، به‌خصوص تمرکز 86 timeout در
+division</li>
+</ul>
+<hr />
+<h1 id="traceability-counterexampleهای-klee">8. Traceability
+Counterexampleهای KLEE</h1>
+<h2 id="معیار-پذیرش-witness">8.1 معیار پذیرش witness</h2>
+<p>برای اینکه یک target واقعاً <code>CONFIRMED_COUNTEREXAMPLE</code>
+باشد، evidence زیر باید با همان ID منطبق باشد:</p>
+<ol type="1">
+<li>active target همان <code>KLEE-ALARM-NNNN</code> باشد؛</li>
+<li>target-specific <code>.err</code> وجود داشته باشد؛</li>
+<li>matching KTest وجود داشته باشد؛</li>
+<li>concrete inputs decode شوند؛</li>
+<li>source occurrence و predicate متناظر باشند.</li>
+</ol>
+<p>این سخت‌گیری جلوی این خطا را می‌گیرد که صرف وجود نام یک Alarm ID در
+comment یا error دیگر به‌عنوان witness اشتباه ثبت شود.</p>
+<h2 id="نمونهی-alarm-0001">8.2 نمونه‌ی Alarm 0001</h2>
+<p>Operation:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>value</span></code></pre></div>
+<p>Eva property:</p>
+<pre class="text"><code>value != INT32_MIN</code></pre>
+<p>KLEE witness:</p>
+<pre class="text"><code>value = -2147483648 (0x80000000)
+factor = 1
+count = 0</code></pre>
+<p>منطق:</p>
+<p>در arithmetic signed 32-bit، magnitude مثبت <code>INT32_MIN</code>
+قابل نمایش نیست؛ بنابراین <code>-INT32_MIN</code> overflow است.</p>
+<p>این مثال برای پایان‌نامه بسیار مناسب است، چون chain از alarm تا
+witness و repair واضح است.</p>
+<h2 id="نمونهی-alarm-0002">8.3 نمونه‌ی Alarm 0002</h2>
+<p>Operation:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>u32Temp3 <span class="op">&gt;&gt;</span> count</span></code></pre></div>
+<p>Eva property:</p>
+<pre class="text"><code>0 &lt;= count &amp;&amp; count &lt; 32</code></pre>
+<p>KLEE witness:</p>
+<pre class="text"><code>count = UINT32_MAX</code></pre>
+<p>در اینجا KLEE فقط نشان می‌دهد shift-count domain قابل نقض است؛ اما
+<strong>نمی‌گوید رفتار صحیح برای چنین countی چیست</strong>. همین تفاوت
+باعث شد بعضی targetها مستقیماً repair نشوند و ابتدا specification
+resolution لازم شود.</p>
+<h2 id="ارزش-این-مرحله-برای-methodology">8.4 ارزش این مرحله برای
+methodology</h2>
+<p>Counterexample فقط یک input نیست؛ یک <strong>semantic
+obligation</strong> ایجاد می‌کند:</p>
+<blockquote>
+<p>«برای این input می‌دانیم operation فعلی safety property را نقض می‌کند؛
+اکنون باید بفهمیم behavior صحیح سیستم چه باید باشد.»</p>
+</blockquote>
+<p>این distinction بین <em>bug detection</em> و <em>repair
+semantics</em> یکی از بخش‌های مهم روش است.</p>
+<hr />
+<h1 id="مرحلهی-repair-اولیه-برای-klee-confirmed-targetها">9. مرحله‌ی
+Repair اولیه برای KLEE-confirmed targetها</h1>
+<h2 id="ورودی-مرحله">9.1 ورودی مرحله</h2>
+<p>از 149 property:</p>
+<ul>
+<li>48 counterexample confirmed</li>
+<li>101 بدون counterexample confirmed</li>
+</ul>
+<p>Repair فقط روی confirmed cohort انجام شد؛ 101 مورد دیگر عمداً
+implementation change نگرفتند.</p>
+<h2 id="چرا-فقط-48-مورد-repair-candidate-شدند">9.2 چرا فقط 48 مورد
+repair candidate شدند؟</h2>
+<p>اگر برای timeout/no-CE کد تغییر داده می‌شد، evidence کافی برای ضرورت
+تغییر وجود نداشت و احتمال patch کردن behavior درست یا changing semantics
+بدون witness وجود داشت.</p>
+<h2 id="اصل-minimal-repair">9.3 اصل Minimal Repair</h2>
+<p>هر repair باید:</p>
+<ul>
+<li>فقط targetهای confirmed را address کند؛</li>
+<li>behavior ورودی‌های قبلاً معتبر را تا حد ممکن حفظ کند؛</li>
+<li>property اصلی Eva را نگه دارد؛</li>
+<li>unrelated code را تغییر ندهد؛</li>
+<li>commit مستقل و traceable داشته باشد.</li>
+</ul>
+<h2 id="نتیجهی-فاز-اول-repair">9.4 نتیجه‌ی فاز اول repair</h2>
+<p>از 48 confirmed target:</p>
+<ul>
+<li>32 target repair شدند و WP-ready شدند؛</li>
+<li>16 target <code>REPAIR_POLICY_REQUIRED</code> باقی ماندند.</li>
+</ul>
+<p>چهار commit اصلی implementation repair اولیه:</p>
+<ul>
+<li><code>afea041...</code></li>
+<li><code>7aa2299...</code></li>
+<li><code>57864b4...</code></li>
+<li><code>61a2ce3...</code></li>
+</ul>
+<h2 id="نمونهی-repair-int32_min-negation">9.5 نمونه‌ی repair:
+<code>INT32_MIN</code> negation</h2>
+<p>قبل از repair، path می‌توانست به:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>u32Temp1 <span class="op">=</span> <span class="op">-</span>value<span class="op">;</span></span></code></pre></div>
+<p>با <code>value == INT32_MIN</code> برسد.</p>
+<p>Repair conceptual:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>value <span class="op">==</span> INT32_MIN<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    u32Temp1 <span class="op">=</span> <span class="bn">0x80000000</span><span class="bu">U</span><span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">/*@ assert eva_klee_alarm_0001:</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">          value != INT32_MIN;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">    */</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    u32Temp1 <span class="op">=</span> <span class="op">-</span>value<span class="op">;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>نکات مهم:</p>
+<ul>
+<li>special case behavior explicit شده؛</li>
+<li>operation اصلی برای ordinary path حفظ شده؛</li>
+<li>assertion اصلی درست قبل از operation خطرناک باقی مانده؛</li>
+<li>بعداً WP می‌تواند نشان دهد else branch property را تضمین می‌کند.</li>
+</ul>
+<h2 id="چرا-16-مورد-فورا-repair-نشدند">9.6 چرا 16 مورد فوراً repair
+نشدند؟</h2>
+<p>Counterexample می‌گوید property قابل نقض است، اما semantics صحیح را
+تعیین نمی‌کند. برای مثال <code>count &gt;= 32</code> را می‌توان به چند شکل
+handle کرد:</p>
+<ul>
+<li>reject</li>
+<li>clamp</li>
+<li>mask</li>
+<li>modulo</li>
+<li>return fallback</li>
+<li>conversion interface</li>
+<li>contract restriction</li>
+</ul>
+<p>بدون evidence، انتخاب یکی از این‌ها یک design decision دلخواه است.
+بنابراین توقف repair در 16 مورد از نظر روش تحقیق یک مزیت بوده، نه
+failure.</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td># 10. Repair-Policy Resolution: حل 3 مورد و نگه‌داشتن 13 مورد
+ambiguous</td>
+</tr>
+<tr class="even">
+<td>## 10.1 ورودی</td>
+</tr>
+<tr class="odd">
+<td>16 target policy-required شامل:</td>
+</tr>
+<tr class="even">
+<td>- 13 shift semantics - 2 high-pass shared-operation
+(<code>0061</code>, <code>0066</code>) - 1 signed-minimum division
+(<code>0144</code>)</td>
+</tr>
+<tr class="odd">
+<td>## 10.2 Alarmهای 0061 و 0066</td>
+</tr>
+<tr class="even">
+<td>مشکل در high-pass calculation مربوط به doubling یک مقدار signed بود.
+روی path منفی، left shift روی signed negative value رفتار
+تعریف‌نشده/نامعتبر ایجاد می‌کرد.</td>
+</tr>
+<tr class="odd">
+<td>Semantic evidence از formula، sibling implementationها، comments و
+rangeها نشان داد که operation موردنظر در واقع <strong>ضرب ریاضی در
+2</strong> است.</td>
+</tr>
+<tr class="even">
+<td>Resolution:</td>
+</tr>
+<tr class="odd">
+<td>- اگر <code>s32Temp2 &gt;= 0</code>: shift اصلی
+<code>s32Temp2 &lt;&lt; 1</code> حفظ شد. - اگر
+<code>s32Temp2 &lt; 0</code>: از <code>s32Temp2 * 2</code> استفاده
+شد.</td>
+</tr>
+<tr class="even">
+<td>Commit مشترک:</td>
+</tr>
+<tr class="odd">
+<td><code>f5daa364e14957ae7410fd2d347917ab6555f046</code></td>
+</tr>
+<tr class="even">
+<td>### چرا این repair قابل دفاع است؟</td>
+</tr>
+<tr class="odd">
+<td>چون policy جدید arbitrary نیست؛ operation جدید همان scaling ریاضی را
+با semantics تعریف‌شده برای negative input پیاده می‌کند.</td>
+</tr>
+<tr class="even">
+<td>## 10.3 Alarm 0144</td>
+</tr>
+<tr class="odd">
+<td>Witness مربوط به signed-minimum division path بود. مشکل اصلی این است
+که گرفتن magnitude signed <code>INT32_MIN</code> به‌صورت signed ممکن
+نیست.</td>
+</tr>
+<tr class="even">
+<td>Resolution:</td>
+</tr>
+<tr class="odd">
+<td>- magnitude <code>INT32_MIN</code> به‌صورت unsigned
+<code>0x80000000U</code> نمایش داده شد؛ - denominator منفی نیز به
+unsigned magnitude تبدیل شد؛ - algorithm existing quotient + doubled
+remainder حفظ شد؛ - ordinary path negation و property اصلی باقی
+ماند.</td>
+</tr>
+<tr class="even">
+<td>Commit:</td>
+</tr>
+<tr class="odd">
+<td><code>b8b767816bdbe2e38196b9e81b57b48384daeca5</code></td>
+</tr>
+<tr class="even">
+<td>برای witness <code>INT32_MIN / INT32_MIN</code>، نتیجه‌ی ریاضی مورد
+انتظار <code>1</code> است و repair این semantics را حفظ می‌کند.</td>
+</tr>
+<tr class="odd">
+<td>## 10.4 تعامل با runtime-only propertyها</td>
+</tr>
+<tr class="even">
+<td>0061/0066 physical statementهایی داشتند که runtime-only alarms
+<code>0062/0067</code> نیز به آن‌ها مربوط بودند. 0144 نیز با
+<code>0145–0149</code> در downstream path interaction داشت.</td>
+</tr>
+<tr class="odd">
+<td>اصل تصمیم:</td>
+</tr>
+<tr class="even">
+<td>- repair confirmed target انجام شود؛ - runtime-only propertyها
+reclassify نشوند؛ - assertionهای آن‌ها حفظ شوند؛ - cross-effect
+source-level مستند شود.</td>
+</tr>
+<tr class="odd">
+<td>## 10.5 نتیجه‌ی فاز</td>
+</tr>
+<tr class="even">
+<td>- repaired قبلی: 32 - newly repaired: 3 - total implementation
+repaired: 35 - remaining ambiguous: 13</td>
+</tr>
+<tr class="odd">
+<td>این 13 مورد همگی shift-related بودند.</td>
+</tr>
+</tbody>
+</table>
+<h1
+id="shift-specification-study-آیا-مشکل-implementation-است-یا-contract">11.
+Shift Specification Study: آیا مشکل implementation است یا contract؟</h1>
+<h2 id="مسئله">11.1 مسئله</h2>
+<p>13 target با invalid shift باقی مانده بودند. سؤال اصلی دیگر این نبود
+که «shift نامعتبر است یا نه»؛ KLEE آن را نشان داده بود. سؤال دقیق‌تر:</p>
+<blockquote>
+<p>آیا <code>count</code> خارج از بازه یک input نامعتبر برای API است، یا
+تابع باید آن را runtime handle کند؟</p>
+</blockquote>
+<p>این distinction بین <strong>input-domain contract</strong> و
+<strong>implementation obligation</strong> است.</p>
+<h2 id="تحلیل-callerها">11.2 تحلیل callerها</h2>
+<p>13 target به 7 semantic group کاهش یافتند. callerهای واقعی، macroها،
+siblingها و integer promotionها بررسی شدند.</p>
+<p>مشاهده‌ی کلیدی:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Helper group</th>
+<th style="text-align: right;">C wrapper count</th>
+<th style="text-align: right;">Public macro constant</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>signed s16</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">65536</td>
+</tr>
+<tr class="even">
+<td>signed s8</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">256</td>
+</tr>
+<tr class="odd">
+<td>signed u16</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">131072</td>
+</tr>
+<tr class="even">
+<td>signed u8</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">512</td>
+</tr>
+<tr class="odd">
+<td>unsigned s16</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="even">
+<td>unsigned s32</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr class="odd">
+<td>unsigned s8</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8</td>
+</tr>
+</tbody>
+</table>
+<p>در سه group unsigned، callerهای موجود با یک count domain واضح سازگار
+بودند. در چهار signed group، public macroها به‌جای count ظاهراً
+power-of-two/divisor می‌دادند.</p>
+<h2 id="پنج-target-با-repository-contract">11.3 پنج target با Repository
+Contract</h2>
+<p>Repository evidence برای پنج target کافی بود:</p>
+<h3 id="و-0015">0014 و 0015</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*@ requires 1 &lt;= count &amp;&amp; count &lt; 32; */</span></span></code></pre></div>
+<h3 id="section">0019</h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*@ requires 32 &lt;= count &amp;&amp; count &lt; 64; */</span></span></code></pre></div>
+<h3 id="و-0021">0020 و 0021</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*@ requires 1 &lt;= count &amp;&amp; count &lt; 32; */</span></span></code></pre></div>
+<p>تمام production callerهای شناخته‌شده این contractها را satisfy
+می‌کردند.</p>
+<h2 id="هشت-target-unresolved-در-این-مرحله">11.4 هشت target unresolved
+در این مرحله</h2>
+<p>0002, 0003, 0005, 0006, 0009, 0010, 0012, 0013</p>
+<p>چرا unresolved؟ چون public macro constantها با semantics bit-count
+helper سازگار نبودند. Repository به‌صورت یکتا مشخص نمی‌کرد که parameter
+سوم:</p>
+<ul>
+<li>literal shift count است، یا</li>
+<li>historical scaling divisor/power-of-two.</li>
+</ul>
+<p>بنابراین هنوز contract اضافه نشد و fallback implementation نیز ساخته
+نشد.</p>
+<h3 id="اهمیت-علمی">اهمیت علمی</h3>
+<p>این مرحله نشان داد static alarm گاهی به <strong>specification
+gap</strong> اشاره می‌کند، نه صرفاً coding bug.</p>
+<hr />
+<h1 id="final-shift-semantic-resolution">12. Final Shift Semantic
+Resolution</h1>
+<h2 id="هدف-1">12.1 هدف</h2>
+<p>برای تکمیل چرخه‌ی 48 confirmed target، هشت مورد unresolved با یک
+<strong>thesis-level explicit policy</strong> resolve شدند؛ اما origin
+این policy به‌صورت شفاف ثبت شد تا به اشتباه legacy specification تلقی
+نشود.</p>
+<h2 id="سه-نوع-resolution-نهایی-در-48-target">12.2 سه نوع resolution
+نهایی در 48 target</h2>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cohort</th>
+<th style="text-align: right;">تعداد</th>
+<th style="text-align: right;">درصد از 48</th>
+<th>معنا</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Implementation repair</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">72.92%</td>
+<td>تغییر کد با semantics پشتیبانی‌شده توسط repository</td>
+</tr>
+<tr class="even">
+<td>Repository-derived specification</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">10.42%</td>
+<td>materialize کردن input-domain contract مستدل</td>
+</tr>
+<tr class="odd">
+<td>Thesis-policy-selected</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">16.67%</td>
+<td>تعریف صریح policy جدید برای interface مبهم</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="figures/05_resolution_cohorts.png" alt="سه cohort نهایی" />
+<figcaption aria-hidden="true">سه cohort نهایی</figcaption>
+</figure>
+<h2 id="هشت-thesis-interface-policy">12.3 هشت Thesis Interface
+Policy</h2>
+<p>Policy انتخابی:</p>
+<blockquote>
+<p>public fixed-point interface power-of-two scaling semantics خود را
+حفظ می‌کند؛ low-level helper فقط bit count می‌گیرد؛ تبدیل public constant
+به bit count به‌صورت exact static mapping انجام می‌شود.</p>
+</blockquote>
+<p>Mappings:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Alarm group</th>
+<th style="text-align: right;">Public value</th>
+<th style="text-align: right;">Internal count</th>
+<th>Helper contract</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0002/0003</td>
+<td style="text-align: right;">65536</td>
+<td style="text-align: right;">16</td>
+<td><code>1 &lt;= count &amp;&amp; count &lt; 32</code></td>
+</tr>
+<tr class="even">
+<td>0005/0006</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">8</td>
+<td><code>1 &lt;= count &amp;&amp; count &lt; 32</code></td>
+</tr>
+<tr class="odd">
+<td>0009/0010</td>
+<td style="text-align: right;">131072</td>
+<td style="text-align: right;">17</td>
+<td><code>1 &lt;= count &amp;&amp; count &lt; 32</code></td>
+</tr>
+<tr class="even">
+<td>0012/0013</td>
+<td style="text-align: right;">512</td>
+<td style="text-align: right;">9</td>
+<td><code>1 &lt;= count &amp;&amp; count &lt; 32</code></td>
+</tr>
+</tbody>
+</table>
+<p>هیچ runtime logarithm، mask، clamp، modulo یا arbitrary fallback
+اضافه نشده است.</p>
+<h2 id="تغییرات-sourcespecification">12.4 تغییرات
+source/specification</h2>
+<ul>
+<li>7 function-level ACSL <code>requires</code></li>
+<li>4 static macro argument normalization</li>
+<li>0 تغییر در function body برای این 13 shift target</li>
+<li>13/13 assertion اصلی حفظ‌شده</li>
+<li>14 production interface row audit شده و violation contract = 0</li>
+</ul>
+<h2 id="wording-صحیح-برای-پایاننامه">12.5 wording صحیح برای
+پایان‌نامه</h2>
+<p>برای پنج مورد:</p>
+<blockquote>
+<p>«بر اساس callerها و interface موجود repository، دامنه‌ی معتبر ورودی
+به‌صورت contract استخراج و materialize شد.»</p>
+</blockquote>
+<p>برای هشت مورد:</p>
+<blockquote>
+<p>«به‌دلیل specification ناقص legacy interface، پایان‌نامه یک policy صریح
+و سازگار برای مرز public scaling interface و internal bit-count helper
+تعریف کرد.»</p>
+</blockquote>
+<p>نباید نوشته شود:</p>
+<blockquote>
+<p>«repository ثابت کرد 65536 باید به 16 تبدیل شود.»</p>
+</blockquote>
+<p>چون این یک thesis-selected design policy است.</p>
+<hr />
+<h1 id="روش-wp-اثبات-property-اصلی-بعد-از-resolution">13. روش WP: اثبات
+property اصلی بعد از resolution</h1>
+<h2 id="سؤال-wp">13.1 سؤال WP</h2>
+<p>WP برای هر یک از 48 target این سؤال را بررسی کرده است:</p>
+<blockquote>
+<p>«آیا در implementation/specification resolved فعلی، همان Eva-derived
+assertion انتخاب‌شده در نقطه‌ی هدف قابل اثبات است؟»</p>
+</blockquote>
+<h2 id="تنظیمات-اصلی">13.2 تنظیمات اصلی</h2>
+<p>هر command شامل:</p>
+<pre class="text"><code>-machdep ppc_32
+-wp
+-wp-fct &lt;function&gt;
+-wp-prop eva_klee_alarm_NNNN
+-wp-model Typed+int</code></pre>
+<p>Provers available:</p>
+<ul>
+<li>Qed</li>
+<li>Alt-Ergo 2.6.2</li>
+<li>Z3 4.8.12</li>
+<li>CVC5 1.1.2</li>
+</ul>
+<p>Why3 1.8.2 برای external provers.</p>
+<h2 id="چرا--wp-rte-استفاده-نشد">13.3 چرا <code>-wp-rte</code> استفاده
+نشد؟</h2>
+<p>هدف آزمایش «proof همان property استخراج‌شده از Eva» بود، نه تولید و
+اثبات تمام runtime-error obligations تابع. بنابراین:</p>
+<pre class="text"><code>-wp-rte</code></pre>
+<p>عمداً وجود نداشت.</p>
+<p>در نتیجه warning:</p>
+<pre class="text"><code>[wp] Warning: Missing RTE guards</code></pre>
+<p>در این طراحی expected است و failure proof محسوب نمی‌شود.</p>
+<p>این نکته را حتماً در پایان‌نامه بنویسید، چون در غیر این صورت reviewer
+ممکن است از 48/48 نتیجه‌ی بیش از حد برداشت کند.</p>
+<h2 id="classification-صحیح">13.4 Classification صحیح</h2>
+<p><code>VALID_AUTOMATIC</code> یعنی همه‌ی proof obligationهای مربوط به
+<strong>property انتخاب‌شده</strong> discharge شده‌اند.</p>
+<p>Exit code 0 به‌تنهایی proof نیست. evidence از goal count، Qed و
+external prover result گرفته شده است.</p>
+<h2 id="preconditions-در-13-shift-target">13.5 Preconditions در 13 shift
+target</h2>
+<p>برای targetهایی که function-level contract دارند، WP اجازه دارد
+<code>requires</code> را assumption معتبر تابع در نظر بگیرد. بنابراین
+proof conditional است:</p>
+<pre class="text"><code>valid input domain
+    ⇒ control/data flow
+    ⇒ original Eva assertion</code></pre>
+<p>این proof نباید به arbitrary direct calls خارج از contract تعمیم داده
+شود.</p>
+<hr />
+<h1 id="wp-campaign-اول-32-target">14. WP Campaign اول: 32 target</h1>
+<h2 id="scope">14.1 Scope</h2>
+<p>فقط 32 target repairشده‌ی اولیه اجرا شدند؛ 16 policy-required هنوز WP
+eligible نبودند.</p>
+<h2 id="نتیجه">14.2 نتیجه</h2>
+<ul>
+<li>Complete runs: 32</li>
+<li>VALID_AUTOMATIC: 32</li>
+<li>UNKNOWN/TIMEOUT/FAILED/NO_GOAL/NOT_RUN: 0</li>
+</ul>
+<p>Verification rate among eligible:</p>
+<pre class="text"><code>32 / 32 = 100%</code></pre>
+<p>Coverage نسبت به همه‌ی 48 confirmed در آن checkpoint:</p>
+<pre class="text"><code>32 / 48 = 66.67%</code></pre>
+<h2 id="prover-contribution">14.3 prover contribution</h2>
+<ul>
+<li>Qed-only: 26</li>
+<li>external-prover targets: 6</li>
+<li>Alt-Ergo: 5 Valid، 1 Timeout</li>
+<li>Z3: 6 Valid</li>
+<li>CVC5: 6 Valid</li>
+</ul>
+<p>Alarm 0017 حدود <code>131.91 s</code> طول کشید. Alt-Ergo timeout شد
+ولی Z3 و CVC5 آن را prove کردند؛ بنابراین target نهایی
+<code>VALID_AUTOMATIC</code> است.</p>
+<h2 id="زمان">14.4 زمان</h2>
+<p>جمع wall-clock ثبت‌شده برای 32 target:</p>
+<p><code>166.626282879 s</code></p>
+<p>این مقدار تحت تنظیمات ثابت برای همه‌ی targetهای campaign به‌دست آمده
+است.</p>
+<hr />
+<h1 id="wp-campaign-دوم-0061-0066-و-0144">15. WP Campaign دوم: 0061،
+0066 و 0144</h1>
+<p>پس از policy-resolution سه repair جدید WP-ready شدند.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Alarm</th>
+<th style="text-align: right;">Goals</th>
+<th>Qed</th>
+<th>External</th>
+<th style="text-align: right;">Runtime</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0061</td>
+<td style="text-align: right;">1/1</td>
+<td>Valid</td>
+<td>Not invoked</td>
+<td style="text-align: right;">0.559338 s</td>
+</tr>
+<tr class="even">
+<td>0066</td>
+<td style="text-align: right;">1/1</td>
+<td>Valid</td>
+<td>Not invoked</td>
+<td style="text-align: right;">0.617537 s</td>
+</tr>
+<tr class="odd">
+<td>0144</td>
+<td style="text-align: right;">1/1</td>
+<td>Valid</td>
+<td>Not invoked</td>
+<td style="text-align: right;">0.696125 s</td>
+</tr>
+</tbody>
+</table>
+<p>هر سه فقط با Qed بسته شدند.</p>
+<p>نتیجه‌ی تجمعی در این نقطه:</p>
+<pre class="text"><code>35 repaired / 35 WP-valid</code></pre>
+<hr />
+<h1 id="wp-campaign-نهایی-13-shift-target">16. WP Campaign نهایی 13
+shift target</h1>
+<h2 id="دو-origin-متفاوت">16.1 دو origin متفاوت</h2>
+<ul>
+<li>5 target: <code>REPOSITORY_INFERRED</code></li>
+<li>8 target: <code>THESIS_POLICY_SELECTED</code></li>
+</ul>
+<p>هر دو cohort 100% WP-valid شدند، ولی <strong>معنای proof یکسان
+نیست</strong>.</p>
+<p>برای thesis-policy:</p>
+<blockquote>
+<p>WP نشان می‌دهد property تحت policy صریح انتخاب‌شده در این پژوهش برقرار
+است.</p>
+</blockquote>
+<p>برای repository-derived:</p>
+<blockquote>
+<p>WP نشان می‌دهد property تحت contract استنتاج‌شده از شواهد repository
+برقرار است.</p>
+</blockquote>
+<h2 id="نتیجهی-prover">16.2 نتیجه‌ی prover</h2>
+<p>13/13 <code>VALID_AUTOMATIC</code>:</p>
+<ul>
+<li>Qed-only: 6</li>
+<li>نیازمند Alt-Ergo: 7</li>
+<li>Alt-Ergo Valid: 7</li>
+<li>Z3/CVC5 invoked: 0 در این campaign</li>
+</ul>
+<p>این نکته اهمیت دارد: configured بودن prover به معنی استفاده‌شدن آن
+نیست؛ report فقط actual invocation را می‌شمارد.</p>
+<hr />
+<h1 id="نتیجهی-نهایی-wp-برای-48-target">17. نتیجه‌ی نهایی WP برای 48
+target</h1>
+<h2 id="جمعبندی-campaignها">17.1 جمع‌بندی campaignها</h2>
+<pre class="text"><code>32 + 3 + 13 = 48</code></pre>
+<p>تمام 48 property:</p>
+<pre class="text"><code>VALID_AUTOMATIC = 48 / 48 = 100%</code></pre>
+<h2 id="prover-accounting-کل">17.2 Prover accounting کل</h2>
+<table>
+<thead>
+<tr class="header">
+<th>معیار</th>
+<th style="text-align: right;">تعداد</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Qed-only</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="even">
+<td>نیازمند external prover</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td>Alt-Ergo Valid</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td>Alt-Ergo Timeout</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td>Z3 Valid</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td>CVC5 Valid</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td>Multiple external-prover agreement</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td>Exactly one external prover succeeded</td>
+<td style="text-align: right;">7</td>
+</tr>
+</tbody>
+</table>
+<p>مجموع recorded wall-clock:</p>
+<p><code>183.910237408 s</code></p>
+<h2 id="ادعای-دقیق">17.3 ادعای دقیق</h2>
+<p>جمله‌ی مناسب:</p>
+<blockquote>
+<p>«Frama-C/WP تمام 48 Eva-derived target property انتخاب‌شده را پس از
+resolution و تحت context مستندشده‌ی implementation repair،
+repository-derived contract یا thesis-selected policy، با مدل
+<code>ppc_32</code> و <code>Typed+int</code> اثبات کرد.»</p>
+</blockquote>
+<p>جمله‌های نامناسب:</p>
+<ul>
+<li>«48 تابع اثبات شدند.»</li>
+<li>«کل برنامه verified شد.»</li>
+<li>«هیچ runtime errorی وجود ندارد.»</li>
+<li>«تمام 149 alarm safe هستند.»</li>
+</ul>
+<h2 id="نتیجهی-methodological">17.4 نتیجه‌ی methodological</h2>
+<p>WP در این workflow نقش مهم دیگری نیز پیدا می‌کند: <strong>proof
+نتیجه‌ای اجرایی برای مرحله‌ی runtime دارد</strong>. یعنی property ثابت‌شده
+دیگر لازم نیست در configuration selective E-ACSL monitor شود.</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td># 18. طراحی Selective Instrumentation با E-ACSL</td>
+</tr>
+<tr class="even">
+<td>## 18.1 پرسش آزمایش</td>
+</tr>
+<tr class="odd">
+<td>بعد از اینکه 48 property با WP ثابت شدند، سؤال جدید این شد:</td>
+</tr>
+<tr class="even">
+<td>&gt; «آیا می‌توان propertyهایی را که proof deductive دارند از
+instrumentation زمان اجرا حذف کرد و هزینه‌ی E-ACSL را کاهش داد، در حالی‌که
+propertyهای unresolved همچنان monitor شوند؟»</td>
+</tr>
+<tr class="odd">
+<td>این پرسش یکی از مهم‌ترین پل‌های بین static verification و runtime
+verification در پژوهش است.</td>
+</tr>
+<tr class="even">
+<td>## 18.2 سه سناریو</td>
+</tr>
+<tr class="odd">
+<td>### S0 — Control</td>
+</tr>
+<tr class="even">
+<td>کد بدون target instrumentation E-ACSL.</td>
+</tr>
+<tr class="odd">
+<td>کاربرد:</td>
+</tr>
+<tr class="even">
+<td>- baseline compilation/runtime - اندازه‌ی object و text - مقایسه‌ی
+overhead کلی</td>
+</tr>
+<tr class="odd">
+<td>### S1 — Full Eva set</td>
+</tr>
+<tr class="even">
+<td>تمام <strong>149 Eva-derived target property</strong> instrument
+می‌شوند.</td>
+</tr>
+<tr class="odd">
+<td>### S2 — WP-pruned</td>
+</tr>
+<tr class="even">
+<td>48 property که WP آن‌ها را Valid کرده حذف می‌شوند و فقط:</td>
+</tr>
+<tr class="odd">
+<td><code>text 149 - 48 = 101</code></td>
+</tr>
+<tr class="even">
+<td>property باقی‌مانده runtime monitor می‌شوند.</td>
+</tr>
+<tr class="odd">
+<td><img src="figures/06_eacsl_selection_counts.png"
+alt="S1 و S2" /></td>
+</tr>
+<tr class="even">
+<td>## 18.3 چرا selection باید property-level باشد؟</td>
+</tr>
+<tr class="odd">
+<td>فرض کنید یک تابع 5 property دارد:</td>
+</tr>
+<tr class="even">
+<td>- 2 property WP-valid - 3 property unresolved</td>
+</tr>
+<tr class="odd">
+<td>اگر کل function را از instrumentation حذف کنیم، سه obligation
+unresolved نیز از بین می‌روند. بنابراین pruning باید بر اساس
+<strong>label/property</strong> باشد، نه صرفاً function.</td>
+</tr>
+<tr class="even">
+<td>این پروژه عملاً این مسئله را داشت: 6 تابع mixed بودند که هم property
+حذف‌شده و هم retained داشتند.</td>
+</tr>
+<tr class="odd">
+<td>Mixed functions:</td>
+</tr>
+<tr class="even">
+<td>1. <code>s16_fac05_div_s16_s16</code> 2.
+<code>s16_fac05_div_s16_u16</code> 3.
+<code>s16_hip1_s16_s8_s8_u16_fac1</code> 4.
+<code>s16_hip1_s16_u8_u8_u16_fac1</code> 5. <code>s32_div_s32_s32</code>
+6. <code>u32_div_s32_s32</code></td>
+</tr>
+<tr class="odd">
+<td>بنابراین property-level selection یک نیاز واقعی dataset بوده است، نه
+طراحی نظری اضافه.</td>
+</tr>
+<tr class="even">
+<td>## 18.4 محدودیت E-ACSL نصب‌شده</td>
+</tr>
+<tr class="odd">
+<td>E-ACSL موجود در Frama-C 33.0 امکان function-level filtering دارد،
+اما exact property-label filtering مناسب این آزمایش را ارائه
+نمی‌داد.</td>
+</tr>
+<tr class="even">
+<td>راه‌حل:</td>
+</tr>
+<tr class="odd">
+<td>- canonical <code>src_repaired</code> دست‌نخورده ماند؛ - generated
+source view deterministic ساخته شد؛ - selected assertionها verbatim
+active ماندند؛ - excluded assertionها فقط در experiment copy به inert
+comment تبدیل شدند؛ - auxiliary ACSL کنترل شد تا countهای headline آلوده
+نشوند.</td>
+</tr>
+<tr class="even">
+<td>این workaround باید در پایان‌نامه شفاف گزارش شود، چون خودش یک Threat
+to Validity است.</td>
+</tr>
+<tr class="odd">
+<td>## 18.5 Integrity audit</td>
+</tr>
+<tr class="even">
+<td>برای معتبر بودن performance comparison، ابتدا باید ثابت شود S1 و S2
+دقیقاً property set موردنظر را دارند.</td>
+</tr>
+<tr class="odd">
+<td>نتیجه:</td>
+</tr>
+<tr class="even">
+<td>- S1 present: 149/149 - S2 retained: 101/101 - WP-valid in S1: 48/48
+- WP-valid absent from S2: 48/48 - retained intersection lost: 0</td>
+</tr>
+<tr class="odd">
+<td>یعنی transformation دقیقاً:</td>
+</tr>
+<tr class="even">
+<td><code>text S1 = WP_VALID_48 ∪ RUNTIME_101 S2 = RUNTIME_101 WP_VALID_48 ∩ RUNTIME_101 = ∅</code></td>
+</tr>
+<tr class="odd">
+<td>## 18.6 کاهش function-level حاصل از property pruning</td>
+</tr>
+<tr class="even">
+<td>اگرچه pruning property-level بوده، نتیجه‌ی طبیعی آن این بوده که برخی
+functionها تمام targetهایشان WP-valid شده و کاملاً از S2 runtime target
+set خارج شده‌اند.</td>
+</tr>
+<tr class="odd">
+<td>تعداد:</td>
+</tr>
+<tr class="even">
+<td>- S1 target functions: 33 - S2 target functions: 16 - removed
+functions: 17 - کاهش: 51.515152%</td>
+</tr>
+<tr class="odd">
+<td>17 تابع حذف‌شده:</td>
+</tr>
+<tr class="even">
+<td>- <code>root_s32_mul_s32_s16_fac_less1</code> -
+<code>root_s32_mul_s32_s8_fac_less1</code> -
+<code>root_s32_mul_s32_u16_fac_less1</code> -
+<code>root_s32_mul_s32_u8_fac_less1</code> -
+<code>root_u32_mul_u32_s16_fac_less1</code> -
+<code>root_u32_mul_u32_s32_fac_less1</code> -
+<code>root_u32_mul_u32_s8_fac_less1</code> - <code>rotateRight</code> -
+<code>s16_div_s32_u32</code> - <code>s32_div_s32_u32</code> -
+<code>s32_div_u32_s32</code> - <code>s32_mul_s32_s16_fac2</code> -
+<code>s32_mul_s32_s32</code> - <code>s32_mul_s32_s32_fac2</code> -
+<code>s32_mul_s32_s32_fac_twopow_u8</code> -
+<code>s32_mul_s32_s8_fac2</code> - <code>s32_mul_u32_s32</code></td>
+</tr>
+<tr class="odd">
+<td>## 18.7 توزیع propertyها بر اساس source file</td>
+</tr>
+<tr class="even">
+<td>| فایل | S1 properties | WP-valid | S2 retained | S1 funcs | S2
+funcs | |—|—:|—:|—:|—:|—:| | <code>MulHword.c</code> | 6 | 6 | 0 | 5 | 0
+| | <code>avrg_Ccode.c</code> | 1 | 0 | 1 | 1 | 1 | |
+<code>div_Ccode.c</code> | 102 | 10 | 92 | 15 | 12 | |
+<code>hip_Ccode.c</code> | 10 | 4 | 6 | 2 | 2 | |
+<code>mul_Ccode.c</code> | 29 | 27 | 2 | 14 | 1 | |
+<code>rotatefunc.c</code> | 1 | 1 | 0 | 1 | 0 |</td>
+</tr>
+<tr class="odd">
+<td>### تفسیر مهم</td>
+</tr>
+<tr class="even">
+<td>S2 به‌شدت روی division code متمرکز شده است:</td>
+</tr>
+<tr class="odd">
+<td><code>text 92 / 101 ≈ 91.1%</code></td>
+</tr>
+<tr class="even">
+<td>propertyهای retained در <code>div_Ccode.c</code> هستند. این با KLEE
+نیز هم‌جهت است، چون تمام 86 timeout در همین فایل قرار داشتند.</td>
+</tr>
+<tr class="odd">
+<td>این همبستگی نشان می‌دهد سخت‌ترین بخش برای symbolic execution همان بخشی
+است که بیشترین runtime monitoring obligation را نیز پس از WP نگه داشته
+است.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="ارزیابی-static-e-acsl">19. ارزیابی Static E-ACSL</h1>
+<h2 id="هدف-2">19.1 هدف</h2>
+<p>پیش از داشتن runtime workload، اثر selective instrumentation بر:</p>
+<ul>
+<li>generated source size</li>
+<li>generated LOC</li>
+<li>instrumentation time</li>
+<li>compilation time</li>
+<li>compiler memory</li>
+<li>object size</li>
+<li>text section</li>
+</ul>
+<p>اندازه‌گیری شد.</p>
+<h2 id="روش-اندازهگیری">19.2 روش اندازه‌گیری</h2>
+<ul>
+<li>10 repetition برای هر scenario</li>
+<li>runها interleaved شدند تا bias ناشی از ترتیب کمتر شود</li>
+<li><code>/usr/bin/time -v</code> و ابزارهای size/stat استفاده شدند</li>
+<li>همان source revision و build setup برای مقایسه حفظ شد</li>
+</ul>
+<p>در static stage executable نهایی وجود نداشت، چون repository
+authoritative <code>main</code> نداشت. بنابراین object size و text size
+به‌عنوان static proxy گزارش شدند.</p>
+<h2 id="کاهش-logical-properties-و-functions">19.3 کاهش logical
+properties و functions</h2>
+<table>
+<thead>
+<tr class="header">
+<th>معیار</th>
+<th style="text-align: right;">S1</th>
+<th style="text-align: right;">S2</th>
+<th style="text-align: right;">کاهش</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Logical target properties</td>
+<td style="text-align: right;">149</td>
+<td style="text-align: right;">101</td>
+<td style="text-align: right;">32.214765%</td>
+</tr>
+<tr class="even">
+<td>Unique target functions</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">51.515152%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-c">19.4 Generated C</h2>
+<table>
+<thead>
+<tr class="header">
+<th>معیار</th>
+<th style="text-align: right;">S1</th>
+<th style="text-align: right;">S2</th>
+<th style="text-align: right;">کاهش</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Generated bytes</td>
+<td style="text-align: right;">392,143</td>
+<td style="text-align: right;">340,661</td>
+<td style="text-align: right;">13.128374%</td>
+</tr>
+<tr class="even">
+<td>Generated LOC</td>
+<td style="text-align: right;">9,942</td>
+<td style="text-align: right;">8,925</td>
+<td style="text-align: right;">10.229330%</td>
+</tr>
+</tbody>
+</table>
+<p>نکته‌ی مهم:</p>
+<p>32.21% property reduction فقط 13.13% byte reduction داده است. دلیل
+این است که E-ACSL هزینه‌های مشترک و runtime support code دارد و هر
+property سهم یکسانی در generated code ندارد.</p>
+<h2 id="instrumentation-time">19.5 Instrumentation time</h2>
+<p>10 repetition:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;">SD</th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;">Max</th>
+<th style="text-align: right;">Median peak RSS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S1</td>
+<td style="text-align: right;">6.903 s</td>
+<td style="text-align: right;">6.710 s</td>
+<td style="text-align: right;">0.424</td>
+<td style="text-align: right;">6.620</td>
+<td style="text-align: right;">7.890</td>
+<td style="text-align: right;">205,158 KiB</td>
+</tr>
+<tr class="even">
+<td>S2</td>
+<td style="text-align: right;">6.010 s</td>
+<td style="text-align: right;">6.010 s</td>
+<td style="text-align: right;">0.199</td>
+<td style="text-align: right;">5.770</td>
+<td style="text-align: right;">6.420</td>
+<td style="text-align: right;">204,364 KiB</td>
+</tr>
+</tbody>
+</table>
+<p>کاهش:</p>
+<ul>
+<li>median: <strong>10.432191%</strong></li>
+<li>mean: <strong>12.936404%</strong></li>
+<li>median peak RSS: حدود <strong>0.387%</strong></li>
+</ul>
+<h3 id="تفسیر-1">تفسیر</h3>
+<p>instrumentation processing زمان‌محور از pruning سود قابل‌اندازه‌گیری
+گرفته، ولی memory تقریباً ثابت مانده است. این می‌تواند نشان دهد بخش عمده‌ی
+memory مربوط به fixed parsing/AST/runtime machinery است، نه صرفاً تعداد
+target checks.</p>
+<h2 id="compilation-time">19.6 Compilation time</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;">SD</th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;">Max</th>
+<th style="text-align: right;">Median peak RSS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S0</td>
+<td style="text-align: right;">1.172</td>
+<td style="text-align: right;">1.165</td>
+<td style="text-align: right;">0.074</td>
+<td style="text-align: right;">1.090</td>
+<td style="text-align: right;">1.310</td>
+<td style="text-align: right;">50,422 KiB</td>
+</tr>
+<tr class="even">
+<td>S1</td>
+<td style="text-align: right;">1.719</td>
+<td style="text-align: right;">1.725</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">1.670</td>
+<td style="text-align: right;">1.780</td>
+<td style="text-align: right;">65,238 KiB</td>
+</tr>
+<tr class="odd">
+<td>S2</td>
+<td style="text-align: right;">1.674</td>
+<td style="text-align: right;">1.650</td>
+<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">1.600</td>
+<td style="text-align: right;">1.780</td>
+<td style="text-align: right;">63,808 KiB</td>
+</tr>
+</tbody>
+</table>
+<p>S2 median compilation reduction نسبت به S1:</p>
+<p><strong>4.347826%</strong></p>
+<p>این کاهش از instrumentation time کمتر است، چون compiler همچنان یک
+translation unit بزرگ و E-ACSL support code را compile می‌کند.</p>
+<h2 id="objecttext-size">19.7 Object/Text size</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th style="text-align: right;">Object bytes</th>
+<th style="text-align: right;">Text bytes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S0</td>
+<td style="text-align: right;">275,840</td>
+<td style="text-align: right;">23,852</td>
+</tr>
+<tr class="even">
+<td>S1</td>
+<td style="text-align: right;">462,872</td>
+<td style="text-align: right;">75,911</td>
+</tr>
+<tr class="odd">
+<td>S2</td>
+<td style="text-align: right;">439,560</td>
+<td style="text-align: right;">65,286</td>
+</tr>
+</tbody>
+</table>
+<p>S2 نسبت به S1:</p>
+<ul>
+<li>Object reduction: <strong>5.036382%</strong></li>
+<li>Text reduction: <strong>13.996654%</strong></li>
+</ul>
+<p>S1 object overhead نسبت به S0: حدود 67.80%</p>
+<p>S2 object overhead نسبت به S0: حدود 59.35%</p>
+<h2 id="نمودار-static-reductions">19.8 نمودار static reductions</h2>
+<figure>
+<img src="figures/07_eacsl_static_reductions.png"
+alt="کاهش‌های static" />
+<figcaption aria-hidden="true">کاهش‌های static</figcaption>
+</figure>
+<h2 id="نتیجهی-علمی">19.9 نتیجه‌ی علمی</h2>
+<p>نتیجه‌ی اصلی این مرحله نباید این باشد که «32% property حذف شد پس همه‌ی
+هزینه‌ها 32% کم شدند». برعکس، داده‌ها نشان می‌دهند رابطه nonlinear است:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Logical reduction</th>
+<th>Physical/cost response</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>32.21% property</td>
+<td>13.13% generated bytes</td>
+</tr>
+<tr class="even">
+<td>32.21% property</td>
+<td>10.23% LOC</td>
+</tr>
+<tr class="odd">
+<td>32.21% property</td>
+<td>10.43% median instrumentation</td>
+</tr>
+<tr class="even">
+<td>32.21% property</td>
+<td>5.04% object size</td>
+</tr>
+<tr class="odd">
+<td>32.21% property</td>
+<td>14.00% text size</td>
+</tr>
+</tbody>
+</table>
+<p>این nonlinear behavior خودش یک نتیجه‌ی ارزشمند evaluation است.</p>
+<hr />
+<h1 id="طراحی-dynamic-e-acsl-workload">20. طراحی Dynamic E-ACSL
+Workload</h1>
+<h2 id="چرا-workload-جدید-ساخته-شد">20.1 چرا workload جدید ساخته
+شد؟</h2>
+<p>Repository یک application <code>main</code> و workload
+production-authoritative نداشت. بنابراین نمی‌شد runtime overhead را بدون
+تعریف workload اندازه‌گیری کرد.</p>
+<p>به‌جای ساختن benchmark و ادعای production، workload عمداً با عنوان:</p>
+<p><code>THESIS_CONTROLLED_WORKLOAD</code></p>
+<p>تعریف شد.</p>
+<p>این wording باید در پایان‌نامه حفظ شود.</p>
+<h2 id="ویژگیهای-workload">20.2 ویژگی‌های workload</h2>
+<ul>
+<li>تمام 33 target-bearing function اجرا شدند:
+<strong>33/33</strong></li>
+<li>100,000 iteration در هر measured execution</li>
+<li>ورودی‌ها از wrapper constants، documented domains و contract-valid
+arithmetic values گرفته شدند</li>
+<li>حتی functionهایی که در S2 instrumentation حذف شده بودند، همچنان توسط
+workload اجرا شدند</li>
+<li>seed ثابت: <code>20260821</code></li>
+<li>optimization: <code>-O2</code></li>
+<li>CPU affinity: CPU 0</li>
+<li>warmup: 5 run per scenario</li>
+<li>measured: 30 run per scenario</li>
+<li>total measured executions: 90</li>
+<li>order: deterministic interleaving across all six S0/S1/S2
+permutations</li>
+</ul>
+<h2 id="چرا-اجرای-تمام-33-function-مهم-است">20.3 چرا اجرای تمام 33
+function مهم است؟</h2>
+<p>اگر workload فقط 16 function باقی‌مانده در S2 را اجرا می‌کرد، benefit
+حذف 17 function از instrumentation قابل مشاهده نبود. بنابراین workload
+عمداً function-complete برای target-bearing population طراحی شد.</p>
+<h2 id="functional-equivalence">20.4 Functional equivalence</h2>
+<p>هر سه scenario checksum یکسان تولید کردند:</p>
+<pre class="text"><code>5272412154435795075</code></pre>
+<ul>
+<li>S0 = checksum</li>
+<li>S1 = checksum</li>
+<li>S2 = checksum</li>
+</ul>
+<p>این نشان می‌دهد instrumentation در performance corpus نتیجه‌ی
+functional مشاهده‌شده را تغییر نداده است.</p>
+<p>نکته: checksum equivalence proof semantic equivalence کلی برنامه
+نیست؛ فقط برای workload اجراشده functional consistency ایجاد می‌کند.</p>
+<h2 id="چرا-x86-64-runtime">20.5 چرا x86-64 runtime؟</h2>
+<p>PPC compiler/emulator موجود نبود. E-ACSL نیز generated PPC32
+instrumentation را به‌علت pointer size mismatch (4 vs 8 bytes) برای host
+runtime رد کرد.</p>
+<p>بنابراین:</p>
+<ul>
+<li>property set از تحلیل <code>ppc_32</code> می‌آید؛</li>
+<li>runtime benchmark native x86-64 است.</li>
+</ul>
+<p>این محدودیت برای external validity مهم است.</p>
+<hr />
+<h1 id="نتایج-dynamic-performance">21. نتایج Dynamic Performance</h1>
+<h2 id="wall-clock-statistics">21.1 Wall-clock statistics</h2>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;">SD</th>
+<th style="text-align: right;">IQR</th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S0</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0.059114</td>
+<td style="text-align: right;">0.058185</td>
+<td style="text-align: right;">0.006697</td>
+<td style="text-align: right;">0.005578</td>
+<td style="text-align: right;">0.045732</td>
+<td style="text-align: right;">0.082631</td>
+</tr>
+<tr class="even">
+<td>S1</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">5.930749</td>
+<td style="text-align: right;">5.939652</td>
+<td style="text-align: right;">0.141246</td>
+<td style="text-align: right;">0.144023</td>
+<td style="text-align: right;">5.486504</td>
+<td style="text-align: right;">6.226129</td>
+</tr>
+<tr class="odd">
+<td>S2</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">4.943218</td>
+<td style="text-align: right;">4.867204</td>
+<td style="text-align: right;">0.458357</td>
+<td style="text-align: right;">0.099316</td>
+<td style="text-align: right;">4.602378</td>
+<td style="text-align: right;">7.303478</td>
+</tr>
+</tbody>
+</table>
+<p>S2 یک outlier ناشی از scheduling/system noise داشته؛ به همین دلیل
+median و paired comparison مهم‌تر از mean هستند.</p>
+<figure>
+<img src="figures/08_runtime_medians.png"
+alt="runtime median S0/S1/S2" />
+<figcaption aria-hidden="true">runtime median S0/S1/S2</figcaption>
+</figure>
+<h2 id="overhead-نسبت-به-control">21.2 Overhead نسبت به Control</h2>
+<p>Median S1 overhead vs S0:</p>
+<p><strong>10,108.130843%</strong></p>
+<p>Median S2 overhead vs S0:</p>
+<p><strong>8,264.978528%</strong></p>
+<p>این درصدها بسیار بزرگ‌اند، چون S0 فقط حدود 0.058 ثانیه طول می‌کشد.
+بنابراین در دفاع بهتر است absolute time و S1→S2 saving برجسته شود.</p>
+<h2 id="runtime-saving-اصلی">21.3 Runtime saving اصلی</h2>
+<p>Median S2 saving نسبت به S1:</p>
+<pre class="text"><code>(5.939651870 - 4.867204497) / 5.939651870
+= 18.055728%</code></pre>
+<p>Mean-based saving:</p>
+<p><strong>16.651040%</strong></p>
+<p>Median paired S1−S2 difference:</p>
+<p><strong>1.059290 s</strong></p>
+<h2 id="چه-مقدار-از-overhead-e-acsl-حذف-شد">21.4 چه مقدار از overhead
+E-ACSL حذف شد؟</h2>
+<p>اگر overhead کامل را نسبت به S0 تعریف کنیم:</p>
+<pre class="text"><code>Full overhead = S1 - S0
+Selective overhead = S2 - S0</code></pre>
+<p>سهم overhead حذف‌شده:</p>
+<p><strong>18.234354%</strong> بر مبنای median.</p>
+<p>این metric از نظر conceptual بهتر از صرف S2/S1 است، چون مستقیماً
+می‌پرسد pruning چه بخشی از هزینه‌ی اضافه‌ی instrumentation را حذف کرده
+است.</p>
+<h2 id="memory">21.5 Memory</h2>
+<p>Median Max RSS:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th style="text-align: right;">Median KiB</th>
+<th style="text-align: right;">Mean KiB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S0</td>
+<td style="text-align: right;">1,916</td>
+<td style="text-align: right;">1,894.4</td>
+</tr>
+<tr class="even">
+<td>S1</td>
+<td style="text-align: right;">2,628</td>
+<td style="text-align: right;">2,633.2</td>
+</tr>
+<tr class="odd">
+<td>S2</td>
+<td style="text-align: right;">2,608</td>
+<td style="text-align: right;">2,612.0</td>
+</tr>
+</tbody>
+</table>
+<p>S2 memory saving vs S1:</p>
+<p><strong>0.761035%</strong> median.</p>
+<p>این تفاوت کوچک و نزدیک noise process-level است. نتیجه‌ی مناسب:</p>
+<blockquote>
+<p>«Selective pruning در این workload کاهش معناداری در process-level
+memory نشان نداد.»</p>
+</blockquote>
+<p>نه اینکه «memory بهبود یافت».</p>
+<h2 id="چرا-32-check-reduction-فقط-18-runtime-saving-داد">21.6 چرا 32%
+check reduction فقط 18% runtime saving داد؟</h2>
+<p>یک gcov build جداگانه نشان داد همه‌ی 33 function دقیقاً 100,000 بار
+فراخوانی شدند. potential target-check frequency:</p>
+<ul>
+<li>S1: 14,900,000</li>
+<li>S2: 10,100,000</li>
+<li>reduction: 32.214765%</li>
+</ul>
+<p>با این حال runtime saving = 18.06%.</p>
+<p>علل:</p>
+<ol type="1">
+<li><strong>check costها یکسان نیستند.</strong> بعضی predicates
+arithmetic ساده و بعضی expressionهای پیچیده دارند.</li>
+<li><strong>fixed E-ACSL runtime initialization cost</strong> با حذف
+propertyها صفر نمی‌شود.</li>
+<li>metadata و monitoring infrastructure مشترک باقی می‌ماند.</li>
+<li>function instrumentation overhead صرفاً proportional به logical label
+count نیست.</li>
+<li>potential check count الزاماً exact dynamic executed-check count
+نیست؛ branch reachability اثر دارد.</li>
+<li>compiler optimization interaction نیز nonlinear است.</li>
+</ol>
+<p>این مقایسه یکی از بهترین بخش‌های تحلیل نتایج پایان‌نامه است:</p>
+<pre class="text"><code>Property count reduction: 32.21%
+Median runtime reduction: 18.06%</code></pre>
+<p>یعنی کاهش logical obligation به‌طور مستقیم و خطی به performance تبدیل
+نمی‌شود.</p>
+<hr />
+<h1 id="runtime-property-observation-روی-101-property-retained">22.
+Runtime Property Observation روی 101 property retained</h1>
+<h2 id="هدف-3">22.1 هدف</h2>
+<p>Performance corpus عمداً violation ایجاد نمی‌کرد. برای اینکه E-ACSL فقط
+ابزار performance نباشد و نقش runtime checker آن نیز بررسی شود، یک
+corpus جداگانه برای boundary/property observation ساخته شد.</p>
+<p>برای هر یک از 101 property retained یک process case اجرا شد.</p>
+<h2 id="نتیجه-1">22.2 نتیجه</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Classification</th>
+<th style="text-align: right;">تعداد</th>
+<th>معنا</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VIOLATION_OBSERVED</td>
+<td style="text-align: right;">7</td>
+<td>target label مشخصاً fail شده</td>
+</tr>
+<tr class="even">
+<td>NO_VIOLATION_OBSERVED</td>
+<td style="text-align: right;">48</td>
+<td>در input/path تست‌شده violation دیده نشد</td>
+</tr>
+<tr class="odd">
+<td>NOT_REACHED</td>
+<td style="text-align: right;">42</td>
+<td>target قبل از abort/check قبلی مشاهده نشد</td>
+</tr>
+<tr class="even">
+<td>AMBIGUOUS_OUTPUT</td>
+<td style="text-align: right;">4</td>
+<td>unlabeled E-ACSL/RTE diagnostic</td>
+</tr>
+<tr class="odd">
+<td>EXECUTION_FAILED</td>
+<td style="text-align: right;">0</td>
+<td>execution infrastructure failure</td>
+</tr>
+<tr class="even">
+<td><strong>مجموع</strong></td>
+<td style="text-align: right;"><strong>101</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="figures/09_runtime_observations.png"
+alt="نتایج runtime observation" />
+<figcaption aria-hidden="true">نتایج runtime observation</figcaption>
+</figure>
+<h2 id="معنای-no_violation_observed">22.3 معنای
+NO_VIOLATION_OBSERVED</h2>
+<p>این label عمداً از واژه‌ی SAFE اجتناب می‌کند. از یک finite concrete test
+نمی‌توان safety property را اثبات کرد.</p>
+<p>پس جمله‌ی درست:</p>
+<blockquote>
+<p>«در 48 case، target violation در concrete input اجراشده مشاهده
+نشد.»</p>
+</blockquote>
+<p>نه:</p>
+<blockquote>
+<p>«48 alarm false positive بودند.»</p>
+</blockquote>
+<h2 id="معنای-not_reached">22.4 معنای NOT_REACHED</h2>
+<p>42 case عمدتاً به این دلیل target را observe نکردند که یک retained
+check دیگر در همان function زودتر abort کرده است. بنابراین NOT_REACHED
+نیز هیچ safety conclusion ندارد.</p>
+<p>Property-isolation follow-up شروع شد ولی آگاهانه متوقف شد، چون برای
+scope پایان‌نامه static/dynamic comparison و هفت violation کافی تشخیص
+داده شد.</p>
+<h2 id="ambiguous_output">22.5 AMBIGUOUS_OUTPUT</h2>
+<p>چهار case با diagnostic بدون label واضح متوقف شدند. این‌ها نه
+violation target و نه no-violation طبقه‌بندی شده‌اند. حفظ ambiguity از
+forced classification علمی‌تر است.</p>
+<hr />
+<h1 id="هفت-e-acsl-runtime-violation-و-مکمل-بودن-با-klee">23. هفت E-ACSL
+Runtime Violation و مکمل بودن با KLEE</h1>
+<h2 id="هفت-مورد">23.1 هفت مورد</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Alarm</th>
+<th>Function</th>
+<th>KLEE historical</th>
+<th>Runtime input خلاصه</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0024</td>
+<td><code>s16_div_s32_s16</code></td>
+<td>TIMEOUT</td>
+<td><code>numerator=INT32_MIN; denominator=7</code></td>
+</tr>
+<tr class="even">
+<td>0046</td>
+<td><code>s16_fac05_div_s16_s16</code></td>
+<td>TIMEOUT</td>
+<td><code>numerator=INT16_MIN; denominator=7</code></td>
+</tr>
+<tr class="odd">
+<td>0084</td>
+<td><code>s16_mul_s16_u16_div_s16</code></td>
+<td>TIMEOUT</td>
+<td><code>factor1=INT16_MIN; factor2=UINT16_MAX; denominator=7</code></td>
+</tr>
+<tr class="even">
+<td>0089</td>
+<td><code>s16_mul_u16_s16_div_u16</code></td>
+<td>TIMEOUT</td>
+<td><code>factor1=UINT16_MAX; factor2=INT16_MIN; denominator=7</code></td>
+</tr>
+<tr class="odd">
+<td>0120</td>
+<td><code>u16_div_s32_u16</code></td>
+<td>TIMEOUT</td>
+<td><code>numerator=INT32_MIN; denominator=7</code></td>
+</tr>
+<tr class="even">
+<td>0127</td>
+<td><code>u16_mul_s16_u16_div_s16</code></td>
+<td>TIMEOUT</td>
+<td><code>factor1=INT16_MIN; factor2=UINT16_MAX; denominator=7</code></td>
+</tr>
+<tr class="odd">
+<td>0135</td>
+<td><code>u16_mul_s16_u16_div_u16</code></td>
+<td>TIMEOUT</td>
+<td><code>factor1=INT16_MIN; factor2=UINT16_MAX; denominator=7</code></td>
+</tr>
+</tbody>
+</table>
+<p>تمام هفت مورد:</p>
+<ul>
+<li>KLEE status = <code>TIMEOUT_INCONCLUSIVE</code></li>
+<li>KLEE witness = none</li>
+<li>E-ACSL diagnostic = direct target-labelled violation</li>
+</ul>
+<figure>
+<img src="figures/11_klee_eacsl_complementarity.png"
+alt="KLEE/E-ACSL complementarity" />
+<figcaption aria-hidden="true">KLEE/E-ACSL complementarity</figcaption>
+</figure>
+<h2 id="الگوی-predicates">23.2 الگوی predicates</h2>
+<p>بخش قابل‌توجهی از violationها به remainder/sign assumptions مرتبط‌اند.
+نمونه‌ی 0024:</p>
+<pre class="text"><code>(s32)(s32Temp1 - ((s32Temp1 / denominator) * denominator)) &gt;= 0</code></pre>
+<p>با:</p>
+<pre class="text"><code>s32Temp1 = INT32_MIN
+denominator = 7</code></pre>
+<p>runtime predicate false شده است.</p>
+<p>چند مورد دیگر نیز روی multiplication/division/remainder path با type
+extreme values هستند.</p>
+<h2 id="نتیجهی-complementarity">23.3 نتیجه‌ی complementarity</h2>
+<p>این داده دقیقاً یک scenario مکمل را نشان می‌دهد:</p>
+<pre class="text"><code>Eva → potential property
+KLEE → timeout/inconclusive
+E-ACSL → concrete runtime target violation</code></pre>
+<p>تعبیر درست:</p>
+<blockquote>
+<p>«Concrete host-native runtime monitoring برای هفت property که bounded
+KLEE exploration آن‌ها را unresolved گذاشته بود، execution نقض‌کننده‌ی
+target-labelled مشاهده کرد.»</p>
+</blockquote>
+<p>تعبیر نادرست:</p>
+<blockquote>
+<p>«KLEE هفت bug را از دست داد.»</p>
+</blockquote>
+<p>چون timeout نتیجه‌ی منفی نیست؛ KLEE هرگز claim نکرده بود property safe
+است.</p>
+<h2 id="runtime-observation-به-تفکیک-klee-cohort">23.4 Runtime
+observation به تفکیک KLEE cohort</h2>
+<p>از 15 property <code>NO_COUNTEREXAMPLE_SEARCH_COMPLETED</code>:</p>
+<ul>
+<li>14 <code>NO_VIOLATION_OBSERVED</code></li>
+<li>1 <code>AMBIGUOUS_OUTPUT</code></li>
+<li>0 runtime target violation</li>
+</ul>
+<p>از 86 timeout:</p>
+<ul>
+<li>7 violation</li>
+<li>34 no violation observed</li>
+<li>42 not reached</li>
+<li>3 ambiguous</li>
+</ul>
+<p>این alignment به‌ویژه مهم است: <strong>هیچ یک از 15 completed/no-CE در
+corpus فعلی runtime violation target-matched ندادند.</strong> با این حال
+این نیز proof نیست.</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td># 24. تحلیل End-to-End: هر مرحله چه مشکلی را حل کرد؟</td>
+</tr>
+<tr class="even">
+<td>این بخش برای فصل Methodology/Results بسیار مهم است، چون نشان می‌دهد
+ابزارها صرفاً پشت سر هم چیده نشده‌اند.</td>
+</tr>
+<tr class="odd">
+<td>## 24.1 Eva Baseline → Eva High Precision</td>
+</tr>
+<tr class="even">
+<td><strong>مشکل:</strong> over-approximation و candidate set بزرگ.</td>
+</tr>
+<tr class="odd">
+<td><strong>اقدام:</strong> افزایش precision بدون تغییر source/input
+domain.</td>
+</tr>
+<tr class="even">
+<td><strong>نتیجه:</strong> 171 → 149، حذف 22 alarm.</td>
+</tr>
+<tr class="odd">
+<td><strong>ارزش:</strong> کاهش 12.87% workload مراحل بعدی و نشان دادن
+اثر refinement abstract interpretation.</td>
+</tr>
+<tr class="even">
+<td>## 24.2 High Precision → Property Materialization</td>
+</tr>
+<tr class="odd">
+<td><strong>مشکل:</strong> log alarm برای traceability چندمرحله‌ای کافی
+نیست.</td>
+</tr>
+<tr class="even">
+<td><strong>اقدام:</strong> 149 assertion یکتا با stable labels.</td>
+</tr>
+<tr class="odd">
+<td><strong>نتیجه:</strong> یک identity ثابت برای
+Eva/KLEE/WP/E-ACSL.</td>
+</tr>
+<tr class="even">
+<td><strong>ارزش:</strong> امکان end-to-end evidence chain.</td>
+</tr>
+<tr class="odd">
+<td>## 24.3 Property → KLEE</td>
+</tr>
+<tr class="even">
+<td><strong>مشکل:</strong> Eva نمی‌گوید کدام alarm واقعاً concrete witness
+دارد.</td>
+</tr>
+<tr class="odd">
+<td><strong>اقدام:</strong> symbolic execution per property.</td>
+</tr>
+<tr class="even">
+<td><strong>نتیجه:</strong> 48 witness، 15 no-CE، 86 timeout.</td>
+</tr>
+<tr class="odd">
+<td><strong>ارزش:</strong> جدا کردن confirmed violability از unresolved
+candidateها.</td>
+</tr>
+<tr class="even">
+<td>## 24.4 KLEE CE → Semantic Resolution</td>
+</tr>
+<tr class="odd">
+<td><strong>مشکل:</strong> counterexample به‌تنهایی repair صحیح را تعیین
+نمی‌کند.</td>
+</tr>
+<tr class="even">
+<td><strong>اقدام:</strong> بررسی caller، sibling، formula، history و
+contracts.</td>
+</tr>
+<tr class="odd">
+<td><strong>نتیجه:</strong> 35 implementation repair، 5
+repository-derived contract، 8 thesis-selected policy.</td>
+</tr>
+<tr class="even">
+<td><strong>ارزش:</strong> جلوگیری از patch arbitrary و حفظ semantic
+provenance.</td>
+</tr>
+<tr class="odd">
+<td>## 24.5 Resolution → WP</td>
+</tr>
+<tr class="even">
+<td><strong>مشکل:</strong> repair ممکن است فقط witness خاص را bypass کند
+و property را عمومی حل نکرده باشد.</td>
+</tr>
+<tr class="odd">
+<td><strong>اقدام:</strong> proof همان Eva-derived property.</td>
+</tr>
+<tr class="even">
+<td><strong>نتیجه:</strong> 48/48 target properties valid.</td>
+</tr>
+<tr class="odd">
+<td><strong>ارزش:</strong> ارتقای evidence از test/counterexample fix به
+deductive proof در context تعریف‌شده.</td>
+</tr>
+<tr class="even">
+<td>## 24.6 WP → Selective E-ACSL</td>
+</tr>
+<tr class="odd">
+<td><strong>مشکل:</strong> runtime monitoring همه‌ی 149 property هزینه
+دارد، حتی propertyهایی که deductively proved شده‌اند.</td>
+</tr>
+<tr class="even">
+<td><strong>اقدام:</strong> حذف دقیق 48 WP-valid property از runtime
+target set.</td>
+</tr>
+<tr class="odd">
+<td><strong>نتیجه:</strong> 149 → 101.</td>
+</tr>
+<tr class="even">
+<td><strong>ارزش:</strong> استفاده‌ی عملی از proof برای کاهش monitoring
+cost.</td>
+</tr>
+<tr class="odd">
+<td>## 24.7 Selective instrumentation → Static/Dynamic Evaluation</td>
+</tr>
+<tr class="even">
+<td><strong>مشکل:</strong> property-count reduction لزوماً performance
+benefit را نشان نمی‌دهد.</td>
+</tr>
+<tr class="odd">
+<td><strong>اقدام:</strong> اندازه‌گیری generated code، build، runtime و
+memory.</td>
+</tr>
+<tr class="even">
+<td><strong>نتیجه:</strong> runtime median saving = 18.06%،
+instrumentation median saving = 10.43%.</td>
+</tr>
+<tr class="odd">
+<td><strong>ارزش:</strong> نشان دادن benefit واقعی و nonlinear بودن
+رابطه.</td>
+</tr>
+<tr class="even">
+<td>## 24.8 Runtime retained → E-ACSL observation</td>
+</tr>
+<tr class="odd">
+<td><strong>مشکل:</strong> 101 property هنوز proof ندارند و 86 مورد KLEE
+timeout بوده‌اند.</td>
+</tr>
+<tr class="even">
+<td><strong>اقدام:</strong> concrete boundary observation.</td>
+</tr>
+<tr class="odd">
+<td><strong>نتیجه:</strong> 7 target-labelled violation، همگی از timeout
+cohort.</td>
+</tr>
+<tr class="even">
+<td><strong>ارزش:</strong> evidence تجربی از مکمل بودن dynamic
+monitoring و bounded symbolic execution.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="جدول-مرکزی-پیشنهادی-برای-پایاننامه">25. جدول مرکزی پیشنهادی برای
+پایان‌نامه</h1>
+<p>این جدول می‌تواند در بخش summary نتایج قرار گیرد:</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th style="text-align: right;">Baseline/Full</th>
+<th style="text-align: right;">Refined/Selective</th>
+<th style="text-align: right;">تغییر/نتیجه</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Eva alarms</td>
+<td style="text-align: right;">171</td>
+<td style="text-align: right;">149</td>
+<td style="text-align: right;">−12.87%</td>
+</tr>
+<tr class="even">
+<td>KLEE target set</td>
+<td style="text-align: right;">149</td>
+<td style="text-align: right;">48 CE / 15 No CE / 86 Timeout</td>
+<td style="text-align: right;">32.21% CE</td>
+</tr>
+<tr class="odd">
+<td>Confirmed resolution</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">35 code + 5 repo spec + 8 thesis
+policy</td>
+<td style="text-align: right;">48/48 resolved</td>
+</tr>
+<tr class="even">
+<td>WP target proofs</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">48 Valid</td>
+<td style="text-align: right;">100% eligible target proof</td>
+</tr>
+<tr class="odd">
+<td>E-ACSL properties</td>
+<td style="text-align: right;">S1=149</td>
+<td style="text-align: right;">S2=101</td>
+<td style="text-align: right;">−32.21%</td>
+</tr>
+<tr class="even">
+<td>E-ACSL functions</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">−51.52%</td>
+</tr>
+<tr class="odd">
+<td>Generated C bytes</td>
+<td style="text-align: right;">392,143</td>
+<td style="text-align: right;">340,661</td>
+<td style="text-align: right;">−13.13%</td>
+</tr>
+<tr class="even">
+<td>Generated LOC</td>
+<td style="text-align: right;">9,942</td>
+<td style="text-align: right;">8,925</td>
+<td style="text-align: right;">−10.23%</td>
+</tr>
+<tr class="odd">
+<td>Median instrumentation</td>
+<td style="text-align: right;">6.710 s</td>
+<td style="text-align: right;">6.010 s</td>
+<td style="text-align: right;">−10.43%</td>
+</tr>
+<tr class="even">
+<td>Object bytes</td>
+<td style="text-align: right;">462,872</td>
+<td style="text-align: right;">439,560</td>
+<td style="text-align: right;">−5.04%</td>
+</tr>
+<tr class="odd">
+<td>Text bytes</td>
+<td style="text-align: right;">75,911</td>
+<td style="text-align: right;">65,286</td>
+<td style="text-align: right;">−14.00%</td>
+</tr>
+<tr class="even">
+<td>Median runtime</td>
+<td style="text-align: right;">S1=5.939652 s</td>
+<td style="text-align: right;">S2=4.867204 s</td>
+<td style="text-align: right;">−18.06%</td>
+</tr>
+<tr class="odd">
+<td>Median RSS</td>
+<td style="text-align: right;">2,628 KiB</td>
+<td style="text-align: right;">2,608 KiB</td>
+<td style="text-align: right;">−0.76%</td>
+</tr>
+<tr class="even">
+<td>Runtime retained observations</td>
+<td style="text-align: right;">101</td>
+<td style="text-align: right;">7 violations</td>
+<td style="text-align: right;">evidence, not proof</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="نمودارهایی-که-برای-پایاننامه-مناسباند">26. نمودارهایی که برای
+پایان‌نامه مناسب‌اند</h1>
+<p>در package این گزارش 11 نمودار آماده شده است.</p>
+<h2 id="figure-a-نوع-alarm-قبل-و-بعد-از-precision">Figure A — نوع alarm
+قبل و بعد از precision</h2>
+<p><code>figures/01_eva_alarm_categories.png</code></p>
+<p><strong>پیام:</strong> precision بیشتر 18 overflow و 4 div-zero را
+حذف کرد، اما invalid shift count ثابت ماند.</p>
+<h2 id="figure-b-اعداد-اصلی-pipeline">Figure B — اعداد اصلی
+pipeline</h2>
+<p><code>figures/02_pipeline_counts.png</code></p>
+<p><strong>پیام:</strong> اندازه‌ی dataset در هر decision point.</p>
+<h2 id="figure-c-klee-outcome-distribution">Figure C — KLEE outcome
+distribution</h2>
+<p><code>figures/03_klee_outcomes.png</code></p>
+<p><strong>پیام:</strong> 48 CE، 15 no CE، 86 timeout.</p>
+<h2 id="figure-d-klee-outcome-by-alarm-type">Figure D — KLEE outcome by
+alarm type</h2>
+<p><code>figures/04_klee_outcome_by_alarm_kind.png</code></p>
+<p><strong>پیام:</strong> invalid shift witness rate بالا؛
+division/overflow timeout-heavy.</p>
+<h2 id="figure-e-resolution-cohorts">Figure E — Resolution cohorts</h2>
+<p><code>figures/05_resolution_cohorts.png</code></p>
+<p><strong>پیام:</strong> تمام confirmed targetها «code repair»
+نبوده‌اند؛ سه نوع resolution وجود دارد.</p>
+<h2 id="figure-f-s1s2-property-و-function-count">Figure F — S1/S2
+property و function count</h2>
+<p><code>figures/06_eacsl_selection_counts.png</code></p>
+<p><strong>پیام:</strong> property-level pruning 32.21%، function-level
+effect 51.52%.</p>
+<h2 id="figure-g-static-reductions">Figure G — Static reductions</h2>
+<p><code>figures/07_eacsl_static_reductions.png</code></p>
+<p><strong>پیام:</strong> pruning به‌صورت nonlinear روی artifactها اثر
+گذاشته است.</p>
+<h2 id="figure-h-runtime-s0s1s2">Figure H — Runtime S0/S1/S2</h2>
+<p><code>figures/08_runtime_medians.png</code></p>
+<p><strong>پیام:</strong> absolute runtime difference و selective
+benefit.</p>
+<h2 id="figure-i-runtime-observation-outcomes">Figure I — Runtime
+observation outcomes</h2>
+<p><code>figures/09_runtime_observations.png</code></p>
+<p><strong>پیام:</strong> runtime non-observation با safety یکی نیست؛
+بخش قابل‌توجهی not reached/ambiguous است.</p>
+<h2 id="figure-j-top-eva-functions">Figure J — Top Eva functions</h2>
+<p><code>figures/10_top_functions_eva.png</code></p>
+<p><strong>پیام:</strong> concentration alarmها در خانواده‌های
+division.</p>
+<h2 id="figure-k-kleee-acsl-complementarity">Figure K — KLEE/E-ACSL
+complementarity</h2>
+<p><code>figures/11_klee_eacsl_complementarity.png</code></p>
+<p><strong>پیام:</strong> تمام 7 runtime violation از timeout cohort، نه
+no-CE cohort.</p>
+<hr />
+<h1 id="threats-to-validity-و-محدودیتها">27. Threats to Validity و
+محدودیت‌ها</h1>
+<p>این بخش باید حتماً در پایان‌نامه وجود داشته باشد. گزارش بدون این بخش
+ممکن است اعداد 100% WP یا 18% runtime saving را بیش از دامنه‌ی واقعی آن‌ها
+نشان دهد.</p>
+<h2 id="eva-precision-sensitivity">27.1 Eva precision sensitivity</h2>
+<p>نتایج Eva تابع configuration هستند. 149 عدد «حقیقت مطلق برنامه» نیست؛
+حاصل profile مستندشده است. profile uniform و source/harness ثابت باعث
+می‌شود comparison معتبرتر باشد، اما generalization به هر Eva setting ممکن
+نیست.</p>
+<h2 id="klee-bounded-search">27.2 KLEE bounded search</h2>
+<p>86 timeout نشان می‌دهد bounded symbolic execution محدودیت عملی مهمی
+دارد. no-CE نیز proof نیست. Harness constraints و defined-prefix
+transformations بخشی از experiment model هستند.</p>
+<h2 id="ppc_32-vs-klee-model">27.3 ppc_32 vs KLEE model</h2>
+<p>KLEE مستقیم PowerPC runtime ندارد. explicit-width model scalar
+semantics را کنترل کرده ولی ABI، endianness و همه‌ی
+implementation-defined semantics را globally اثبات نمی‌کند.</p>
+<h2 id="wp-proof-scope">27.4 WP proof scope</h2>
+<p>WP:</p>
+<ul>
+<li>فقط target property را انتخاب کرده؛</li>
+<li>از function contracts استفاده می‌کند؛</li>
+<li><code>-wp-rte</code> ندارد؛</li>
+<li>whole function/program proof نیست.</li>
+</ul>
+<p>هشت target نیز به thesis-selected policy وابسته‌اند.</p>
+<h2 id="e-acsl-property-filtering">27.5 E-ACSL property filtering</h2>
+<p>Exact label filtering native نبود؛ generated-source view استفاده شد.
+integrity audit set correctness را نشان داده، ولی حذف annotationها
+می‌تواند layout و generated-support code را تغییر دهد. بنابراین
+performance measurement مربوط به همین implementation selection است.</p>
+<h2 id="static-object-metrics">27.6 Static object metrics</h2>
+<p>در static phase executable authoritative وجود نداشت؛ object/text size
+proxy هستند. بعداً dynamic phase harness جداگانه ساخته شد.</p>
+<h2 id="runtime-architecture">27.7 Runtime architecture</h2>
+<p>Runtime E-ACSL native x86-64 است، نه PPC32. بنابراین performance و
+violation observationها نباید به runtime PowerPC تعمیم داده شوند.</p>
+<h2 id="controlled-workload">27.8 Controlled workload</h2>
+<p>Workload تمام 33 function را به‌صورت متوازن 100,000 بار اجرا کرده، اما
+production frequency distribution نیست. از این رو 18.06% saving به
+workload فعلی تعلق دارد.</p>
+<h2 id="noise-و-statistics">27.9 Noise و statistics</h2>
+<ul>
+<li>VM scheduling</li>
+<li>CPU/cache state</li>
+<li>compiler optimization</li>
+<li>system activity</li>
+</ul>
+<p>روی timing اثر دارند. warmup، CPU affinity، interleaving و repetition
+برای کاهش اثر آن‌ها استفاده شد. S2 یک outlier داشت، پس median تأکید اصلی
+است.</p>
+<h2 id="finite-runtime-corpus">27.10 Finite runtime corpus</h2>
+<p>7 violation evidence مثبت هستند؛ اما 48 no-violation evidence منفی
+قطعی نیست. 42 not reached و 4 ambiguous نیز unresolved باقی می‌مانند.</p>
+<hr />
+<h1 id="supported-claims-و-non-claims">28. Supported Claims و
+Non-Claims</h1>
+<h2 id="claimهایی-که-دادهها-پشتیبانی-میکنند">28.1 Claimهایی که داده‌ها
+پشتیبانی می‌کنند</h2>
+<ol type="1">
+<li>Eva high precision alarm set را از 171 به 149 کاهش داد؛
+12.865497%.</li>
+<li>KLEE برای 48/149 property counterexample occurrence-specific
+ساخت.</li>
+<li>48 confirmed target به سه cohort semantic resolution تقسیم شدند:
+35/5/8.</li>
+<li>WP تمام 48 property انتخاب‌شده را تحت context مستند prove کرد.</li>
+<li>WP-guided pruning target set E-ACSL را از 149 به 101 کاهش داد.</li>
+<li>pruning generated C، LOC، instrumentation time، object/text size و
+runtime را کاهش داد.</li>
+<li>در thesis-controlled workload، median S2 runtime نسبت به S1 حدود
+18.06% کمتر بود.</li>
+<li>E-ACSL هفت target-labelled violation در timeout cohort KLEE مشاهده
+کرد.</li>
+</ol>
+<h2 id="claimهایی-که-نباید-بیان-شوند">28.2 Claimهایی که نباید بیان
+شوند</h2>
+<ol type="1">
+<li>کل برنامه formally verified است.</li>
+<li>همه‌ی 149 alarm safe یا resolved هستند.</li>
+<li>15 no-counterexample مورد توسط KLEE prove شده‌اند.</li>
+<li>86 timeout یعنی bug یا safe.</li>
+<li>WP general RTE freedom را ثابت کرده است.</li>
+<li>48 no-runtime-violation property safe هستند.</li>
+<li>runtime result production performance است.</li>
+<li>x86-64 runtime نتیجه‌ی PPC32 را ثابت می‌کند.</li>
+<li>thesis-selected policy همان intent اصلی legacy بوده است.</li>
+<li>KLEE «هفت bug را miss کرد»؛ چون آن هفت مورد timeout بودند، نه نتیجه‌ی
+safe/no-bug.</li>
+</ol>
+<hr />
+<h1 id="contributionهایی-که-از-پروژه-قابل-استخراجاند">29.
+Contributionهایی که از پروژه قابل استخراج‌اند</h1>
+<h2 id="c1-workflow-ترکیبی-property-centred">C1 — Workflow ترکیبی
+property-centred</h2>
+<p>ترکیب Eva، KLEE، semantic resolution، WP و E-ACSL با decision
+ruleهایی که uncertainty را حفظ می‌کنند.</p>
+<h2 id="c2-end-to-end-traceability">C2 — End-to-End Traceability</h2>
+<p>یک property از occurrence Eva تا KTest/repair/proof/runtime label
+قابل دنبال‌کردن است.</p>
+<h2 id="c3-counterexample-guided-semantic-resolution">C3 —
+Counterexample-guided semantic resolution</h2>
+<p>تمایز بین «ثابت شدن violability» و «دانستن repair صحیح». این
+distinction باعث شد policyها بدون evidence اختراع نشوند.</p>
+<h2 id="c4-preservation-of-original-eva-property">C4 — Preservation of
+Original Eva Property</h2>
+<p>149 property قبل از repair materialize شدند؛ 48 property resolved
+بدون تغییر معنای target assertion prove شدند.</p>
+<h2 id="c5-taxonomy-of-resolution">C5 — Taxonomy of Resolution</h2>
+<p>35 implementation repair، 5 repository-derived specification، 8
+thesis-selected interface policy.</p>
+<h2 id="c6-wp-guided-selective-instrumentation">C6 — WP-guided Selective
+Instrumentation</h2>
+<p>Proofهای static مستقیماً برای کاهش runtime check set استفاده شدند.</p>
+<h2 id="c7-empirical-static-cost-evaluation">C7 — Empirical Static Cost
+Evaluation</h2>
+<p>اثر pruning روی generated code، build time، text/object و memory
+اندازه‌گیری شد.</p>
+<h2 id="c8-empirical-dynamic-cost-evaluation">C8 — Empirical Dynamic
+Cost Evaluation</h2>
+<p>18.06% median runtime saving با functional checksum یکسان اندازه‌گیری
+شد.</p>
+<h2 id="c9-complementarity-evidence">C9 — Complementarity Evidence</h2>
+<p>E-ACSL برای 7 target از KLEE timeout cohort witness runtime داد.</p>
+<p>در نگارش بهتر است contributionها به‌صورت
+methodological/engineering/empirical توصیف شوند، مگر اینکه novelty نظری
+به‌صورت جداگانه اثبات شده باشد.</p>
+<hr />
+<h1 id="پیشنهاد-ساختار-ارائهی-نتایج-در-هر-فصل-دلخواه">30. پیشنهاد ساختار
+ارائه‌ی نتایج در هر فصل دلخواه</h1>
+<p>چون فصل‌بندی پایان‌نامه از قبل تعیین شده، به‌جای پیشنهاد chapter number،
+می‌توان محتوا را در چهار بلوک استخراج کرد.</p>
+<h2 id="بلوک-a-methodology">بلوک A — Methodology</h2>
+<p>باید شامل:</p>
+<ul>
+<li>scope 46 functions</li>
+<li>ppc_32 model</li>
+<li>baseline/high precision methodology</li>
+<li>stable property IDs</li>
+<li>KLEE per-target design</li>
+<li>resolution decision rules</li>
+<li>WP target-only methodology</li>
+<li>E-ACSL S0/S1/S2 methodology</li>
+<li>runtime workload design</li>
+</ul>
+<h2 id="بلوک-b-implementation-experimental-setup">بلوک B —
+Implementation / Experimental Setup</h2>
+<ul>
+<li>tool versions</li>
+<li>source tree separation</li>
+<li>manifests/tags</li>
+<li>exact Eva profile</li>
+<li>KLEE LLVM setup</li>
+<li>WP provers</li>
+<li>generated-source E-ACSL filtering</li>
+<li>repetition/interleaving/statistical protocol</li>
+</ul>
+<h2 id="بلوک-c-results">بلوک C — Results</h2>
+<ul>
+<li>171→149</li>
+<li>48/15/86</li>
+<li>35/5/8</li>
+<li>48/48 WP</li>
+<li>149→101</li>
+<li>static metrics</li>
+<li>dynamic metrics</li>
+<li>7 runtime violations</li>
+</ul>
+<h2 id="بلوک-d-discussion">بلوک D — Discussion</h2>
+<ul>
+<li>چرا precision shiftها را حذف نکرد</li>
+<li>چرا division KLEE timeout-heavy بود</li>
+<li>چرا counterexample repair semantics را تعیین نمی‌کند</li>
+<li>چرا WP proof برای pruning مناسب است</li>
+<li>چرا 32% logical reduction فقط 18% runtime saving ایجاد کرد</li>
+<li>چرا E-ACSL و KLEE complementary هستند</li>
+<li>limitations / external validity</li>
+</ul>
+<hr />
+<h1 id="منابع-artifact-داخل-repository-برای-استناد-فنی-هنگام-نوشتن">31.
+منابع artifact داخل repository برای استناد فنی هنگام نوشتن</h1>
+<p>اگر هنگام نوشتن نیاز به evidence دقیق‌تر باشد، این فایل‌ها مهم‌ترین
+source-of-truthها هستند:</p>
+<h2 id="eva">Eva</h2>
+<ul>
+<li><code>reports/eva_report_source_package/data/baseline_alarm_inventory.tsv</code></li>
+<li><code>reports/eva_report_source_package/data/high_precision_alarm_inventory.tsv</code></li>
+<li><code>reports/eva_report_source_package/data/removed_alarm_inventory.tsv</code></li>
+<li><code>analysis/high_precision/precision_profile.md</code></li>
+</ul>
+<h2 id="klee">KLEE</h2>
+<ul>
+<li><code>analysis/klee_phase_c/reports/03_KLEE_149_ALARM_TRACEABILITY_MATRIX.tsv</code></li>
+<li><code>analysis/klee_phase_c/reports/05_KLEE_COUNTEREXAMPLES.md</code></li>
+<li><code>analysis/klee_phase_c/reports/06_KLEE_NO_COUNTEREXAMPLE.md</code></li>
+<li><code>analysis/klee_phase_c/reports/07_KLEE_TIMEOUTS.md</code></li>
+<li><code>analysis/klee_phase_c/results/summary.tsv</code></li>
+</ul>
+<h2 id="acsl-repair">ACSL / Repair</h2>
+<ul>
+<li><code>analysis/repair_phase/149_ACSL_PROPERTY_MAP.tsv</code></li>
+<li><code>analysis/repair_phase/48_CONFIRMED_REPAIR_TARGETS.tsv</code></li>
+<li><code>analysis/repair_phase/REPAIR_PHASE_SUMMARY.md</code></li>
+<li><code>analysis/repair_policy_phase/REPAIR_POLICY_SUMMARY.md</code></li>
+<li><code>analysis/final_shift_resolution/FINAL_SHIFT_RESOLUTION_MATRIX.tsv</code></li>
+</ul>
+<h2 id="wp">WP</h2>
+<ul>
+<li><code>analysis/wp_phase/FINAL_WP_RESULTS_48.tsv</code></li>
+<li><code>analysis/wp_phase/FINAL_48_KLEE_CONFIRMED_WP_MATRIX.tsv</code></li>
+<li><code>analysis/wp_phase/FINAL_COMPLETE_EVA_KLEE_REPAIR_WP_TRACEABILITY.md</code></li>
+</ul>
+<h2 id="e-acsl">E-ACSL</h2>
+<ul>
+<li><code>analysis/eacsl_selective/results/STATIC_SUMMARY.tsv</code></li>
+<li><code>analysis/eacsl_selective/results/CODE_SIZE_METRICS.tsv</code></li>
+<li><code>analysis/eacsl_selective/results/BINARY_SIZE_METRICS.tsv</code></li>
+<li><code>analysis/eacsl_runtime/results/PERFORMANCE_SUMMARY.tsv</code></li>
+<li><code>analysis/eacsl_runtime/results/RUNTIME_PROPERTY_OBSERVATIONS.tsv</code></li>
+<li><code>analysis/eacsl_runtime/results/KLEE_EACSL_7_VIOLATIONS.tsv</code></li>
+</ul>
+<h2 id="master-traceability">Master traceability</h2>
+<ul>
+<li><code>analysis/thesis_synthesis/tables/02_FINAL_149_PROPERTY_MASTER.tsv</code></li>
+<li><code>analysis/thesis_synthesis/tables/03_FINAL_48_WP_MASTER.tsv</code></li>
+<li><code>analysis/thesis_synthesis/tables/04_FINAL_101_RUNTIME_MASTER.tsv</code></li>
+</ul>
+<hr />
+<h1 id="جمعبندی-نهایی-مفهومی">32. جمع‌بندی نهایی مفهومی</h1>
+<p>مهم‌ترین نتیجه‌ی پروژه صرفاً «149 alarm» یا «48/48 WP» نیست. ساختار
+evidence به‌صورت زیر تکامل یافته است:</p>
+<pre class="text"><code>Potential evidence
+Eva alarm
+    ↓
+More precise potential evidence
+High-Precision Eva
+    ↓
+Concrete witness evidence
+KLEE counterexample
+    ↓
+Semantic correction/specification
+Repair / Contract / Policy
+    ↓
+Deductive evidence
+WP proof
+    ↓
+Proof-driven optimization of monitoring
+Selective E-ACSL
+    ↓
+Concrete operational evidence
+Runtime observation</code></pre>
+<p>این workflow نشان می‌دهد که ابزارهای مختلف نقش متفاوت دارند:</p>
+<ul>
+<li>Eva برای coverage وسیع و sound over-approximation؛</li>
+<li>KLEE برای concrete witness و path-sensitive search؛</li>
+<li>semantic resolution برای مشخص کردن رفتار صحیح؛</li>
+<li>WP برای proof deductive property هدف؛</li>
+<li>E-ACSL برای runtime evidence روی obligationهای باقی‌مانده.</li>
+</ul>
+<p>از نظر empirical evaluation نیز نتایج نشان می‌دهند proof می‌تواند فقط
+یک خروجی نظری نباشد؛ بلکه به‌عنوان <strong>input برای کاهش
+instrumentation runtime</strong> استفاده شود.</p>
+<p>در نهایت:</p>
+<pre class="text"><code>171 Eva baseline alarms
+        ↓ precision
+149 Eva target properties
+        ↓ KLEE
+48 CE + 15 no-CE + 86 timeout
+        ↓ resolution روی 48
+35 implementation + 5 repo-spec + 8 thesis-policy
+        ↓ WP
+48/48 target-property proofs
+        ↓ prune from E-ACSL
+149 → 101 runtime target properties
+        ↓ evaluation
+10.43% lower median instrumentation time
+18.06% lower median runtime
+        ↓ runtime monitoring
+7 target-labelled violations from KLEE timeout cohort</code></pre>
+<p>این زنجیره هم نتیجه‌ی verification ارائه می‌دهد، هم هزینه و trade-off
+آن را اندازه‌گیری می‌کند، و هم نشان می‌دهد چگونه static و dynamic
+verification می‌توانند مکمل یکدیگر باشند.</p>
+<hr />
+<h1 id="appendix-a-دادههای-عددی-سریع-برای-استفاده-در-متناسلاید">Appendix
+A — داده‌های عددی سریع برای استفاده در متن/اسلاید</h1>
+<ul>
+<li>Eva precision reduction: <strong>12.865497%</strong></li>
+<li>KLEE CE rate: <strong>32.214765%</strong></li>
+<li>KLEE no-CE rate: <strong>10.067114%</strong></li>
+<li>KLEE timeout rate: <strong>57.718121%</strong></li>
+<li>Confirmed resolution: <strong>48/48</strong></li>
+<li>WP target-property proof: <strong>48/48 = 100%</strong></li>
+<li>E-ACSL property pruning: <strong>32.214765%</strong></li>
+<li>E-ACSL function pruning: <strong>51.515152%</strong></li>
+<li>Generated C reduction: <strong>13.128374%</strong></li>
+<li>Generated LOC reduction: <strong>10.229330%</strong></li>
+<li>Median instrumentation reduction: <strong>10.432191%</strong></li>
+<li>Median compilation reduction: <strong>4.347826%</strong></li>
+<li>Object reduction: <strong>5.036382%</strong></li>
+<li>Text reduction: <strong>13.996654%</strong></li>
+<li>Median runtime S2 vs S1 saving: <strong>18.055728%</strong></li>
+<li>Fraction of median E-ACSL overhead removed:
+<strong>18.234354%</strong></li>
+<li>Median RSS saving: <strong>0.761035%</strong></li>
+<li>Runtime observed violations: <strong>7/101 = 6.93% of tested
+retained cases</strong> (این درصد نباید به bug prevalence تعمیم داده
+شود)</li>
+<li>All observed violations from historical KLEE timeout cohort:
+<strong>7/7</strong></li>
+</ul>
+<h1 id="appendix-b-جدول-کامل-46-تابع-eva-و-klee">Appendix B — جدول کامل
+46 تابع: Eva و KLEE</h1>
+<p>این جدول برای تحلیل per-function و انتخاب نمونه‌ها در متن پایان‌نامه
+مفید است. توابع بدون High-Precision alarm نیز برای حفظ جمعیت 46تایی
+نمایش داده شده‌اند.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 7%" />
+<col style="width: 11%" />
+<col style="width: 12%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 6%" />
+<col style="width: 9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">function</th>
+<th style="text-align: right;">Eva Baseline</th>
+<th style="text-align: right;">Eva High Precision</th>
+<th style="text-align: right;">Eva Removed</th>
+<th style="text-align: right;">KLEE Counterexample</th>
+<th style="text-align: right;">KLEE Completed No CE</th>
+<th style="text-align: right;">KLEE Timeout</th>
+<th style="text-align: right;">KLEE Targets</th>
+<th style="text-align: right;">CE Rate %</th>
+<th style="text-align: right;">Timeout Rate %</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">root_s32_mul_s32_s16_fac_less1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">root_s32_mul_s32_s8_fac_less1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">root_s32_mul_s32_u16_fac_less1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">root_s32_mul_s32_u8_fac_less1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">root_u32_mul_u32_s16_fac_less1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">root_u32_mul_u32_s32_fac_less1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">root_u32_mul_u32_s8_fac_less1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rotateLeft</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rotateRight</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s16_cos_u32</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s16_div_s32_s16</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s16_div_s32_u32</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s16_fac05_div_s16_s16</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">77.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s16_fac05_div_s16_u16</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s16_hip1_s16_s8_s8_u16_fac1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s16_hip1_s16_u8_u8_u16_fac1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s16_mmv_s16_s16_s16_fac1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s16_mul_s16_s16_div_s16</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">87.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s16_mul_s16_s16_div_u16</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s16_mul_s16_u16_div_s16</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">87.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s16_mul_s16_u16_fac025</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s16_mul_u16_s16_div_u16</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s16_sin_u32</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s16_tan_u32</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s32_div_s32_s32</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">44.4</td>
+<td style="text-align: right;">55.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s32_div_s32_u32</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s32_div_u32_s32</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s32_mul_s32_s16_fac2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s32_mul_s32_s32</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s32_mul_s32_s32_fac2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s32_mul_s32_s32_fac_twopow_u8</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s32_mul_s32_s8_fac2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s32_mul_s32_u16</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s32_mul_u32_s32</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">u16_cos_u16</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">u16_div_s32_u16</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">u16_mmv_u16_u16_s16_fac1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">u16_mul_s16_u16_div_s16</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">88.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">u16_mul_s16_u16_div_u16</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">u16_mul_u16_u8_fac8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">u16_sin_u16</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">u16_tan_u16</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">u32_div_s32_s32</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">88.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">u32_div_s32_u32</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">u32_div_u32_s32</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">u32_mmv_u32_u32_s32_fac1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<h1 id="appendix-c-klee-به-تفکیک-نوع-alarm">Appendix C — KLEE به تفکیک
+نوع alarm</h1>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 7%" />
+<col style="width: 14%" />
+<col style="width: 15%" />
+<col style="width: 9%" />
+<col style="width: 10%" />
+<col style="width: 13%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Alarm Kind</th>
+<th style="text-align: right;">Total</th>
+<th style="text-align: right;">Counterexample</th>
+<th style="text-align: right;">Completed No CE</th>
+<th style="text-align: right;">Timeout</th>
+<th style="text-align: right;">CE Rate %</th>
+<th style="text-align: right;">No CE Rate %</th>
+<th style="text-align: right;">Timeout Rate %</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">division by zero</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">31.25</td>
+<td style="text-align: right;">68.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">integer overflow</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">61</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">invalid shift</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">57.58</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">42.42</td>
+</tr>
+</tbody>
+</table>
+<h1 id="appendix-d-توزیع-targetها-بر-اساس-source-file">Appendix D —
+توزیع targetها بر اساس source file</h1>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 27%" />
+<col style="width: 10%" />
+<col style="width: 13%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source File</th>
+<th style="text-align: right;">High Precision Properties</th>
+<th style="text-align: right;">KLEE CE</th>
+<th style="text-align: right;">KLEE No CE</th>
+<th style="text-align: right;">KLEE Timeout</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">src_analysis/sources/MulHword.c</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">src_analysis/sources/avrg_Ccode.c</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">src_analysis/sources/div_Ccode.c</td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">86</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">src_analysis/sources/hip_Ccode.c</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">src_analysis/sources/mul_Ccode.c</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">src_analysis/sources/rotatefunc.c</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<h1 id="appendix-e-هفت-runtime-violation-مشاهدهشده">Appendix E — هفت
+runtime violation مشاهده‌شده</h1>
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 7%" />
+<col style="width: 9%" />
+<col style="width: 32%" />
+<col style="width: 9%" />
+<col style="width: 20%" />
+<col style="width: 7%" />
+<col style="width: 4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Alarm ID</th>
+<th style="text-align: left;">ACSL Label</th>
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Eva Property</th>
+<th style="text-align: left;">KLEE Historical Result</th>
+<th style="text-align: left;">Runtime Input</th>
+<th style="text-align: left;">Observed Label</th>
+<th style="text-align: right;">Exit Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">KLEE-ALARM-0024</td>
+<td style="text-align: left;">eva_klee_alarm_0024</td>
+<td style="text-align: left;">s16_div_s32_s16</td>
+<td style="text-align: left;">(s32)(s32Temp1 - (s32)((s32)(s32Temp1 /
+(s32)denominator) * (s32)denominator)) &gt;= 0</td>
+<td style="text-align: left;">TIMEOUT</td>
+<td style="text-align: left;">numerator=INT32_MIN; denominator=7</td>
+<td style="text-align: left;">eva_klee_alarm_0024</td>
+<td style="text-align: right;">134</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KLEE-ALARM-0046</td>
+<td style="text-align: left;">eva_klee_alarm_0046</td>
+<td style="text-align: left;">s16_fac05_div_s16_s16</td>
+<td style="text-align: left;">(s32)(s32Temp1 - (s32)((s32)(s32Temp1 /
+(s32)denominator) * (s32)denominator)) &gt;= 0</td>
+<td style="text-align: left;">TIMEOUT</td>
+<td style="text-align: left;">numerator=INT16_MIN; denominator=7</td>
+<td style="text-align: left;">eva_klee_alarm_0046</td>
+<td style="text-align: right;">134</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KLEE-ALARM-0084</td>
+<td style="text-align: left;">eva_klee_alarm_0084</td>
+<td style="text-align: left;">s16_mul_s16_u16_div_s16</td>
+<td style="text-align: left;">s32Temp1 &gt;= 0</td>
+<td style="text-align: left;">TIMEOUT</td>
+<td style="text-align: left;">factor1=INT16_MIN; factor2=UINT16_MAX;
+denominator=7</td>
+<td style="text-align: left;">eva_klee_alarm_0084</td>
+<td style="text-align: right;">134</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KLEE-ALARM-0089</td>
+<td style="text-align: left;">eva_klee_alarm_0089</td>
+<td style="text-align: left;">s16_mul_u16_s16_div_u16</td>
+<td style="text-align: left;">(s32)(s32Result - (s32)((s32)(s32Result /
+(s32)denominator) * (s32)denominator)) &gt;= 0</td>
+<td style="text-align: left;">TIMEOUT</td>
+<td style="text-align: left;">factor1=UINT16_MAX; factor2=INT16_MIN;
+denominator=7</td>
+<td style="text-align: left;">eva_klee_alarm_0089</td>
+<td style="text-align: right;">134</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KLEE-ALARM-0120</td>
+<td style="text-align: left;">eva_klee_alarm_0120</td>
+<td style="text-align: left;">u16_div_s32_u16</td>
+<td style="text-align: left;">(s32)(x_value - (s32)((s32)(x_value /
+(s32)y_value) * (s32)y_value)) &gt;= 0</td>
+<td style="text-align: left;">TIMEOUT</td>
+<td style="text-align: left;">numerator=INT32_MIN; denominator=7</td>
+<td style="text-align: left;">eva_klee_alarm_0120</td>
+<td style="text-align: right;">134</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KLEE-ALARM-0127</td>
+<td style="text-align: left;">eva_klee_alarm_0127</td>
+<td style="text-align: left;">u16_mul_s16_u16_div_s16</td>
+<td style="text-align: left;">(s32)(s32Result - (s32)((s32)(s32Result /
+(s32)denominator) * (s32)denominator)) &gt;= 0</td>
+<td style="text-align: left;">TIMEOUT</td>
+<td style="text-align: left;">factor1=INT16_MIN; factor2=UINT16_MAX;
+denominator=7</td>
+<td style="text-align: left;">eva_klee_alarm_0127</td>
+<td style="text-align: right;">134</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KLEE-ALARM-0135</td>
+<td style="text-align: left;">eva_klee_alarm_0135</td>
+<td style="text-align: left;">u16_mul_s16_u16_div_u16</td>
+<td style="text-align: left;">(s32)(s32Result - (s32)((s32)(s32Result /
+(s32)denominator) * (s32)denominator)) &gt;= 0</td>
+<td style="text-align: left;">TIMEOUT</td>
+<td style="text-align: left;">factor1=INT16_MIN; factor2=UINT16_MAX;
+denominator=7</td>
+<td style="text-align: left;">eva_klee_alarm_0135</td>
+<td style="text-align: right;">134</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>پایان گزارش مرجع.</strong></p>
+</body>
+</html>

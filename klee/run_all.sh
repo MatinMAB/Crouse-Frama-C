@@ -46,7 +46,7 @@ mkdir -p "$RESULTS_DIR"
 } > "$RESULTS_DIR/environment.txt"
 
 summary="$RESULTS_DIR/summary.tsv"
-printf 'alarm_id\tfunction\tstatus\ttestcase_count\telapsed_seconds\tresult_dir\n' > "$summary"
+printf 'alarm_id\tfunction\tstatus\ttestcase_count\telapsed_seconds\tresult_dir\tbuild_seconds\tklee_seconds\n' > "$summary"
 total_started="$SECONDS"
 total_targets=0
 skipped=0
@@ -71,15 +71,19 @@ while IFS=$'\t' read -r alarm_id function _; do
 
     status="MISSING_RESULT"
     elapsed="0"
+    build_elapsed="NA"
+    klee_elapsed="NA"
     [[ -s "$result_dir/status.txt" ]] && status="$(cat "$result_dir/status.txt")"
     [[ -s "$result_dir/elapsed_seconds.txt" ]] && elapsed="$(cat "$result_dir/elapsed_seconds.txt")"
+    [[ -s "$result_dir/build_seconds.txt" ]] && build_elapsed="$(cat "$result_dir/build_seconds.txt")"
+    [[ -s "$result_dir/klee_seconds.txt" ]] && klee_elapsed="$(cat "$result_dir/klee_seconds.txt")"
     testcase_count=0
     if [[ -d "$result_dir/klee-out" ]]; then
         testcase_count="$(find "$result_dir/klee-out" -maxdepth 1 -type f -name '*.ktest' | wc -l)"
     fi
-    printf '%s\t%s\t%s\t%s\t%s\t%s\n' \
+    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
         "$alarm_id" "$function" "$status" "$testcase_count" "$elapsed" \
-        "klee/results/$alarm_id" >> "$summary"
+        "klee/results/$alarm_id" "$build_elapsed" "$klee_elapsed" >> "$summary"
 done < "$MANIFEST"
 
 total_elapsed=$((SECONDS - total_started))

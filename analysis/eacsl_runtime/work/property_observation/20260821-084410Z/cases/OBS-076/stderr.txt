@@ -1,0 +1,8 @@
+analysis/eacsl_selective/generated/wp_pruned_101/sources/div_Ccode.c: In function 'u16_div_s32_u16'
+analysis/eacsl_selective/generated/wp_pruned_101/sources/div_Ccode.c:612: Error: Assertion failed:
+	The failing predicate is:
+	eva_klee_alarm_0120:
+		(s32)(x_value - (s32)((s32)(x_value / (s32)y_value) * (s32)y_value)) ≥ 0.
+	With values at failure point:
+	- y_value: 7
+	- x_value: -2147483648
