@@ -1,5 +1,7 @@
 # Final Eva–KLEE–Repair–WP Traceability
 
+> **Historical/superseded snapshot:** this file records the earlier 35/48 stage before the final 13 shift-policy targets were resolved and proved. It is retained for chronology, not as the authoritative final WP result. Use `data/wp_targets.tsv`, `results/summary.tsv`, `FINAL_COMPLETE_EVA_KLEE_REPAIR_WP_TRACEABILITY.md`, and `validation/WP_FINAL_FREEZE_AUDIT.md` for the frozen 48/48 result.
+
 This matrix preserves the complete lifecycle for all 48 KLEE-confirmed modeled violations.
 
 - Group A: 32 initially repaired targets, all `VALID_AUTOMATIC` in the frozen first campaign.

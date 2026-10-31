@@ -1,5 +1,7 @@
 # Target-only Frama-C/WP Verification Methodology
 
+> **Historical preparation snapshot:** the 32/16 eligibility split below describes the state before the final semantic-resolution campaign. The final frozen phase has 48 eligible and VALID targets. See `README.md` and `validation/WP_FINAL_FREEZE_AUDIT.md` for authoritative final counts. The target-only configuration described here remains historically accurate.
+
 ## Scientific scope
 
 This experiment asks whether WP can prove only the named ACSL assertion derived from each

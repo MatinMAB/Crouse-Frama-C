@@ -152,9 +152,18 @@ for final in final_rows:
         "qed_result": final["Qed"],
         "external_prover_required": "YES" if proof_mode == "EXTERNAL_PROVER" else "NO",
         "successful_prover": successful,
-        "alt_ergo_result": final["Alt-Ergo"],
-        "z3_result": final["Z3"],
-        "cvc5_result": final["CVC5"],
+        "retained_json_alt_ergo_result": (
+            "VALID" if any(name.startswith("Alt-Ergo:") for name in successful.split(";")) else "NOT_RECORDED_AS_SUCCESS"
+        ),
+        "retained_json_z3_result": (
+            "VALID" if any(name.startswith("Z3:") for name in successful.split(";")) else "NOT_RECORDED_AS_SUCCESS"
+        ),
+        "retained_json_cvc5_result": (
+            "VALID" if any(name.startswith("CVC5:") for name in successful.split(";")) else "NOT_RECORDED_AS_SUCCESS"
+        ),
+        "legacy_matrix_alt_ergo_result": final["Alt-Ergo"],
+        "legacy_matrix_z3_result": final["Z3"],
+        "legacy_matrix_cvc5_result": final["CVC5"],
         "goals_total": goals_total,
         "goals_valid": goals_valid,
         "goals_unknown": goals_unknown,
@@ -179,6 +188,8 @@ for final in final_rows:
         "semantic_resolution_commit": final["Repair/Spec Commit"],
         "proof_execution_commit": proof_commit,
         "normalized_wp_branch_base": "9307d7b68ea4c9b1496cfd0160e337f739827edd",
+        "base_branch": "analysis/eva-klee-final-shift-resolution",
+        "base_branch_relation": "analysis/eva-klee-final-shift-resolution~1",
         "frozen_final_analysis_commit": "09e759283a6f1f9483cb560873e0b97d544fa714",
     })
     summary.append({
@@ -215,6 +226,11 @@ hash_targets = [
     RESULTS / "summary.tsv",
     WP / "FINAL_WP_RESULTS_48.tsv",
     ROOT / "analysis" / "repair_phase" / "48_CONFIRMED_REPAIR_TARGETS.tsv",
+    WP / "validation" / "WP_FINAL_FREEZE_AUDIT.md",
+    ROOT / "reports" / "wp_phase" / "WP_TECHNICAL_REPORT.md",
+    ROOT / "reports" / "wp_phase" / "WP_EXECUTIVE_SUMMARY.md",
+    ROOT / "reports" / "wp_phase" / "WP_TARGET_PROOF_INVENTORY.md",
+    ROOT / "reports" / "wp_phase" / "WP_COMMAND_REFERENCE.md",
 ]
 (WP / "SHA256SUMS").write_text(
     "".join(f"{sha256(path)}  {path.relative_to(ROOT)}\n" for path in hash_targets),

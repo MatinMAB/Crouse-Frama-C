@@ -1,5 +1,7 @@
 # How to Run the Target-only WP Scripts
 
+> **Historical command reference:** retained for campaign provenance. The portable authoritative interface is now `scripts/check_environment.sh`, `scripts/run_one.sh`, and `scripts/run_all.sh`; see `README.md` and `reports/wp_phase/WP_COMMAND_REFERENCE.md`.
+
 Run one eligible target from any directory:
 
 ```bash

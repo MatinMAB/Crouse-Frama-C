@@ -1,5 +1,7 @@
 # WP Script Preparation Validation
 
+> **Historical preparation snapshot:** these 32/16 and zero-execution counts describe launcher preparation, not the final proof outcome. The authoritative frozen result is 48/48 VALID; see `validation/WP_FINAL_FREEZE_AUDIT.md`.
+
 - Confirmed KLEE targets: 48
 - Target directories: 48
 - `metadata.env` files: 48

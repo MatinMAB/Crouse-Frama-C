@@ -38,6 +38,7 @@ repairs = read_tsv(ROOT / "analysis" / "repair_phase" / "48_CONFIRMED_REPAIR_TAR
 klee = read_tsv(ROOT / "analysis" / "klee_phase_c" / "results" / "summary.tsv")
 targets = read_tsv(DATA / "wp_targets.tsv")
 summary = read_tsv(RESULTS / "summary.tsv")
+provenance = read_tsv(DATA / "git_provenance.tsv")
 
 collections = {
     "final WP matrix": (final, "KLEE Alarm ID"),
@@ -45,6 +46,7 @@ collections = {
     "semantic-resolution matrix": (repairs, "KLEE Alarm ID"),
     "normalized target dataset": (targets, "klee_target_id"),
     "normalized result summary": (summary, "klee_target_id"),
+    "git provenance": (provenance, "klee_target_id"),
 }
 sets: dict[str, set[str]] = {}
 for name, (rows, field) in collections.items():
@@ -139,6 +141,12 @@ resolution_counts = Counter(row["resolution_type"] for row in targets)
 proof_mode_counts = Counter(row["proof_mode"] for row in targets)
 status_counts = Counter(row["proof_status"] for row in targets)
 summary_status_counts = Counter(row["status"] for row in summary)
+spec_provenance_counts = Counter(
+    row["evidence_origin"] for row in targets
+    if row["resolution_type"] == "SPECIFICATION_COMPLETION"
+)
+successful_prover_counts = Counter(row["successful_prover"] for row in targets)
+line_match_counts = Counter(row["recorded_line_matches_current_source"] for row in targets)
 if resolution_counts != Counter({"CODE_REPAIR": 35, "SPECIFICATION_COMPLETION": 13}):
     errors.append(f"unexpected semantic-resolution counts: {dict(resolution_counts)}")
 if proof_mode_counts != Counter({"QED_ONLY": 35, "EXTERNAL_PROVER": 13}):
@@ -147,6 +155,19 @@ if status_counts != Counter({"VALID": 48}):
     errors.append(f"unexpected normalized proof statuses: {dict(status_counts)}")
 if summary_status_counts != Counter({"VALID_QED": 35, "VALID_EXTERNAL_PROVER": 13}):
     errors.append(f"unexpected summary statuses: {dict(summary_status_counts)}")
+if spec_provenance_counts != Counter({"THESIS_POLICY_SELECTED": 8, "REPOSITORY_INFERRED": 5}):
+    errors.append(f"unexpected specification provenance: {dict(spec_provenance_counts)}")
+if successful_prover_counts != Counter({"qed": 35, "Alt-Ergo:2.6.2": 12, "Z3:4.8.12": 1}):
+    errors.append(f"unexpected successful-prover attribution: {dict(successful_prover_counts)}")
+if line_match_counts != Counter({"YES": 35, "NO": 13}):
+    errors.append(f"unexpected recorded/current line reconciliation: {dict(line_match_counts)}")
+if Counter(row["alarm_category"] for row in targets) != Counter({"integer overflow": 29, "invalid shift": 19}):
+    errors.append("unexpected WP target-category inventory (division-by-zero must remain absent)")
+for row in provenance:
+    if row["base_branch"] != "analysis/eva-klee-final-shift-resolution":
+        errors.append(f"{row['klee_target_id']}: incorrect base branch provenance")
+    if row["normalized_wp_branch_base"] != "9307d7b68ea4c9b1496cfd0160e337f739827edd":
+        errors.append(f"{row['klee_target_id']}: incorrect base commit provenance")
 
 total = sum(float(row["runner_wall_time_seconds"]) for row in targets)
 if abs(total - 183.910237408) > 0.0000005:
@@ -182,14 +203,20 @@ print("Missing targets=0")
 print("Unexpected targets=0")
 print("Code Repair=35")
 print("Specification Completion=13")
+print("Specification repository-inferred=5")
+print("Specification thesis-policy-selected=8")
 print("VALID=48")
 print("Qed-only=35")
 print("External prover=13")
+print("Alt-Ergo successful=12")
+print("Z3 successful=1")
+print("CVC5 successful=0")
 print("Unknown=0")
 print("Timeout=0")
 print("Failure=0")
 print(f"Historical runner wall time={total:.9f} seconds")
 print(f"Shell scripts passing bash -n={len(shell_files)}")
 print("Property identity checks=48")
+print("Historical/current assertion-line reconciliations=13")
 print("Retained JSON proof reports=48")
 print("VALIDATION: PASS")

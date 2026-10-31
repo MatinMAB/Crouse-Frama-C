@@ -49,3 +49,9 @@ Defaultها از metadata هر target می‌آیند: timeout 120 seconds، mem
 
 Session/cacheهای بازتولیدپذیر ignored هستند. raw frozen logs/JSON کوچک، dataset، summary، validation و reports tracked می‌مانند. هیچ runner نتیجهٔ موجود را حذف یا overwrite نمی‌کند.
 
+## Authoritative and historical artifacts
+
+برای نتیجهٔ نهایی از `data/wp_targets.tsv`، `results/summary.tsv`، `FINAL_WP_RESULTS_48.tsv`، `validation/WP_FINAL_FREEZE_AUDIT.md` و `reports/wp_phase/` استفاده کنید. فایل‌های preparation و campaign مرحله‌ای مانند `WP_RESULTS.tsv`، `WP_PREPARATION_VALIDATION.md`، `WP_VERIFICATION_METHODOLOGY.md`، `FINAL_EVA_KLEE_REPAIR_WP_TRACEABILITY.md` و زیرشاخه‌های `reports/`, `reports_second/`, `reports_final_shift/` chronology آزمایش را حفظ می‌کنند و بعضی شمارش‌های میانی 32/16 یا 35/48 دارند؛ آن‌ها final aggregate source نیستند.
+
+در `KLEE-ALARM-0017`، matrix legacy مقادیر Alt-Ergo=`TIMEOUT` و CVC5=`VALID` دارد که در JSON/log منتخب قابل بازیابی نیستند. attribution authoritative بر اساس `wp-report.json` همان run است: Qed ناکافی و Z3 موفق. CVC5 در شمار موفقیت نهایی صفر است.
+

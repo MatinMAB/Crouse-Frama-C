@@ -52,7 +52,7 @@ Alt-Ergo 2.6.2 prover موفق ۱۲ هدف از ۱۳ هدف external بود.
 
 ### Z3
 
-Z3 4.8.12 هدف `KLEE-ALARM-0017` را پس از کافی نبودن Qed و timeout ثبت‌شدهٔ Alt-Ergo ثابت کرد.
+Z3 4.8.12 هدف `KLEE-ALARM-0017` را پس از کافی نبودن Qed ثابت کرد. JSON و log retained همین run فقط Qed و Z3 را ثبت می‌کنند. مقادیر Alt-Ergo/CVC5 در matrix تجمیعی قدیمی برای این target، attemptهای قابل بازیابی در JSON منتخب نیستند و در attribution موفقیت استفاده نشده‌اند.
 
 ### CVC5
 
@@ -60,7 +60,7 @@ CVC5 1.1.2 در configuration campaign موجود بود؛ اما در JSON reta
 
 ## 12. پیکربندی و optionهای WP
 
-فرم ثابت command: `frama-c -machdep ppc_32 ... -wp -wp-fct <function> -wp-prop <label> -wp-model Typed+int -wp-prover alt-ergo,z3,cvc5 -wp-run-all-provers -wp-par 1 -wp-timeout 120 -wp-memlimit 2000 -wp-cache rebuild -wp-session ... -wp-out ... -wp-report-json ... -wp-proof-trace -wp-status`. زمان ۱۲۰ ثانیه per prover، memory limit برابر ۲۰۰۰ MB و parallelism برابر ۱ است.
+فرم ثابت command: `frama-c -machdep ppc_32 ... -wp -wp-fct <function> -wp-prop <label> -wp-model Typed+int -wp-prover alt-ergo,z3,cvc5 -wp-run-all-provers -wp-par 1 -wp-timeout 120 -wp-memlimit 2000 -wp-cache rebuild -wp-session ... -wp-out ... -wp-report-json ... -wp-proof-trace -wp-status`. زمان ۱۲۰ ثانیه per prover، memory limit برابر ۲۰۰۰ MiB و parallelism برابر ۱ است.
 
 ## 13. روش اجرای یک مشخصه
 
@@ -209,6 +209,7 @@ taxonomy نرمال‌شده: `VALID_QED`, `VALID_EXTERNAL_PROVER`, `TIMEOUT`, `
 - پنج specification completion از evidence repository و هشت مورد از thesis policy آمده‌اند؛ دومی ادعای legacy intent نمی‌کند.
 - wall time به host load وابسته است و زمان خالص solver نیست.
 - JSON retained وضعیت goal و prover attempt را می‌دهد، اما proof certificate مستقل از toolchain نگهداری نشده است.
+- برای `KLEE-ALARM-0017`، matrix legacy وضعیت Alt-Ergo/CVC5 اضافه‌ای دارد که در JSON/log منتخب قابل بازیابی نیست. attribution authoritative فقط از JSON منتخب است: Z3 موفق.
 
 ## 24. برداشت صحیح از ۴۸/۴۸
 
