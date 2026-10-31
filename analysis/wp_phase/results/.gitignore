@@ -1,2 +1,4 @@
 *
 !.gitignore
+!summary.tsv
+!environment.txt
