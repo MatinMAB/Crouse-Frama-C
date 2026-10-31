@@ -3,6 +3,12 @@ set -euo pipefail
 
 WP_COMMON_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 REPO_ROOT=$(cd -- "$WP_COMMON_DIR/../../.." && pwd -P)
+FRAMAC=${FRAMAC:-frama-c}
+FRAMAC_GUI=${FRAMAC_GUI:-frama-c-gui}
+WHY3=${WHY3:-why3}
+ALT_ERGO=${ALT_ERGO:-alt-ergo}
+Z3=${Z3:-z3}
+CVC5=${CVC5:-cvc5}
 
 wp_require_ready() {
   if [[ ${SCRIPT_STATUS:?} != WP_READY ]]; then
@@ -29,7 +35,7 @@ wp_build_command() {
   local -a inputs
   read -r -a inputs <<< "$TRANSLATION_UNIT_INPUTS"
   WP_COMMAND=(
-    frama-c
+    "$FRAMAC"
     -machdep "$MACHINE_MODEL"
     "-cpp-extra-args=$CPP_EXTRA_ARGS"
   )
@@ -56,11 +62,11 @@ wp_build_command() {
 wp_capture_versions() {
   local destination=$1
   {
-    frama-c -version 2>&1
-    why3 --version 2>&1 || true
-    alt-ergo --version 2>&1 || true
-    z3 --version 2>&1 || true
-    cvc5 --version 2>&1 | sed -n '1p' || true
+    "$FRAMAC" -version 2>&1
+    "$WHY3" --version 2>&1 || true
+    "$ALT_ERGO" --version 2>&1 || true
+    "$Z3" --version 2>&1 || true
+    "$CVC5" --version 2>&1 | sed -n '1p' || true
   } > "$destination"
 }
 
@@ -94,7 +100,7 @@ wp_write_command() {
 
 wp_run_terminal() {
   wp_require_ready
-  wp_require_tools frama-c why3 alt-ergo z3 cvc5 git tee
+  wp_require_tools "$FRAMAC" "$WHY3" "$ALT_ERGO" "$Z3" "$CVC5" git tee
   cd "$REPO_ROOT"
   WP_TIMEOUT=${WP_TIMEOUT:-$DEFAULT_WP_TIMEOUT}
   WP_MEMLIMIT=${WP_MEMLIMIT:-$DEFAULT_WP_MEMLIMIT}
@@ -111,7 +117,7 @@ wp_run_terminal() {
     git describe --always --dirty --tags
     git status --short --branch --untracked-files=no
   } > "$WP_RESULT_DIR/git_state.txt"
-  frama-c -version > "$WP_RESULT_DIR/frama_c_version.txt" 2>&1
+  "$FRAMAC" -version > "$WP_RESULT_DIR/frama_c_version.txt" 2>&1
   wp_capture_versions "$WP_RESULT_DIR/prover_versions.txt"
   local started finished elapsed_ns exit_code
   started=$(date +%s%N)
@@ -131,7 +137,7 @@ wp_run_terminal() {
 
 wp_run_gui() {
   wp_require_ready
-  wp_require_tools frama-c-gui
+  wp_require_tools "$FRAMAC_GUI"
   cd "$REPO_ROOT"
   WP_TIMEOUT=${WP_TIMEOUT:-$DEFAULT_WP_TIMEOUT}
   WP_MEMLIMIT=${WP_MEMLIMIT:-$DEFAULT_WP_MEMLIMIT}
@@ -139,6 +145,6 @@ wp_run_gui() {
   local gui_out="$session_dir/gui-wp-out"
   mkdir -p "$session_dir" "$gui_out"
   wp_build_command "$session_dir/gui-wp-report.json" "$gui_out" "$session_dir"
-  WP_COMMAND[0]=frama-c-gui
+  WP_COMMAND[0]=$FRAMAC_GUI
   exec "${WP_COMMAND[@]}"
 }
