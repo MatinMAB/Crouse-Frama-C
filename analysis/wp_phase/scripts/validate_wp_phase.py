@@ -39,6 +39,8 @@ klee = read_tsv(ROOT / "analysis" / "klee_phase_c" / "results" / "summary.tsv")
 targets = read_tsv(DATA / "wp_targets.tsv")
 summary = read_tsv(RESULTS / "summary.tsv")
 provenance = read_tsv(DATA / "git_provenance.tsv")
+traceability = read_tsv(DATA / "wp_alarm_repair_traceability.tsv")
+repair_catalog = read_tsv(DATA / "wp_repair_catalog.tsv")
 
 collections = {
     "final WP matrix": (final, "KLEE Alarm ID"),
@@ -47,6 +49,7 @@ collections = {
     "normalized target dataset": (targets, "klee_target_id"),
     "normalized result summary": (summary, "klee_target_id"),
     "git provenance": (provenance, "klee_target_id"),
+    "alarm-to-repair traceability": (traceability, "klee_target_id"),
 }
 sets: dict[str, set[str]] = {}
 for name, (rows, field) in collections.items():
@@ -73,12 +76,15 @@ final_by_id = {row["KLEE Alarm ID"]: row for row in final}
 inputs_by_id = {row["KLEE Alarm ID"]: row for row in inputs}
 repairs_by_id = {row["KLEE Alarm ID"]: row for row in repairs}
 targets_by_id = {row["klee_target_id"]: row for row in targets}
+trace_by_id = {row["klee_target_id"]: row for row in traceability}
+catalog_by_id = {row["repair_id"]: row for row in repair_catalog}
 
 for alarm_id in sorted(klee_witness_ids):
     frozen = final_by_id[alarm_id]
     inp = inputs_by_id[alarm_id]
     repair = repairs_by_id[alarm_id]
     target = targets_by_id[alarm_id]
+    trace = trace_by_id[alarm_id]
     property_values = [
         frozen["Original Eva Property"], inp["Eva Safety Property"],
         repair["Raw Eva Property"], target["original_eva_property"],
@@ -88,6 +94,34 @@ for alarm_id in sorted(klee_witness_ids):
     labels = {frozen["ACSL Label"], inp["ACSL Label"], repair["ACSL Label"], target["wp_property_name"]}
     if len(labels) != 1:
         errors.append(f"{alarm_id}: ACSL label differs across retained evidence")
+    if normalized_expression(trace["original_property"]) != normalized_expression(target["original_eva_property"]):
+        errors.append(f"{alarm_id}: traceability original property differs from normalized target")
+    if trace["wp_property_label"] != target["wp_property_name"]:
+        errors.append(f"{alarm_id}: traceability WP label differs from normalized target")
+    if trace["property_identity_preserved"] != "YES":
+        errors.append(f"{alarm_id}: property identity is not marked preserved")
+    if trace["wp_status"] != "VALID":
+        errors.append(f"{alarm_id}: traceability WP status is not VALID")
+    if trace["repair_id"] not in catalog_by_id:
+        errors.append(f"{alarm_id}: unknown repair catalog ID {trace['repair_id']}")
+    if trace["repair_commit"] != target["git_repair_commit"]:
+        errors.append(f"{alarm_id}: repair commit differs from normalized target")
+    for field in ("repair_id", "repair_commit", "repair_parent_commit", "changed_files"):
+        if not trace[field] or trace[field] == "NOT_AVAILABLE_IN_RETAINED_EVIDENCE":
+            errors.append(f"{alarm_id}: missing mandatory traceability field {field}")
+    for path_field in ("klee_ktest_path", "klee_error_path"):
+        path = ROOT / trace[path_field]
+        if not path.is_file():
+            errors.append(f"{alarm_id}: missing retained witness artifact {trace[path_field]}")
+    if trace["resolution_type"] == "CODE_REPAIR":
+        if trace["changed_source_before"] == "NOT_AVAILABLE_IN_RETAINED_EVIDENCE" or trace["changed_source_after"] == "NOT_AVAILABLE_IN_RETAINED_EVIDENCE":
+            errors.append(f"{alarm_id}: Code Repair lacks exact before/after evidence")
+    elif trace["resolution_type"] == "SPECIFICATION_COMPLETION":
+        for field in ("resolution_provenance", "specification_after", "resolution_rationale"):
+            if not trace[field] or trace[field] == "NOT_AVAILABLE_IN_RETAINED_EVIDENCE":
+                errors.append(f"{alarm_id}: Specification Completion lacks {field}")
+        if trace["specification_weakening_audit"] != "PASS_DOMAIN_CONSTRAINT_NOT_TARGET_PROPERTY":
+            errors.append(f"{alarm_id}: Specification Completion weakening audit did not pass")
 
     repaired_source = ROOT / inp["Repaired Source File"]
     if not repaired_source.is_file():
@@ -163,10 +197,41 @@ if line_match_counts != Counter({"YES": 35, "NO": 13}):
     errors.append(f"unexpected recorded/current line reconciliation: {dict(line_match_counts)}")
 if Counter(row["alarm_category"] for row in targets) != Counter({"integer overflow": 29, "invalid shift": 19}):
     errors.append("unexpected WP target-category inventory (division-by-zero must remain absent)")
+if Counter(row["eva_category"] for row in traceability) != Counter({"integer overflow": 29, "invalid shift": 19}):
+    errors.append("unexpected traceability category inventory")
+if Counter(row["resolution_type"] for row in traceability) != Counter({"CODE_REPAIR": 35, "SPECIFICATION_COMPLETION": 13}):
+    errors.append("unexpected traceability semantic-resolution inventory")
+if Counter(
+    row["resolution_provenance"] for row in traceability
+    if row["resolution_type"] == "SPECIFICATION_COMPLETION"
+) != Counter({"THESIS_POLICY_SELECTED": 8, "REPOSITORY_INFERRED": 5}):
+    errors.append("unexpected traceability specification provenance")
+if Counter(row["wp_status"] for row in traceability) != Counter({"VALID": 48}):
+    errors.append("unexpected traceability WP status inventory")
+if Counter(row["qed_only"] for row in traceability) != Counter({"YES": 35, "NO": 13}):
+    errors.append("unexpected traceability Qed/external inventory")
+if Counter(row["successful_prover"] for row in traceability) != Counter({"qed": 35, "Alt-Ergo:2.6.2": 12, "Z3:4.8.12": 1}):
+    errors.append("unexpected traceability successful-prover attribution")
+if len(repair_catalog) != 13 or len(catalog_by_id) != 13:
+    errors.append(f"repair catalog: expected 13 unique rows, found {len(repair_catalog)}/{len(catalog_by_id)}")
+if Counter(row["resolution_type"] for row in repair_catalog) != Counter({"CODE_REPAIR": 6, "SPECIFICATION_COMPLETION": 7}):
+    errors.append("unexpected unique repair catalog split")
+for item in repair_catalog:
+    commit = item["commit"]
+    parent = item["parent_commit"]
+    for revision in (commit, parent):
+        if subprocess.run(["git", "cat-file", "-e", f"{revision}^{{commit}}"], cwd=ROOT, check=False).returncode:
+            errors.append(f"{item['repair_id']}: missing Git commit {revision}")
+    if item["before_code"] == "NOT_AVAILABLE_IN_RETAINED_EVIDENCE" or item["after_code"] == "NOT_AVAILABLE_IN_RETAINED_EVIDENCE":
+        errors.append(f"{item['repair_id']}: missing before/after code")
+    expected_ids = set(item["affected_alarm_ids"].split(";"))
+    actual_ids = {row["klee_target_id"] for row in traceability if row["repair_id"] == item["repair_id"]}
+    if expected_ids != actual_ids:
+        errors.append(f"{item['repair_id']}: catalog/traceability alarm membership differs")
 for row in provenance:
     if row["base_branch"] != "analysis/eva-klee-final-shift-resolution":
         errors.append(f"{row['klee_target_id']}: incorrect base branch provenance")
-    if row["normalized_wp_branch_base"] != "9307d7b68ea4c9b1496cfd0160e337f739827edd":
+    if row["base_commit"] != "9307d7b68ea4c9b1496cfd0160e337f739827edd":
         errors.append(f"{row['klee_target_id']}: incorrect base commit provenance")
 
 total = sum(float(row["runner_wall_time_seconds"]) for row in targets)
@@ -217,6 +282,11 @@ print("Failure=0")
 print(f"Historical runner wall time={total:.9f} seconds")
 print(f"Shell scripts passing bash -n={len(shell_files)}")
 print("Property identity checks=48")
+print("Traceability rows=48")
+print("Unique resolution diffs=13")
+print("Code Repair before/after evidence=35")
+print("Specification Completion before/after evidence=13")
+print("Witness KTest/error evidence=48")
 print("Historical/current assertion-line reconciliations=13")
 print("Retained JSON proof reports=48")
 print("VALIDATION: PASS")

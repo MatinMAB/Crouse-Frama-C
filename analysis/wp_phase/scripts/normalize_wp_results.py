@@ -10,6 +10,7 @@ import csv
 import hashlib
 import json
 import re
+import subprocess
 from pathlib import Path
 
 
@@ -219,18 +220,25 @@ write_tsv(DATA / "wp_targets.tsv", normalized, fields)
 write_tsv(DATA / "git_provenance.tsv", provenance, list(provenance[0]))
 write_tsv(RESULTS / "summary.tsv", summary, list(summary[0]))
 
+# Build the commit-diff-backed traceability datasets after wp_targets exists.
+subprocess.run(
+    ["python3", str(WP / "scripts" / "generate_wp_traceability.py")],
+    cwd=ROOT, check=True,
+)
+
 hash_targets = [
     DATA / "wp_targets.tsv",
     DATA / "wp_targets.json",
     DATA / "git_provenance.tsv",
+    DATA / "wp_alarm_repair_traceability.tsv",
+    DATA / "wp_alarm_repair_traceability.json",
+    DATA / "wp_repair_catalog.tsv",
+    DATA / "wp_repair_catalog.json",
     RESULTS / "summary.tsv",
     WP / "FINAL_WP_RESULTS_48.tsv",
     ROOT / "analysis" / "repair_phase" / "48_CONFIRMED_REPAIR_TARGETS.tsv",
     WP / "validation" / "WP_FINAL_FREEZE_AUDIT.md",
-    ROOT / "reports" / "wp_phase" / "WP_TECHNICAL_REPORT.md",
-    ROOT / "reports" / "wp_phase" / "WP_EXECUTIVE_SUMMARY.md",
-    ROOT / "reports" / "wp_phase" / "WP_TARGET_PROOF_INVENTORY.md",
-    ROOT / "reports" / "wp_phase" / "WP_COMMAND_REFERENCE.md",
+    WP / "validation" / "WP_ALARM_REPAIR_TRACEABILITY_VALIDATION.md",
 ]
 (WP / "SHA256SUMS").write_text(
     "".join(f"{sha256(path)}  {path.relative_to(ROOT)}\n" for path in hash_targets),

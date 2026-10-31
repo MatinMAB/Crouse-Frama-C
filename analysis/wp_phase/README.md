@@ -12,11 +12,14 @@ Eva property → KLEE witness → semantic decision → code/spec resolution
 ## Inputs and evidence
 
 - `data/wp_targets.tsv` و `.json`: dataset نرمال‌شدهٔ ۴۸ هدف.
+- `data/wp_alarm_repair_traceability.tsv` و `.json`: زنجیرهٔ کامل alarm، witness، resolution، Git diff و WP.
+- `data/wp_repair_catalog.tsv` و `.json`: ۱۳ diff یکتای code/spec resolution و targetهای مشترک.
+- `data/git_provenance.tsv`: commit/parent و attribution هر target.
 - `WP_TARGET_INPUTS.tsv`: source set، function و ACSL label هر target.
 - `results/KLEE-ALARM-*/<timestamp>/`: raw frozen command، log و `wp-report.json`.
 - `results/summary.tsv`: خلاصهٔ machine-readable.
 - `SHA256SUMS`: checksum datasetها و summaryهای اصلی.
-- `reports/wp_phase/WP_TARGET_PROOF_INVENTORY.md`: جدول audit انسانی.
+- `validation/WP_ALARM_REPAIR_TRACEABILITY_VALIDATION.md`: خلاصهٔ کوتاه audit coverage و evidence gaps.
 
 شماره‌خط ۱۳ assertion در manifest قدیمی پس از درج‌های shared جابه‌جا شده است؛ label یکتای ACSL هویت authoritative است و dataset ستون `verified_assertion_line` را ثبت می‌کند.
 
@@ -31,6 +34,7 @@ Frama-C 33.0 با WP، Why3، Alt-Ergo 2.6.2، Z3 4.8.12 و CVC5 1.1.2 configura
 ./analysis/wp_phase/scripts/run_one.sh KLEE-ALARM-0001
 ./analysis/wp_phase/scripts/run_all.sh --resume
 python3 analysis/wp_phase/scripts/validate_wp_phase.py
+python3 analysis/wp_phase/scripts/generate_wp_traceability.py
 column -s $'\t' -t analysis/wp_phase/results/summary.tsv | less -S
 ```
 
@@ -47,11 +51,18 @@ Defaultها از metadata هر target می‌آیند: timeout 120 seconds، mem
 
 `wp-report.json` منبع machine-readable وضعیت goal است؛ process exit code به‌تنهایی proof classification نیست. `elapsed_time.txt` wall time invocation Frama-C/WP (startup، WP، external prover و pipe خروجی) است و solver time نیست. زمان attemptهای Qed/prover از JSON جدا شده است.
 
-Session/cacheهای بازتولیدپذیر ignored هستند. raw frozen logs/JSON کوچک، dataset، summary، validation و reports tracked می‌مانند. هیچ runner نتیجهٔ موجود را حذف یا overwrite نمی‌کند.
+Session/cacheهای بازتولیدپذیر ignored هستند. raw frozen logs/JSON کوچک، dataset، summary و validation tracked می‌مانند. گزارش جامع انسانی خارج repository تولید می‌شود و در Git نگهداری نمی‌شود. هیچ runner نتیجهٔ موجود را حذف یا overwrite نمی‌کند.
 
 ## Authoritative and historical artifacts
 
-برای نتیجهٔ نهایی از `data/wp_targets.tsv`، `results/summary.tsv`، `FINAL_WP_RESULTS_48.tsv`، `validation/WP_FINAL_FREEZE_AUDIT.md` و `reports/wp_phase/` استفاده کنید. فایل‌های preparation و campaign مرحله‌ای مانند `WP_RESULTS.tsv`، `WP_PREPARATION_VALIDATION.md`، `WP_VERIFICATION_METHODOLOGY.md`، `FINAL_EVA_KLEE_REPAIR_WP_TRACEABILITY.md` و زیرشاخه‌های `reports/`, `reports_second/`, `reports_final_shift/` chronology آزمایش را حفظ می‌کنند و بعضی شمارش‌های میانی 32/16 یا 35/48 دارند؛ آن‌ها final aggregate source نیستند.
+برای نتیجهٔ نهایی از `data/wp_targets.tsv`، `data/wp_alarm_repair_traceability.tsv`، `data/wp_repair_catalog.tsv`، `results/summary.tsv`، `FINAL_WP_RESULTS_48.tsv` و validationهای frozen استفاده کنید. فایل‌های preparation و campaign مرحله‌ای chronology آزمایش را حفظ می‌کنند و بعضی شمارش‌های میانی 32/16 یا 35/48 دارند؛ آن‌ها final aggregate source نیستند.
+
+برای بازتولید گزارش انسانی در مسیری خارج repository:
+
+```bash
+python3 analysis/wp_phase/scripts/generate_wp_traceability.py \
+  --external-report /absolute/path/outside/repository/WP_FULL_TECHNICAL_REPORT.md
+```
 
 در `KLEE-ALARM-0017`، matrix legacy مقادیر Alt-Ergo=`TIMEOUT` و CVC5=`VALID` دارد که در JSON/log منتخب قابل بازیابی نیستند. attribution authoritative بر اساس `wp-report.json` همان run است: Qed ناکافی و Z3 موفق. CVC5 در شمار موفقیت نهایی صفر است.
 
