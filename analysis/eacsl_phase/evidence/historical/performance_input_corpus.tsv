@@ -1,0 +1,34 @@
+Case ID	Function	Inputs	Evidence Origin	Contract Valid?	Expected to Trigger Target Property Path?	Notes
+PERF-01	root_s32_mul_s32_s16_fac_less1	value=100000; factor=2; count=16	REPOSITORY_DERIVED_CONTROLLED	YES	YES	production wrapper count 16
+PERF-02	root_s32_mul_s32_s8_fac_less1	value=100000; factor=2; count=8	REPOSITORY_DERIVED_CONTROLLED	YES	YES	production wrapper count 8
+PERF-03	root_s32_mul_s32_u16_fac_less1	value=100000; factor=2; count=17	REPOSITORY_DERIVED_CONTROLLED	YES	YES	production wrapper count 17
+PERF-04	root_s32_mul_s32_u8_fac_less1	value=100000; factor=2; count=9	REPOSITORY_DERIVED_CONTROLLED	YES	YES	production wrapper count 9
+PERF-05	root_u32_mul_u32_s16_fac_less1	value=100000; factor=2; count=16	REPOSITORY_DERIVED_CONTROLLED	YES	YES	ecmath wrapper count 16
+PERF-06	root_u32_mul_u32_s32_fac_less1	value=100000; factor=2; count=32	REPOSITORY_DERIVED_CONTROLLED	YES	YES	production/ecmath wrapper count 32
+PERF-07	root_u32_mul_u32_s8_fac_less1	value=100000; factor=2; count=8	REPOSITORY_DERIVED_CONTROLLED	YES	YES	production/ecmath wrapper count 8
+PERF-08	rotateRight	num=0x12345678; rotation=8	REPOSITORY_DERIVED_CONTROLLED	YES	YES	repository callers use rotations 1,3,4,8,15,16
+PERF-09	s16_div_s32_s16	numerator=12345; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented division API; nonzero small divisor
+PERF-10	s16_div_s32_u32	numerator=12345; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented division API; nonzero small divisor
+PERF-11	s16_fac05_div_s16_s16	numerator=1234; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented scaled division; nonzero small divisor
+PERF-12	s16_fac05_div_s16_u16	numerator=1234; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented scaled division; nonzero small divisor
+PERF-13	s16_hip1_s16_s8_s8_u16_fac1	yold=100; u=20; uold=10; m=256	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented high-pass formula and in-range values
+PERF-14	s16_hip1_s16_u8_u8_u16_fac1	yold=100; u=20; uold=10; m=256	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented high-pass formula and in-range values
+PERF-15	s16_mul_s16_s16_div_s16	factor1=100; factor2=3; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented multiply/divide API; nonzero divisor
+PERF-16	s16_mul_s16_s16_div_u16	factor1=100; factor2=3; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented multiply/divide API; nonzero divisor
+PERF-17	s16_mul_s16_u16_div_s16	factor1=100; factor2=3; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented multiply/divide API; nonzero divisor
+PERF-18	s16_mul_u16_s16_div_u16	factor1=100; factor2=3; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented multiply/divide API; nonzero divisor
+PERF-19	s32_div_s32_s32	numerator=12345; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented division API; nonzero small divisor
+PERF-20	s32_div_s32_u32	numerator=12345; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented division API; nonzero small divisor
+PERF-21	s32_div_u32_s32	numerator=12345; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented division API; nonzero small divisor
+PERF-22	s32_mul_s32_s16_fac2	value=1000; factor=3	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented fixed-point factor domain; small in-range values
+PERF-23	s32_mul_s32_s32	value=1000; factor=3	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented saturating multiply API; small in-range values
+PERF-24	s32_mul_s32_s32_fac2	value=1000; factor=3	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented fixed-point factor domain; small in-range values
+PERF-25	s32_mul_s32_s32_fac_twopow_u8	value=1000; factor=3; power=8	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented power-of-two scaling; in-range power
+PERF-26	s32_mul_s32_s8_fac2	value=1000; factor=3	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented fixed-point factor domain; small in-range values
+PERF-27	s32_mul_s32_u16	value=1000; factor=3	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented direct multiply API; small in-range values
+PERF-28	s32_mul_u32_s32	value=1000; factor=3	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented mixed-sign multiply API; small in-range values
+PERF-29	u16_div_s32_u16	numerator=12345; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented division API; nonzero small divisor
+PERF-30	u16_mmv_u16_u16_s16_fac1	mmv=1000; measure=1200; crlc=1000	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented moving-average API; moderate in-range values
+PERF-31	u16_mul_s16_u16_div_s16	factor1=100; factor2=3; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented multiply/divide API; nonzero divisor
+PERF-32	u16_mul_s16_u16_div_u16	factor1=100; factor2=3; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented multiply/divide API; nonzero divisor
+PERF-33	u32_div_s32_s32	numerator=12345; denominator=7	REPOSITORY_DERIVED_CONTROLLED	YES	YES	documented division API; same-sign operands yield unsigned quotient
