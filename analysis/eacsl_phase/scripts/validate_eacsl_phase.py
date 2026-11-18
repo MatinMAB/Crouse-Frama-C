@@ -38,8 +38,11 @@ violations = read_tsv(DATA / "runtime_violations.tsv")
 measurements = read_tsv(DATA / "performance_measurements.tsv")
 summary = read_tsv(PHASE / "results/summary.tsv")
 observations = read_tsv(EVIDENCE / "runtime_observations.tsv")
+observation_cases = read_tsv(EVIDENCE / "observation_cases.tsv")
 retention = read_tsv(EVIDENCE / "runtime_101_retention_audit.tsv")
 elimination = read_tsv(EVIDENCE / "wp_48_elimination_audit.tsv")
+run_order = read_tsv(EVIDENCE / "performance_run_order.tsv")
+functional_audit = read_tsv(EVIDENCE / "functional_equivalence_audit.tsv")
 
 all_ids = {row["KLEE Alarm ID"] for row in properties}
 wp_ids = {row["klee_target_id"] for row in wp}
@@ -71,6 +74,15 @@ if selected_ids != target_ids or selected_ids != no_witness_ids | timeout_ids:
     errors.append("selected 101 differs from target/KLEE unresolved sets")
 if no_witness_ids & timeout_ids:
     errors.append("KLEE no-witness and timeout sets overlap")
+
+case_ids = {row["KLEE Alarm ID"] for row in observation_cases}
+if len(observation_cases) != 101 or len(case_ids) != 101 or case_ids != selected_ids:
+    errors.append("property-observation corpus is not one unique case per selected target")
+case_identity_fields = ("Case ID", "ACSL Label", "KLEE Alarm ID", "Function", "Inputs")
+case_identity = {tuple(row[field] for field in case_identity_fields) for row in observation_cases}
+observation_identity = {tuple(row[field] for field in case_identity_fields) for row in observations}
+if case_identity != observation_identity:
+    errors.append("property-observation results do not preserve corpus identity")
 
 selection_by_id = {row["alarm_id"]: row for row in selection}
 for alarm_id in wp_ids:
@@ -154,6 +166,20 @@ expected_inventory = Counter({
 if performance_inventory != expected_inventory:
     errors.append(f"unexpected performance inventory: {dict(performance_inventory)}")
 
+run_order_inventory = Counter((row["Kind"], row["Scenario"]) for row in run_order)
+expected_run_order = Counter({
+    ("WARMUP", "S0"): 5, ("WARMUP", "S1"): 5, ("WARMUP", "S2"): 5,
+    ("MEASURED", "S0"): 30, ("MEASURED", "S1"): 30, ("MEASURED", "S2"): 30,
+})
+if run_order_inventory != expected_run_order:
+    errors.append(f"unexpected warm-up/measured execution inventory: {dict(run_order_inventory)}")
+if len(functional_audit) != 3:
+    errors.append(f"expected 3 functional-sanity executions, found {len(functional_audit)}")
+elif any(row["Exit Code"] != "0" or row["Violation?"] != "NO" for row in functional_audit):
+    errors.append("functional-sanity audit contains a failed/violating scenario")
+elif len({row["Checksum"] for row in functional_audit}) != 1:
+    errors.append("CONTROL/FULL/SELECTIVE functional checksums differ")
+
 for line in (PHASE / "SHA256SUMS").read_text(encoding="utf-8").splitlines():
     expected, relative = line.split("  ", 1)
     path = ROOT / relative
@@ -183,4 +209,6 @@ print("Property-observation executions=101")
 print("Runtime violation targets/events=7/7")
 print("WP-proved runtime violations=0")
 print("Performance measurements=120")
+print("Performance warm-up executions=15 (5 per scenario)")
+print("Functional-sanity executions=3")
 print("E-ACSL VALIDATION: PASS")

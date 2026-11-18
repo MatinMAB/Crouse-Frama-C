@@ -7,7 +7,7 @@
 15 KLEE completed/no-witness + 86 KLEE timeout/inconclusive = 101
 ```
 
-این پروژه از **stock Frama-C E-ACSL 33.0 (Arsenic)** استفاده کرده است؛ checkoutهای محلی E-ACSL2 در آزمایش تاریخی به کار نرفته‌اند.
+این campaign در تمام اجزای خود—instrumentation، runtime assertion detection، diagnostic reporting، abort reaction و performance measurement—از **stock Frama-C E-ACSL 33.0 (Arsenic)** استفاده کرده است. checkout سفارشی E-ACSL2 و زیرسامانهٔ `STOP/CONTINUE/SAFE_STATE/RECOVERY/REEXECUTE` آزمایش مستقلی بوده‌اند و در campaign 149/101، هفت violation یا dataset کارایی حاضر به کار نرفته‌اند.
 
 ## Quick start
 
@@ -32,7 +32,9 @@ Generated C، executables و rerun outputs زیر `analysis/eacsl_phase/work/` �
 
 Static instrumentation با `-machdep ppc_32` انجام می‌شود. اجرای native به‌سبب نبود PPC compiler/emulator و ناسازگاری pointer-size E-ACSL، با مدل host `x86_64` انجام شده است؛ این محدودیت در evidence ثبت شده است.
 
-`run_all.sh --performance` به‌طور پیش‌فرض protocol تاریخی را بازسازی می‌کند: seed برابر `20260821`، پنج warm-up، سی round اندازه‌گیری، ۱۰۰۰۰۰ iteration، ترتیب interleaved سه scenario و pinning روی CPU 0. گزینه‌های `--seed`، `--warmups`، `--runs`، `--iterations` و `--cpu` قابل تنظیم‌اند. Override محیطی `EACSL_CPU_ID` نیز برای اجرای یک scenario پشتیبانی می‌شود.
+این تغییر مدل فقط pointer-size نیست: `src_repaired/headers/Platform_Types.h` نوع‌های `s32/u32` را با `signed/unsigned long` تعریف می‌کند. بنابراین آن‌ها در مدل PPC32 برابر ۳۲ بیت، اما در host تاریخی LP64 برابر ۶۴ بیت‌اند. هیچ fixed-width compatibility layer، `-m32` یا compile-time width assertion در campaign وجود نداشت. در نتیجه runtime observationها evidence عینی برای executable بومی x86_64 هستند و معادل اجرای PPC32 ادعا نمی‌شوند؛ مقایسهٔ FULL/SELECTIVE همچنان درون همان host/configuration کنترل شده است.
+
+`run_all.sh --performance` به‌طور پیش‌فرض protocol تاریخی را بازسازی می‌کند: seed برابر `20260821`، پنج warm-up برای هر scenario (**۱۵ execution در مجموع، نه ۴۵**)، سی round اندازه‌گیری برای هر scenario، ۱۰۰۰۰۰ iteration، ترتیب interleaved سه scenario و pinning روی CPU 0. گزینه‌های `--seed`، `--warmups`، `--runs`، `--iterations` و `--cpu` قابل تنظیم‌اند. Override محیطی `EACSL_CPU_ID` نیز برای اجرای یک scenario پشتیبانی می‌شود.
 
 ## Data and evidence
 

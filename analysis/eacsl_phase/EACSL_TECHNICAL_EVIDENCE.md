@@ -8,6 +8,16 @@
 
 آزمایش تاریخی با **stock Frama-C E-ACSL 33.0 (Arsenic)** و GCC 13.3.0 انجام شد. هیچ evidenceای استفاده از custom E-ACSL2 را نشان نمی‌دهد. repositoryهای E-ACSL2 محلی برای provenance بررسی شدند ولی به experiment attribution داده نشدند.
 
+| Component | Historical experiment implementation | Primary evidence |
+|---|---|---|
+| ACSL instrumentation | Stock `frama-c -e-acsl -e-acsl-valid`, 33.0 | historical scripts, tool paths and plugin help |
+| Runtime assertion detection | Stock E-ACSL generated C + stock RTL | generated C, `e-acsl-gcc` command and diagnostics |
+| Violation reporting | Stock E-ACSL assertion diagnostic with label and contributing values | seven retained `stderr.txt` files |
+| Reaction handling | Stock blocking assertion: diagnostic then `abort` (exit 134) | seven exit files and diagnostics |
+| Performance experiment | Stock E-ACSL FULL/SELECTIVE executables; GCC 13.3.0 | 30 static + 90 dynamic measurement rows |
+
+Custom E-ACSL2 commit `736903e3...` implements an opt-in reaction framework with `STOP/CONTINUE/SAFE_STATE/RECOVERY/REEXECUTE`, but its CLI flags, runtime sources and logs do not occur in this campaign. It is a separate experiment, not merely a hidden reaction/event layer under these results.
+
 ## Exact selection
 
 ```text
@@ -58,7 +68,7 @@ Harness کنترل‌شده ۳۳ تابع را فراخوانی می‌کند. p
 | Median instrumentation wall time | 6.710000 s | 6.010000 s | 10.432191% |
 | Median runtime wall time | 5.939651870 s | 4.867204497 s | 18.055728% |
 
-Static experiment ده تکرار و dynamic experiment سی تکرار per scenario داشت. هر ۹۰ measured dynamic run exit 0، checksum یکسان `5272412154435795075` و بدون performance-corpus violation بود. نتیجه production benchmark نیست.
+Static experiment ده تکرار و dynamic experiment سی تکرار per scenario داشت. Dynamic protocol پنج warm-up per scenario (**۱۵ execution total**) و سه functional sanity execution داشت؛ این ۱۸ execution جزو ۱۲۰ measurement نیستند. هر ۹۰ measured dynamic run exit 0، checksum یکسان `5272412154435795075` و بدون performance-corpus violation بود. نتیجه production benchmark نیست.
 
 ## Historical versus current implementation
 
@@ -73,10 +83,16 @@ Static experiment ده تکرار و dynamic experiment سی تکرار per scen
 | Result paths | historical `analysis/eacsl_*` work dirs | untracked `analysis/eacsl_phase/work/` |
 | Resume | historical scripts بدون resume عمومی | `run_all.sh --resume` |
 
+مدل‌های static و runtime از نظر C data model معادل نیستند. `s32/u32` با `long` تعریف شده‌اند: ۳۲ بیت در PPC32 ولی ۶۴ بیت در host LP64. campaign هیچ compatibility layer یا `-m32` نداشت. بنابراین runtime violations و نبود violation فقط دربارهٔ execution بومی ثبت‌شده ادعا می‌شوند؛ مقایسهٔ overhead FULL/SELECTIVE یک مقایسهٔ کنترل‌شده روی همان host است.
+
 ## Reproducibility
 
 README commands environment، source-view generation، exact generated selection، build و execution را پوشش می‌دهند. Frozen historical results overwrite نمی‌شوند. Generated binaries/C/cache tracked نیستند.
 
 ## Claim boundary
 
-هفت statement معتبر شکل «در این concrete execution property نقض شد» دارند. دربارهٔ ۹۴ target دیگر، نبود direct violation proof ایمنی نیست: ۴۸ observation منفی محدود، ۴۲ not-reached و ۴ ambiguous باقی می‌مانند.
+هفت statement معتبر شکل «در این concrete execution property نقض شد» دارند. ۹۴ target دیگر direct target-matched violation نداشتند، اما این عبارت به معنی ۹۴ نتیجهٔ منفی یا safe نیست: فقط ۴۸ مورد `NO_VIOLATION_OBSERVED`، ۴۲ مورد `NOT_REACHED` و ۴ مورد `AMBIGUOUS_OUTPUT` هستند.
+
+## Raw-evidence boundary
+
+در tree فعلی، برای هر ۱۰۱ case یک normalized row با case/alarm/function/input/classification وجود دارد. فقط هفت violation دارای raw `stdout.txt`، `stderr.txt` و `exit_code.txt` کپی‌شده‌اند. برای ۴۸ no-violation، ۴۲ not-reached و ۴ ambiguous در tree فعلی raw log مستقل وجود ندارد؛ excerpt و historical path در normalized table ثبت است. تمام ۱۰۱ مجموعهٔ raw stdout/stderr/exit در objectهای commit `1adf3521...` قابل بازیابی‌اند. آن commit روی branch نامرتبط `analysis/klee-witness` کل generated E-ACSL worktree را همراه یک اصلاح timeout KLEE اضافه کرد، ازاین‌رو provenance آن غیرمعمول است. SHA-256 هفت stderr کپی‌شده byte-for-byte با blobهای همان commit برابر است.

@@ -15,4 +15,6 @@
 - Not reached because another check aborted first: **42**
 - Ambiguous output: **4**
 
+Thus 94 targets had no direct target-matched violation, but only 48 were `NO_VIOLATION_OBSERVED`; 42 were `NOT_REACHED` and 4 were `AMBIGUOUS_OUTPUT`.
+
 `NO_VIOLATION_OBSERVED` is not a proof of safety.

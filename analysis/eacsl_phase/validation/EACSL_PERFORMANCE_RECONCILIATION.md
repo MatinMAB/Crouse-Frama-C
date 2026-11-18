@@ -7,4 +7,8 @@
 - SELECTIVE runtime median: **4.867204497 s**
 - Reduction of scenario medians: **18.055728%**
 
+- Measured rows: **30 static + 90 dynamic = 120**
+- Warm-up executions outside the measured dataset: **15 (5 per scenario)**
+- Functional-sanity executions outside the measured dataset: **3**
+
 Formula: `(median(FULL) - median(SELECTIVE)) / median(FULL) × 100`. This is a reduction of scenario medians, not the median of paired per-run reductions.

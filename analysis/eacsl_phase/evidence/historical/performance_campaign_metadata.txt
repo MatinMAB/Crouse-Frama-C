@@ -1,0 +1,17 @@
+CAMPAIGN_TIMESTAMP_UTC=20260821-083726Z
+WORKLOAD_CLASSIFICATION=THESIS_CONTROLLED_WORKLOAD
+RUNTIME_CLASSIFICATION=HOST_NATIVE_RUNTIME_WITH_PPC32_ANALYSIS_MODEL
+BENCH_SEED=20260821
+BENCH_ITERATIONS=100000
+WARMUP_RUNS=5
+MEASURED_RUNS=30
+CPU_ID=0
+OPTIMIZATION_LEVEL=-O2
+GIT_COMMIT=3c307992ec1f8ee1839b1ef675e9d6c63519146e
+GIT_BRANCH=analysis/eacsl-selective-runtime
+FRAMAC_VERSION=33.0 (Arsenic)
+GCC_VERSION=13.3.0
+063dabc3f83301f1b98aac843baebce95a0957f3e7d258ba5fb58045e0772410  /home/matin/frama-work/frama-eva-analysis/analysis/eacsl_runtime/build/S0
+a012ea6be0e3306a9b8851bb5a9920f42c8cc713caf54e26845ad690c3d25b4a  /home/matin/frama-work/frama-eva-analysis/analysis/eacsl_runtime/build/S1
+b62104f3ef3b984814de19e4ad6ed4022694e786e96b3c51ee7c4208e2da5d1a  /home/matin/frama-work/frama-eva-analysis/analysis/eacsl_runtime/build/S2
+9eb37185a880ef045da38b54fd3046fce594b1c64bd8ab384f04484e79fd615e  /home/matin/frama-work/frama-eva-analysis/analysis/eacsl_runtime/harness/thesis_runtime_harness.c

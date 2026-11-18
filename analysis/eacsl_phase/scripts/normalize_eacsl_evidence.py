@@ -355,6 +355,9 @@ def main() -> None:
         "runtime_101_retention_audit.tsv": "analysis/eacsl_selective/results/RUNTIME_101_RETENTION_AUDIT.tsv",
         "wp_48_elimination_audit.tsv": "analysis/eacsl_selective/results/WP_48_INSTRUMENTATION_ELIMINATION_AUDIT.tsv",
         "property_count_metrics.tsv": "analysis/eacsl_selective/results/PROPERTY_COUNT_METRICS.tsv",
+        "performance_run_order.tsv": "analysis/eacsl_runtime/results/PERFORMANCE_RUN_ORDER.tsv",
+        "functional_equivalence_audit.tsv": "analysis/eacsl_runtime/results/FUNCTIONAL_EQUIVALENCE_AUDIT.tsv",
+        "performance_campaign_metadata.txt": "analysis/eacsl_runtime/results/PERFORMANCE_CAMPAIGN_METADATA.txt",
     }
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     for destination, source_path in source_copies.items():
@@ -371,7 +374,8 @@ def main() -> None:
         "EACSL_VERSION=Frama-C 33.0 bundled E-ACSL\nCUSTOM_EACSL2_USED=NO\n"
         "STATIC_INSTRUMENTATION_MACHDEP=ppc_32\nDYNAMIC_RUNTIME_MACHDEP=x86_64\n"
         "HOST_ARCH=x86_64\nGCC_VERSION=13.3.0\nSTATIC_REPEATS=10\n"
-        "PERFORMANCE_WARMUPS=5\nPERFORMANCE_MEASURED_RUNS=30 per scenario\n"
+        "PERFORMANCE_WARMUPS_PER_SCENARIO=5\nPERFORMANCE_WARMUP_EXECUTIONS_TOTAL=15\n"
+        "PERFORMANCE_MEASURED_RUNS=30 per scenario\nFUNCTIONAL_SANITY_EXECUTIONS=3\n"
         "PERFORMANCE_SEED=20260821\nPERFORMANCE_ITERATIONS=100000\nCPU_PINNING=CPU 0\n"
         "RUNTIME_REACTION=abort on first failed assertion\n"
         f"SOURCE_COMMIT={SOURCE_COMMIT}\nHISTORICAL_STATIC_COMMIT={HISTORICAL_STATIC_COMMIT}\n"
@@ -397,6 +401,8 @@ def main() -> None:
         f"- No violation observed: **{classifications['NO_VIOLATION_OBSERVED']}**\n"
         f"- Not reached because another check aborted first: **{classifications['NOT_REACHED']}**\n"
         f"- Ambiguous output: **{classifications['AMBIGUOUS_OUTPUT']}**\n\n"
+        "Thus 94 targets had no direct target-matched violation, but only 48 were "
+        "`NO_VIOLATION_OBSERVED`; 42 were `NOT_REACHED` and 4 were `AMBIGUOUS_OUTPUT`.\n\n"
         "`NO_VIOLATION_OBSERVED` is not a proof of safety.\n",
         encoding="utf-8",
     )
@@ -408,6 +414,9 @@ def main() -> None:
         f"- FULL runtime median: **{statistics.median(runtime_full):.9f} s**\n"
         f"- SELECTIVE runtime median: **{statistics.median(runtime_selective):.9f} s**\n"
         f"- Reduction of scenario medians: **{runtime_reduction:.6f}%**\n\n"
+        "- Measured rows: **30 static + 90 dynamic = 120**\n"
+        "- Warm-up executions outside the measured dataset: **15 (5 per scenario)**\n"
+        "- Functional-sanity executions outside the measured dataset: **3**\n\n"
         "Formula: `(median(FULL) - median(SELECTIVE)) / median(FULL) × 100`. "
         "This is a reduction of scenario medians, not the median of paired per-run reductions.\n",
         encoding="utf-8",
@@ -429,6 +438,11 @@ def main() -> None:
         if retained.is_file():
             hashes.append(retained)
     hashes.extend(sorted((EVIDENCE / "violations").glob("*/stderr.txt")))
+    hashes.extend([
+        EVIDENCE / "performance_run_order.tsv",
+        EVIDENCE / "functional_equivalence_audit.tsv",
+        EVIDENCE / "performance_campaign_metadata.txt",
+    ])
     (PHASE / "SHA256SUMS").write_text(
         "".join(f"{sha256(path)}  {path.relative_to(ROOT)}\n" for path in hashes), encoding="utf-8"
     )

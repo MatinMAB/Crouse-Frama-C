@@ -2,7 +2,7 @@
 
 Historical static campaign: ده تکرار interleaved برای S0/S1/S2، `/usr/bin/time -v`، instrumentation/compilation time، RSS، generated C و object size.
 
-Historical dynamic campaign: سی تکرار measured برای هر scenario بعد از پنج warmup، wall/user/system/RSS، checksum-equivalence و violation audit.
+Historical dynamic campaign: سی تکرار measured برای هر scenario بعد از پنج warmup برای هر scenario، یعنی ۹۰ measurement و ۱۵ warm-up execution. سه functional-sanity execution جدا نیز انجام شد. Warm-up و sanity جزو dataset ۱۲۰ measurement نیستند. Metrics اندازه‌گیری‌شده wall/user/system/RSS، checksum-equivalence و violation audit بودند.
 
 Headline reductions از reduction of scenario medians محاسبه می‌شوند:
 
