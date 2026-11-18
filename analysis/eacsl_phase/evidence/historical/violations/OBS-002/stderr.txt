@@ -1,0 +1,9 @@
+analysis/eacsl_selective/generated/wp_pruned_101/sources/div_Ccode.c: In function 's16_div_s32_s16'
+analysis/eacsl_selective/generated/wp_pruned_101/sources/div_Ccode.c:312: Error: Assertion failed:
+	The failing predicate is:
+	eva_klee_alarm_0024:
+		(s32)(s32Temp1 - (s32)((s32)(s32Temp1 / (s32)denominator) * (s32)denominator))
+≥ 0.
+	With values at failure point:
+	- denominator: 7
+	- s32Temp1: -2147483648

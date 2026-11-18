@@ -1,0 +1,5 @@
+case_id	role	scenario	input	status	exit_status	elapsed_display	observed_label	evidence_directory
+FULL-PERFORMANCE	full runtime representative	FULL	THESIS_CONTROLLED_WORKLOAD/100000	NO_VIOLATION_OBSERVED	0	0:05.36	NONE	analysis/eacsl_phase/validation/current_rerun_evidence/FULL_PERFORMANCE
+SELECTIVE-PERFORMANCE	selective runtime representative	SELECTIVE	THESIS_CONTROLLED_WORKLOAD/100000	NO_VIOLATION_OBSERVED	0	0:04.36	NONE	analysis/eacsl_phase/validation/current_rerun_evidence/SELECTIVE_PERFORMANCE
+OBS-001	no-violation representative	SELECTIVE	numerator=12345; denominator=0	NO_VIOLATION_OBSERVED	0	0:00.00	NONE	analysis/eacsl_phase/validation/current_rerun_evidence/OBS-001
+OBS-002	historical-violation representative	SELECTIVE	numerator=INT32_MIN; denominator=7	RUNTIME_VIOLATION	134	0:00.15	eva_klee_alarm_0024	analysis/eacsl_phase/validation/current_rerun_evidence/OBS-002
